@@ -1,0 +1,23 @@
+{
+  "name": "g3-tsx",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "old-build": "tsc && vite build",
+    "build": "node --require esbuild-register node_modules/.bin/eleventy",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "^4.6.4",
+    "vite": "^3.2.3",
+    "@11ty/eleventy": "^2.0.0-canary.23",
+    "@types/vhtml": "^2.2.4",
+    "esbuild-register": "^3.3.2",
+    "patch-package": "^6.4.7",
+    "vhtml": "^2.2.0",
+    "prettier": "^2.8.1",
+    "vitest": "^0.26.2"
+  }
+}
