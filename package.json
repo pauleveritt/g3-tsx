@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "old-build": "tsc && vite build",
+    "start": "node --require esbuild-register node_modules/.bin/eleventy --serve --watch",
     "build": "node --require esbuild-register node_modules/.bin/eleventy",
     "preview": "vite preview"
   },
@@ -19,6 +20,7 @@
     "vhtml": "^2.2.0",
     "prettier": "^2.8.1",
     "vitest": "^0.26.2",
-    "@sinclair/typebox": "^0.25.16"
+    "@sinclair/typebox": "^0.25.16",
+    "@11ty/eleventy-plugin-vite": "^2.0.0-canary.2"
   }
 }
