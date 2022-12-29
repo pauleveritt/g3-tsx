@@ -4,7 +4,7 @@ import BaseLayout from "./components/BaseLayout.11ty";
 
 export function render(): JSX.Element {
   return (
-    <BaseLayout>
+    <BaseLayout pageTitle={`This title`} age={99}>
       <div>
         <span>
           First <strong>child</strong>

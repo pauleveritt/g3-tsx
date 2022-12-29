@@ -2,11 +2,19 @@
 import h, { JSX } from "vhtml";
 
 type BaseLayoutProps = {
+  pageTitle: string;
+  age?: number;
   children: string[];
 };
-const BaseLayout = ({ children }: BaseLayoutProps): JSX.Element => (
+const BaseLayout = ({
+  pageTitle,
+  age,
+  children,
+}: BaseLayoutProps): JSX.Element => (
   <div>
-    <h1>...</h1>
+    <h1>
+      {pageTitle}: {age}
+    </h1>
     <div>{children}</div>
   </div>
 );
