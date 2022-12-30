@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "old-build": "tsc && vite build",
     "start": "node --require esbuild-register node_modules/.bin/eleventy --serve --watch",
+    "debug": "DEBUG=Eleventy* node --require esbuild-register node_modules/.bin/eleventy --serve --watch",
     "build": "node --require esbuild-register node_modules/.bin/eleventy",
     "preview": "vite preview"
   },
