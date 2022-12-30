@@ -1,0 +1,16 @@
+{
+  "rootURL": "/",
+  "siteLogo": "jetbrains-simple.svg",
+  "siteTitle": "PyCharm Guide",
+  "start": {
+    "items": [
+      {
+        "accent": "success",
+        "cssClass": "documentation",
+        "href": "/tips/",
+        "label": "Tips",
+        "icon": "fas fa-play-circle"
+      }
+    ]
+  }
+}

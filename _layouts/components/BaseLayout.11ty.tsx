@@ -1,6 +1,6 @@
 // @ts-ignore
 import h, { JSX } from "vhtml";
-import Navbar from "./Navbar.11ty";
+import Navbar from "./navbar/Navbar.11ty";
 
 type BaseLayoutProps = {
   pageTitle: string;
