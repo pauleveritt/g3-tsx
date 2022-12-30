@@ -8,7 +8,6 @@ export type NavbarLinkProps = {
   icon: string;
 };
 const NavbarLink = ({ href, color, icon }: NavbarLinkProps): JSX.Element => {
-  // noinspection BadExpressionStatementJS
   return (
     <a className="navbar-item is-hidden-touch" href={href} target="_blank">
       <span className="icon" style={`{ color: #${color} }`}>

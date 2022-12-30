@@ -12,7 +12,6 @@ const NavbarButton = ({
   href,
   label,
 }: NavbarButtonProps): JSX.Element => {
-  // noinspection BadExpressionStatementJS
   return (
     <p className="control">
       <a
