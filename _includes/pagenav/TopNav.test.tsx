@@ -2,7 +2,6 @@ import { expect, test } from "vitest";
 import { screen } from "@testing-library/dom";
 
 import TopNav, { TopNavProps } from "./TopNav.11ty";
-import site from "../../site.json";
 
 const props: TopNavProps = {
   parent: { label: "Parent Label", slug: "parent-slug" },
