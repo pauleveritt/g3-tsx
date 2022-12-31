@@ -1,8 +1,8 @@
 // @ts-ignore
 import h, { JSX } from "vhtml";
-import Navbar from "./navbar/Navbar.11ty";
-import site from "../site.json";
-import Footer from "./footer/Footer.11ty";
+import Navbar from "../_includes/navbar/Navbar.11ty";
+import site from "./site.json";
+import Footer from "../_includes/footer/Footer.11ty";
 
 export type BaseLayoutProps = {
   pageTitle: string;

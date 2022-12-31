@@ -2,7 +2,7 @@ import { expect, test } from "vitest";
 import { screen } from "@testing-library/dom";
 
 import NavbarEnd, { NavbarEndProps } from "./NavbarEnd.11ty";
-import site from "../../site.json";
+import site from "../site.json";
 
 const props: NavbarEndProps = site.end;
 

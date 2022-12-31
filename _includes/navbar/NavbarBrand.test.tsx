@@ -2,7 +2,7 @@ import { expect, test } from "vitest";
 import { screen } from "@testing-library/dom";
 
 import NavbarBrand, { NavbarBrandProps } from "./NavbarBrand.11ty";
-import site from "../../site.json";
+import site from "../site.json";
 
 export const navbarBrandProps: NavbarBrandProps = {
   rootURL: site.rootURL,

@@ -2,7 +2,7 @@ import { expect, test } from "vitest";
 import { screen } from "@testing-library/dom";
 
 import NavbarStart, { NavbarStartProps } from "./NavbarStart.11ty";
-import site from "../../site.json";
+import site from "../site.json";
 
 export const navbarStartProps: NavbarStartProps = site.start;
 test("NavbarStart", () => {

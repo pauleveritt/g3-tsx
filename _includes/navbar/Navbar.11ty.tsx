@@ -1,7 +1,7 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
 import NavbarBrand from "./NavbarBrand.11ty";
-import site from "../../site.json";
+import site from "../site.json";
 import NavbarStart from "./NavbarStart.11ty";
 import NavbarEnd from "./NavbarEnd.11ty";
 

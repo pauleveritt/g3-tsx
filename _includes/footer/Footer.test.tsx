@@ -2,7 +2,7 @@ import { expect, test } from "vitest";
 import { screen } from "@testing-library/dom";
 
 import Footer, { FooterProps } from "./Footer.11ty";
-import site from "../../site.json";
+import site from "../site.json";
 
 const props: FooterProps = { copyright: site.copyright };
 

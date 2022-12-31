@@ -1,6 +1,6 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
-import BaseLayout from "./components/BaseLayout.11ty";
+import BaseLayout from "./BaseLayout.11ty";
 
 export type TipLayoutProps = {
   content: string;
