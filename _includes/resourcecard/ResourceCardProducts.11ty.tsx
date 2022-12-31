@@ -7,12 +7,12 @@ type ResourceCardProduct = {
 };
 
 export type ResourceCardProducts = ResourceCardProduct[];
-export type ResourceCardProductProps = {
+export type ResourceCardProductsProps = {
   items: ResourceCardProducts;
 };
-const ResourceCardProduct = ({
+const ResourceCardProducts = ({
   items,
-}: ResourceCardProductProps): JSX.Element => {
+}: ResourceCardProductsProps): JSX.Element => {
   return (
     <>
       {items.map((product) => (
@@ -28,4 +28,4 @@ const ResourceCardProduct = ({
   );
 };
 
-export default ResourceCardProduct;
+export default ResourceCardProducts;

@@ -10,7 +10,7 @@ export type ResourceCardTopics = ResourceCardTopic[];
 export type ResourceCardTopicProps = {
   items: ResourceCardTopics;
 };
-const ResourceCardTopic = ({ items }: ResourceCardTopicProps): JSX.Element => {
+const ResourceCardTopics = ({ items }: ResourceCardTopicProps): JSX.Element => {
   return (
     <>
       {items.map((topic) => (
@@ -26,4 +26,4 @@ const ResourceCardTopic = ({ items }: ResourceCardTopicProps): JSX.Element => {
   );
 };
 
-export default ResourceCardTopic;
+export default ResourceCardTopics;

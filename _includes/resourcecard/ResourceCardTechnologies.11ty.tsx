@@ -6,12 +6,12 @@ type ResourceCardTechnology = {
   slug: string;
 };
 
-export type ResourceCardTechnologyProps = {
+export type ResourceCardTechnologiesProps = {
   items: ResourceCardTechnology[];
 };
-const ResourceCardTechnology = ({
+const ResourceCardTechnologies = ({
   items,
-}: ResourceCardTechnologyProps): JSX.Element => {
+}: ResourceCardTechnologiesProps): JSX.Element => {
   return (
     <>
       {items.map((technology) => (
@@ -27,4 +27,4 @@ const ResourceCardTechnology = ({
   );
 };
 
-export default ResourceCardTechnology;
+export default ResourceCardTechnologies;

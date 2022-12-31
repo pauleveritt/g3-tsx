@@ -1,11 +1,11 @@
 import { expect, test } from "vitest";
 import { screen } from "@testing-library/dom";
 
-import ResourceCardTechnology, {
-  ResourceCardTechnologyProps,
-} from "./ResourceCardTechnology.11ty";
+import ResourceCardTopics, {
+  ResourceCardTopicProps,
+} from "./ResourceCardTopics.11ty";
 
-const props: ResourceCardTechnologyProps = {
+const props: ResourceCardTopicProps = {
   items: [
     { label: "Some Label 1", slug: "/some-slug-1" },
     { label: "Some Label 2", slug: "/some-slug-2" },
@@ -13,8 +13,8 @@ const props: ResourceCardTechnologyProps = {
   ],
 };
 
-test("ResourceCardTechnology", () => {
-  document.body.innerHTML = ResourceCardTechnology(props);
+test("ResourceCardTopic", () => {
+  document.body.innerHTML = ResourceCardTopics(props);
   const results: HTMLAnchorElement[] = screen.getAllByRole("link");
   expect(results[0].href).to.equal("/some-slug-1");
 });
