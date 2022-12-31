@@ -4,10 +4,10 @@ import NavbarLink, { NavbarLinkProps } from "./NavbarLink.11ty";
 import NavbarButton, { NavbarButtonProps } from "./NavbarButton.11ty";
 import NavbarSearch from "./NavbarSearch.11ty";
 
-export interface NavbarEndProps {
+export type NavbarEndProps = {
   buttons: NavbarButtonProps[];
   links: NavbarLinkProps[];
-}
+};
 
 const NavbarEnd = ({ links, buttons }: NavbarEndProps): JSX.Element => {
   return (

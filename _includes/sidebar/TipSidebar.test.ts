@@ -2,7 +2,6 @@ import { expect, test } from "vitest";
 import { screen } from "@testing-library/dom";
 
 import TipSidebar, { TipSidebarProps } from "./TipSidebar.11ty";
-import site from "../../site.json";
 
 const props: TipSidebarProps = {};
 
