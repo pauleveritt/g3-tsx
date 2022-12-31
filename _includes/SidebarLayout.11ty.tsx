@@ -1,13 +1,20 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
 import BaseLayout from "./BaseLayout.11ty";
+import Heading from "./heading/Heading.11ty";
 
 export type SidebarLayoutProps = {
   pageTitle: string;
+  subtitle?: string;
+  bottomNav?: string[];
+  topNav?: string[];
   children: string[];
 };
 const SidebarLayout = ({
   pageTitle,
+  subtitle,
+  bottomNav,
+  topNav,
   children,
 }: SidebarLayoutProps): JSX.Element => {
   return (
@@ -17,10 +24,10 @@ const SidebarLayout = ({
         <div className="bd-main-container container">
           <div className="bd-duo">
             <div className="bd-lead">
-              {/*{topNav}*/}
-              {/*<Heading title={pageTitle} subtitle={subtitle} />*/}
+              {topNav}
+              <Heading title={pageTitle} subtitle={subtitle} />
               {children}
-              {/*{bottomNav}*/}
+              {bottomNav}
             </div>
             {/*{sidebar}*/}
           </div>
