@@ -31,98 +31,98 @@ export function render({ title, content }: TipLayoutProps): JSX.Element {
   const sidebar = TipSidebar({ ...tipSidebarProps });
 
   // Main content
-  const main = (
-    <div style={{ marginBottom: "3rem" }}>
-      <div className="columns">
-        {!isSSR && animatedGif && (
-          <React.Suspense fallback={<div />}>
-            <ClientSideOnlyPlayer animatedGif={animatedGif} />
-          </React.Suspense>
-        )}
-        {screenshot && (
-          <img
-            src={screenshot.publicURL}
-            alt="Tip Screenshot"
-            width="600"
-            loading="lazy"
-            style={{ objectFit: "contain", objectPosition: "top" }}
-          />
-        )}
-        {shortVideo && (
-          <ShortVideo
-            videoURL={shortVideo.url}
-            authorLabel={tip.author.label}
-            slug={tip.slug}
-            posterURL={shortPosterURL}
-            posterNumber={shortVideo.posterNumber}
-          />
-        )}
-        <div
-          className="column content"
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            flexDirection: "column",
-          }}
-        >
-          <div dangerouslySetInnerHTML={{ __html: tip.leadin }} />
-          <div>
-            {tip.hasBody && (
-              <ScrollLink
-                activeClass="active"
-                className="button is-light"
-                to="in-depth"
-                spy={true}
-                smooth={true}
-                offset={0}
-                duration={500}
-                style={{ width: "auto" }}
-              >
-                Learn More
-              </ScrollLink>
-            )}
-            {longVideo && (
-              <ScrollLink
-                activeClass="active"
-                className="button is-light"
-                to="full-video"
-                spy={true}
-                smooth={true}
-                offset={0}
-                duration={500}
-                style={{ width: "auto", marginLeft: "0.5em" }}
-              >
-                Full Video
-              </ScrollLink>
-            )}
-          </div>
-        </div>
-      </div>
-      {tip.hasBody && (
-        <Element
-          name="in-depth"
-          className="element"
-          style={{ marginTop: "1rem" }}
-        >
-          <header className="is-size-3 is-bold">In Depth</header>
-          <div className="columns">
-            <div className="column is-11-desktop content">
-              <MDXRenderer>{tip.body}</MDXRenderer>
-            </div>
-          </div>
-        </Element>
-      )}
-      {tip.seealso && (
-        <Element
-          name="see-also"
-          className="element"
-          style={{ marginTop: "1rem" }}
-        >
-          <SeeAlso items={tip.seealso} />
-        </Element>
-      )}
-    </div>
-  );
+  // const main = (
+  //   <div style={{ marginBottom: "3rem" }}>
+  //     <div className="columns">
+  //       {!isSSR && animatedGif && (
+  //         <React.Suspense fallback={<div />}>
+  //           <ClientSideOnlyPlayer animatedGif={animatedGif} />
+  //         </React.Suspense>
+  //       )}
+  //       {screenshot && (
+  //         <img
+  //           src={screenshot.publicURL}
+  //           alt="Tip Screenshot"
+  //           width="600"
+  //           loading="lazy"
+  //           style={{ objectFit: "contain", objectPosition: "top" }}
+  //         />
+  //       )}
+  //       {shortVideo && (
+  //         <ShortVideo
+  //           videoURL={shortVideo.url}
+  //           authorLabel={tip.author.label}
+  //           slug={tip.slug}
+  //           posterURL={shortPosterURL}
+  //           posterNumber={shortVideo.posterNumber}
+  //         />
+  //       )}
+  //       <div
+  //         className="column content"
+  //         style={{
+  //           display: "flex",
+  //           justifyContent: "space-between",
+  //           flexDirection: "column",
+  //         }}
+  //       >
+  //         <div dangerouslySetInnerHTML={{ __html: tip.leadin }} />
+  //         <div>
+  //           {tip.hasBody && (
+  //             <ScrollLink
+  //               activeClass="active"
+  //               className="button is-light"
+  //               to="in-depth"
+  //               spy={true}
+  //               smooth={true}
+  //               offset={0}
+  //               duration={500}
+  //               style={{ width: "auto" }}
+  //             >
+  //               Learn More
+  //             </ScrollLink>
+  //           )}
+  //           {longVideo && (
+  //             <ScrollLink
+  //               activeClass="active"
+  //               className="button is-light"
+  //               to="full-video"
+  //               spy={true}
+  //               smooth={true}
+  //               offset={0}
+  //               duration={500}
+  //               style={{ width: "auto", marginLeft: "0.5em" }}
+  //             >
+  //               Full Video
+  //             </ScrollLink>
+  //           )}
+  //         </div>
+  //       </div>
+  //     </div>
+  //     {tip.hasBody && (
+  //       <Element
+  //         name="in-depth"
+  //         className="element"
+  //         style={{ marginTop: "1rem" }}
+  //       >
+  //         <header className="is-size-3 is-bold">In Depth</header>
+  //         <div className="columns">
+  //           <div className="column is-11-desktop content">
+  //             <MDXRenderer>{tip.body}</MDXRenderer>
+  //           </div>
+  //         </div>
+  //       </Element>
+  //     )}
+  //     {tip.seealso && (
+  //       <Element
+  //         name="see-also"
+  //         className="element"
+  //         style={{ marginTop: "1rem" }}
+  //       >
+  //         <SeeAlso items={tip.seealso} />
+  //       </Element>
+  //     )}
+  //   </div>
+  // );
 
   return <BaseLayout pageTitle={title}>{rawContent}</BaseLayout>;
 }
