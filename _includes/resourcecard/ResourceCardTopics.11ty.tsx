@@ -1,7 +1,7 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
 
-type ResourceCardTopic = {
+export type ResourceCardTopic = {
   label: string;
   slug: string;
 };
