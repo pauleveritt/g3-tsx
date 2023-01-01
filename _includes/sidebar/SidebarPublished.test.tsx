@@ -5,10 +5,16 @@ import SidebarPublished, {
   SidebarPublishedProps,
 } from "./SidebarPublished.11ty";
 
-const props: SidebarPublishedProps = {};
+const props: SidebarPublishedProps = {
+  date: "2023-01-01",
+  author: {
+    slug: "some-author-slug",
+    title: "Some Author Title",
+    thumbnail: "Some Author Thumbnail",
+  },
+};
 
 test("SidebarPublished", () => {
   document.body.innerHTML = SidebarPublished(props);
-  const result = screen.getByRole("button");
-  expect(result).to.exist;
+  expect(screen.getByText("Some Author Title")).to.exist;
 });

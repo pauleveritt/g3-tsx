@@ -7,7 +7,7 @@ export type ResourceCardProduct = {
 };
 
 export type ResourceCardProductsProps = {
-  items: ResourceCardProducts;
+  items: ResourceCardProduct[];
 };
 const ResourceCardProducts = ({
   items,
