@@ -3,7 +3,7 @@ import { screen } from "@testing-library/dom";
 
 import TopNav, { TopNavProps } from "./TopNav.11ty";
 
-const props: TopNavProps = {
+export const topNavProps: TopNavProps = {
   parent: { label: "Parent Label", slug: "parent-slug" },
   siblings: [
     { label: "Sibling 1", slug: "sibling-1" },
@@ -14,7 +14,7 @@ const props: TopNavProps = {
 };
 
 test("TopNav", () => {
-  document.body.innerHTML = TopNav(props);
+  document.body.innerHTML = TopNav(topNavProps);
 
   const parents: HTMLAnchorElement[] = screen.getAllByTitle("Parent Label");
   expect(parents[0].href).to.equal("parent-slug");

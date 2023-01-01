@@ -3,13 +3,13 @@ import { screen } from "@testing-library/dom";
 
 import BottomNav, { BottomNavProps } from "./BottomNav.11ty";
 
-const props: BottomNavProps = {
+export const bottomNavProps: BottomNavProps = {
   previous: { label: "Previous Tip", slug: "/previous" },
   next: { label: "Next Tip", slug: "/next" },
 };
 
 test("BottomNav", () => {
-  document.body.innerHTML = BottomNav(props);
+  document.body.innerHTML = BottomNav(bottomNavProps);
 
   // Check the <span> with the label
   expect(screen.getByText("Previous Tip")).to.exist;

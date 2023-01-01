@@ -3,7 +3,7 @@ import { screen } from "@testing-library/dom";
 
 import TipSidebar, { TipSidebarProps } from "./TipSidebar.11ty";
 
-const props: TipSidebarProps = {
+export const tipSidebarProps: TipSidebarProps = {
   date: "2023-01-01",
   author: {
     thumbnail: "some-author-thumbnail.png",
@@ -23,7 +23,7 @@ const props: TipSidebarProps = {
 };
 
 test("TipSidebar", () => {
-  document.body.innerHTML = TipSidebar(props);
+  document.body.innerHTML = TipSidebar(tipSidebarProps);
 
   // Published
   expect(screen.getByText("Some Author Title")).to.exist;
