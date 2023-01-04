@@ -13,7 +13,11 @@ export type TipLayoutProps = {
   title: string;
 };
 
-export function render({ title, content }: TipLayoutProps): JSX.Element {
+interface Context {}
+export function render(
+  this: Context,
+  { title, content }: TipLayoutProps
+): JSX.Element {
   // Convert the HTML string into a vdom thingy
   const rawContent = h("main", {
     dangerouslySetInnerHTML: { __html: content },
