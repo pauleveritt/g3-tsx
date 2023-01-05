@@ -6,24 +6,26 @@
   "scripts": {
     "dev": "vite",
     "start": "node --require esbuild-register node_modules/.bin/eleventy --serve --watch",
-    "debug": "DEBUG=Eleventy* node --require esbuild-register node_modules/.bin/eleventy --serve --watch",
+    "debug-start": "DEBUG=Eleventy* node --require esbuild-register node_modules/.bin/eleventy --serve --watch",
     "build": "node --require esbuild-register node_modules/.bin/eleventy",
+    "debug-build": "DEBUG=Eleventy* node --require esbuild-register node_modules/.bin/eleventy",
+    "clean": "rm -rf _site && rm -rf .11ty-vite",
     "preview": "vite preview"
   },
   "devDependencies": {
-    "typescript": "^4.6.4",
-    "vite": "^3.2.3",
     "@11ty/eleventy": "^2.0.0-canary.23",
+    "@11ty/eleventy-plugin-vite": "^2.0.0-canary.2",
+    "@sinclair/typebox": "^0.25.16",
+    "@testing-library/dom": "^8.19.0",
+    "@types/markdown-it": "^12.2.3",
     "@types/vhtml": "^2.2.4",
     "esbuild-register": "^3.3.2",
-    "patch-package": "^6.4.7",
-    "vhtml": "^2.2.0",
-    "prettier": "^2.8.1",
-    "vitest": "^0.26.2",
-    "@sinclair/typebox": "^0.25.16",
-    "@11ty/eleventy-plugin-vite": "^2.0.0-canary.2",
     "happy-dom": "^8.1.1",
-    "@testing-library/dom": "^8.19.0",
-    "@types/markdown-it": "^12.2.3"
+    "patch-package": "^6.4.7",
+    "prettier": "^2.8.1",
+    "typescript": "^4.6.4",
+    "vhtml": "^2.2.0",
+    "vite": "^3.2.3",
+    "vitest": "^0.26.2"
   }
 }

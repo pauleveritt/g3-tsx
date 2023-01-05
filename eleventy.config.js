@@ -5,7 +5,22 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addExtension(["11ty.jsx", "11ty.ts", "11ty.tsx"], {
     key: "11ty.js",
   });
-  eleventyConfig.addPlugin(EleventyVitePlugin);
+  // eleventyConfig.setServerPassthroughCopyBehavior("copy");
+  eleventyConfig.addPassthroughCopy("sites/**/*.gif");
+
+  eleventyConfig.addPlugin(EleventyVitePlugin, {
+    viteOptions: {
+      server: {
+        mode: "development",
+        watch: {
+          ignored: ["_site/**"],
+        },
+      },
+      build: {
+        mode: "production",
+      },
+    },
+  });
 
   return {
     dir: {
@@ -14,6 +29,6 @@ module.exports = function (eleventyConfig) {
       layouts: "../_includes",
       output: "_site",
     },
-    markdownTemplateEngine: "11ty.js",
+    // markdownTemplateEngine: "11ty.js",
   };
 };
