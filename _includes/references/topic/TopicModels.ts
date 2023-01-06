@@ -8,7 +8,7 @@ export type TopicReference = Static<typeof TopicReference>;
 
 export function getTopic(data: any, page: EleventyPage): TopicReference {
   const topic: TopicReference = {
-    ...getReference(data, page),
+    ...getReference(data, page, "topic`"),
   };
   validateResource(TopicReference, topic);
   return topic;

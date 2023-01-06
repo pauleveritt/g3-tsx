@@ -38,7 +38,7 @@ export type TipResource = Static<typeof TipResource>;
 
 export function getTip(data: any, page: EleventyPage): TipResource {
   const tip: TipResource = {
-    ...getResource(data, page),
+    ...getResource(data, page, "tip"),
     leadin: data.leadin,
     animatedGif: data.animatedGif,
     screenshot: data.screenshot,

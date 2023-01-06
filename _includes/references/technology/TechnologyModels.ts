@@ -11,7 +11,7 @@ export function getTechnology(
   page: EleventyPage
 ): TechnologyReference {
   const author: TechnologyReference = {
-    ...getReference(data, page),
+    ...getReference(data, page, "technology"),
   };
   validateResource(TechnologyReference, author);
   return author;
