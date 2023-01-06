@@ -21,7 +21,7 @@ test("validates good frontmatter", () => {
     body: "Some *content*",
     id: "some-id",
     slug: "some-slug",
-    date: "some-data",
+    date: new Date(),
     resourceType: "some-resourcetype",
   };
   const validation = () => validateResource(TipResource, frontmatter);
