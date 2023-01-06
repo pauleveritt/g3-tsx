@@ -1,7 +1,7 @@
 import { beforeAll } from "vitest";
 import { readMarkdown } from "./src/validators";
 
-function getTip() {
+function getTestResource() {
   const { frontmatter, body } = readMarkdown(
     "webstorm-guide/tips/amend-commit/index.md"
   );
@@ -15,5 +15,5 @@ function getTip() {
 }
 
 beforeAll(() => {
-  globalThis.tipData = getTip();
+  globalThis.tipData = getTestResource();
 });

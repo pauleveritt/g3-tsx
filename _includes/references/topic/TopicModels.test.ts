@@ -1,8 +1,9 @@
 import { expect, test } from "vitest";
 import { getTopic } from "./TopicModels";
 import { readMarkdown } from "../../../src/validators";
+import { EleventyPage } from "../../models";
 
-test("Construct a valid model", () => {
+test("Construct a valid topic", () => {
   const { frontmatter, body } = readMarkdown(
     "webstorm-guide/topics/customizing/index.md"
   );
@@ -10,10 +11,12 @@ test("Construct a valid model", () => {
   const topicData = {
     ...frontmatter,
     url: "/topics/customizing/",
-    fileSlug: "customizing",
     content: body,
     resourceType: "topic",
   };
-  const result = getTopic(topicData);
+  const topicPage: EleventyPage = {
+    fileSlug: "customizing",
+  };
+  const result = getTopic(topicData, topicPage);
   expect(result.label).to.equal("customizing");
 });

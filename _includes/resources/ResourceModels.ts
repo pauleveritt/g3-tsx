@@ -1,4 +1,5 @@
 import { Static, Type } from "@sinclair/typebox";
+import { EleventyPage } from "../models";
 
 export const Resource = Type.Object({
   id: Type.String(),
@@ -13,11 +14,11 @@ export const Resource = Type.Object({
 
 export type Resource = Static<typeof Resource>;
 
-export function getResource(data: any): Resource {
+export function getResource(data: any, page: EleventyPage): Resource {
   return {
     id: data.url,
     title: data.title,
-    slug: data.fileSlug,
+    slug: page.fileSlug,
     date: data.date,
     subtitle: data.subtitle,
     body: data.content,

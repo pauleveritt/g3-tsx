@@ -1,5 +1,6 @@
 import { Static, Type } from "@sinclair/typebox";
 import { getResource, Resource } from "../resources/ResourceModels";
+import { EleventyPage } from "../models";
 
 export const Reference = Type.Intersect([
   Resource,
@@ -11,13 +12,13 @@ export const Reference = Type.Intersect([
 ]);
 export type Reference = Static<typeof Reference>;
 
-export function getReference(data: any): Reference {
+export function getReference(data: any, page: EleventyPage): Reference {
   // Use frontmatter label, or infer from the parent directory
-  const label = data.label ? data.label : data.fileSlug;
+  const label = data.label ? data.label : page.fileSlug;
   const resources: Resource[] = [];
   const referenceResources: Resource[] = [];
   return {
-    ...getResource(data),
+    ...getResource(data, page),
     label,
     resources,
     referenceResources,

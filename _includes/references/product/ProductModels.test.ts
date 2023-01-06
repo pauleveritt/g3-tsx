@@ -2,7 +2,7 @@ import { expect, test } from "vitest";
 import { getProduct } from "./ProductModels";
 import { readMarkdown } from "../../../src/validators";
 
-test("Construct a valid model", () => {
+test("Construct a valid product", () => {
   const { frontmatter, body } = readMarkdown(
     "webstorm-guide/products/rider/index.md"
   );
@@ -10,10 +10,12 @@ test("Construct a valid model", () => {
   const productData = {
     ...frontmatter,
     url: "/products/rider/",
-    fileSlug: "rider",
     content: body,
     resourceType: "product",
   };
-  const result = getProduct(productData);
+  const productPage = {
+    fileSlug: "rider",
+  };
+  const result = getProduct(productData, productPage);
   expect(result.label).to.equal("rider");
 });

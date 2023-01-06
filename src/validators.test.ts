@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
 import path from "path";
 import { readMarkdown, sitesDir, validateResource } from "./validators";
-import { TipResource } from "../_includes/resources/tip/models";
+import { TipResource } from "../_includes/resources/tip/TipModels";
 
 test("defines the sitesDir", () => {
   expect(path.basename(sitesDir)).to.equal("sites");

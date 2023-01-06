@@ -3,11 +3,13 @@ import h, { JSX } from "vhtml";
 import BottomNav from "../../pagenav/BottomNav.11ty";
 import TopNav from "../../pagenav/TopNav.11ty";
 import SeeAlso from "../../seealso/SeeAlso.11ty";
-import { getTip } from "./models";
+import { getTip } from "./TipModels";
 import SidebarLayout from "../../SidebarLayout.11ty";
+import { EleventyPage } from "../../models";
 
 export function TipLayout(data: any): JSX.Element {
-  const tip = getTip(data);
+  const page: EleventyPage = data.page;
+  const tip = getTip(data, page);
 
   // Convert the HTML string into a vdom thingy
   const rawLeadin = tip.leadin

@@ -2,7 +2,7 @@ import { expect, test } from "vitest";
 import { getTechnology } from "./TechnologyModels";
 import { readMarkdown } from "../../../src/validators";
 
-test("Construct a valid model", () => {
+test("Construct a valid technology", () => {
   const { frontmatter, body } = readMarkdown(
     "webstorm-guide/technologies/angular/index.md"
   );
@@ -10,11 +10,13 @@ test("Construct a valid model", () => {
   const technologyData = {
     ...frontmatter,
     url: "/technologies/angular/",
-    fileSlug: "angular",
     content: body,
     resourceType: "technology",
   };
+  const technologyPage = {
+    fileSlug: "angular",
+  };
 
-  const result = getTechnology(technologyData);
+  const result = getTechnology(technologyData, technologyPage);
   expect(result.label).to.equal("angular");
 });
