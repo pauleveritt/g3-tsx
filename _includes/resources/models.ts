@@ -4,7 +4,7 @@ export const Resource = Type.Object({
   id: Type.String(),
   title: Type.String(),
   slug: Type.String(),
-  date: Type.Date(),
+  date: Type.Optional(Type.Date()),
   subtitle: Type.Optional(Type.String()),
   body: Type.Optional(Type.String()),
   excerpt: Type.Optional(Type.String()),

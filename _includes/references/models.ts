@@ -5,7 +5,6 @@ export const Reference = Type.Intersect([
   Resource,
   Type.Object({
     label: Type.String(),
-    subtitle: Type.Optional(Type.String()),
     resources: Type.Array(Resource),
     referenceResources: Type.Array(Resource),
   }),
