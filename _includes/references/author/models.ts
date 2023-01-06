@@ -1,4 +1,4 @@
 import { Reference } from "../models";
+import { Type } from "@sinclair/typebox";
 
-// noinspection JSUnusedGlobalSymbols
-export interface AuthorReference extends Reference {}
+export const AuthorReference = Type.Intersect([Reference]);

@@ -1,15 +1,9 @@
 import { expect, test } from "vitest";
 import { getTip } from "./models";
 
-const pageData = {
-  url: "some-url",
-  fileSlug: "some-file",
-  title: "Some Title",
-  subtitle: "Some Subtitle",
-  leadin: "Some Leadin",
-  content: "Some *body*",
-};
-test("Construct a valid model", () => {
-  const result = getTip(pageData);
-  expect(result.title).to.equal(pageData.title);
+test("Construct a valid Tip", () => {
+  // @ts-ignore
+  const tipData = globalThis.tipData;
+  const result = getTip(tipData);
+  expect(result.title).to.equal(tipData.title);
 });

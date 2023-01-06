@@ -1,8 +1,12 @@
+import { Type } from "@sinclair/typebox";
 import { Resource } from "../resources/models";
 
-export interface Reference extends Resource {
-  label: string;
-  subtitle?: string;
-  resources: Resource[];
-  referenceResources: Resource[];
-}
+export const Reference = Type.Intersect([
+  Resource,
+  Type.Object({
+    label: Type.String(),
+    subtitle: Type.Optional(Type.String()),
+    resources: Type.Array(Resource),
+    referenceResources: Type.Array(Resource),
+  }),
+]);
