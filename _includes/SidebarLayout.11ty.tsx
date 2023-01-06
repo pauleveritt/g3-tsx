@@ -1,6 +1,6 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
-import BaseLayout from "./BaseLayout.11ty";
+import { BaseLayout } from "./BaseLayout.11ty";
 import Heading from "./heading/Heading.11ty";
 
 export type SidebarLayoutProps = {

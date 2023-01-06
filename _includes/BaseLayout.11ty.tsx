@@ -8,7 +8,10 @@ export type BaseLayoutProps = {
   pageTitle: string;
   children: string[];
 };
-const BaseLayout = ({ pageTitle, children }: BaseLayoutProps): JSX.Element => {
+export const BaseLayout = ({
+  pageTitle,
+  children,
+}: BaseLayoutProps): JSX.Element => {
   const { siteTitle, copyright } = site;
   return (
     <html lang="en">
@@ -35,4 +38,6 @@ const BaseLayout = ({ pageTitle, children }: BaseLayoutProps): JSX.Element => {
   );
 };
 
-export default BaseLayout;
+export const render = (data: any): JSX.Element => {
+  return <BaseLayout pageTitle={data.title}>{data.children}</BaseLayout>;
+};

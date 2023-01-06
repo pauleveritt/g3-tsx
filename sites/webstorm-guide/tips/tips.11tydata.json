@@ -1,0 +1,4 @@
+{
+  "tags": ["tip"],
+  "layout": "resources/tip/TipLayout.11ty.tsx"
+}

@@ -1,6 +1,6 @@
 import { expect, test } from "vitest";
 
-import BaseLayout, { BaseLayoutProps } from "./BaseLayout.11ty";
+import { BaseLayout, BaseLayoutProps } from "./BaseLayout.11ty";
 
 const props: BaseLayoutProps = { pageTitle: "The Page", children: [] };
 
