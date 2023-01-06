@@ -1,9 +1,11 @@
 import { Static, Type } from "@sinclair/typebox";
+import { validateResource } from "../../../src/validators";
 
 // noinspection JSUnusedGlobalSymbols
 export const TipResource = Type.Object({
   title: Type.String(),
   subtitle: Type.Optional(Type.String()),
+  body: Type.String(),
   leadin: Type.Optional(Type.String()),
   animatedGif: Type.Optional(
     Type.Object({
@@ -31,3 +33,20 @@ export const TipResource = Type.Object({
   seealso: Type.Optional(Type.Any()),
 });
 export type TipResource = Static<typeof TipResource>;
+
+export function getTip(data: any): TipResource {
+  const tip: TipResource = {
+    title: data.title,
+    subtitle: data.subtitle,
+    body: data.content,
+    leadin: data.leadin,
+    animatedGif: data.animatedGif,
+    screenshot: data.screenshot,
+    shortVideo: data.shortVideo,
+    longVideo: data.longVideo,
+    hasBody: data.hasBody,
+    seealso: data.seealso,
+  };
+  validateResource(TipResource, tip);
+  return tip;
+}

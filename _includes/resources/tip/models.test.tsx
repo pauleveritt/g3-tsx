@@ -1,5 +1,13 @@
 import { expect, test } from "vitest";
+import { getTip } from "./models";
 
+const pageData = {
+  title: "Some Title",
+  subtitle: "Some Subtitle",
+  leadin: "Some Leadin",
+  content: "Some *body*",
+};
 test("Construct a valid model", () => {
-  expect(1).to.equal(1);
+  const result = getTip(pageData);
+  expect(result.title).to.equal(pageData.title);
 });

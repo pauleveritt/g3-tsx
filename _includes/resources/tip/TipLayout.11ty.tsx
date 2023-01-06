@@ -3,21 +3,11 @@ import h, { JSX } from "vhtml";
 import BottomNav from "../../pagenav/BottomNav.11ty";
 import TopNav from "../../pagenav/TopNav.11ty";
 import SeeAlso from "../../seealso/SeeAlso.11ty";
-import { TipResource } from "./models";
+import { getTip } from "./models";
 import SidebarLayout from "../../SidebarLayout.11ty";
 
 export function TipLayout(data: any): JSX.Element {
-  const tip: TipResource = {
-    title: data.title,
-    subtitle: data.subtitle,
-    leadin: data.leadin,
-    animatedGif: data.animatedGif,
-    screenshot: data.screenshot,
-    shortVideo: data.shortVideo,
-    longVideo: data.longVideo,
-    hasBody: data.hasBody,
-    seealso: data.seealso,
-  };
+  const tip = getTip(data);
 
   // Convert the HTML string into a vdom thingy
   const rawLeadin = tip.leadin

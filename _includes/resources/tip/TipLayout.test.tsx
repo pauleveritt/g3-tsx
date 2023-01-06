@@ -2,12 +2,12 @@ import { expect, test } from "vitest";
 import { screen } from "@testing-library/dom";
 
 import { TipLayout } from "./TipLayout.11ty";
-import { TipResource } from "./models";
 
-const pageData: TipResource = {
+const pageData = {
   title: "Some Title",
   subtitle: "Some Subtitle",
   leadin: "Some Leadin",
+  content: "Some *content*",
 };
 
 test("TipLayout", () => {
