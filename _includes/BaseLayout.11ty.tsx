@@ -18,7 +18,7 @@ const BaseLayout = ({ pageTitle, children }: BaseLayoutProps): JSX.Element => {
         <title>
           {pageTitle} - {siteTitle}
         </title>
-        <link rel="stylesheet" href="/assets/bulma.css" />
+        <link rel="stylesheet" href="/assets/guide.css" />
         <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
         <script
           defer

@@ -1,17 +1,15 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
-import BaseLayout from "../../BaseLayout.11ty";
 import BottomNav from "../../pagenav/BottomNav.11ty";
 import TopNav from "../../pagenav/TopNav.11ty";
-import TipSidebar from "../../sidebar/TipSidebar.11ty";
 import SeeAlso from "../../seealso/SeeAlso.11ty";
 import { TipResource } from "./models";
+import SidebarLayout from "../../SidebarLayout.11ty";
 
 export function TipLayout(data: any): JSX.Element {
-  // export function render({ title, content }: TipLayoutProps): JSX.Element {
-
   const tip: TipResource = {
     title: data.title,
+    subtitle: data.subtitle,
     leadin: data.leadin,
     animatedGif: data.animatedGif,
     screenshot: data.screenshot,
@@ -22,9 +20,11 @@ export function TipLayout(data: any): JSX.Element {
   };
 
   // Convert the HTML string into a vdom thingy
-  const rawLeadin = h("main", {
-    dangerouslySetInnerHTML: { __html: tip.leadin },
-  });
+  const rawLeadin = tip.leadin
+    ? h("main", {
+        dangerouslySetInnerHTML: { __html: tip.leadin },
+      })
+    : "";
 
   const rawContent = h("main", {
     dangerouslySetInnerHTML: { __html: data.content },
@@ -114,9 +114,15 @@ export function TipLayout(data: any): JSX.Element {
   );
 
   return (
-    <BaseLayout pageTitle={tip.title}>
+    <SidebarLayout
+      pageTitle={tip.title}
+      subtitle={tip.subtitle}
+      topNav={[topNav]}
+      bottomNav={[bottomNav]}
+      sidebar={[sidebar]}
+    >
       <main>{main}</main>
-    </BaseLayout>
+    </SidebarLayout>
   );
 }
 

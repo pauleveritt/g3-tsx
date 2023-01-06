@@ -12,6 +12,6 @@ const pageData: TipResource = {
 
 test("TipLayout", () => {
   document.body.innerHTML = TipLayout(pageData);
-  const result = screen.getByRole("button");
-  expect(result).to.exist;
+  const results = screen.getAllByRole("button");
+  expect(results).to.exist;
 });

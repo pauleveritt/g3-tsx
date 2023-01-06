@@ -7,6 +7,7 @@ export type SidebarLayoutProps = {
   pageTitle: string;
   subtitle?: string;
   bottomNav?: string[];
+  sidebar?: string[];
   topNav?: string[];
   children: string[];
 };
@@ -15,6 +16,7 @@ const SidebarLayout = ({
   subtitle,
   bottomNav,
   topNav,
+  sidebar,
   children,
 }: SidebarLayoutProps): JSX.Element => {
   return (
@@ -29,7 +31,7 @@ const SidebarLayout = ({
               {children}
               {bottomNav}
             </div>
-            {/*{sidebar}*/}
+            {sidebar}
           </div>
         </div>
       </div>
