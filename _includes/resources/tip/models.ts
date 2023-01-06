@@ -1,6 +1,6 @@
 import { Static, Type } from "@sinclair/typebox";
 import { validateResource } from "../../../src/validators";
-import { Resource } from "../models";
+import { getResource, Resource } from "../models";
 
 // noinspection JSUnusedGlobalSymbols
 export const TipResource = Type.Intersect([
@@ -37,12 +37,7 @@ export type TipResource = Static<typeof TipResource>;
 
 export function getTip(data: any): TipResource {
   const tip: TipResource = {
-    id: data.url,
-    title: data.title,
-    slug: data.fileSlug,
-    date: "some-date",
-    subtitle: data.subtitle,
-    body: data.content,
+    ...getResource(data),
     leadin: data.leadin,
     animatedGif: data.animatedGif,
     screenshot: data.screenshot,

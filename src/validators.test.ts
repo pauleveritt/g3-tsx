@@ -22,6 +22,7 @@ test("validates good frontmatter", () => {
     id: "some-id",
     slug: "some-slug",
     date: "some-data",
+    resourceType: "some-resourcetype",
   };
   const validation = () => validateResource(TipResource, frontmatter);
   expect(validation).not.toThrow();

@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+import { Static, Type } from "@sinclair/typebox";
 
 export const Resource = Type.Object({
   id: Type.String(),
@@ -8,44 +8,20 @@ export const Resource = Type.Object({
   subtitle: Type.Optional(Type.String()),
   body: Type.Optional(Type.String()),
   excerpt: Type.Optional(Type.String()),
-  resourceType: Type.Optional(Type.String()),
+  resourceType: Type.String(),
 });
 
-// import { AuthorReference } from "../references/author/models";
-// import { ProductReference } from "../references/product/models";
-// import { TechnologyReference } from "../references/technology/models";
-// import { TopicReference } from "../references/topic/models";
+export type Resource = Static<typeof Resource>;
 
-// export interface Resource {
-//   //   title: string;
-//   //   // author: AuthorReference;
-//   //   // body: string;
-//   //   // id: string;
-//   //   // parent: Resource;
-//   //   // slug: string;
-//   //   // date: string;
-//   //   // subtitle?: string;
-//   //   // excerpt?: string;
-//   //   // resourceType?: string;
-//   //   // thumbnail: string;
-//   //   // products: ProductReference[];
-//   //   // technologies: TechnologyReference[];
-//   //   // topics: TopicReference[];
-// }
-
-// export interface ListedResource {
-//   // Data needed for listing in a resource card
-//   slug: string;
-//   type: string;
-//   title: string;
-//   subtitle?: string;
-//   date: string;
-//   // author: ResourceCardAuthorProps;
-//   // products: ResourceCardProducts;
-//   // technologies: ResourceCardTechnologies;
-//   // topics: ResourceCardTopics;
-//   // thumbnail: Thumbnail;
-//   // resourceType?: string;
-// }
-
-// export type ListedResources = ListedResource[];
+export function getResource(data: any): Resource {
+  return {
+    id: data.url,
+    title: data.title,
+    slug: data.fileSlug,
+    date: "some-date",
+    subtitle: data.subtitle,
+    body: data.content,
+    excerpt: data.excerpt,
+    resourceType: data.resourceType,
+  };
+}
