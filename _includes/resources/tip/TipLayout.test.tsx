@@ -8,6 +8,9 @@ const pageData = {
   subtitle: "Some Subtitle",
   leadin: "Some Leadin",
   content: "Some *content*",
+  url: "some-url",
+  fileSlug: "some-slug",
+  date: "some-data",
 };
 
 test("TipLayout", () => {

@@ -2,6 +2,8 @@ import { expect, test } from "vitest";
 import { getTip } from "./models";
 
 const pageData = {
+  url: "some-url",
+  fileSlug: "some-file",
   title: "Some Title",
   subtitle: "Some Subtitle",
   leadin: "Some Leadin",

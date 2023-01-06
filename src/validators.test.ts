@@ -16,7 +16,13 @@ test("reads the Markdown", () => {
 });
 
 test("validates good frontmatter", () => {
-  const frontmatter = { title: "A Good Tip", body: "Some *content*" };
+  const frontmatter = {
+    title: "A Good Tip",
+    body: "Some *content*",
+    id: "some-id",
+    slug: "some-slug",
+    date: "some-data",
+  };
   const validation = () => validateResource(TipResource, frontmatter);
   expect(validation).not.toThrow();
 });
