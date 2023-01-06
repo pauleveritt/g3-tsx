@@ -6,6 +6,9 @@ import SeeAlso from "../../seealso/SeeAlso.11ty";
 import { getTip } from "./TipModels";
 import SidebarLayout from "../../SidebarLayout.11ty";
 import { EleventyPage } from "../../models";
+import { getAuthor } from "../../references/author/AuthorModels";
+import SidebarPublished from "../../sidebar/SidebarPublished.11ty";
+import Sidebar from "../../sidebar/Sidebar.11ty";
 
 export function TipLayout(data: any): JSX.Element {
   const page: EleventyPage = data.page;
@@ -38,8 +41,16 @@ export function TipLayout(data: any): JSX.Element {
   });
 
   // Sidebars
-  const sidebar = <div>Sidebar</div>;
-  // const sidebar = TipSidebar({});
+  const thisAuthorData = data.collections.author[0];
+  const thisAuthor = getAuthor(thisAuthorData.data, thisAuthorData.page);
+  const thisThumbnail = thisAuthor.thumbnail ? thisAuthorData.thumbnail : "";
+  const sidebarPublished = (
+    <SidebarPublished
+      date={data.date}
+      author={{ ...thisAuthor, thumbnail: thisThumbnail }}
+    ></SidebarPublished>
+  );
+  const sidebar = <Sidebar>{sidebarPublished}</Sidebar>;
 
   // Main content
   const main = (

@@ -9,6 +9,7 @@ export const Resource = Type.Object({
   body: Type.Optional(Type.String()),
   excerpt: Type.Optional(Type.String()),
   resourceType: Type.String(),
+  thumbnail: Type.Optional(Type.String()),
 });
 
 export type Resource = Static<typeof Resource>;
