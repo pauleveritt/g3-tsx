@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { getTopic } from "./models";
+import { getTopic } from "./TopicModels";
 import { readMarkdown } from "../../../src/validators";
 
 test("Construct a valid model", () => {

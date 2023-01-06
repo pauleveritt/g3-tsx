@@ -10,7 +10,7 @@ const ResourceCardLogo = ({
   return (
     <div className="media-left">
       <figure className="image is-64x64">
-        <img loading="lazy" src={thumbnail} alt="Logo" />
+        <img src={thumbnail} alt="Logo" />
       </figure>
     </div>
   );

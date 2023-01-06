@@ -1,6 +1,6 @@
 import { Static, Type } from "@sinclair/typebox";
 import { validateResource } from "../../../src/validators";
-import { getResource, Resource } from "../models";
+import { getResource, Resource } from "../ResourceModels";
 
 // noinspection JSUnusedGlobalSymbols
 export const TipResource = Type.Intersect([

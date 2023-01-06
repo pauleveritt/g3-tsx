@@ -1,4 +1,4 @@
-import { getReference, Reference } from "../models";
+import { getReference, Reference } from "../ReferenceModels";
 import { Static, Type } from "@sinclair/typebox";
 import { validateResource } from "../../../src/validators";
 

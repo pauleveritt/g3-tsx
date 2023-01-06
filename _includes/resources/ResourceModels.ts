@@ -1,6 +1,4 @@
 import { Static, Type } from "@sinclair/typebox";
-import { sitesDir } from "../../src/validators";
-import { resolve, dirname, basename } from "node:path";
 
 export const Resource = Type.Object({
   id: Type.String(),

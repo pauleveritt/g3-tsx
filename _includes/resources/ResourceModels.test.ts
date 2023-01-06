@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { getResource, Resource } from "./models";
+import { getResource, Resource } from "./ResourceModels";
 import { validateResource } from "../../src/validators";
 
 test("Construct a valid resource", () => {
