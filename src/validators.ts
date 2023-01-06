@@ -7,11 +7,6 @@ import { Value } from "@sinclair/typebox/value";
 
 export const sitesDir = url.fileURLToPath(new URL(`../sites`, import.meta.url));
 
-// const Resource = Type.Object({
-//   title: Type.String(),
-// });
-// type Resource = Static<typeof Resource>;
-
 export function readMarkdown(filePath: string): any {
   if (!lstatSync(sitesDir).isDirectory()) {
     throw Error(`Sites directory does not exist`);

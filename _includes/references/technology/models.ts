@@ -1,4 +1,14 @@
-import { Reference } from "../models";
+import { getReference, Reference } from "../models";
+import { Static, Type } from "@sinclair/typebox";
+import { validateResource } from "../../../src/validators";
 
-// noinspection JSUnusedGlobalSymbols
-export interface TechnologyReference extends Reference {}
+export const TechnologyReference = Type.Intersect([Reference]);
+export type TechnologyReference = Static<typeof TechnologyReference>;
+
+export function getTechnology(data: any): TechnologyReference {
+  const author: TechnologyReference = {
+    ...getReference(data),
+  };
+  validateResource(TechnologyReference, author);
+  return author;
+}

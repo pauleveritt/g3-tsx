@@ -14,20 +14,6 @@ function getTip() {
   };
 }
 
-function getAuthor() {
-  const { frontmatter, body } = readMarkdown(
-    "webstorm-guide/authors/pwe/index.md"
-  );
-
-  return {
-    ...frontmatter,
-    url: "/authors/pwe/",
-    fileSlug: "pwe",
-    content: body,
-  };
-}
-
 beforeAll(() => {
   globalThis.tipData = getTip();
-  globalThis.authorData = getAuthor();
 });

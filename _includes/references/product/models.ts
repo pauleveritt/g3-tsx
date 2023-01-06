@@ -1,4 +1,14 @@
-import { Reference } from "../models";
+import { getReference, Reference } from "../models";
+import { Static, Type } from "@sinclair/typebox";
+import { validateResource } from "../../../src/validators";
 
-// noinspection JSUnusedGlobalSymbols
-export interface ProductReference extends Reference {}
+export const ProductReference = Type.Intersect([Reference]);
+export type ProductReference = Static<typeof ProductReference>;
+
+export function getProduct(data: any): ProductReference {
+  const product: ProductReference = {
+    ...getReference(data),
+  };
+  validateResource(ProductReference, product);
+  return product;
+}
