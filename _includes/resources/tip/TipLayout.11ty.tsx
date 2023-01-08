@@ -43,11 +43,10 @@ export function TipLayout(data: any): JSX.Element {
   // Sidebars
   const thisAuthorData = data.collections.author[0];
   const thisAuthor = getAuthor(thisAuthorData.data, thisAuthorData.page);
-  const thisThumbnail = thisAuthor.thumbnail ? thisAuthor.thumbnail : "";
   const sidebarPublished = (
     <SidebarPublished
       date={data.date}
-      author={{ ...thisAuthor, thumbnail: thisThumbnail }}
+      author={{ ...thisAuthor }}
     ></SidebarPublished>
   );
   const sidebar = <Sidebar>{sidebarPublished}</Sidebar>;

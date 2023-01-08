@@ -8,7 +8,12 @@ test("TipLayout", () => {
   const tipPage: EleventyPage = { fileSlug: "some-slug" };
   // @ts-ignore
   const tipData = { ...globalThis.tipData, page: tipPage };
-  tipData.collections = { authors: [] };
+  tipData.collections.author = [
+    {
+      data: { title: "Some Author" },
+      page: { fileSlug: "some-slug" },
+    },
+  ];
   document.body.innerHTML = TipLayout(tipData);
   const results = screen.getAllByRole("button");
   expect(results).to.exist;

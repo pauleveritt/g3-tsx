@@ -6,7 +6,7 @@ export type SidebarPublishedProps = {
   author: {
     slug: string;
     title: string;
-    thumbnail: string;
+    thumbnail?: string;
   };
 };
 const SidebarPublished = ({
@@ -22,7 +22,7 @@ const SidebarPublished = ({
             <figure className="media-left">
               <div className="image is-rounded is-48x48">
                 <img
-                  src={author.thumbnail}
+                  src={author.thumbnail ? author.thumbnail : "placeholder.jpg"}
                   alt={`${author.title} Thumbnail`}
                   width="48"
                   height="48"

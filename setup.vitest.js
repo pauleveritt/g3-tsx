@@ -11,6 +11,7 @@ function getTestResource() {
     url: "/tips/amend-commit/",
     fileSlug: "amend-commit",
     content: body,
+    collections: {},
   };
 }
 
