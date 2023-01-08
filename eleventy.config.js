@@ -1,4 +1,6 @@
 const EleventyVitePlugin = require("@11ty/eleventy-plugin-vite");
+const { EleventyCollectionItem } = require("./_includes/models");
+const { getTipResources } = require("./src/validators");
 
 module.exports = function (eleventyConfig) {
   // v2.0.0-canary.19 or newer
@@ -8,6 +10,11 @@ module.exports = function (eleventyConfig) {
   // eleventyConfig.setServerPassthroughCopyBehavior("copy");
   eleventyConfig.addPassthroughCopy("sites/**/*.gif");
 
+  // Wire up some custom collections which return validated, flattened objects for resources/references
+  eleventyConfig.addCollection("tipResources", function (collectionApi) {
+    const tips = collectionApi.getFilteredByTag("tip");
+    return getTipResources(tips);
+  });
   eleventyConfig.addPlugin(EleventyVitePlugin, {
     viteOptions: {
       server: {
