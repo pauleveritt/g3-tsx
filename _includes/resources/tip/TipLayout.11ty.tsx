@@ -3,17 +3,18 @@ import h, { JSX } from "vhtml";
 import BottomNav from "../../pagenav/BottomNav.11ty";
 import TopNav from "../../pagenav/TopNav.11ty";
 import SeeAlso from "../../seealso/SeeAlso.11ty";
-import { getTip } from "./TipModels";
+import { TipResource } from "./TipModels";
 import SidebarLayout from "../../SidebarLayout.11ty";
 import { EleventyPage } from "../../models";
-import { getAuthor } from "../../references/author/AuthorModels";
+import { AuthorReference } from "../../references/author/AuthorModels";
 import SidebarPublished from "../../sidebar/SidebarPublished.11ty";
 import Sidebar from "../../sidebar/Sidebar.11ty";
 
-export function TipLayout(data: any): JSX.Element {
-  const page: EleventyPage = data.page;
-  const tip = getTip(data, page);
-
+export function TipLayout(
+  tip: TipResource,
+  content: string,
+  author: AuthorReference
+): JSX.Element {
   // Convert the HTML string into a vdom thingy
   const rawLeadin = tip.leadin
     ? h("main", {
@@ -22,7 +23,7 @@ export function TipLayout(data: any): JSX.Element {
     : "";
 
   const rawContent = h("main", {
-    dangerouslySetInnerHTML: { __html: data.content },
+    dangerouslySetInnerHTML: { __html: content },
   });
 
   // Top/Bottom Nav
@@ -41,12 +42,10 @@ export function TipLayout(data: any): JSX.Element {
   });
 
   // Sidebars
-  const thisAuthorData = data.collections.author[0];
-  const thisAuthor = getAuthor(thisAuthorData.data, thisAuthorData.page);
   const sidebarPublished = (
     <SidebarPublished
-      date={data.date}
-      author={{ ...thisAuthor }}
+      date={tip.date as Date}
+      author={{ ...author }}
     ></SidebarPublished>
   );
   const sidebar = <Sidebar>{sidebarPublished}</Sidebar>;
@@ -128,4 +127,12 @@ export function TipLayout(data: any): JSX.Element {
   );
 }
 
-export const render = TipLayout;
+export function render(data: any): JSX.Element {
+  const { tipResources, authorReferences } = data.collections;
+  const page: EleventyPage = data.page;
+  const tip: TipResource = tipResources[page.fileSlug];
+  const thisAuthor = tip.author as string;
+  const author: AuthorReference = authorReferences[thisAuthor];
+  const content = data.content;
+  return TipLayout(tip, content, author);
+}

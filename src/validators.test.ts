@@ -26,6 +26,7 @@ test("validates good frontmatter", () => {
     title: "A Good Tip",
     body: "Some *content*",
     id: "some-id",
+    author: "some-author",
     slug: "some-slug",
     date: new Date(),
     resourceType: "some-resourcetype",

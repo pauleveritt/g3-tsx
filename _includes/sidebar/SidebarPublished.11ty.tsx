@@ -2,7 +2,7 @@
 import h, { JSX } from "vhtml";
 
 export type SidebarPublishedProps = {
-  date: string;
+  date: Date;
   author: {
     slug: string;
     title: string;

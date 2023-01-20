@@ -6,7 +6,10 @@ import MarkdownIt from "markdown-it";
 import { Value } from "@sinclair/typebox/value";
 import { EleventyCollectionItem, EleventyPage } from "../_includes/models";
 import { getTip, TipResource } from "../_includes/resources/tip/TipModels";
-import { getAuthor } from "../_includes/references/author/AuthorModels";
+import {
+  AuthorReference,
+  getAuthor,
+} from "../_includes/references/author/AuthorModels";
 import { getProduct } from "../_includes/references/product/ProductModels";
 import { getTechnology } from "../_includes/references/technology/TechnologyModels";
 import { getTopic } from "../_includes/references/topic/TopicModels";
@@ -67,6 +70,7 @@ export function readMarkdownTree(dir: string, validator: any) {
     });
   return contentItems;
 }
+
 export function makeCollectionTree(collections: any) {
   /* Read one of the Guide sites and generate simulated collections.all etc. */
 
@@ -77,11 +81,20 @@ export function makeCollectionTree(collections: any) {
   collections.topic = readMarkdownTree("topics", getTopic);
 }
 
-export function getTipResources(
-  collectionItems: EleventyCollectionItem[]
-): TipResource[] {
+export function getTipResources(collectionItems: EleventyCollectionItem[]) {
   /* Called from eleventy.config.js to add tip collection's items */
-  return collectionItems.map((item) => {
-    return getTip(item.data, item.page);
+  const results: { [index: string]: TipResource } = {};
+  collectionItems.forEach((item) => {
+    results[item.page.fileSlug] = getTip(item.data, item.page);
   });
+  return results;
+}
+
+export function getAuthorReferences(collectionItems: EleventyCollectionItem[]) {
+  /* Called from eleventy.config.js to add tip collection's items */
+  const results: { [index: string]: AuthorReference } = {};
+  collectionItems.forEach((item) => {
+    results[item.page.fileSlug] = getAuthor(item.data, item.page);
+  });
+  return results;
 }

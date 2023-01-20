@@ -10,6 +10,7 @@ export const Resource = Type.Object({
   excerpt: Type.Optional(Type.String()),
   resourceType: Type.String(),
   thumbnail: Type.Optional(Type.String()),
+  author: Type.Optional(Type.String()),
 });
 
 export type Resource = Static<typeof Resource>;
@@ -26,6 +27,7 @@ export function getResource(
     subtitle: data.subtitle,
     body: data.content,
     excerpt: data.excerpt,
+    author: data.author,
     resourceType,
   };
 }
