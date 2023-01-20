@@ -34,7 +34,7 @@ const TipSidebar = ({
   hasLongVideo = false,
 }: TipSidebarProps): JSX.Element => {
   const published: SidebarPublishedProps = {
-    date: date,
+    date: new Date(date),
     author: author,
   };
   const links: SidebarDoclinkProps[] = [];

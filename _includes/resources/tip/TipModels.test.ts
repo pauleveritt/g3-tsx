@@ -6,8 +6,7 @@ test("Construct a valid Tip", () => {
   // @ts-ignore
   const tipData = { ...globalThis.tipData, resourceType: "tip" };
   const tipPage: EleventyPage = { fileSlug: "some-slug" };
-  // TODO collections
-  const result = getTip(tipData, tipPage, tipData.content);
+  const result = getTip(tipData, tipPage);
   expect(result.title).to.equal(tipData.title);
   expect(result.body).to.equal(tipData.content);
 });
