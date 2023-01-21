@@ -15,7 +15,7 @@ const children: string[] = [
 
 const tips: TipResource[] = [
   {
-    title: "Some Title",
+    title: "Some Tip",
     slug: "some-tip",
     resourceType: "tip",
     author: "sa",

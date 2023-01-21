@@ -147,8 +147,11 @@ export function render({
   const author: AuthorReference = authorReferences[thisAuthor];
 
   // If there is a tip.leadin, markdown convert it
-  const md = new MarkdownIt("commonmark");
-  const leadin = md.render(tip.leadin as string);
+  let leadin;
+  if (tip.leadin) {
+    const md = new MarkdownIt("commonmark");
+    leadin = md.render(tip.leadin as string);
+  }
   return (
     <TipLayout author={author} tip={tip} leadin={leadin}>
       {content}

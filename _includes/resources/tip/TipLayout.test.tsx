@@ -1,11 +1,10 @@
 import { expect, test } from "vitest";
 import { screen } from "@testing-library/dom";
 
-import { TipLayout, TipRenderProps } from "./TipLayout.11ty";
+import { TipLayout, TipRenderProps, render } from "./TipLayout.11ty";
 import fixtures from "../../fixtures";
-import { render } from "./TipsLayout.11ty";
 
-test("should make TipsLayout", () => {
+test("should make TipLayout", () => {
   const children = fixtures.content;
   document.body.innerHTML = TipLayout({
     tip: fixtures.tips[0],
@@ -31,5 +30,5 @@ test("should render TipLayout", () => {
     },
   };
   document.body.innerHTML = render(renderProps);
-  expect(screen.getByText("world")).to.exist;
+  expect(screen.getByText("Some Tip")).to.exist;
 });

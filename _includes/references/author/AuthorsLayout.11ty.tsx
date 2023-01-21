@@ -1,39 +1,37 @@
 import h, { JSX } from "vhtml";
-import { Collections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
+import { Collections } from "../../models";
 
-export type TipsLayoutTip = {
+export type AuthorsLayoutAuthor = {
   title: string;
   slug: string;
-  author: {
-    title: string;
-  };
 };
-export type TipsLayoutProps = {
-  tips: TipsLayoutTip[];
+export type AuthorsLayoutProps = {
+  authors: AuthorsLayoutAuthor[];
   title: string;
   subtitle?: string;
   content: string;
 };
 
-export function TipsLayout({
-  tips,
+export function AuthorsLayout({
+  authors,
   title,
   subtitle,
   content,
-}: TipsLayoutProps): JSX.Element {
+}: AuthorsLayoutProps): JSX.Element {
   const figure = undefined;
   const listing = (
     <ul>
-      {tips.map((tip) => {
+      {authors.map((author) => {
         return (
           <li>
-            <a href={tip.slug}>{tip.title}</a>
+            <a href={author.slug}>{author.title}</a>
           </li>
         );
       })}
     </ul>
   );
+
   return (
     <ReferenceLayout
       title={title}
@@ -45,7 +43,7 @@ export function TipsLayout({
   );
 }
 
-export type TipsRenderProps = {
+export type AuthorsRenderProps = {
   collections: Collections;
   content: string;
   title: string;
@@ -57,22 +55,19 @@ export function render({
   content,
   title,
   subtitle,
-}: TipsRenderProps): JSX.Element {
+}: AuthorsRenderProps): JSX.Element {
   // Flatten/de-normalize the joins, e.g. author
-  const tips: TipsLayoutTip[] = Object.values(collections.tipResources).map(
-    (tip) => {
-      const authorResource = collections.authorReferences[tip.author];
-      const author = { title: authorResource.title };
-      return {
-        title: tip.title,
-        slug: tip.slug,
-        author,
-      };
-    }
-  );
+  const authors: AuthorsLayoutAuthor[] = Object.values(
+    collections.authorReferences
+  ).map((author) => {
+    return {
+      title: author.title,
+      slug: author.slug,
+    };
+  });
   return (
-    <TipsLayout
-      tips={tips}
+    <AuthorsLayout
+      authors={authors}
       title={title}
       subtitle={subtitle}
       content={content}
