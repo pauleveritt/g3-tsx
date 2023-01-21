@@ -1,6 +1,7 @@
 import { Resource } from "./resources/ResourceModels";
 import { TipResource } from "./resources/tip/TipModels";
 import { AuthorReference } from "./references/author/AuthorModels";
+import { TechnologyReference } from "./references/technology/TechnologyModels";
 
 export type EleventyPage = {
   // The common, page-oriented data 11ty passes in when it reads a Markdown file
@@ -23,4 +24,5 @@ export type EleventyCollectionItem = {
 export type Collections = {
   tipResources: { [key: string]: TipResource };
   authorReferences: { [key: string]: AuthorReference };
+  technologyReferences: { [key: string]: TechnologyReference };
 };

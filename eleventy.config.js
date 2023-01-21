@@ -1,6 +1,10 @@
 const EleventyVitePlugin = require("@11ty/eleventy-plugin-vite");
 const { EleventyCollectionItem } = require("./_includes/models");
-const { getTipResources, getAuthorReferences } = require("./src/validators");
+const {
+  getTipResources,
+  getAuthorReferences,
+  getTechnologyReferences,
+} = require("./src/validators");
 
 module.exports = function (eleventyConfig) {
   // v2.0.0-canary.19 or newer
@@ -19,6 +23,13 @@ module.exports = function (eleventyConfig) {
     const authors = collectionApi.getFilteredByTag("author");
     return getAuthorReferences(authors);
   });
+  eleventyConfig.addCollection(
+    "technologyReferences",
+    function (collectionApi) {
+      const technologies = collectionApi.getFilteredByTag("technology");
+      return getTechnologyReferences(technologies);
+    }
+  );
   eleventyConfig.addPlugin(EleventyVitePlugin, {
     viteOptions: {
       server: {

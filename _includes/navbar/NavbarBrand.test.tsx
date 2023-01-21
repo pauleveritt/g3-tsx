@@ -17,7 +17,7 @@ test("NavbarBrand", () => {
     "/assets/jetbrains-simple.svg"
   );
   const links = document.querySelectorAll("a");
-  expect(links && links[0].href).to.equal("/");
-  expect(links && links[1].href).to.equal("/");
+  expect(links && links[0].href).to.equal("/webstorm-guide/");
+  expect(links && links[1].href).to.equal("/webstorm-guide/");
   expect(screen.getByText("PyCharm Guide")).to.exist;
 });

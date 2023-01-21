@@ -11,7 +11,10 @@ import {
   getAuthor,
 } from "../_includes/references/author/AuthorModels";
 import { getProduct } from "../_includes/references/product/ProductModels";
-import { getTechnology } from "../_includes/references/technology/TechnologyModels";
+import {
+  getTechnology,
+  TechnologyReference,
+} from "../_includes/references/technology/TechnologyModels";
 import { getTopic } from "../_includes/references/topic/TopicModels";
 
 export const sitesDir = url.fileURLToPath(new URL(`../sites`, import.meta.url));
@@ -103,6 +106,16 @@ export function getAuthorReferences(collectionItems: EleventyCollectionItem[]) {
   const results: { [index: string]: AuthorReference } = {};
   collectionItems.forEach((item) => {
     results[item.page.fileSlug] = getAuthor(item.data, item.page);
+  });
+  return results;
+}
+export function getTechnologyReferences(
+  collectionItems: EleventyCollectionItem[]
+) {
+  /* Called from eleventy.config.js to add tip collection's items */
+  const results: { [index: string]: TechnologyReference } = {};
+  collectionItems.forEach((item) => {
+    results[item.page.fileSlug] = getTechnology(item.data, item.page);
   });
   return results;
 }
