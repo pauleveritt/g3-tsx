@@ -1,6 +1,5 @@
 import h, { JSX } from "vhtml";
 import { Collections } from "../../models";
-import { safeContent } from "../../../src/validators";
 
 export type TipsLayoutTip = {
   title: string;
@@ -18,7 +17,7 @@ export function TipsLayout({ tips, children }: TipsLayoutProps): JSX.Element {
   return (
     <>
       <h1>Hello Tips</h1>
-      <div id="subtitle">{children}</div>
+      <div id="subtitle" dangerouslySetInnerHTML={{ __html: children[0] }} />
       <ul>
         {tips?.map((tip) => {
           return <li aria-label="tip">{tip.title}</li>;
@@ -46,5 +45,5 @@ export function render({ collections, content }: TipsRenderProps): JSX.Element {
       };
     }
   );
-  return <TipsLayout tips={tips}>{safeContent(content)}</TipsLayout>;
+  return <TipsLayout tips={tips}>{content}</TipsLayout>;
 }

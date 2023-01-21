@@ -4,7 +4,6 @@ import {
   makeCollectionTree,
   readMarkdown,
   readMarkdownTree,
-  safeContent,
   sitesDir,
   validateResource,
 } from "./validators";
@@ -58,9 +57,4 @@ test("initializes a resource tree", () => {
   const tips = collections.tip;
   const firstTip: TipResource = tips["access-run-configurations"];
   expect(firstTip.title).to.equal("Access Run Configurations Quickly");
-});
-
-test("makes HTML body safe for JSX", () => {
-  const result = safeContent(`<p id="p1">This is <em id="em1">safe</em>.</p>`);
-  expect(result).to.contain("p1");
 });

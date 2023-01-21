@@ -19,6 +19,6 @@ test("Construct a valid resource", () => {
   const result = getResource(resourceData, resourcePage, "resource");
   expect(result.title).to.equal(resourceData.title);
   expect(result.resourceType).to.equal("resource");
-  const validation = () => validateResource(Resource, result);
+  const validation = () => validateResource(Resource, result, "my-tip");
   expect(validation).not.to.throw();
 });

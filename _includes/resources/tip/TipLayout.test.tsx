@@ -3,16 +3,15 @@ import { screen } from "@testing-library/dom";
 
 import { TipLayout, TipRenderProps } from "./TipLayout.11ty";
 import fixtures from "../../fixtures";
-import { render, TipsRenderProps } from "./TipsLayout.11ty";
+import { render } from "./TipsLayout.11ty";
 
 test("should make TipsLayout", () => {
   const children = fixtures.content;
-  const safeLeadin = "<p>Safe Leadin";
   document.body.innerHTML = TipLayout({
     tip: fixtures.tips[0],
     children: [children],
     author: fixtures.authors[0],
-    safeLeadin,
+    leadin: "<p>Safe Leadin</p>",
   });
   const results = screen.getAllByRole("button");
   expect(results).to.exist;

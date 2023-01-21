@@ -13,9 +13,9 @@ import {
 import { getProduct } from "../_includes/references/product/ProductModels";
 import { getTechnology } from "../_includes/references/technology/TechnologyModels";
 import { getTopic } from "../_includes/references/topic/TopicModels";
-import h from "vhtml";
 
 export const sitesDir = url.fileURLToPath(new URL(`../sites`, import.meta.url));
+const md = new MarkdownIt("commonmark");
 
 export function readMarkdown(filePath: string): any {
   if (!lstatSync(sitesDir).isDirectory()) {
@@ -29,7 +29,6 @@ export function readMarkdown(filePath: string): any {
   const frontmatter = tipMatter.data;
 
   // Now the Markdown
-  const md = new MarkdownIt("commonmark");
   const body = md.render(tipMatter.content as string);
   return {
     frontmatter,
@@ -106,11 +105,4 @@ export function getAuthorReferences(collectionItems: EleventyCollectionItem[]) {
     results[item.page.fileSlug] = getAuthor(item.data, item.page);
   });
   return results;
-}
-
-export function safeContent(content: string): string {
-  /* "Escape" the rendered Markdown HTML to allow in JSX */
-  return h("", {
-    dangerouslySetInnerHTML: { __html: content },
-  });
 }

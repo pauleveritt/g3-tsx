@@ -11,14 +11,18 @@ it("should have valid fixture data", () => {
 
   // Tips
   tips.forEach((tip) => {
-    expect(() => validateResource(TipResource, tip)).not.toThrowError();
+    expect(() =>
+      validateResource(TipResource, tip, "my-tip")
+    ).not.toThrowError();
   });
   // Make sure our join works
   expect(Object.keys(authorReferences)).to.contain(tips[0].author);
 
   // Authors
   authors.forEach((author) => {
-    expect(() => validateResource(AuthorReference, author)).not.toThrowError();
+    expect(() =>
+      validateResource(AuthorReference, author, "my-tip")
+    ).not.toThrowError();
   });
 
   // Ensure references

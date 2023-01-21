@@ -9,19 +9,19 @@ import { Collections } from "../../models";
 import { AuthorReference } from "../../references/author/AuthorModels";
 import SidebarPublished from "../../sidebar/SidebarPublished.11ty";
 import Sidebar from "../../sidebar/Sidebar.11ty";
-import { safeContent } from "../../../src/validators";
+import MarkdownIt from "markdown-it";
 
 export type TipLayoutProps = {
   author: AuthorReference;
   children: string[];
   tip: TipResource;
-  safeLeadin?: string;
+  leadin?: string;
 };
 
 export function TipLayout({
   author,
   children,
-  safeLeadin,
+  leadin,
   tip,
 }: TipLayoutProps): JSX.Element {
   // Top/Bottom Nav
@@ -73,10 +73,7 @@ export function TipLayout({
           className="column content"
           style="display: flex; justify-content: space-between; flex-direction: column"
         >
-          // TODO does this attribute obviate need for wrapping?
-          {safeLeadin && (
-            <div dangerouslySetInnerHTML={{ __html: safeLeadin }} />
-          )}
+          {leadin && <div dangerouslySetInnerHTML={{ __html: leadin }} />}
           <div>
             {tip.hasBody && (
               <a
@@ -103,7 +100,10 @@ export function TipLayout({
         <>
           <header className="is-size-3 is-bold">In Depth</header>
           <div className="columns">
-            <div className="column is-11-desktop content">{children}</div>
+            <div
+              className="column is-11-desktop content"
+              dangerouslySetInnerHTML={{ __html: children[0] }}
+            />
           </div>
         </>
       )}
@@ -146,10 +146,12 @@ export function render({
   const thisAuthor = tip.author as string;
   const author: AuthorReference = authorReferences[thisAuthor];
 
-  const safeLeadin = tip.leadin ? safeContent(tip.leadin) : undefined;
+  // If there is a tip.leadin, markdown convert it
+  const md = new MarkdownIt("commonmark");
+  const leadin = md.render(tip.leadin as string);
   return (
-    <TipLayout author={author} tip={tip} safeLeadin={safeLeadin}>
-      {safeContent(content)}
+    <TipLayout author={author} tip={tip} leadin={leadin}>
+      {content}
     </TipLayout>
   );
 }
