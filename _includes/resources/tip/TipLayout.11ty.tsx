@@ -9,23 +9,21 @@ import { Collections } from "../../models";
 import { AuthorReference } from "../../references/author/AuthorModels";
 import SidebarPublished from "../../sidebar/SidebarPublished.11ty";
 import Sidebar from "../../sidebar/Sidebar.11ty";
+import { safeContent } from "../../../src/validators";
 
-export function TipLayout(
-  tip: TipResource,
-  content: string,
-  author: AuthorReference
-): JSX.Element {
-  // Convert the HTML string into a vdom thingy
-  const rawLeadin = tip.leadin
-    ? h("main", {
-        dangerouslySetInnerHTML: { __html: tip.leadin },
-      })
-    : "";
+export type TipLayoutProps = {
+  author: AuthorReference;
+  children: string[];
+  tip: TipResource;
+  safeLeadin?: string;
+};
 
-  const rawContent = h("", {
-    dangerouslySetInnerHTML: { __html: content },
-  });
-
+export function TipLayout({
+  author,
+  children,
+  safeLeadin,
+  tip,
+}: TipLayoutProps): JSX.Element {
   // Top/Bottom Nav
   const topNav = TopNav({
     parent: { label: "Parent Label", slug: "parent-slug" },
@@ -75,7 +73,10 @@ export function TipLayout(
           className="column content"
           style="display: flex; justify-content: space-between; flex-direction: column"
         >
-          <div dangerouslySetInnerHTML={{ __html: rawLeadin }} />
+          // TODO does this attribute obviate need for wrapping?
+          {safeLeadin && (
+            <div dangerouslySetInnerHTML={{ __html: safeLeadin }} />
+          )}
           <div>
             {tip.hasBody && (
               <a
@@ -102,7 +103,7 @@ export function TipLayout(
         <>
           <header className="is-size-3 is-bold">In Depth</header>
           <div className="columns">
-            <div className="column is-11-desktop content">{rawContent}</div>
+            <div className="column is-11-desktop content">{children}</div>
           </div>
         </>
       )}
@@ -144,5 +145,11 @@ export function render({
   const tip: TipResource = tipResources[page.fileSlug];
   const thisAuthor = tip.author as string;
   const author: AuthorReference = authorReferences[thisAuthor];
-  return TipLayout(tip, content, author);
+
+  const safeLeadin = tip.leadin ? safeContent(tip.leadin) : undefined;
+  return (
+    <TipLayout author={author} tip={tip} safeLeadin={safeLeadin}>
+      {safeContent(content)}
+    </TipLayout>
+  );
 }

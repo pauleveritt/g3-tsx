@@ -1,15 +1,19 @@
 import { expect, test } from "vitest";
 import { screen } from "@testing-library/dom";
 
-import { TipLayout } from "./TipLayout.11ty";
+import { TipLayout, TipRenderProps } from "./TipLayout.11ty";
 import fixtures from "../../fixtures";
+import { render, TipsRenderProps } from "./TipsLayout.11ty";
 
-test("TipLayout", () => {
-  document.body.innerHTML = TipLayout(
-    fixtures.tips[0],
-    fixtures.content,
-    fixtures.authors[0]
-  );
+test("should make TipsLayout", () => {
+  const children = fixtures.content;
+  const safeLeadin = "<p>Safe Leadin";
+  document.body.innerHTML = TipLayout({
+    tip: fixtures.tips[0],
+    children: [children],
+    author: fixtures.authors[0],
+    safeLeadin,
+  });
   const results = screen.getAllByRole("button");
   expect(results).to.exist;
 
@@ -17,4 +21,16 @@ test("TipLayout", () => {
     name: "Some Author",
   });
   expect(authorLink.href).to.equal("some-author");
+});
+
+test("should render TipLayout", () => {
+  const renderProps: TipRenderProps = {
+    collections: fixtures.collections,
+    content: fixtures.content,
+    page: {
+      fileSlug: fixtures.tips[0].slug,
+    },
+  };
+  document.body.innerHTML = render(renderProps);
+  expect(screen.getByText("world")).to.exist;
 });
