@@ -1,6 +1,6 @@
 import h, { JSX } from "vhtml";
 import { Collections } from "../../models";
-import { BaseLayout } from "../../BaseLayout.11ty";
+import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 
 export type TipsLayoutTip = {
   title: string;
@@ -11,40 +11,53 @@ export type TipsLayoutTip = {
 };
 export type TipsLayoutProps = {
   tips: TipsLayoutTip[];
-  children: string[];
+  title: string;
+  subtitle?: string;
+  content: string;
 };
 
-export function TipsLayout({ tips, children }: TipsLayoutProps): JSX.Element {
+export function TipsLayout({
+  tips,
+  title,
+  subtitle,
+  content,
+}: TipsLayoutProps): JSX.Element {
+  const figure = undefined;
+  const listing = (
+    <ul>
+      {tips?.map((tip) => {
+        return (
+          <li>
+            <a href={tip.slug}>{tip.title}</a>
+          </li>
+        );
+      })}
+    </ul>
+  );
   return (
-    <BaseLayout pageTitle={`All Tips`}>
-      <div className="bd-main bulmaio-body">
-        <div className="bd-side-background" />
-        <div className="bd-main-container container">
-          <div
-            id="subtitle"
-            dangerouslySetInnerHTML={{ __html: children[0] }}
-          />
-          <ul>
-            {tips?.map((tip) => {
-              return (
-                <li>
-                  <a href={tip.slug}>{tip.title}</a>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      </div>
-    </BaseLayout>
+    <ReferenceLayout
+      title={title}
+      subtitle={subtitle}
+      figure={figure}
+      listing={[listing]}
+      content={content}
+    />
   );
 }
 
 export type TipsRenderProps = {
   collections: Collections;
   content: string;
+  title: string;
+  subtitle?: string;
 };
 
-export function render({ collections, content }: TipsRenderProps): JSX.Element {
+export function render({
+  collections,
+  content,
+  title,
+  subtitle,
+}: TipsRenderProps): JSX.Element {
   // Flatten/de-normalize the joins, e.g. author
   const tips: TipsLayoutTip[] = Object.values(collections.tipResources).map(
     (tip) => {
@@ -57,5 +70,12 @@ export function render({ collections, content }: TipsRenderProps): JSX.Element {
       };
     }
   );
-  return <TipsLayout tips={tips}>{content}</TipsLayout>;
+  return (
+    <TipsLayout
+      tips={tips}
+      title={title}
+      subtitle={subtitle}
+      content={content}
+    />
+  );
 }

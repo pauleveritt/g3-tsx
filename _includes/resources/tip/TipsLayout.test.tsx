@@ -21,8 +21,10 @@ test("should make TipsLayout", () => {
       author: { title: "Another Author" },
     },
   ];
-  const { children } = fixtures;
-  document.body.innerHTML = TipsLayout({ tips, children });
+  const title = "These Tips";
+  const subtitle = "Some tips text";
+  const content = fixtures.content;
+  document.body.innerHTML = TipsLayout({ tips, title, subtitle, content });
   const items: HTMLUListElement[] = screen.getAllByRole("link", {
     name: "Some Title",
   });
@@ -31,9 +33,13 @@ test("should make TipsLayout", () => {
 });
 
 test("should render TipsLayout", () => {
+  const title = "These Tips";
+  const subtitle = "Some tips text";
   const renderProps: TipsRenderProps = {
     collections: fixtures.collections,
     content: fixtures.content,
+    title,
+    subtitle,
   };
   document.body.innerHTML = render(renderProps);
   expect(screen.getByText("world")).to.exist;
