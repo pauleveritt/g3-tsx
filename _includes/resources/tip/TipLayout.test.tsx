@@ -10,6 +10,7 @@ test("TipLayout", () => {
     title: "Some Title",
     slug: "some-slug",
     resourceType: "tip",
+    author: "some-author",
   };
   const content = "<p>some content</p>";
   const author: AuthorReference = {
