@@ -1,6 +1,6 @@
 import h, { JSX } from "vhtml";
-import { TipResource } from "./TipModels";
-import { AuthorReference } from "../../references/author/AuthorModels";
+import { AuthorCollection } from "../../references/author/AuthorModels";
+import { Collections } from "../../models";
 
 export type TipsLayoutTip = {
   title: string;
@@ -28,19 +28,24 @@ export function TipsLayout({ tips, children }: TipsLayoutProps): JSX.Element {
   );
 }
 
-export function render({ collections, content }: any): JSX.Element {
-  const tipResources: TipResource[] = Object.values(collections.tipResources);
-  const authorReferences: { [name: string]: AuthorReference } =
-    collections.authorReferences;
-  const tips: TipsLayoutTip[] = tipResources.map((tip) => {
-    const authorResource = authorReferences[tip.author];
-    const author = { title: authorResource.title };
-    return {
-      title: tip.title,
-      slug: tip.slug,
-      author,
-    };
-  });
+export type TipsRenderProps = {
+  collections: Collections;
+  content: string;
+};
+
+export function render({ collections, content }: TipsRenderProps): JSX.Element {
+  const authorReferences: AuthorCollection = collections.authorReferences;
+  const tips: TipsLayoutTip[] = Object.values(collections.tipResources).map(
+    (tip) => {
+      const authorResource = authorReferences[tip.author];
+      const author = { title: authorResource.title };
+      return {
+        title: tip.title,
+        slug: tip.slug,
+        author,
+      };
+    }
+  );
   const rawContent = h("main", {
     dangerouslySetInnerHTML: { __html: content },
   });

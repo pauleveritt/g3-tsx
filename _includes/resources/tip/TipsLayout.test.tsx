@@ -1,9 +1,14 @@
 import { expect, test } from "vitest";
-import { TipsLayout, TipsLayoutTip } from "./TipsLayout.11ty";
+import {
+  TipsLayout,
+  TipsLayoutTip,
+  TipsRenderProps,
+  render,
+} from "./TipsLayout.11ty";
 import { screen } from "@testing-library/dom";
 import fixtures from "../../fixtures";
 
-test("should render TipsLayout", () => {
+test("should make TipsLayout", () => {
   const tips: TipsLayoutTip[] = [
     {
       title: "Some Title",
@@ -22,5 +27,14 @@ test("should render TipsLayout", () => {
     name: "tip",
   });
   expect(items[0].textContent).to.equal(tips[0].title);
+  expect(screen.getByText("world")).to.exist;
+});
+
+test("should render TipsLayout", () => {
+  const renderProps: TipsRenderProps = {
+    collections: fixtures.collections,
+    content: fixtures.content,
+  };
+  document.body.innerHTML = render(renderProps);
   expect(screen.getByText("world")).to.exist;
 });

@@ -2,32 +2,19 @@ import { expect, test } from "vitest";
 import { screen } from "@testing-library/dom";
 
 import { TipLayout } from "./TipLayout.11ty";
-import { TipResource } from "./TipModels";
-import { AuthorReference } from "../../references/author/AuthorModels";
+import fixtures from "../../fixtures";
 
 test("TipLayout", () => {
-  const tip: TipResource = {
-    title: "Some Title",
-    slug: "some-slug",
-    resourceType: "tip",
-    author: "some-author",
-  };
-  const content = "<p>some content</p>";
-  const author: AuthorReference = {
-    title: "Some Author",
-    slug: "some-slug",
-    resourceType: "author",
-    label: "sa",
-    resources: [],
-    referenceResources: [],
-  };
-
-  document.body.innerHTML = TipLayout(tip, content, author);
+  document.body.innerHTML = TipLayout(
+    fixtures.tips[0],
+    fixtures.content,
+    fixtures.authors[0]
+  );
   const results = screen.getAllByRole("button");
   expect(results).to.exist;
 
   const authorLink: HTMLAnchorElement = screen.getByRole("link", {
     name: "Some Author",
   });
-  expect(authorLink.href).to.equal("some-slug");
+  expect(authorLink.href).to.equal("some-author");
 });

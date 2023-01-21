@@ -1,10 +1,20 @@
 import { expect, test } from "vitest";
 import { getTip } from "./TipModels";
 import { EleventyPage } from "../../models";
+import { readMarkdown } from "../../../src/validators";
 
 test("Construct a valid Tip", () => {
-  // @ts-ignore
-  const tipData = { ...globalThis.tipData, resourceType: "tip" };
+  const { frontmatter, body } = readMarkdown(
+    "webstorm-guide/tips/amend-commit/index.md"
+  );
+  const tipData = {
+    ...frontmatter,
+    url: "/tips/amend-commit/",
+    fileSlug: "amend-commit",
+    content: body,
+    collections: {},
+  };
+
   const tipPage: EleventyPage = { fileSlug: "some-slug" };
   const result = getTip(tipData, tipPage);
   expect(result.title).to.equal(tipData.title);

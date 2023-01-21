@@ -35,6 +35,7 @@ export const TipResource = Type.Intersect([
   }),
 ]);
 export type TipResource = Static<typeof TipResource>;
+export type TipCollection = { [name: string]: TipResource };
 
 export function getTip(data: any, page: EleventyPage): TipResource {
   const tip: TipResource = {
