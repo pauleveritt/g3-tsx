@@ -1,6 +1,6 @@
 import h, { JSX } from "vhtml";
-import { AuthorCollection } from "../../references/author/AuthorModels";
 import { Collections } from "../../models";
+import { safeContent } from "../../../src/validators";
 
 export type TipsLayoutTip = {
   title: string;
@@ -34,10 +34,10 @@ export type TipsRenderProps = {
 };
 
 export function render({ collections, content }: TipsRenderProps): JSX.Element {
-  const authorReferences: AuthorCollection = collections.authorReferences;
+  // Flatten/de-normalize the joins, e.g. author
   const tips: TipsLayoutTip[] = Object.values(collections.tipResources).map(
     (tip) => {
-      const authorResource = authorReferences[tip.author];
+      const authorResource = collections.authorReferences[tip.author];
       const author = { title: authorResource.title };
       return {
         title: tip.title,
@@ -46,8 +46,5 @@ export function render({ collections, content }: TipsRenderProps): JSX.Element {
       };
     }
   );
-  const rawContent = h("main", {
-    dangerouslySetInnerHTML: { __html: content },
-  });
-  return <TipsLayout tips={tips}>{rawContent}</TipsLayout>;
+  return <TipsLayout tips={tips}>{safeContent(content)}</TipsLayout>;
 }

@@ -10,6 +10,6 @@ export function getTopic(data: any, page: EleventyPage): TopicReference {
   const topic: TopicReference = {
     ...getReference(data, page, "topic`"),
   };
-  validateResource(TopicReference, topic);
+  validateResource(TopicReference, topic, page.fileSlug);
   return topic;
 }

@@ -10,6 +10,6 @@ export function getProduct(data: any, page: EleventyPage): ProductReference {
   const product: ProductReference = {
     ...getReference(data, page, "product"),
   };
-  validateResource(ProductReference, product);
+  validateResource(ProductReference, product, page.fileSlug);
   return product;
 }

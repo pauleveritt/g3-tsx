@@ -13,6 +13,6 @@ export function getTechnology(
   const author: TechnologyReference = {
     ...getReference(data, page, "technology"),
   };
-  validateResource(TechnologyReference, author);
+  validateResource(TechnologyReference, author, page.fileSlug);
   return author;
 }

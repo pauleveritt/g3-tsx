@@ -1,4 +1,5 @@
 ---
+resourceType: page
 title: Tips
 layout: "resources/tip/TipsLayout.11ty.tsx"
 ---

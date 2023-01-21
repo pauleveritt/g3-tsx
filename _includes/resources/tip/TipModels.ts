@@ -48,6 +48,6 @@ export function getTip(data: any, page: EleventyPage): TipResource {
     hasBody: data.hasBody,
     seealso: data.seealso,
   };
-  validateResource(TipResource, tip);
+  validateResource(TipResource, tip, page.fileSlug);
   return tip;
 }

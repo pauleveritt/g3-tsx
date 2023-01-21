@@ -13,6 +13,7 @@ import {
 import { getProduct } from "../_includes/references/product/ProductModels";
 import { getTechnology } from "../_includes/references/technology/TechnologyModels";
 import { getTopic } from "../_includes/references/topic/TopicModels";
+import h from "vhtml";
 
 export const sitesDir = url.fileURLToPath(new URL(`../sites`, import.meta.url));
 
@@ -36,14 +37,18 @@ export function readMarkdown(filePath: string): any {
   };
 }
 
-export function validateResource(resourceType: any, frontmatter: any) {
+export function validateResource(
+  resourceType: any,
+  frontmatter: any,
+  fileSlug: string
+) {
   /* Throw an exception if validation fails */
   if (!Value.Check(resourceType, frontmatter)) {
     const errors = [...Value.Errors(resourceType, frontmatter)];
     const message = errors
       .map(
         (error) =>
-          `Validation failure: ${error.path} failed with ${error.message}`
+          `Validation failure: ${error.path} failed with ${error.message} in ${fileSlug}`
       )
       .join("\n");
     throw new Error(message);
@@ -84,9 +89,13 @@ export function makeCollectionTree(collections: any) {
 export function getTipResources(collectionItems: EleventyCollectionItem[]) {
   /* Called from eleventy.config.js to add tip collection's items */
   const results: { [index: string]: TipResource } = {};
-  collectionItems.forEach((item) => {
-    results[item.page.fileSlug] = getTip(item.data, item.page);
-  });
+  collectionItems
+    // tips/index.md gets the label "tip" put on it. Filter it
+    // into a "page" using resourceType.
+    .filter((item) => !(item.data.resourceType && item.data.resourceType))
+    .forEach((item) => {
+      results[item.page.fileSlug] = getTip(item.data, item.page);
+    });
   return results;
 }
 
@@ -97,4 +106,11 @@ export function getAuthorReferences(collectionItems: EleventyCollectionItem[]) {
     results[item.page.fileSlug] = getAuthor(item.data, item.page);
   });
   return results;
+}
+
+export function safeContent(content: string): string {
+  /* "Escape" the rendered Markdown HTML to allow in JSX */
+  return h("", {
+    dangerouslySetInnerHTML: { __html: content },
+  });
 }

@@ -12,6 +12,6 @@ export function getAuthor(data: any, page: EleventyPage): AuthorReference {
     ...getReference(data, page, "author"),
     thumbnail: data.thumbnail,
   };
-  validateResource(AuthorReference, author);
+  validateResource(AuthorReference, author, page.fileSlug);
   return author;
 }

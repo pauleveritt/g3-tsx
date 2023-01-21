@@ -5,7 +5,7 @@ import TopNav from "../../pagenav/TopNav.11ty";
 import SeeAlso from "../../seealso/SeeAlso.11ty";
 import { TipResource } from "./TipModels";
 import SidebarLayout from "../../SidebarLayout.11ty";
-import { EleventyPage } from "../../models";
+import { Collections } from "../../models";
 import { AuthorReference } from "../../references/author/AuthorModels";
 import SidebarPublished from "../../sidebar/SidebarPublished.11ty";
 import Sidebar from "../../sidebar/Sidebar.11ty";
@@ -22,7 +22,7 @@ export function TipLayout(
       })
     : "";
 
-  const rawContent = h("main", {
+  const rawContent = h("", {
     dangerouslySetInnerHTML: { __html: content },
   });
 
@@ -127,12 +127,22 @@ export function TipLayout(
   );
 }
 
-export function render(data: any): JSX.Element {
-  const { tipResources, authorReferences } = data.collections;
-  const page: EleventyPage = data.page;
+export type TipRenderProps = {
+  collections: Collections;
+  content: string;
+  page: {
+    fileSlug: string;
+  };
+};
+
+export function render({
+  collections,
+  content,
+  page,
+}: TipRenderProps): JSX.Element {
+  const { tipResources, authorReferences } = collections;
   const tip: TipResource = tipResources[page.fileSlug];
   const thisAuthor = tip.author as string;
   const author: AuthorReference = authorReferences[thisAuthor];
-  const content = data.content;
   return TipLayout(tip, content, author);
 }

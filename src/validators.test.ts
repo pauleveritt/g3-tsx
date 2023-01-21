@@ -4,6 +4,7 @@ import {
   makeCollectionTree,
   readMarkdown,
   readMarkdownTree,
+  safeContent,
   sitesDir,
   validateResource,
 } from "./validators";
@@ -31,14 +32,17 @@ test("validates good frontmatter", () => {
     date: new Date(),
     resourceType: "some-resourcetype",
   };
-  const validation = () => validateResource(TipResource, frontmatter);
+  const validation = () =>
+    validateResource(TipResource, frontmatter, "tip1.md");
   expect(validation).not.toThrow();
 });
 
 test("validates bad frontmatter", () => {
   const frontmatter = { age: 49 };
-  const validation = () => validateResource(TipResource, frontmatter);
+  const validation = () =>
+    validateResource(TipResource, frontmatter, "tip1.md");
   expect(validation).toThrow("Expected required");
+  expect(validation).toThrow("tip1.md");
 });
 
 test("reads a directory of markdown resources", () => {
@@ -54,4 +58,9 @@ test("initializes a resource tree", () => {
   const tips = collections.tip;
   const firstTip: TipResource = tips["access-run-configurations"];
   expect(firstTip.title).to.equal("Access Run Configurations Quickly");
+});
+
+test("makes HTML body safe for JSX", () => {
+  const result = safeContent(`<p id="p1">This is <em id="em1">safe</em>.</p>`);
+  expect(result).to.contain("p1");
 });
