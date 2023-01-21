@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
 import { TipsLayout, TipsLayoutTip } from "./TipsLayout.11ty";
 import { screen } from "@testing-library/dom";
-import h from "vhtml";
+import fixtures from "../../fixtures";
 
 test("should render TipsLayout", () => {
   const tips: TipsLayoutTip[] = [
@@ -16,12 +16,7 @@ test("should render TipsLayout", () => {
       author: { title: "Another Author" },
     },
   ];
-  const content = `<p>Hello <em id="world">world</em>.</p>`;
-  const children = [
-    h("main", {
-      dangerouslySetInnerHTML: { __html: content },
-    }),
-  ];
+  const { children } = fixtures;
   document.body.innerHTML = TipsLayout({ tips, children });
   const items: HTMLUListElement[] = screen.getAllByRole("listitem", {
     name: "tip",
