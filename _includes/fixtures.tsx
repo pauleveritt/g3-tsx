@@ -3,6 +3,7 @@ import { TipResource } from "./resources/tip/TipModels";
 import { AuthorReference } from "./references/author/AuthorModels";
 import { Collections } from "./models";
 import { TechnologyReference } from "./references/technology/TechnologyModels";
+import { TopicReference } from "./references/topic/TopicModels";
 
 /**
  * Reusable test data
@@ -64,10 +65,29 @@ const technologies: TechnologyReference[] = [
     referenceResources: [],
   },
 ];
+const topics: TopicReference[] = [
+  {
+    title: "Some Topic",
+    slug: "some-topic",
+    resourceType: "topic",
+    label: "st",
+    resources: [],
+    referenceResources: [],
+  },
+  {
+    title: "Another Topic",
+    slug: "another-topic",
+    resourceType: "topic",
+    label: "at",
+    resources: [],
+    referenceResources: [],
+  },
+];
 const collections: Collections = {
   tipResources: { "some-tip": tips[0], "another-tip": tips[1] },
   authorReferences: { sa: authors[0], aa: authors[1] },
   technologyReferences: { st: technologies[0], at: technologies[1] },
+  topicReferences: { st: topics[0], at: topics[1] },
 };
 
 // Now assemble for export

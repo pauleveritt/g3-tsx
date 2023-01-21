@@ -15,7 +15,10 @@ import {
   getTechnology,
   TechnologyReference,
 } from "../_includes/references/technology/TechnologyModels";
-import { getTopic } from "../_includes/references/topic/TopicModels";
+import {
+  getTopic,
+  TopicReference,
+} from "../_includes/references/topic/TopicModels";
 
 export const sitesDir = url.fileURLToPath(new URL(`../sites`, import.meta.url));
 const md = new MarkdownIt("commonmark");
@@ -109,6 +112,7 @@ export function getAuthorReferences(collectionItems: EleventyCollectionItem[]) {
   });
   return results;
 }
+
 export function getTechnologyReferences(
   collectionItems: EleventyCollectionItem[]
 ) {
@@ -116,6 +120,15 @@ export function getTechnologyReferences(
   const results: { [index: string]: TechnologyReference } = {};
   collectionItems.forEach((item) => {
     results[item.page.fileSlug] = getTechnology(item.data, item.page);
+  });
+  return results;
+}
+
+export function getTopicReferences(collectionItems: EleventyCollectionItem[]) {
+  /* Called from eleventy.config.js to add tip collection's items */
+  const results: { [index: string]: TopicReference } = {};
+  collectionItems.forEach((item) => {
+    results[item.page.fileSlug] = getTopic(item.data, item.page);
   });
   return results;
 }

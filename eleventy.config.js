@@ -4,6 +4,7 @@ const {
   getTipResources,
   getAuthorReferences,
   getTechnologyReferences,
+  getTopicReferences,
 } = require("./src/validators");
 
 module.exports = function (eleventyConfig) {
@@ -30,6 +31,10 @@ module.exports = function (eleventyConfig) {
       return getTechnologyReferences(technologies);
     }
   );
+  eleventyConfig.addCollection("topicReferences", function (collectionApi) {
+    const topics = collectionApi.getFilteredByTag("topic");
+    return getTopicReferences(topics);
+  });
   eleventyConfig.addPlugin(EleventyVitePlugin, {
     viteOptions: {
       server: {
