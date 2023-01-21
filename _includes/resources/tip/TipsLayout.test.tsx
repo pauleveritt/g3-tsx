@@ -27,6 +27,5 @@ test("should render TipsLayout", () => {
     name: "tip",
   });
   expect(items[0].textContent).to.equal(tips[0].title);
-  const target = document.getElementById("subtitle");
-  expect(target && target.innerText).to.equal("world");
+  expect(screen.getByText("world")).to.exist;
 });

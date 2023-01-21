@@ -2,14 +2,17 @@ import { Static, Type } from "@sinclair/typebox";
 import { getResource, Resource } from "../resources/ResourceModels";
 import { EleventyPage } from "../models";
 
-export const Reference = Type.Intersect([
-  Resource,
-  Type.Object({
-    label: Type.String(),
-    resources: Type.Array(Resource),
-    referenceResources: Type.Array(Resource),
-  }),
-]);
+export const Reference = Type.Omit(
+  Type.Intersect([
+    Resource,
+    Type.Object({
+      label: Type.String(),
+      resources: Type.Array(Resource),
+      referenceResources: Type.Array(Resource),
+    }),
+  ]),
+  ["author"]
+);
 export type Reference = Static<typeof Reference>;
 
 export function getReference(
