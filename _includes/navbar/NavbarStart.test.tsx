@@ -13,7 +13,7 @@ test("NavbarStart", () => {
     expect(firstLink.className).to.equal(
       "navbar-item bd-navbar-item-documentation"
     );
-    expect(firstLink.getAttribute("href")).to.equal("/tips/");
+    expect(firstLink.getAttribute("href")).to.equal("/webstorm-guide/tips/");
   }
   const firstSpan = document.querySelector("span.icon");
   if (firstSpan) {

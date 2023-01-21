@@ -23,8 +23,8 @@ test("should make TipsLayout", () => {
   ];
   const { children } = fixtures;
   document.body.innerHTML = TipsLayout({ tips, children });
-  const items: HTMLUListElement[] = screen.getAllByRole("listitem", {
-    name: "tip",
+  const items: HTMLUListElement[] = screen.getAllByRole("link", {
+    name: "Some Title",
   });
   expect(items[0].textContent).to.equal(tips[0].title);
   expect(screen.getByText("world")).to.exist;

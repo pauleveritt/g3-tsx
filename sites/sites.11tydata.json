@@ -1,4 +1,4 @@
 {
   "siteTitle": "My TSX Site",
-  "layout": "BaseLayout.11ty.tsx"
+  "layout": "PageLayout.11ty.tsx"
 }

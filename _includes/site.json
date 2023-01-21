@@ -8,7 +8,7 @@
       {
         "accent": "success",
         "cssClass": "documentation",
-        "href": "/tips/",
+        "href": "/webstorm-guide/tips/",
         "label": "Tips",
         "icon": "fas fa-play-circle"
       },

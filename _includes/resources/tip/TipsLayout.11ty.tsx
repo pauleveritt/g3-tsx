@@ -1,5 +1,6 @@
 import h, { JSX } from "vhtml";
 import { Collections } from "../../models";
+import { BaseLayout } from "../../BaseLayout.11ty";
 
 export type TipsLayoutTip = {
   title: string;
@@ -15,15 +16,26 @@ export type TipsLayoutProps = {
 
 export function TipsLayout({ tips, children }: TipsLayoutProps): JSX.Element {
   return (
-    <>
-      <h1>Hello Tips</h1>
-      <div id="subtitle" dangerouslySetInnerHTML={{ __html: children[0] }} />
-      <ul>
-        {tips?.map((tip) => {
-          return <li aria-label="tip">{tip.title}</li>;
-        })}
-      </ul>
-    </>
+    <BaseLayout pageTitle={`All Tips`}>
+      <div className="bd-main bulmaio-body">
+        <div className="bd-side-background" />
+        <div className="bd-main-container container">
+          <div
+            id="subtitle"
+            dangerouslySetInnerHTML={{ __html: children[0] }}
+          />
+          <ul>
+            {tips?.map((tip) => {
+              return (
+                <li>
+                  <a href={tip.slug}>{tip.title}</a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </div>
+    </BaseLayout>
   );
 }
 

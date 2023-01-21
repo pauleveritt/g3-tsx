@@ -9,3 +9,4 @@
   - Or in TipSidebar `inPlaylist`
 - No `ScrollLink` component in `SidebarDoclink`
 - Fix all style={} to not use `textAlign` instead use `text-align`
+- Site prefix stuff e.g. starting a `/tips/` instead of `/webstorm-guide/tips/`
