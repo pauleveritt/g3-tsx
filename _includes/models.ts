@@ -23,6 +23,7 @@ export type EleventyCollectionItem = {
 };
 
 export type Collections = {
+  all: Resource[];
   tipResources: { [key: string]: TipResource };
   authorReferences: { [key: string]: AuthorReference };
   technologyReferences: { [key: string]: TechnologyReference };

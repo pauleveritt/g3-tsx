@@ -32,7 +32,7 @@ const tips: TipResource[] = [
 const authors: AuthorReference[] = [
   {
     title: "Some Author",
-    slug: "some-author",
+    slug: "sa",
     resourceType: "author",
     label: "sa",
     resources: [],
@@ -40,7 +40,7 @@ const authors: AuthorReference[] = [
   },
   {
     title: "Another Author",
-    slug: "another-author",
+    slug: "aa",
     resourceType: "author",
     label: "aa",
     resources: [],
@@ -50,7 +50,7 @@ const authors: AuthorReference[] = [
 const technologies: TechnologyReference[] = [
   {
     title: "Some Technology",
-    slug: "some-technology",
+    slug: "st",
     resourceType: "technology",
     label: "st",
     resources: [],
@@ -58,7 +58,7 @@ const technologies: TechnologyReference[] = [
   },
   {
     title: "Another Technology",
-    slug: "another-technology",
+    slug: "at",
     resourceType: "technology",
     label: "at",
     resources: [],
@@ -68,7 +68,7 @@ const technologies: TechnologyReference[] = [
 const topics: TopicReference[] = [
   {
     title: "Some Topic",
-    slug: "some-topic",
+    slug: "st",
     resourceType: "topic",
     label: "st",
     resources: [],
@@ -76,7 +76,7 @@ const topics: TopicReference[] = [
   },
   {
     title: "Another Topic",
-    slug: "another-topic",
+    slug: "at",
     resourceType: "topic",
     label: "at",
     resources: [],
@@ -84,6 +84,7 @@ const topics: TopicReference[] = [
   },
 ];
 const collections: Collections = {
+  all: [], // TODO fill this up
   tipResources: { "some-tip": tips[0], "another-tip": tips[1] },
   authorReferences: { sa: authors[0], aa: authors[1] },
   technologyReferences: { st: technologies[0], at: technologies[1] },

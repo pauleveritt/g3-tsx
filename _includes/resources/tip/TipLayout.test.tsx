@@ -18,7 +18,7 @@ test("should make TipLayout", () => {
   const authorLink: HTMLAnchorElement = screen.getByRole("link", {
     name: "Some Author",
   });
-  expect(authorLink.href).to.equal("some-author");
+  expect(authorLink.href).to.equal("sa");
 });
 
 test("should render TipLayout", () => {
