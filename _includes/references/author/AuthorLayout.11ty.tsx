@@ -3,11 +3,16 @@ import h, { JSX } from "vhtml";
 import { AuthorReference } from "./AuthorModels";
 import { Collections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
-import { Resource } from "../../resources/ResourceModels";
+import { BaseResource } from "../../resources/ResourceModels";
 
+export type AuthorLayoutResource = {
+  title: string;
+  slug: string;
+  thumbnail?: string;
+};
 export type AuthorLayoutProps = {
   children: string[];
-  referenceResources: Resource[];
+  referenceResources: AuthorLayoutResource[];
   subtitle?: string;
   thumbnail?: string;
   title: string;
@@ -18,6 +23,7 @@ export function AuthorLayout({
   subtitle,
   thumbnail,
   title,
+  referenceResources,
 }: AuthorLayoutProps): JSX.Element {
   const figure = (
     <div className="image is-rounded is-96x96">
@@ -31,31 +37,13 @@ export function AuthorLayout({
     </div>
   );
   const listing = (
-    <div>
-      This reference's resources would go here.
-      {/*{resources && resources*/}
-      {/*    .sort((r1: Resource, r2: Resource) => {*/}
-      {/*      if (r1.title < r2.title) {*/}
-      {/*        return -1;*/}
-      {/*      }*/}
-      {/*      if (r1.title > r2.title) {*/}
-      {/*        return 1;*/}
-      {/*      }*/}
-      {/*      return 0;*/}
-      {/*    })*/}
-      {/*    .map(resource => (*/}
-      {/*        <ResourceCard*/}
-      {/*            key={resource.slug}*/}
-      {/*            thumbnail={resource.thumbnail}*/}
-      {/*            resourceType={resource.resourceType}*/}
-      {/*            media={{href: resource.slug, title: resource.title, subtitle: resource.subtitle}}*/}
-      {/*            technologies={{items: resource.technologies}}*/}
-      {/*            topics={{items: resource.topics}}*/}
-      {/*            date={{date: resource.date}}*/}
-      {/*        />*/}
-      {/*    ))*/}
-      {/*}*/}
-    </div>
+    <ul>
+      {referenceResources.map((resource) => (
+        <li>
+          <a href={resource.slug}>{resource.title}</a>
+        </li>
+      ))}
+    </ul>
   );
   const xxxChildren = <div dangerouslySetInnerHTML={{ __html: children[0] }} />;
 
@@ -86,14 +74,27 @@ export function render({
   const { authorReferences } = collections;
   const author: AuthorReference = authorReferences[page.fileSlug];
   const { title, subtitle, thumbnail } = author;
-  const referenceResources: Resource[] = [];
-
-  /*
-   * NEXT
-   * - Get collection.all fixture to have actual resources
-   * - Make a AuthorLayoutResource type
-   * - Then have this flatten collections.all into array of that
-   * */
+  const referenceResources: AuthorLayoutResource[] = collections.all
+    .filter((resource) => {
+      // @ts-ignore
+      return resource.author === author.label;
+    })
+    .sort((r1: BaseResource, r2: BaseResource) => {
+      if (r1.title < r2.title) {
+        return -1;
+      }
+      if (r1.title > r2.title) {
+        return 1;
+      }
+      return 0;
+    })
+    .map((resource) => {
+      return {
+        title: resource.title,
+        slug: resource.slug,
+        thumbnail: resource.thumbnail,
+      };
+    });
 
   return (
     <AuthorLayout
@@ -106,3 +107,10 @@ export function render({
     </AuthorLayout>
   );
 }
+/*
+
+Tomorrow
+- Move the resource listing sorting filtering into a separate function
+- Write a test for that
+- Fix "should render AuthorLayout" to grabe the listings
+ */

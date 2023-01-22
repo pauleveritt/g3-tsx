@@ -12,7 +12,10 @@ test("should make AuthorLayout", () => {
     subtitle: author.subtitle,
     thumbnail: author.thumbnail,
     children: [children],
-    referenceResources: [],
+    referenceResources: [
+      { title: "Some Title", slug: "some-slug", thumbnail: "t1" },
+      { title: "Another Title", slug: "another-slug", thumbnail: "t2" },
+    ],
   });
   const results = screen.getAllByText(author.title);
   expect(results).to.exist;
@@ -27,5 +30,6 @@ test("should render AuthorLayout", () => {
     },
   };
   document.body.innerHTML = render(renderProps);
-  expect(screen.getByText("Some Author")).to.exist;
+  const links: HTMLAnchorElement[] = screen.getAllByRole("link");
+  expect(links[0].href).to.equal(99);
 });
