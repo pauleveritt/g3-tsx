@@ -15,28 +15,28 @@
       {
         "accent": "info",
         "cssClass": "documentation",
-        "href": "/webstorm-guide//tutorials/",
+        "href": "/webstorm-guide/tutorials/",
         "label": "Tutorials",
         "icon": "fas fa-tasks"
       },
       {
         "accent": "warning",
         "cssClass": "documentation",
-        "href": "/webstorm-guide//playlists/",
+        "href": "/webstorm-guide/playlists/",
         "label": "Playlists",
         "icon": "fas fa-list"
       },
       {
         "accent": "danger",
         "cssClass": "documentation",
-        "href": "/webstorm-guide//technologies/",
+        "href": "/webstorm-guide/technologies/",
         "label": "Technologies",
         "icon": "fas fa-project-diagram"
       },
       {
         "accent": "danger",
         "cssClass": "documentation",
-        "href": "/webstorm-guide//topics/",
+        "href": "/webstorm-guide/topics/",
         "label": "Topics",
         "icon": "fas fa-project-diagram"
       }

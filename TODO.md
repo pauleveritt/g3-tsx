@@ -1,5 +1,27 @@
 # TODO
 
+## Now
+
+- Move sort and filter out of view models
+
+## Next
+
+- Individual pages for each reference type
+
+## Soon
+
+- Sort out children vs. content and the vhtml typing issue
+
+## Eventually
+
+- Re-invent collections
+  - Change fixtures and typing to treat `collections.all` with the correct structure
+  - Have `collections.resources` which is an object with properties for `all`, etc.
+  - Use Map to allow iteration and preserve default sort order
+  - Investigate `--incremental` by storing the validated resource on the `collections.all` instance
+    - Learn watch events and add/edit/delete
+    - Both for full and incremental
+
 ## G3
 
 - Implement NavbarBrand toggle menu
