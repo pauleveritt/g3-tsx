@@ -78,7 +78,7 @@ export function render({
   const referenceResources: ProductLayoutResource[] = collections.all
     .filter((ci) => {
       // @ts-ignore
-      return product.label in ci.data.product;
+      return ci.data.products && ci.data.products.includes(product.label);
     })
     .sort((ci1: EleventyCollectionItem, ci2: EleventyCollectionItem) => {
       if (ci1.data.title < ci2.data.title) {

@@ -38,5 +38,5 @@ test("should render ProductLayout", () => {
     name: "resource",
   });
   expect(links.length).to.equal(1);
-  expect(links[0].href).to.equal("some-tip");
+  expect(links[0].href).to.equal("another-tip");
 });
