@@ -16,6 +16,12 @@ export function ReferenceLayoutMain({
   title,
   subtitle,
 }: ReferenceLayoutProps): JSX.Element {
+  const safeListing = (
+    <div
+      className="column is-three-quarters-desktop bio-resourcecards"
+      dangerouslySetInnerHTML={{ __html: listing[0] }}
+    />
+  );
   return (
     <main className="bd-main bulmaio-body">
       <div className="bd-main-container container">
@@ -45,11 +51,7 @@ export function ReferenceLayoutMain({
                 </div>
               </div>
             )}
-            <div className="columns">
-              <div className="column is-three-quarters-desktop bio-resourcecards">
-                {listing}
-              </div>
-            </div>
+            <div className="columns">{safeListing}</div>
           </div>
         </div>
       </div>

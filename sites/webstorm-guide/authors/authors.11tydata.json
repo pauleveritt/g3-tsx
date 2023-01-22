@@ -1,3 +1,4 @@
 {
-  "tags": ["author"]
+  "tags": ["author"],
+  "layout": "references/author/AuthorLayout.11ty.tsx"
 }
