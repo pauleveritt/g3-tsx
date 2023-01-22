@@ -84,7 +84,7 @@ const topics: TopicReference[] = [
   },
 ];
 const collections: Collections = {
-  all: [], // TODO fill this up
+  all: [...tips, ...authors, ...technologies, ...topics],
   tipResources: { "some-tip": tips[0], "another-tip": tips[1] },
   authorReferences: { sa: authors[0], aa: authors[1] },
   technologyReferences: { st: technologies[0], at: technologies[1] },
@@ -92,5 +92,13 @@ const collections: Collections = {
 };
 
 // Now assemble for export
-const fixtures = { authors, children, collections, content, tips };
+const fixtures = {
+  authors,
+  children,
+  collections,
+  content,
+  technologies,
+  tips,
+  topics,
+};
 export default fixtures;

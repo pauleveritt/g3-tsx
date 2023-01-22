@@ -1,7 +1,7 @@
 import { Static, Type } from "@sinclair/typebox";
 import { EleventyPage } from "../models";
 
-export const Resource = Type.Object({
+export const BaseResource = Type.Object({
   title: Type.String(),
   slug: Type.String(),
   date: Type.Optional(Type.Date()),
@@ -10,10 +10,33 @@ export const Resource = Type.Object({
   excerpt: Type.Optional(Type.String()),
   resourceType: Type.String(),
   thumbnail: Type.Optional(Type.String()),
-  author: Type.String(),
 });
+export type BaseResource = Static<typeof BaseResource>;
+
+export const Resource = Type.Intersect([
+  BaseResource,
+  Type.Object({
+    author: Type.String(),
+  }),
+]);
 
 export type Resource = Static<typeof Resource>;
+
+export function getBaseResource(
+  data: any,
+  page: EleventyPage,
+  resourceType: string
+): BaseResource {
+  return {
+    title: data.title,
+    slug: page.fileSlug,
+    date: data.date,
+    subtitle: data.subtitle,
+    body: data.content,
+    excerpt: data.excerpt,
+    resourceType,
+  };
+}
 
 export function getResource(
   data: any,

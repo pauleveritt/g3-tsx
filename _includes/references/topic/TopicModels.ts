@@ -5,6 +5,7 @@ import { EleventyPage } from "../../models";
 
 export const TopicReference = Type.Intersect([Reference]);
 export type TopicReference = Static<typeof TopicReference>;
+export type TopicCollection = { [name: string]: TopicReference };
 
 export function getTopic(data: any, page: EleventyPage): TopicReference {
   const topic: TopicReference = {

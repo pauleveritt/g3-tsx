@@ -88,6 +88,13 @@ export function render({
   const { title, subtitle, thumbnail } = author;
   const referenceResources: Resource[] = [];
 
+  /*
+   * NEXT
+   * - Get collection.all fixture to have actual resources
+   * - Make a AuthorLayoutResource type
+   * - Then have this flatten collections.all into array of that
+   * */
+
   return (
     <AuthorLayout
       title={title}

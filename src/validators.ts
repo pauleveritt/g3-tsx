@@ -62,7 +62,7 @@ export function validateResource(
 
 export function readMarkdownTree(dir: string, validator: any) {
   /* Get the frontmatter, body, and slug for all the resources at a dir */
-  const contentItems = {};
+  const contentItems: { [key: string]: any } = {};
   const parentDir = resolve(sitesDir, `webstorm-guide/${dir}/`);
   readdirSync(parentDir)
     .map((file) => resolve(parentDir, file))
@@ -74,9 +74,7 @@ export function readMarkdownTree(dir: string, validator: any) {
       const { frontmatter, body } = readMarkdown(markdownFilename);
 
       // Call the validator to get back to correct resource type
-      const thisResource = validator(frontmatter, page, body);
-      // @ts-ignore
-      contentItems[fileSlug] = thisResource;
+      contentItems[fileSlug] = validator(frontmatter, page, body);
     });
   return contentItems;
 }
