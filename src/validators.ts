@@ -48,7 +48,7 @@ export function readMarkdown(filePath: string): any {
 export function validateResource(
   resourceType: any,
   frontmatter: any,
-  fileSlug: string
+  url: string
 ) {
   /* Throw an exception if validation fails */
   if (!Value.Check(resourceType, frontmatter)) {
@@ -56,7 +56,7 @@ export function validateResource(
     const message = errors
       .map(
         (error) =>
-          `Validation failure: ${error.path} failed with ${error.message} in ${fileSlug}`
+          `Validation failure: ${error.path} failed with ${error.message} in ${url}`
       )
       .join("\n");
     throw new Error(message);
@@ -70,10 +70,11 @@ export function readMarkdownTree(dir: string, validator: any) {
   readdirSync(parentDir)
     .map((file) => resolve(parentDir, file))
     .filter((file) => lstatSync(file).isDirectory())
-    .forEach((dir) => {
-      const fileSlug = basename(dir);
-      const page: EleventyPage = { fileSlug };
-      const markdownFilename = resolve(dir, "index.md");
+    .forEach((thisDir) => {
+      const fileSlug = basename(thisDir);
+      const url = `/${dir}/${fileSlug}/`;
+      const page: EleventyPage = { fileSlug, url };
+      const markdownFilename = resolve(thisDir, "index.md");
       const { frontmatter, body } = readMarkdown(markdownFilename);
 
       // Call the validator to get back to correct resource type
@@ -100,7 +101,7 @@ export function getTipResources(collectionItems: EleventyCollectionItem[]) {
     // into a "page" using resourceType.
     .filter((item) => !(item.data.resourceType && item.data.resourceType))
     .forEach((item) => {
-      results[item.page.fileSlug] = getTip(item.data, item.page);
+      results[item.page.url] = getTip(item.data, item.page);
     });
   return results;
 }
@@ -109,7 +110,8 @@ export function getAuthorReferences(collectionItems: EleventyCollectionItem[]) {
   /* Called from eleventy.config.js to add author collection's items */
   const results: { [index: string]: AuthorReference } = {};
   collectionItems.forEach((item) => {
-    results[item.page.fileSlug] = getAuthor(item.data, item.page);
+    const thisAuthor = getAuthor(item.data, item.page);
+    results[thisAuthor.label] = thisAuthor;
   });
   return results;
 }
@@ -120,7 +122,8 @@ export function getTechnologyReferences(
   /* Called from eleventy.config.js to add technology collection's items */
   const results: { [index: string]: TechnologyReference } = {};
   collectionItems.forEach((item) => {
-    results[item.page.fileSlug] = getTechnology(item.data, item.page);
+    const thisTechnology = getTechnology(item.data, item.page);
+    results[thisTechnology.label] = thisTechnology;
   });
   return results;
 }
@@ -129,17 +132,20 @@ export function getTopicReferences(collectionItems: EleventyCollectionItem[]) {
   /* Called from eleventy.config.js to add topic collection's items */
   const results: { [index: string]: TopicReference } = {};
   collectionItems.forEach((item) => {
-    results[item.page.fileSlug] = getTopic(item.data, item.page);
+    const thisTopic = getTopic(item.data, item.page);
+    results[thisTopic.label] = thisTopic;
   });
   return results;
 }
+
 export function getProductReferences(
   collectionItems: EleventyCollectionItem[]
 ) {
   /* Called from eleventy.config.js to add product collection's items */
   const results: { [index: string]: ProductReference } = {};
   collectionItems.forEach((item) => {
-    results[item.page.fileSlug] = getProduct(item.data, item.page);
+    const thisProduct = getProduct(item.data, item.page);
+    results[thisProduct.label] = thisProduct;
   });
   return results;
 }

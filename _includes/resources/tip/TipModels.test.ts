@@ -10,12 +10,14 @@ test("Construct a valid Tip", () => {
   const tipData = {
     ...frontmatter,
     url: "/tips/amend-commit/",
-    fileSlug: "amend-commit",
     content: body,
     collections: {},
   };
 
-  const tipPage: EleventyPage = { fileSlug: "some-slug" };
+  const tipPage: EleventyPage = {
+    fileSlug: "some-slug",
+    url: "/tips/some-slug/",
+  };
   const result = getTip(tipData, tipPage);
   expect(result.title).to.equal(tipData.title);
   expect(result.body).to.equal(tipData.content);

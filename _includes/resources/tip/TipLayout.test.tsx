@@ -26,7 +26,7 @@ test("should render TipLayout", () => {
     collections: fixtures.collections,
     content: fixtures.content,
     page: {
-      fileSlug: fixtures.tips[0].slug,
+      url: fixtures.tips[0].url,
     },
   };
   document.body.innerHTML = render(renderProps);

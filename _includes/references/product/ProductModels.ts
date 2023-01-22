@@ -6,7 +6,7 @@ import { EleventyPage } from "../../models";
 export const ProductReference = Type.Intersect([
   Reference,
   Type.Object({
-    logo: Type.String(),
+    logo: Type.Optional(Type.String()),
   }),
 ]);
 export type ProductReference = Static<typeof ProductReference>;
@@ -17,6 +17,6 @@ export function getProduct(data: any, page: EleventyPage): ProductReference {
     ...getReference(data, page, "product"),
     logo: data.logo,
   };
-  validateResource(ProductReference, product, page.fileSlug);
+  validateResource(ProductReference, product, page.url);
   return product;
 }

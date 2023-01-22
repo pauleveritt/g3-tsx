@@ -1,5 +1,4 @@
 const EleventyVitePlugin = require("@11ty/eleventy-plugin-vite");
-const { EleventyCollectionItem } = require("./_includes/models");
 const {
   getTipResources,
   getAuthorReferences,
@@ -7,9 +6,6 @@ const {
   getTopicReferences,
   getProductReferences,
 } = require("./src/validators");
-const {
-  getProduct,
-} = require("./_includes/references/product/ProductModels.js");
 
 module.exports = function (eleventyConfig) {
   // v2.0.0-canary.19 or newer
@@ -40,7 +36,7 @@ module.exports = function (eleventyConfig) {
     return getTopicReferences(topics);
   });
   eleventyConfig.addCollection("productReferences", function (collectionApi) {
-    const topics = collectionApi.getFilteredByTag("topic");
+    const topics = collectionApi.getFilteredByTag("product");
     return getProductReferences(topics);
   });
   eleventyConfig.addPlugin(EleventyVitePlugin, {

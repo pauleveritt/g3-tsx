@@ -155,12 +155,14 @@ const tips: TipResource[] = [
   {
     title: all[0].data.title,
     slug: all[0].page.fileSlug,
+    url: all[0].page.url,
     resourceType: all[0].data.resourceType as string,
     author: all[0].data.author as string,
   },
   {
     title: all[1].data.title,
     slug: all[1].page.fileSlug,
+    url: all[1].page.url,
     resourceType: all[1].data.resourceType as string,
     author: all[1].data.author as string,
   },
@@ -169,6 +171,7 @@ const authors: AuthorReference[] = [
   {
     title: all[2].data.title,
     slug: all[2].page.fileSlug,
+    url: all[2].page.url,
     resourceType: all[2].data.resourceType as string,
     label: all[2].data.label as string,
     resources: [],
@@ -177,6 +180,7 @@ const authors: AuthorReference[] = [
   {
     title: all[3].data.title,
     slug: all[3].page.fileSlug,
+    url: all[3].page.url,
     resourceType: all[3].data.resourceType as string,
     label: all[3].data.label as string,
     resources: [],
@@ -187,6 +191,7 @@ const technologies: TechnologyReference[] = [
   {
     title: all[4].data.title,
     slug: all[4].page.fileSlug,
+    url: all[4].page.url,
     resourceType: all[4].data.resourceType as string,
     label: all[4].data.label as string,
     resources: [],
@@ -195,6 +200,7 @@ const technologies: TechnologyReference[] = [
   {
     title: all[5].data.title,
     slug: all[5].page.fileSlug,
+    url: all[5].page.url,
     resourceType: all[5].data.resourceType as string,
     label: all[5].data.label as string,
     resources: [],
@@ -205,6 +211,7 @@ const topics: TopicReference[] = [
   {
     title: all[6].data.title,
     slug: all[6].page.fileSlug,
+    url: all[6].page.url,
     resourceType: all[6].data.resourceType as string,
     label: all[6].data.label as string,
     resources: [],
@@ -213,6 +220,7 @@ const topics: TopicReference[] = [
   {
     title: all[7].data.title,
     slug: all[7].page.fileSlug,
+    url: all[7].page.url,
     resourceType: all[7].data.resourceType as string,
     label: all[7].data.label as string,
     resources: [],
@@ -223,6 +231,7 @@ const products: ProductReference[] = [
   {
     title: all[8].data.title,
     slug: all[8].page.fileSlug,
+    url: all[8].page.url,
     resourceType: all[8].data.resourceType as string,
     label: all[8].data.label as string,
     logo: all[8].data.logo as string,
@@ -232,6 +241,7 @@ const products: ProductReference[] = [
   {
     title: all[9].data.title,
     slug: all[9].page.fileSlug,
+    url: all[9].page.url,
     resourceType: all[9].data.resourceType as string,
     label: all[9].data.label as string,
     logo: all[9].data.logo as string,
@@ -239,13 +249,27 @@ const products: ProductReference[] = [
     referenceResources: [],
   },
 ];
+const tipResources: { [key: string]: TipResource } = {};
+tips.forEach((tip) => (tipResources[tip.url] = tip));
+const authorReferences: { [key: string]: AuthorReference } = {};
+
+authors.forEach((author) => (authorReferences[author.label] = author));
+const technologyReferences: { [key: string]: TechnologyReference } = {};
+technologies.forEach(
+  (technology) => (technologyReferences[technology.label] = technology)
+);
+const topicReferences: { [key: string]: TopicReference } = {};
+topics.forEach((topic) => (topicReferences[topic.label] = topic));
+const productReferences: { [key: string]: ProductReference } = {};
+products.forEach((product) => (productReferences[product.label] = product));
+
 const collections: Collections = {
   all,
-  tipResources: { "some-tip": tips[0], "another-tip": tips[1] },
-  authorReferences: { sa: authors[0], aa: authors[1] },
-  technologyReferences: { st: technologies[0], at: technologies[1] },
-  topicReferences: { st: topics[0], at: topics[1] },
-  productReferences: { sp: products[0], ap: products[1] },
+  tipResources,
+  authorReferences,
+  technologyReferences,
+  topicReferences,
+  productReferences,
 };
 
 // Now assemble for export

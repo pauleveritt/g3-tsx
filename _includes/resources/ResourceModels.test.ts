@@ -10,12 +10,14 @@ test("Construct a valid resource", () => {
   const tipData = {
     ...frontmatter,
     url: "/tips/amend-commit/",
-    fileSlug: "amend-commit",
     content: body,
     collections: {},
   };
   const resourceData: Resource = { ...tipData };
-  const resourcePage: EleventyPage = { fileSlug: "some-slug" };
+  const resourcePage: EleventyPage = {
+    fileSlug: "some-slug",
+    url: "/tips/some-slug/",
+  };
   const result = getResource(resourceData, resourcePage, "resource");
   expect(result.title).to.equal(resourceData.title);
   expect(result.resourceType).to.equal("resource");

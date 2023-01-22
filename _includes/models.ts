@@ -5,14 +5,6 @@ import { TopicCollection } from "./references/topic/TopicModels";
 import { Static, Type } from "@sinclair/typebox";
 import { ProductCollection } from "./references/product/ProductModels";
 
-// export type EleventyPage = {
-//   inputPath?: string;
-//   fileSlug: string;
-//   filePathStem?: string;
-//   outputFileExtension?: string;
-//   url?: string;
-// };
-
 export const EleventyPage = Type.Object({
   // The common, page-oriented data 11ty passes in when it reads a Markdown file
   // https://www.11ty.dev/docs/data-eleventy-supplied/#page-variable
@@ -20,16 +12,6 @@ export const EleventyPage = Type.Object({
   url: Type.String(),
 });
 export type EleventyPage = Static<typeof EleventyPage>;
-
-// export type EleventyData = {
-//   title: string;
-//   subtitle?: string;
-//   date: Date;
-//   resourceType?: string;
-//   thumbnail?: string;
-//   author?: string;
-//   label?: string;
-// };
 
 export const EleventyData = Type.Object({
   // Some stuff from resource, but not all, and you can't really
@@ -44,12 +26,6 @@ export const EleventyData = Type.Object({
   logo: Type.Optional(Type.String()),
 });
 export type EleventyData = Static<typeof EleventyData>;
-
-// export type EleventyCollectionItem = {
-//   page: EleventyPage;
-//   data: EleventyData;
-//   content: string;
-// };
 
 export const EleventyCollectionItem = Type.Object({
   // The combination of page, data, and content for

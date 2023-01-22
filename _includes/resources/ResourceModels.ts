@@ -4,6 +4,7 @@ import { EleventyPage } from "../models";
 export const BaseResource = Type.Object({
   title: Type.String(),
   slug: Type.String(),
+  url: Type.String(),
   date: Type.Optional(Type.Date()),
   subtitle: Type.Optional(Type.String()),
   body: Type.Optional(Type.String()),
@@ -30,6 +31,7 @@ export function getBaseResource(
   return {
     title: data.title,
     slug: page.fileSlug,
+    url: page.url,
     date: data.date,
     subtitle: data.subtitle,
     body: data.content,
@@ -46,6 +48,7 @@ export function getResource(
   return {
     title: data.title,
     slug: page.fileSlug,
+    url: page.url,
     date: data.date,
     subtitle: data.subtitle,
     body: data.content,

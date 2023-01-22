@@ -132,7 +132,7 @@ export type TipRenderProps = {
   collections: Collections;
   content: string;
   page: {
-    fileSlug: string;
+    url: string;
   };
 };
 
@@ -142,7 +142,7 @@ export function render({
   page,
 }: TipRenderProps): JSX.Element {
   const { tipResources, authorReferences } = collections;
-  const tip: TipResource = tipResources[page.fileSlug];
+  const tip: TipResource = tipResources[page.url];
   const thisAuthor = tip.author as string;
   const author: AuthorReference = authorReferences[thisAuthor];
 

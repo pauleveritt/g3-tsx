@@ -10,12 +10,12 @@ test("Construct a valid topic", () => {
 
   const topicData = {
     ...frontmatter,
-    url: "/topics/customizing/",
     content: body,
     resourceType: "topic",
   };
   const topicPage: EleventyPage = {
     fileSlug: "customizing",
+    url: "/topics/customizing/",
   };
   const result = getTopic(topicData, topicPage);
   expect(result.label).to.equal("customizing");

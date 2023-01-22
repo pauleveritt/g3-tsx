@@ -28,6 +28,7 @@ test("validates good frontmatter", () => {
     id: "some-id",
     author: "some-author",
     slug: "some-slug",
+    url: "/tips/some-slug",
     date: new Date(),
     resourceType: "some-resourcetype",
   };

@@ -9,12 +9,12 @@ test("Construct a valid product", () => {
 
   const productData = {
     ...frontmatter,
-    url: "/products/rider/",
     content: body,
     resourceType: "product",
   };
   const productPage = {
     fileSlug: "rider",
+    url: "/products/rider/",
   };
   const result = getProduct(productData, productPage);
   expect(result.label).to.equal("rider");

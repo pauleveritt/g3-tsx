@@ -9,12 +9,12 @@ test("Construct a valid author", () => {
 
   const authorData = {
     ...frontmatter,
-    url: "/authors/pwe/",
     content: body,
     resourceType: "author",
   };
   const authorPage = {
     fileSlug: "pwe",
+    url: "/authors/pwe",
   };
   const result = getAuthor(authorData, authorPage);
   expect(result.label).to.equal("pwe");
