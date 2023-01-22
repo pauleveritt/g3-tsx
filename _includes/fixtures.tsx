@@ -4,6 +4,7 @@ import { AuthorReference } from "./references/author/AuthorModels";
 import { Collections, EleventyCollectionItem } from "./models";
 import { TechnologyReference } from "./references/technology/TechnologyModels";
 import { TopicReference } from "./references/topic/TopicModels";
+import { ProductReference } from "./references/product/ProductModels";
 
 /**
  * Reusable test data
@@ -120,6 +121,34 @@ const all: EleventyCollectionItem[] = [
     },
     content: "<p>Another Topic</p>",
   },
+  {
+    data: {
+      title: "Some Product",
+      date: new Date("2023-01-22"),
+      resourceType: "product",
+      label: "sp",
+      logo: "some.png",
+    },
+    page: {
+      fileSlug: "sp",
+      url: "/products/sp/",
+    },
+    content: "<p>Some Product</p>",
+  },
+  {
+    data: {
+      title: "Another Product",
+      date: new Date("2023-01-13"),
+      resourceType: "product",
+      label: "ap",
+      logo: "another.png",
+    },
+    page: {
+      fileSlug: "ap",
+      url: "/topics/ap/",
+    },
+    content: "<p>Another Product</p>",
+  },
 ];
 
 const tips: TipResource[] = [
@@ -190,12 +219,33 @@ const topics: TopicReference[] = [
     referenceResources: [],
   },
 ];
+const products: ProductReference[] = [
+  {
+    title: all[8].data.title,
+    slug: all[8].page.fileSlug,
+    resourceType: all[8].data.resourceType as string,
+    label: all[8].data.label as string,
+    logo: all[8].data.logo as string,
+    resources: [],
+    referenceResources: [],
+  },
+  {
+    title: all[9].data.title,
+    slug: all[9].page.fileSlug,
+    resourceType: all[9].data.resourceType as string,
+    label: all[9].data.label as string,
+    logo: all[9].data.logo as string,
+    resources: [],
+    referenceResources: [],
+  },
+];
 const collections: Collections = {
   all,
   tipResources: { "some-tip": tips[0], "another-tip": tips[1] },
   authorReferences: { sa: authors[0], aa: authors[1] },
   technologyReferences: { st: technologies[0], at: technologies[1] },
   topicReferences: { st: topics[0], at: topics[1] },
+  productReferences: { sp: products[0], ap: products[1] },
 };
 
 // Now assemble for export
@@ -207,5 +257,6 @@ const fixtures = {
   technologies,
   tips,
   topics,
+  products,
 };
 export default fixtures;

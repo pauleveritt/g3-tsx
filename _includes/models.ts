@@ -3,6 +3,7 @@ import { AuthorCollection } from "./references/author/AuthorModels";
 import { TechnologyCollection } from "./references/technology/TechnologyModels";
 import { TopicCollection } from "./references/topic/TopicModels";
 import { Static, Type } from "@sinclair/typebox";
+import { ProductCollection } from "./references/product/ProductModels";
 
 // export type EleventyPage = {
 //   inputPath?: string;
@@ -40,6 +41,7 @@ export const EleventyData = Type.Object({
   thumbnail: Type.Optional(Type.String()),
   author: Type.Optional(Type.String()),
   label: Type.Optional(Type.String()),
+  logo: Type.Optional(Type.String()),
 });
 export type EleventyData = Static<typeof EleventyData>;
 
@@ -64,4 +66,5 @@ export type Collections = {
   authorReferences: AuthorCollection;
   technologyReferences: TechnologyCollection;
   topicReferences: TopicCollection;
+  productReferences: ProductCollection;
 };

@@ -10,7 +10,10 @@ import {
   AuthorReference,
   getAuthor,
 } from "../_includes/references/author/AuthorModels";
-import { getProduct } from "../_includes/references/product/ProductModels";
+import {
+  getProduct,
+  ProductReference,
+} from "../_includes/references/product/ProductModels";
 import {
   getTechnology,
   TechnologyReference,
@@ -103,7 +106,7 @@ export function getTipResources(collectionItems: EleventyCollectionItem[]) {
 }
 
 export function getAuthorReferences(collectionItems: EleventyCollectionItem[]) {
-  /* Called from eleventy.config.js to add tip collection's items */
+  /* Called from eleventy.config.js to add author collection's items */
   const results: { [index: string]: AuthorReference } = {};
   collectionItems.forEach((item) => {
     results[item.page.fileSlug] = getAuthor(item.data, item.page);
@@ -114,7 +117,7 @@ export function getAuthorReferences(collectionItems: EleventyCollectionItem[]) {
 export function getTechnologyReferences(
   collectionItems: EleventyCollectionItem[]
 ) {
-  /* Called from eleventy.config.js to add tip collection's items */
+  /* Called from eleventy.config.js to add technology collection's items */
   const results: { [index: string]: TechnologyReference } = {};
   collectionItems.forEach((item) => {
     results[item.page.fileSlug] = getTechnology(item.data, item.page);
@@ -123,10 +126,20 @@ export function getTechnologyReferences(
 }
 
 export function getTopicReferences(collectionItems: EleventyCollectionItem[]) {
-  /* Called from eleventy.config.js to add tip collection's items */
+  /* Called from eleventy.config.js to add topic collection's items */
   const results: { [index: string]: TopicReference } = {};
   collectionItems.forEach((item) => {
     results[item.page.fileSlug] = getTopic(item.data, item.page);
+  });
+  return results;
+}
+export function getProductReferences(
+  collectionItems: EleventyCollectionItem[]
+) {
+  /* Called from eleventy.config.js to add product collection's items */
+  const results: { [index: string]: ProductReference } = {};
+  collectionItems.forEach((item) => {
+    results[item.page.fileSlug] = getProduct(item.data, item.page);
   });
   return results;
 }

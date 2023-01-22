@@ -6,10 +6,18 @@ import { AuthorReference } from "./references/author/AuthorModels";
 import { TechnologyReference } from "./references/technology/TechnologyModels";
 import { TopicReference } from "./references/topic/TopicModels";
 import { EleventyCollectionItem } from "./models";
+import { ProductReference } from "./references/product/ProductModels";
 
 it("should have valid fixture data", () => {
-  const { children, tips, authors, collections, technologies, topics } =
-    fixtures;
+  const {
+    children,
+    tips,
+    authors,
+    collections,
+    technologies,
+    topics,
+    products,
+  } = fixtures;
   const { authorReferences } = collections;
   expect(children[0]).to.contain("Hello");
 
@@ -40,6 +48,13 @@ it("should have valid fixture data", () => {
   topics.forEach((topic) => {
     expect(() =>
       validateResource(TopicReference, topic, "my-tip")
+    ).not.toThrowError();
+  });
+
+  // Products
+  products.forEach((product) => {
+    expect(() =>
+      validateResource(ProductReference, product, "my-tip")
     ).not.toThrowError();
   });
 
