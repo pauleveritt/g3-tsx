@@ -21,9 +21,12 @@ export const EleventyData = Type.Object({
   date: Type.Date(),
   resourceType: Type.Optional(Type.String()),
   thumbnail: Type.Optional(Type.String()),
-  author: Type.Optional(Type.String()),
   label: Type.Optional(Type.String()),
   logo: Type.Optional(Type.String()),
+  author: Type.Optional(Type.String()),
+  technologies: Type.Optional(Type.Array(Type.String())),
+  topics: Type.Optional(Type.Array(Type.String())),
+  products: Type.Optional(Type.Array(Type.String())),
 });
 export type EleventyData = Static<typeof EleventyData>;
 

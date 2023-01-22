@@ -18,6 +18,9 @@ export const Resource = Type.Intersect([
   BaseResource,
   Type.Object({
     author: Type.String(),
+    technologies: Type.Optional(Type.Array(Type.String())),
+    topics: Type.Optional(Type.Array(Type.String())),
+    products: Type.Optional(Type.Array(Type.String())),
   }),
 ]);
 

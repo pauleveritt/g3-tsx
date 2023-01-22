@@ -36,6 +36,9 @@ const all: EleventyCollectionItem[] = [
       date: new Date("2023-01-10"),
       resourceType: "tip",
       author: "aa",
+      technologies: ["st", "at"],
+      topics: ["st", "at"],
+      products: ["sp", "ap"],
     },
     page: {
       fileSlug: "another-tip",
