@@ -17,8 +17,12 @@ test("should make ProductLayout", () => {
     thumbnail: product.thumbnail,
     children: [children],
     referenceResources: [
-      { title: "Some Title", slug: "some-slug", thumbnail: "t1" },
-      { title: "Another Title", slug: "another-slug", thumbnail: "t2" },
+      { title: "Some Title", url: "/products/some-slug/", thumbnail: "t1" },
+      {
+        title: "Another Title",
+        url: "/products/another-slug/",
+        thumbnail: "t2",
+      },
     ],
   });
   const results = screen.getAllByText(product.title);
@@ -38,5 +42,5 @@ test("should render ProductLayout", () => {
     name: "resource",
   });
   expect(links.length).to.equal(1);
-  expect(links[0].href).to.equal("another-tip");
+  expect(links[0].href).to.equal("/tips/another-tip/");
 });

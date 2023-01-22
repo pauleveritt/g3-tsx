@@ -4,7 +4,7 @@ import { Collections } from "../../models";
 
 export type TopicsLayoutTopic = {
   title: string;
-  slug: string;
+  url: string;
 };
 export type TopicsLayoutProps = {
   topics: TopicsLayoutTopic[];
@@ -25,7 +25,9 @@ export function TopicsLayout({
       {topics.map((topic) => {
         return (
           <li>
-            <a href={topic.slug}>{topic.title}</a>
+            <a aria-label="resource" href={topic.url}>
+              {topic.title}
+            </a>
           </li>
         );
       })}
@@ -62,7 +64,7 @@ export function render({
   ).map((topic) => {
     return {
       title: topic.title,
-      slug: topic.slug,
+      url: topic.url,
     };
   });
   return (

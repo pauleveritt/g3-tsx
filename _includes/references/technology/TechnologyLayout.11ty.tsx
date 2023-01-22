@@ -2,28 +2,28 @@
 import h, { JSX } from "vhtml";
 import { Collections, EleventyCollectionItem } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
-import { ProductReference } from "./ProductModels";
+import { TechnologyReference } from "./TechnologyModels";
 
-export type ProductLayoutResource = {
+export type TechnologyLayoutResource = {
   title: string;
   url: string;
   thumbnail?: string;
 };
-export type ProductLayoutProps = {
+export type TechnologyLayoutProps = {
   children: string[];
-  referenceResources: ProductLayoutResource[];
+  referenceResources: TechnologyLayoutResource[];
   subtitle?: string;
   thumbnail?: string;
   title: string;
 };
 
-export function ProductLayout({
+export function TechnologyLayout({
   children,
   subtitle,
   thumbnail,
   title,
   referenceResources,
-}: ProductLayoutProps): JSX.Element {
+}: TechnologyLayoutProps): JSX.Element {
   const figure = (
     <div className="image is-rounded is-96x96">
       <img
@@ -59,7 +59,7 @@ export function ProductLayout({
   );
 }
 
-export type ProductRenderProps = {
+export type TechnologyRenderProps = {
   collections: Collections;
   content: string;
   page: {
@@ -71,14 +71,16 @@ export function render({
   collections,
   content,
   page,
-}: ProductRenderProps): JSX.Element {
-  const { productReferences } = collections;
-  const product: ProductReference = productReferences[page.fileSlug];
-  const { title, subtitle, thumbnail } = product;
-  const referenceResources: ProductLayoutResource[] = collections.all
+}: TechnologyRenderProps): JSX.Element {
+  const { technologyReferences } = collections;
+  const technology: TechnologyReference = technologyReferences[page.fileSlug];
+  const { title, subtitle, thumbnail } = technology;
+  const referenceResources: TechnologyLayoutResource[] = collections.all
     .filter((ci) => {
       // @ts-ignore
-      return ci.data.products && ci.data.products.includes(product.label);
+      return (
+        ci.data.technologies && ci.data.technologies.includes(technology.label)
+      );
     })
     .sort((ci1: EleventyCollectionItem, ci2: EleventyCollectionItem) => {
       if (ci1.data.title < ci2.data.title) {
@@ -98,13 +100,13 @@ export function render({
     });
 
   return (
-    <ProductLayout
+    <TechnologyLayout
       title={title}
       subtitle={subtitle}
       thumbnail={thumbnail}
       referenceResources={referenceResources}
     >
       {content}
-    </ProductLayout>
+    </TechnologyLayout>
   );
 }

@@ -6,7 +6,7 @@ import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 
 export type AuthorLayoutResource = {
   title: string;
-  slug: string;
+  url: string;
   thumbnail?: string;
 };
 export type AuthorLayoutProps = {
@@ -39,7 +39,7 @@ export function AuthorLayout({
     <ul>
       {referenceResources.map((resource) => (
         <li>
-          <a aria-label="resource" href={resource.slug}>
+          <a aria-label="resource" href={resource.url}>
             {resource.title}
           </a>
         </li>
@@ -92,7 +92,7 @@ export function render({
     .map((ci) => {
       return {
         title: ci.data.title,
-        slug: ci.page.fileSlug,
+        url: ci.page.url,
         thumbnail: ci.data.thumbnail,
       };
     });

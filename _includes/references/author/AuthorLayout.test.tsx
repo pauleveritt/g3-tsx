@@ -13,8 +13,8 @@ test("should make AuthorLayout", () => {
     thumbnail: author.thumbnail,
     children: [children],
     referenceResources: [
-      { title: "Some Title", slug: "some-slug", thumbnail: "t1" },
-      { title: "Another Title", slug: "another-slug", thumbnail: "t2" },
+      { title: "Some Title", url: "/tips/some-slug/", thumbnail: "t1" },
+      { title: "Another Title", url: "/tips/another-slug/", thumbnail: "t2" },
     ],
   });
   const results = screen.getAllByText(author.title);
@@ -34,5 +34,5 @@ test("should render AuthorLayout", () => {
     name: "resource",
   });
   expect(links.length).to.equal(1);
-  expect(links[0].href).to.equal("some-tip");
+  expect(links[0].href).to.equal("/tips/some-tip/");
 });

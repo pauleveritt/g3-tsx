@@ -10,8 +10,8 @@ import fixtures from "../../fixtures";
 
 it("should make TopicsLayout", () => {
   const topics: TopicsLayoutTopic[] = [
-    { title: "Some Topic", slug: "some-topic" },
-    { title: "Another Topic", slug: "another-topic" },
+    { title: "Some Topic", url: "/topics/some-topic/" },
+    { title: "Another Topic", url: "/topics/another-topic/" },
   ];
   const title = "All Topics";
   const subtitle = "Some topic subtitle text";
@@ -23,7 +23,7 @@ it("should make TopicsLayout", () => {
     content,
   });
   const items: HTMLUListElement[] = screen.getAllByRole("link", {
-    name: "Some Topic",
+    name: "resource",
   });
   expect(items[0].textContent).to.equal(topics[0].title);
   expect(screen.getByText("world")).to.exist;
@@ -40,7 +40,7 @@ test("should render TopicsLayout", () => {
   };
   document.body.innerHTML = render(renderProps);
   const items: HTMLUListElement[] = screen.getAllByRole("link", {
-    name: "Some Topic",
+    name: "resource",
   });
   expect(items[0].textContent).to.equal("Some Topic");
   expect(screen.getByText("world")).to.exist;
