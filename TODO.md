@@ -14,6 +14,7 @@
 
 ## Eventually
 
+- A real `resourceType`
 - Re-invent collections
   - Change fixtures and typing to treat `collections.all` with the correct structure
   - Have `collections.resources` which is an object with properties for `all`, etc.

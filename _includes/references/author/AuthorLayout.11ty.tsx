@@ -1,9 +1,8 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
 import { AuthorReference } from "./AuthorModels";
-import { Collections } from "../../models";
+import { Collections, EleventyCollectionItem } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
-import { BaseResource } from "../../resources/ResourceModels";
 
 export type AuthorLayoutResource = {
   title: string;
@@ -40,12 +39,14 @@ export function AuthorLayout({
     <ul>
       {referenceResources.map((resource) => (
         <li>
-          <a href={resource.slug}>{resource.title}</a>
+          <a aria-label="resource" href={resource.slug}>
+            {resource.title}
+          </a>
         </li>
       ))}
     </ul>
   );
-  const xxxChildren = <div dangerouslySetInnerHTML={{ __html: children[0] }} />;
+  const content = <div dangerouslySetInnerHTML={{ __html: children[0] }} />;
 
   return (
     <ReferenceLayout
@@ -53,7 +54,7 @@ export function AuthorLayout({
       subtitle={subtitle}
       figure={[figure]}
       listing={[listing]}
-      content={xxxChildren}
+      content={content}
     />
   );
 }
@@ -75,24 +76,24 @@ export function render({
   const author: AuthorReference = authorReferences[page.fileSlug];
   const { title, subtitle, thumbnail } = author;
   const referenceResources: AuthorLayoutResource[] = collections.all
-    .filter((resource) => {
+    .filter((ci) => {
       // @ts-ignore
-      return resource.author === author.label;
+      return ci.data.author === author.label;
     })
-    .sort((r1: BaseResource, r2: BaseResource) => {
-      if (r1.title < r2.title) {
+    .sort((ci1: EleventyCollectionItem, ci2: EleventyCollectionItem) => {
+      if (ci1.data.title < ci2.data.title) {
         return -1;
       }
-      if (r1.title > r2.title) {
+      if (ci1.data.title > ci2.data.title) {
         return 1;
       }
       return 0;
     })
-    .map((resource) => {
+    .map((ci) => {
       return {
-        title: resource.title,
-        slug: resource.slug,
-        thumbnail: resource.thumbnail,
+        title: ci.data.title,
+        slug: ci.page.fileSlug,
+        thumbnail: ci.data.thumbnail,
       };
     });
 
@@ -107,10 +108,3 @@ export function render({
     </AuthorLayout>
   );
 }
-/*
-
-Tomorrow
-- Move the resource listing sorting filtering into a separate function
-- Write a test for that
-- Fix "should render AuthorLayout" to grabe the listings
- */

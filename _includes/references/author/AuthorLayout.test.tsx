@@ -30,6 +30,9 @@ test("should render AuthorLayout", () => {
     },
   };
   document.body.innerHTML = render(renderProps);
-  const links: HTMLAnchorElement[] = screen.getAllByRole("link");
-  expect(links[0].href).to.equal(99);
+  const links: HTMLAnchorElement[] = screen.getAllByRole("link", {
+    name: "resource",
+  });
+  expect(links.length).to.equal(1);
+  expect(links[0].href).to.equal("some-tip");
 });

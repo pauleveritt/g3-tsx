@@ -5,7 +5,7 @@ import { TipResource } from "./resources/tip/TipModels";
 import { AuthorReference } from "./references/author/AuthorModels";
 import { TechnologyReference } from "./references/technology/TechnologyModels";
 import { TopicReference } from "./references/topic/TopicModels";
-import { BaseResource } from "./resources/ResourceModels";
+import { EleventyCollectionItem } from "./models";
 
 it("should have valid fixture data", () => {
   const { children, tips, authors, collections, technologies, topics } =
@@ -44,9 +44,9 @@ it("should have valid fixture data", () => {
   });
 
   // The all collection
-  collections.all.forEach((resource) => {
+  collections.all.forEach((ci) => {
     expect(() =>
-      validateResource(BaseResource, resource, "my-tip")
+      validateResource(EleventyCollectionItem, ci, "my-tip")
     ).not.toThrowError();
   });
 
