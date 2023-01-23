@@ -2,11 +2,7 @@
 
 ## Now
 
-- Move sort and filter out of view models
-
 ## Next
-
-- Individual pages for each reference type
 
 ## Soon
 
@@ -25,8 +21,15 @@
 
 ## G3
 
-- Implement NavbarBrand toggle menu
+- Screenshots in Markdown folders
+- HTML `<video>` widget
+
+- Lunr
 - NavbarSearch reveal panel
+- JSON Schema writing
+
+- "MDX" by enabling WebC as markdown template language
+- Implement NavbarBrand toggle menu
 - TwitterCard stuff and other Helmet
 - No playlist support in TopNav particularly aria-*
   - Or in TipSidebar `inPlaylist`
@@ -34,3 +37,7 @@
 - Fix all style={} to not use `textAlign` instead use `text-align`
 - Site prefix stuff e.g. starting a `/tips/` instead of `/webstorm-guide/tips/`
 - Tutorials
+
+## Finished
+
+- Individual pages for each reference type

@@ -77,7 +77,6 @@ export function render({
   const { title, subtitle, thumbnail } = author;
   const referenceResources: AuthorLayoutResource[] = collections.all
     .filter((ci) => {
-      // @ts-ignore
       return ci.data.author === author.label;
     })
     .sort((ci1: EleventyCollectionItem, ci2: EleventyCollectionItem) => {
