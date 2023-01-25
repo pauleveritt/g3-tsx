@@ -14,6 +14,12 @@ module.exports = function (eleventyConfig) {
   });
   // eleventyConfig.setServerPassthroughCopyBehavior("copy");
   eleventyConfig.addPassthroughCopy("sites/**/*.{gif,jpg,png}");
+  // copy assets from node_modules for static site
+  eleventyConfig.addPassthroughCopy({
+    "node_modules/video.js/dist/video.min.js": "assets/videojs/video.min.js",
+    "node_modules/video.js/dist/video-js.min.css": "assets/videojs/video-js.min.css",
+    "node_modules/videojs-youtube/dist/Youtube.min.js": "assets/videojs/Youtube.min.js"
+  });
 
   // Wire up some custom collections which return validated, flattened objects for resources/references
   eleventyConfig.addCollection("tipResources", function (collectionApi) {

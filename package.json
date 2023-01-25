@@ -20,12 +20,15 @@
     "@testing-library/dom": "^8.19.0",
     "@types/markdown-it": "^12.2.3",
     "@types/vhtml": "^2.2.4",
+    "@types/video.js": "^7.3.50",
     "esbuild-register": "^3.3.2",
     "happy-dom": "^8.1.1",
     "patch-package": "^6.4.7",
     "prettier": "^2.8.1",
     "typescript": "^4.6.4",
     "vhtml": "^2.2.0",
+    "video.js": "^7.21.1",
+    "videojs-youtube": "^2.6.1",
     "vite": "^3.2.3",
     "vitest": "^0.26.2"
   }

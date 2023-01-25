@@ -7,6 +7,7 @@
 ## Soon
 
 - Sort out children vs. content and the vhtml typing issue
+- Clean up the content
 
 ## Eventually
 
