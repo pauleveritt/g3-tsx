@@ -13,7 +13,7 @@ module.exports = function (eleventyConfig) {
     key: "11ty.js",
   });
   // eleventyConfig.setServerPassthroughCopyBehavior("copy");
-  eleventyConfig.addPassthroughCopy("sites/**/*.[gif,jpg,png]");
+  eleventyConfig.addPassthroughCopy("sites/**/*.{gif,jpg,png}");
 
   // Wire up some custom collections which return validated, flattened objects for resources/references
   eleventyConfig.addCollection("tipResources", function (collectionApi) {
