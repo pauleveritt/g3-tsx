@@ -22,11 +22,12 @@ const SidebarPublished = ({
           <article className="media">
             <figure className="media-left">
               <div className="image is-rounded is-48x48">
-                <GuideImage src={author.thumbnail ? author.thumbnail : "placeholder.jpg"}
-                            alt={`${author.title} Thumbnail`}
-                            className="bio-resourcecard-logo"
-                            width={48}
-
+                <GuideImage
+                  src={author.thumbnail ? author.thumbnail : "placeholder.jpg"}
+                  alt={`${author.title} Thumbnail`}
+                  className="bio-resourcecard-logo"
+                  formats={["webp"]}
+                  widths={[48]}
                 />
               </div>
             </figure>
