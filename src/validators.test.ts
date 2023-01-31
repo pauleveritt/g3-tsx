@@ -1,13 +1,7 @@
 import { expect, test } from "vitest";
 import path from "path";
-import {
-  makeCollectionTree,
-  readMarkdown,
-  readMarkdownTree,
-  sitesDir,
-  validateResource,
-} from "./validators";
-import { getTip, TipResource } from "../_includes/resources/tip/TipModels";
+import { readMarkdown, sitesDir, validateResource } from "./validators";
+import { TipResource } from "../_includes/resources/tip/TipModels";
 
 test("defines the sitesDir", () => {
   expect(path.basename(sitesDir)).to.equal("sites");
@@ -31,6 +25,8 @@ test("validates good frontmatter", () => {
     url: "/tips/some-slug",
     date: new Date(),
     resourceType: "some-resourcetype",
+    thumbnail: "thumbnail.png",
+    inputFolder: "sites/webstorm-guide/tips/some-slug/",
   };
   const validation = () =>
     validateResource(TipResource, frontmatter, "tip1.md");
@@ -45,17 +41,9 @@ test("validates bad frontmatter", () => {
   expect(validation).toThrow("tip1.md");
 });
 
-test("reads a directory of markdown resources", () => {
-  const contentItems = readMarkdownTree("tips", getTip);
-  // @ts-ignore
-  const firstTip = contentItems["access-run-configurations"];
-  expect(firstTip.title).to.equal("Access Run Configurations Quickly");
-});
-test("initializes a resource tree", () => {
-  const collections = {};
-  makeCollectionTree(collections);
-  // @ts-ignore
-  const tips = collections.tip;
-  const firstTip: TipResource = tips["access-run-configurations"];
-  expect(firstTip.title).to.equal("Access Run Configurations Quickly");
-});
+// test("reads a directory of markdown resources", () => {
+//   const contentItems = readMarkdownTree("tips", getTip);
+//   // @ts-ignore
+//   const firstTip = contentItems["access-run-configurations"];
+//   expect(firstTip.title).to.equal("Access Run Configurations Quickly");
+// });

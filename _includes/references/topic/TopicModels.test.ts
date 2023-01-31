@@ -16,6 +16,7 @@ test("Construct a valid topic", () => {
   const topicPage: EleventyPage = {
     fileSlug: "customizing",
     url: "/topics/customizing/",
+    inputPath: "./sites/topics/customizing/index.md",
   };
   const result = getTopic(topicData, topicPage);
   expect(result.label).to.equal("customizing");

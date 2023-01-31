@@ -1,10 +1,10 @@
 import url from "url";
-import { basename, resolve } from "node:path";
-import { existsSync, lstatSync, readdirSync } from "node:fs";
+import { resolve } from "node:path";
+import { existsSync, lstatSync } from "node:fs";
 import * as matter from "gray-matter";
 import MarkdownIt from "markdown-it";
 import { Value } from "@sinclair/typebox/value";
-import { EleventyCollectionItem, EleventyPage } from "../_includes/models";
+import { EleventyCollectionItem } from "../_includes/models";
 import { getTip, TipResource } from "../_includes/resources/tip/TipModels";
 import {
   AuthorReference,
@@ -61,36 +61,6 @@ export function validateResource(
       .join("\n");
     throw new Error(message);
   }
-}
-
-export function readMarkdownTree(dir: string, validator: any) {
-  /* Get the frontmatter, body, and slug for all the resources at a dir */
-  const contentItems: { [key: string]: any } = {};
-  const parentDir = resolve(sitesDir, `webstorm-guide/${dir}/`);
-  readdirSync(parentDir)
-    .map((file) => resolve(parentDir, file))
-    .filter((file) => lstatSync(file).isDirectory())
-    .forEach((thisDir) => {
-      const fileSlug = basename(thisDir);
-      const url = `/${dir}/${fileSlug}/`;
-      const page: EleventyPage = { fileSlug, url };
-      const markdownFilename = resolve(thisDir, "index.md");
-      const { frontmatter, body } = readMarkdown(markdownFilename);
-
-      // Call the validator to get back to correct resource type
-      contentItems[fileSlug] = validator(frontmatter, page, body);
-    });
-  return contentItems;
-}
-
-export function makeCollectionTree(collections: any) {
-  /* Read one of the Guide sites and generate simulated collections.all etc. */
-
-  collections.tip = readMarkdownTree("tips", getTip);
-  collections.author = readMarkdownTree("authors", getAuthor);
-  collections.product = readMarkdownTree("products", getProduct);
-  collections.technology = readMarkdownTree("technologies", getTechnology);
-  collections.topic = readMarkdownTree("topics", getTopic);
 }
 
 export function getTipResources(collectionItems: EleventyCollectionItem[]) {

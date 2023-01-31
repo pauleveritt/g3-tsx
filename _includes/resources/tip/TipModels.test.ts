@@ -17,6 +17,7 @@ test("Construct a valid Tip", () => {
   const tipPage: EleventyPage = {
     fileSlug: "some-slug",
     url: "/tips/some-slug/",
+    inputPath: "./sites/tips/some-slug/index.md",
   };
   const result = getTip(tipData, tipPage);
   expect(result.title).to.equal(tipData.title);

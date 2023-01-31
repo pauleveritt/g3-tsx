@@ -1,5 +1,6 @@
 import { Static, Type } from "@sinclair/typebox";
 import { EleventyPage } from "../models";
+import path from "path";
 
 export const BaseResource = Type.Object({
   title: Type.String(),
@@ -10,7 +11,7 @@ export const BaseResource = Type.Object({
   body: Type.Optional(Type.String()),
   excerpt: Type.Optional(Type.String()),
   resourceType: Type.String(),
-  thumbnail: Type.Optional(Type.String()),
+  inputFolder: Type.String(),
 });
 export type BaseResource = Static<typeof BaseResource>;
 
@@ -31,9 +32,11 @@ export function getBaseResource(
   page: EleventyPage,
   resourceType: string
 ): BaseResource {
+  const inputFolder = path.dirname(page.inputPath);
   return {
     title: data.title,
     slug: page.fileSlug,
+    inputFolder,
     url: page.url,
     date: data.date,
     subtitle: data.subtitle,
@@ -48,9 +51,11 @@ export function getResource(
   page: EleventyPage,
   resourceType: string
 ): Resource {
+  const inputFolder = path.dirname(page.inputPath);
   return {
     title: data.title,
     slug: page.fileSlug,
+    inputFolder,
     url: page.url,
     date: data.date,
     subtitle: data.subtitle,

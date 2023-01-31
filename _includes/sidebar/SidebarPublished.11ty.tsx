@@ -7,7 +7,7 @@ export type SidebarPublishedProps = {
   author: {
     slug: string;
     title: string;
-    thumbnail?: string;
+    thumbnail: string;
   };
 };
 const SidebarPublished = ({
@@ -23,7 +23,7 @@ const SidebarPublished = ({
             <figure className="media-left">
               <div className="image is-rounded is-48x48">
                 <GuideImage
-                  src={author.thumbnail ? author.thumbnail : "placeholder.jpg"}
+                  src={author.thumbnail}
                   alt={`${author.title} Thumbnail`}
                   className="bio-resourcecard-logo"
                   formats={["webp"]}

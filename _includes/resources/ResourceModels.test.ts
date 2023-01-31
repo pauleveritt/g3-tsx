@@ -17,6 +17,7 @@ test("Construct a valid resource", () => {
   const resourcePage: EleventyPage = {
     fileSlug: "some-slug",
     url: "/tips/some-slug/",
+    inputPath: "./sites/tips/some-slug/index.md",
   };
   const result = getResource(resourceData, resourcePage, "resource");
   expect(result.title).to.equal(resourceData.title);

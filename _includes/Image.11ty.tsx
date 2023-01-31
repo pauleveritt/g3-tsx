@@ -25,7 +25,6 @@ const GuideImage = ({
     outputDir: "./public/assets/img/",
     urlPath: "/assets/img/",
   };
-
   // fire and forget
   Image(src, options);
 

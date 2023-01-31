@@ -10,6 +10,7 @@ export const EleventyPage = Type.Object({
   // https://www.11ty.dev/docs/data-eleventy-supplied/#page-variable
   fileSlug: Type.String(),
   url: Type.String(),
+  inputPath: Type.String(),
 });
 export type EleventyPage = Static<typeof EleventyPage>;
 

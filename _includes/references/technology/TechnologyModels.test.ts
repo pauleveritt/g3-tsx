@@ -16,6 +16,7 @@ test("Construct a valid technology", () => {
   const technologyPage = {
     fileSlug: "angular",
     url: "/technologies/angular/",
+    inputPath: "./sites/technologies/angular/index.md",
   };
 
   const result = getTechnology(technologyData, technologyPage);
