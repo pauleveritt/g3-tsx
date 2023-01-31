@@ -1,10 +1,9 @@
-// noinspection ES6UnusedImports
-import h, { JSX } from "vhtml";
+import { h } from "nano-jsx/lib/core";
 
 export type FooterProps = {
   copyright: string;
 };
-const Footer = ({ copyright }: FooterProps): JSX.Element => {
+const Footer = ({ copyright }: FooterProps) => {
   return (
     <footer className="footer">
       <div className="container">
