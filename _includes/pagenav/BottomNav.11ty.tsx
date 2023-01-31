@@ -1,5 +1,5 @@
 // noinspection ES6UnusedImports
-import h, { JSX } from "vhtml";
+import { h } from "nano-jsx";
 
 export type PrevNext = {
   slug: string;
@@ -21,29 +21,29 @@ const BottomNav = ({
   // item in the context of a playlist.
   const playlistPrefix = playlistLabel ? `?playlist=${playlistLabel}` : "";
   return (
-    <div className="columns is-size-10 is-size-6">
-      <div className="column has-text-left">
+    <div class="columns is-size-10 is-size-6">
+      <div class="column has-text-left">
         {previous && (
           <a
             href={`${previous.slug}${playlistPrefix}`}
-            className="bottomnav-previous is-small"
+            class="bottomnav-previous is-small"
           >
-            <span className="icon" title={previous.label}>
-              <i className="fas fa-arrow-left" />
+            <span class="icon" title={previous.label}>
+              <i class="fas fa-arrow-left" />
             </span>
             <span style="padding-left: 1em">{previous.label}</span>
           </a>
         )}
       </div>
-      <div className="column has-text-right">
+      <div class="column has-text-right">
         {next && (
           <a
             href={`${next.slug}${playlistPrefix}`}
-            className="bottomnav-next is-small"
+            class="bottomnav-next is-small"
           >
             <span style="padding-right: 1em">{next.label}</span>
-            <span className="icon" title={next.label}>
-              <i className="fas fa-arrow-right" />
+            <span class="icon" title={next.label}>
+              <i class="fas fa-arrow-right" />
             </span>
           </a>
         )}

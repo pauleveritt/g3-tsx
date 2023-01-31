@@ -1,5 +1,5 @@
 // noinspection ES6UnusedImports
-import h, { JSX } from "vhtml";
+import { h } from "nano-jsx";
 import NavbarLink, { NavbarLinkProps } from "./NavbarLink.11ty";
 import NavbarButton, { NavbarButtonProps } from "./NavbarButton.11ty";
 import NavbarSearch from "./NavbarSearch.11ty";
@@ -11,7 +11,7 @@ export type NavbarEndProps = {
 
 const NavbarEnd = ({ links, buttons }: NavbarEndProps): JSX.Element => {
   return (
-    <div className="navbar-end">
+    <div class="navbar-end">
       {links && links.map((link) => <NavbarLink key={link.href} {...link} />)}
       {buttons &&
         buttons

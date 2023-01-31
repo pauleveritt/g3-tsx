@@ -1,5 +1,5 @@
 // noinspection ES6UnusedImports
-import h, { JSX } from "vhtml";
+import { h } from "nano-jsx";
 import NavbarBrand from "./NavbarBrand.11ty";
 import site from "../site.json";
 import NavbarStart from "./NavbarStart.11ty";
@@ -11,10 +11,10 @@ const Navbar = (props: NavbarProps): JSX.Element => {
   // noinspection BadExpressionStatementJS
   props;
   return (
-    <nav id="navbar" className="navbar is-spaced is-dark">
-      <div className="container">
+    <nav id="navbar" class="navbar is-spaced is-dark">
+      <div class="container">
         <NavbarBrand {...site}></NavbarBrand>
-        <div id="navMenuIndex" className="navbar-menu">
+        <div id="navMenuIndex" class="navbar-menu">
           <NavbarStart items={site.start.items}></NavbarStart>
           <NavbarEnd
             buttons={site.end.buttons}

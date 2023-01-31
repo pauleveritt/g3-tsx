@@ -1,5 +1,5 @@
 // noinspection ES6UnusedImports
-import h, { JSX } from "vhtml";
+import { h } from "nano-jsx";
 
 export type ResourceCardProps = {};
 const ResourceCard = (props: ResourceCardProps): JSX.Element => {

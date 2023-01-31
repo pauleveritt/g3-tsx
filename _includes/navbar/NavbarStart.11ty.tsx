@@ -1,5 +1,5 @@
 // noinspection ES6UnusedImports
-import h, { JSX } from "vhtml";
+import { h } from "nano-jsx";
 
 export type NavbarMenuItem = {
   accent: string;
@@ -14,16 +14,16 @@ export type NavbarStartProps = {
 
 const NavbarStart = ({ items }: NavbarStartProps): JSX.Element => {
   return (
-    <div className="navbar-start">
+    <div class="navbar-start">
       {items.map((item) => (
         <a
-          className={`navbar-item bd-navbar-item-${item.cssClass}`}
+          class={`navbar-item bd-navbar-item-${item.cssClass}`}
           href={item.href}
         >
-          <span className={`icon has-text-${item.accent}`}>
-            <i className={`fas fa-${item.icon}`}></i>
+          <span class={`icon has-text-${item.accent}`}>
+            <i class={`fas fa-${item.icon}`}></i>
           </span>
-          <span className="bulmaio-menu-label">{item.label}</span>
+          <span class="bulmaio-menu-label">{item.label}</span>
         </a>
       ))}
     </div>

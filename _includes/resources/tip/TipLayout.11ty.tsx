@@ -1,5 +1,5 @@
 // noinspection ES6UnusedImports
-import h, { JSX } from "vhtml";
+import { Fragment, h } from "nano-jsx";
 import BottomNav from "../../pagenav/BottomNav.11ty";
 import TopNav from "../../pagenav/TopNav.11ty";
 import SeeAlso from "../../seealso/SeeAlso.11ty";
@@ -41,17 +41,19 @@ export function TipLayout({
 
   // Sidebars
   const sidebarPublished = (
+    <Fragment>
     <SidebarPublished
       date={tip.date as Date}
       author={{ ...author }}
     ></SidebarPublished>
+    </Fragment>
   );
   const sidebar = <Sidebar>{sidebarPublished}</Sidebar>;
 
   // Main content
   const main = (
     <div style="margin-bottom: 3rem">
-      <div className="columns">
+      <div class="columns">
         {tip.animatedGif && (
           <img
             src={tip.animatedGif.file}
@@ -70,14 +72,14 @@ export function TipLayout({
         )}
         {tip.shortVideo && <div>Video Player Here</div>}
         <div
-          className="column content"
+          class="column content"
           style="display: flex; justify-content: space-between; flex-direction: column"
         >
           {leadin && <div dangerouslySetInnerHTML={{ __html: leadin }} />}
           <div>
             {tip.hasBody && (
               <a
-                className="button is-light"
+                class="button is-light"
                 href="#in-depth"
                 style="width: auto"
               >
@@ -86,7 +88,7 @@ export function TipLayout({
             )}
             {tip.longVideo && (
               <a
-                className="button is-light"
+                class="button is-light"
                 href="#full-video"
                 style="width: auto; margi-left: 0.5em"
               >
@@ -98,10 +100,10 @@ export function TipLayout({
       </div>
       {tip.hasBody && (
         <>
-          <header className="is-size-3 is-bold">In Depth</header>
-          <div className="columns">
+          <header class="is-size-3 is-bold">In Depth</header>
+          <div class="columns">
             <div
-              className="column is-11-desktop content"
+              class="column is-11-desktop content"
               dangerouslySetInnerHTML={{ __html: children[0] }}
             />
           </div>

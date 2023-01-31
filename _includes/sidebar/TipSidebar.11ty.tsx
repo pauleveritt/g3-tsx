@@ -1,5 +1,5 @@
 // noinspection ES6UnusedImports
-import h, { JSX } from "vhtml";
+import { h } from "nano-jsx";
 import { ResourceCardAuthorProps } from "../resourcecard/ResourceCardAuthor.11ty";
 import { ResourceCardTechnology } from "../resourcecard/ResourceCardTechnologies.11ty";
 import { ResourceCardTopic } from "../resourcecard/ResourceCardTopics.11ty";

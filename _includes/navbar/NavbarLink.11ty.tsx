@@ -1,5 +1,5 @@
 // noinspection ES6UnusedImports
-import h, { JSX } from "vhtml";
+import { h } from "nano-jsx";
 
 export type NavbarLinkProps = {
   color: string;
@@ -9,9 +9,9 @@ export type NavbarLinkProps = {
 };
 const NavbarLink = ({ href, color, icon }: NavbarLinkProps): JSX.Element => {
   return (
-    <a className="navbar-item is-hidden-touch" href={href} target="_blank">
-      <span className="icon" style={`{ color: #${color} }`}>
-        <i className={`fab fa-lg fa-${icon}`} aria-label={`${icon} Icon`} />
+    <a class="navbar-item is-hidden-touch" href={href} target="_blank">
+      <span class="icon" style={`{ color: #${color} }`}>
+        <i class={`fab fa-lg fa-${icon}`} aria-label={`${icon} Icon`} />
       </span>
     </a>
   );

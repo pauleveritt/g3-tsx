@@ -1,5 +1,5 @@
 // noinspection ES6UnusedImports
-import h, { JSX } from "vhtml";
+import { h } from "nano-jsx";
 
 export type NavbarButtonProps = {
   accent: string;
@@ -13,9 +13,9 @@ const NavbarButton = ({
   label,
 }: NavbarButtonProps): JSX.Element => {
   return (
-    <p className="control">
+    <p class="control">
       <a
-        className={`button is-fullwidth-mobile is-${accent}`}
+        class={`button is-fullwidth-mobile is-${accent}`}
         href={href}
         target="_new"
         data-testid={`navbutton-a`}

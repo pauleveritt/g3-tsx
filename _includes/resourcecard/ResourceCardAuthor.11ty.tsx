@@ -1,5 +1,5 @@
 // noinspection ES6UnusedImports
-import h, { JSX } from "vhtml";
+import { h } from "nano-jsx";
 
 export type ResourceCardAuthorProps = {
   thumbnail: string;
@@ -14,24 +14,24 @@ const ResourceCardAuthor = ({
   return (
     <>
       {thumbnail && (
-        <a className="level-item bio-card-author" href={slug}>
+        <a class="level-item bio-card-author" href={slug}>
           <figure
-            className="image is-rounded is-24x24"
+            class="image is-rounded is-24x24"
             style="margin-left: 0.2rem; margin-right: 0.2rem"
           >
             {thumbnail && (
-              <div className="image is-rounded is-24x24">
+              <div class="image is-rounded is-24x24">
                 <img
                   src={thumbnail}
                   alt={`rca-fluid`}
                   width="24px"
                   height="24px"
-                  className="bio-resourcecard-logo"
+                  class="bio-resourcecard-logo"
                 />
               </div>
             )}
           </figure>
-          <span className="bio-card-author-label">{title}</span>
+          <span class="bio-card-author-label">{title}</span>
         </a>
       )}
     </>

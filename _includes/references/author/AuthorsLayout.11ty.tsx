@@ -1,4 +1,4 @@
-import h, { JSX } from "vhtml";
+import { h } from "nano-jsx";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { Collections } from "../../models";
 

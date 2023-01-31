@@ -1,5 +1,5 @@
 // noinspection ES6UnusedImports
-import h, { JSX } from "vhtml";
+import { h } from "nano-jsx";
 
 export type ResourceCardProduct = {
   label: string;
@@ -15,9 +15,9 @@ const ResourceCardProducts = ({
   return (
     <>
       {items.map((product) => (
-        <span className="bio-common-card-references">
-          <span className="tag is-rounded">
-            <a href={product.slug} className="has-text-info">
+        <span class="bio-common-card-references">
+          <span class="tag is-rounded">
+            <a href={product.slug} class="has-text-info">
               {product.label}
             </a>
           </span>

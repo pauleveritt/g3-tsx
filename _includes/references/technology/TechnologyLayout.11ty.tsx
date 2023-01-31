@@ -1,5 +1,5 @@
 // noinspection ES6UnusedImports
-import h, { JSX } from "vhtml";
+import { h } from "nano-jsx";
 import { Collections, EleventyCollectionItem } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { TechnologyReference } from "./TechnologyModels";
@@ -25,10 +25,10 @@ export function TechnologyLayout({
   referenceResources,
 }: TechnologyLayoutProps): JSX.Element {
   const figure = (
-    <div className="image is-rounded is-96x96">
+    <div class="image is-rounded is-96x96">
       <img
         alt=""
-        className="bio-resourcecard-logo"
+        class="bio-resourcecard-logo"
         height="96"
         width="96"
         src={thumbnail}

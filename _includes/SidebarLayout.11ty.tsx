@@ -1,5 +1,5 @@
 // noinspection ES6UnusedImports
-import h, { JSX } from "vhtml";
+import { h } from "nano-jsx";
 import { BaseLayout } from "./BaseLayout.11ty";
 import Heading from "./heading/Heading.11ty";
 
@@ -21,11 +21,11 @@ const SidebarLayout = ({
 }: SidebarLayoutProps): JSX.Element => {
   return (
     <BaseLayout pageTitle={pageTitle}>
-      <div className="bd-main bulmaio-body">
-        <div className="bd-side-background" />
-        <div className="bd-main-container container">
-          <div className="bd-duo">
-            <div className="bd-lead">
+      <div class="bd-main bulmaio-body">
+        <div class="bd-side-background" />
+        <div class="bd-main-container container">
+          <div class="bd-duo">
+            <div class="bd-lead">
               {topNav}
               <Heading title={pageTitle} subtitle={subtitle} />
               {children}

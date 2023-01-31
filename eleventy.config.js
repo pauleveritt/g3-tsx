@@ -1,3 +1,5 @@
+import { renderSSR } from "nano-jsx";
+
 const EleventyVitePlugin = require("@11ty/eleventy-plugin-vite");
 const {
   getTipResources,
@@ -51,6 +53,17 @@ module.exports = function (eleventyConfig) {
         mode: "production",
       },
     },
+  });
+
+  // Can be sync or async
+  eleventyConfig.addTransform("render nano.jsx", async function(content) {
+    const {component} = content;
+    if (component.constructor.name === 'AsyncFunction') {
+      let s = await component(content.props) ;
+      content = { component: s, props: content.props };
+    }
+
+    return renderSSR(content);
   });
 
   return {

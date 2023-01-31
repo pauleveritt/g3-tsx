@@ -1,13 +1,13 @@
 // noinspection ES6UnusedImports
-import h, { JSX } from "vhtml";
+import { h } from "nano-jsx";
 
 export type ResourceCardDateProps = {
   date?: string;
 };
 const ResourceCardDate = ({ date }: ResourceCardDateProps): JSX.Element => {
   return (
-    <div className="level-right is-size-7 has-text-grey">
-      <span className="level-item bio-common-card-published">{date}</span>
+    <div class="level-right is-size-7 has-text-grey">
+      <span class="level-item bio-common-card-published">{date}</span>
     </div>
   );
 };

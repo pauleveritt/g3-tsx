@@ -1,5 +1,5 @@
 // noinspection ES6UnusedImports
-import h, { JSX } from "vhtml";
+import { h } from "nano-jsx";
 
 export type ResourceCardMediaProps = {
   href: string;
@@ -14,7 +14,7 @@ const ResourceCardMedia = ({
   resourceType,
 }: ResourceCardMediaProps): JSX.Element => {
   return (
-    <div className="content bio-resourcecard-props">
+    <div class="content bio-resourcecard-props">
       <a href={href}>
         <strong>
           {title} {resourceType && <small>({resourceType})</small>}

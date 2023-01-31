@@ -1,4 +1,4 @@
-import h, { JSX } from "vhtml";
+import { h } from "nano-jsx";
 import { BaseLayout } from "../BaseLayout.11ty";
 
 export type ReferenceLayoutProps = {
@@ -18,23 +18,23 @@ export function ReferenceLayoutMain({
 }: ReferenceLayoutProps): JSX.Element {
   const safeListing = (
     <div
-      className="column is-three-quarters-desktop bio-resourcecards"
+      class="column is-three-quarters-desktop bio-resourcecards"
       dangerouslySetInnerHTML={{ __html: listing[0] }}
     />
   );
   return (
-    <main className="bd-main bulmaio-body">
-      <div className="bd-main-container container">
-        <div className="bd-duo">
-          <div className="bd-lead">
-            <header className="bd-header">
-              <article className="media">
-                {figure && <figure className="media-left">{figure}</figure>}
-                <div className="media-content">
-                  <div className="content">
-                    <div className="bd-header-titles">
-                      <h1 className="title">{title}</h1>
-                      {subtitle && <p className="subtitle is-4">{subtitle}</p>}
+    <main class="bd-main bulmaio-body">
+      <div class="bd-main-container container">
+        <div class="bd-duo">
+          <div class="bd-lead">
+            <header class="bd-header">
+              <article class="media">
+                {figure && <figure class="media-left">{figure}</figure>}
+                <div class="media-content">
+                  <div class="content">
+                    <div class="bd-header-titles">
+                      <h1 class="title">{title}</h1>
+                      {subtitle && <p class="subtitle is-4">{subtitle}</p>}
                     </div>
                   </div>
                 </div>
@@ -42,16 +42,16 @@ export function ReferenceLayoutMain({
             </header>
 
             {content && (
-              <div className="columns">
-                <div className="column is-three-quarters-desktop">
+              <div class="columns">
+                <div class="column is-three-quarters-desktop">
                   <div
-                    className="bd-content content"
+                    class="bd-content content"
                     dangerouslySetInnerHTML={{ __html: content }}
                   />
                 </div>
               </div>
             )}
-            <div className="columns">{safeListing}</div>
+            <div class="columns">{safeListing}</div>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 // noinspection ES6UnusedImports
-import h, { JSX } from "vhtml";
+import { h } from "nano-jsx";
 
 type SeeAlsoItem = {
   title: string;
@@ -16,8 +16,8 @@ const SeeAlso = ({ items }: SeeAlsoProps): JSX.Element => {
   if (items.length) {
     return (
       <div>
-        <header className="is-size-3 is-bold">See Also</header>
-        <div className="content">
+        <header class="is-size-3 is-bold">See Also</header>
+        <div class="content">
           <ul>
             {items.map((see) => (
               <li>

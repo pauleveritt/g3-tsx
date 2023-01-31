@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
     "target": "es2021",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
-    "jsx": "react",
-    "jsxFactory": "h",                                   /* Specify the JSX factory function used when targeting React JSX emit, e.g. 'React.createElement' or 'h' */
+    "jsx": "react-jsx",
+    "jsxFactory": "h",
     "jsxFragmentFactory": "Fragment",
+    "jsxImportSource": "nano-jsx/esm",  // esm for ESModules
     "module": "es2022",                                /* Specify what module code is generated. */
     "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
 
