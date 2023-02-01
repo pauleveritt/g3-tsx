@@ -106,13 +106,15 @@ export function getTipResources(collectionItems: EleventyCollectionItem[]) {
   return results;
 }
 
-export function getAuthorReferences(collectionItems: EleventyCollectionItem[]) {
+export async function getAuthorReferences(
+  collectionItems: EleventyCollectionItem[]
+) {
   /* Called from eleventy.config.js to add author collection's items */
   const results: { [index: string]: AuthorReference } = {};
-  collectionItems.forEach((item) => {
-    const thisAuthor = getAuthor(item.data, item.page);
+  for (const item of collectionItems) {
+    const thisAuthor = await getAuthor(item.data, item.page);
     results[thisAuthor.label] = thisAuthor;
-  });
+  }
   return results;
 }
 

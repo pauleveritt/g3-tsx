@@ -7,7 +7,10 @@ export const AuthorReference = Type.Intersect([Reference]);
 export type AuthorReference = Static<typeof AuthorReference>;
 export type AuthorCollection = { [name: string]: AuthorReference };
 
-export function getAuthor(data: any, page: EleventyPage): AuthorReference {
+export async function getAuthor(
+  data: any,
+  page: EleventyPage
+): Promise<AuthorReference> {
   const author: AuthorReference = {
     ...getReference(data, page, "author"),
     thumbnail: data.thumbnail,

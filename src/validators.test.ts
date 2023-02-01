@@ -1,6 +1,7 @@
 import { expect, test } from "vitest";
 import path from "path";
 import {
+  getAuthorReferences,
   makeCollectionTree,
   readMarkdown,
   readMarkdownTree,
@@ -8,6 +9,7 @@ import {
   validateResource,
 } from "./validators";
 import { getTip, TipResource } from "../_includes/resources/tip/TipModels";
+import fixtures from "../_includes/fixtures";
 
 test("defines the sitesDir", () => {
   expect(path.basename(sitesDir)).to.equal("sites");
@@ -58,4 +60,10 @@ test("initializes a resource tree", () => {
   const tips = collections.tip;
   const firstTip: TipResource = tips["access-run-configurations"];
   expect(firstTip.title).to.equal("Access Run Configurations Quickly");
+});
+
+test("gets author references", async () => {
+  const { all } = fixtures.collections;
+  const authorReferences = await getAuthorReferences(all);
+  expect(authorReferences["sa"].title).to.equal("Some Author");
 });
