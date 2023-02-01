@@ -1,12 +1,13 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
+import GuideImage from "../Image.11ty";
 
 export type SidebarPublishedProps = {
   date: Date;
   author: {
     slug: string;
     title: string;
-    thumbnail?: string;
+    thumbnail: string;
   };
 };
 const SidebarPublished = ({
@@ -21,12 +22,12 @@ const SidebarPublished = ({
           <article className="media">
             <figure className="media-left">
               <div className="image is-rounded is-48x48">
-                <img
-                  src={author.thumbnail ? author.thumbnail : "placeholder.jpg"}
+                <GuideImage
+                  src={author.thumbnail}
                   alt={`${author.title} Thumbnail`}
-                  width="48"
-                  height="48"
                   className="bio-resourcecard-logo"
+                  formats={["webp"]}
+                  widths={[48]}
                 />
               </div>
             </figure>

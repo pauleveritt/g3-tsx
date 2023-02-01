@@ -7,6 +7,7 @@ import { EleventyPage } from "../../models";
 export const TipResource = Type.Intersect([
   Resource,
   Type.Object({
+    thumbnail: Type.Optional(Type.String()),
     leadin: Type.Optional(Type.String()),
     animatedGif: Type.Optional(
       Type.Object({

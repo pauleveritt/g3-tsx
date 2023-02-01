@@ -10,7 +10,7 @@ const props: SidebarPublishedProps = {
   author: {
     slug: "some-author-slug",
     title: "Some Author Title",
-    thumbnail: "Some Author Thumbnail",
+    thumbnail: "sa.png",
   },
 };
 

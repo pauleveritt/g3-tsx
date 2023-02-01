@@ -33,6 +33,8 @@ test("validates good frontmatter", () => {
     url: "/tips/some-slug",
     date: new Date(),
     resourceType: "some-resourcetype",
+    thumbnail: "thumbnail.png",
+    inputFolder: "sites/webstorm-guide/tips/some-slug/",
   };
   const validation = () =>
     validateResource(TipResource, frontmatter, "tip1.md");

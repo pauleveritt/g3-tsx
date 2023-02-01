@@ -5,6 +5,7 @@ import { Collections, EleventyCollectionItem } from "./models";
 import { TechnologyReference } from "./references/technology/TechnologyModels";
 import { TopicReference } from "./references/topic/TopicModels";
 import { ProductReference } from "./references/product/ProductModels";
+import { getInputFolder } from "./references/ReferenceModels";
 
 /**
  * Reusable test data
@@ -23,10 +24,12 @@ const all: EleventyCollectionItem[] = [
       date: new Date("2023-02-02"),
       resourceType: "tip",
       author: "sa",
+      thumbnail: "thumbnail.png",
     },
     page: {
       fileSlug: "some-tip",
       url: "/tips/some-tip/",
+      inputPath: "./site/tips/some-tip/index.md",
     },
     content: "<p>Some Tip</p>",
   },
@@ -43,6 +46,7 @@ const all: EleventyCollectionItem[] = [
     page: {
       fileSlug: "another-tip",
       url: "/tips/another-tip/",
+      inputPath: "./site/tips/another-tip/index.md",
     },
     content: "<p>Another Tip</p>",
   },
@@ -56,6 +60,7 @@ const all: EleventyCollectionItem[] = [
     page: {
       fileSlug: "sa",
       url: "/authors/sa/",
+      inputPath: "./site/authors/sa/index.md",
     },
     content: "<p>Some Author</p>",
   },
@@ -69,6 +74,7 @@ const all: EleventyCollectionItem[] = [
     page: {
       fileSlug: "aa",
       url: "/authors/aa/",
+      inputPath: "./site/authors/aa/index.md",
     },
     content: "<p>Another Author</p>",
   },
@@ -82,6 +88,7 @@ const all: EleventyCollectionItem[] = [
     page: {
       fileSlug: "st",
       url: "/technologies/st/",
+      inputPath: "./site/technologies/st/index.md",
     },
     content: "<p>Some Technology</p>",
   },
@@ -95,6 +102,7 @@ const all: EleventyCollectionItem[] = [
     page: {
       fileSlug: "at",
       url: "/technologies/at/",
+      inputPath: "./site/technologies/at/index.md",
     },
     content: "<p>Another Technology</p>",
   },
@@ -108,6 +116,7 @@ const all: EleventyCollectionItem[] = [
     page: {
       fileSlug: "st",
       url: "/topics/st/",
+      inputPath: "./site/topics/st/index.md",
     },
     content: "<p>Some Topic</p>",
   },
@@ -121,6 +130,7 @@ const all: EleventyCollectionItem[] = [
     page: {
       fileSlug: "at",
       url: "/topics/at/",
+      inputPath: "./site/topics/at/index.md",
     },
     content: "<p>Another Topic</p>",
   },
@@ -135,6 +145,7 @@ const all: EleventyCollectionItem[] = [
     page: {
       fileSlug: "sp",
       url: "/products/sp/",
+      inputPath: "./site/products/sp/index.md",
     },
     content: "<p>Some Product</p>",
   },
@@ -149,6 +160,7 @@ const all: EleventyCollectionItem[] = [
     page: {
       fileSlug: "ap",
       url: "/topics/ap/",
+      inputPath: "./site/topics/ap/index.md",
     },
     content: "<p>Another Product</p>",
   },
@@ -158,6 +170,7 @@ const tips: TipResource[] = [
   {
     title: all[0].data.title,
     slug: all[0].page.fileSlug,
+    inputFolder: getInputFolder(all[0].page.inputPath),
     url: all[0].page.url,
     resourceType: all[0].data.resourceType as string,
     author: all[0].data.author as string,
@@ -165,6 +178,7 @@ const tips: TipResource[] = [
   {
     title: all[1].data.title,
     slug: all[1].page.fileSlug,
+    inputFolder: getInputFolder(all[1].page.inputPath),
     url: all[1].page.url,
     resourceType: all[1].data.resourceType as string,
     author: all[1].data.author as string,
@@ -179,6 +193,7 @@ const authors: AuthorReference[] = [
     label: all[2].data.label as string,
     resources: [],
     referenceResources: [],
+    inputFolder: getInputFolder(all[2].page.inputPath),
   },
   {
     title: all[3].data.title,
@@ -188,6 +203,7 @@ const authors: AuthorReference[] = [
     label: all[3].data.label as string,
     resources: [],
     referenceResources: [],
+    inputFolder: getInputFolder(all[3].page.inputPath),
   },
 ];
 const technologies: TechnologyReference[] = [
@@ -199,6 +215,7 @@ const technologies: TechnologyReference[] = [
     label: all[4].data.label as string,
     resources: [],
     referenceResources: [],
+    inputFolder: getInputFolder(all[4].page.inputPath),
   },
   {
     title: all[5].data.title,
@@ -208,6 +225,7 @@ const technologies: TechnologyReference[] = [
     label: all[5].data.label as string,
     resources: [],
     referenceResources: [],
+    inputFolder: getInputFolder(all[5].page.inputPath),
   },
 ];
 const topics: TopicReference[] = [
@@ -219,6 +237,7 @@ const topics: TopicReference[] = [
     label: all[6].data.label as string,
     resources: [],
     referenceResources: [],
+    inputFolder: getInputFolder(all[6].page.inputPath),
   },
   {
     title: all[7].data.title,
@@ -228,6 +247,7 @@ const topics: TopicReference[] = [
     label: all[7].data.label as string,
     resources: [],
     referenceResources: [],
+    inputFolder: getInputFolder(all[7].page.inputPath),
   },
 ];
 const products: ProductReference[] = [
@@ -240,6 +260,7 @@ const products: ProductReference[] = [
     logo: all[8].data.logo as string,
     resources: [],
     referenceResources: [],
+    inputFolder: getInputFolder(all[8].page.inputPath),
   },
   {
     title: all[9].data.title,
@@ -250,6 +271,7 @@ const products: ProductReference[] = [
     logo: all[9].data.logo as string,
     resources: [],
     referenceResources: [],
+    inputFolder: getInputFolder(all[9].page.inputPath),
   },
 ];
 const tipResources: { [key: string]: TipResource } = {};
@@ -285,5 +307,6 @@ const fixtures = {
   tips,
   topics,
   products,
+  all,
 };
 export default fixtures;

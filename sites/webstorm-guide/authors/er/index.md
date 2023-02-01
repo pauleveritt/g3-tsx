@@ -1,5 +1,5 @@
 ---
 title: Ekaterina Ryabukha
 subtitle: WebStorm Product Marketing Manager at JetBrains
-thumbnail: ./er.jpg
+thumbnail: ./sites/webstorm-guide/authors/er/er.jpg
 ---

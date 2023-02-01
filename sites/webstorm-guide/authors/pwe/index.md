@@ -1,7 +1,7 @@
 ---
 title: Paul Everitt
 subtitle: PyCharm Developer Advocate at JetBrains
-thumbnail: ./pwe.jpg
+thumbnail: ./sites/webstorm-guide/authors/pwe/pwe.jpg
 ---
 
 Paul is a Developer Advocate at JetBrains, focusing on Python and the Web. Before that, Paul
