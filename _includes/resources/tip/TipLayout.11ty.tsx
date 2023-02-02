@@ -10,6 +10,7 @@ import { AuthorReference } from "../../references/author/AuthorModels";
 import SidebarPublished from "../../sidebar/SidebarPublished.11ty";
 import Sidebar from "../../sidebar/Sidebar.11ty";
 import MarkdownIt from "markdown-it";
+import VideoPlayer from "../../video/VideoPlayer.11ty";
 
 export type TipLayoutProps = {
   author: AuthorReference;
@@ -68,7 +69,7 @@ export function TipLayout({
             style="object-fit: contain; object-position: top"
           />
         )}
-        {tip.shortVideo && <div>Video Player Here</div>}
+        {tip.shortVideo && <div><VideoPlayer source={tip.shortVideo.url} poster={tip.shortVideo.poster} /></div>}
         <div
           className="column content"
           style="display: flex; justify-content: space-between; flex-direction: column"
@@ -90,7 +91,7 @@ export function TipLayout({
                 href="#full-video"
                 style="width: auto; margi-left: 0.5em"
               >
-                Full Video
+                <VideoPlayer source={tip.longVideo.url} poster={tip.longVideo.poster} />
               </a>
             )}
           </div>

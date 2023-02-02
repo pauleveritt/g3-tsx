@@ -27,6 +27,9 @@ export const BaseLayout = ({
           defer
           src="https://use.fontawesome.com/releases/v6.0.0-beta3/js/all.js"
         ></script>
+        <link rel="stylesheet" href="/assets/videojs/video-js.min.css" />
+        <script defer src="/assets/videojs/video.min.js"></script>
+        <script defer src="/assets/videojs/Youtube.min.js"></script>
         <link rel="shortcut icon" href="/assets/favicon.ico" />
       </head>
       <body>
