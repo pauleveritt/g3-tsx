@@ -1,4 +1,6 @@
 const EleventyVitePlugin = require("@11ty/eleventy-plugin-vite");
+const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+
 const {
   getTipResources,
   getAuthorReferences,
@@ -48,6 +50,8 @@ module.exports = function (eleventyConfig) {
     const topics = collectionApi.getFilteredByTag("product");
     return getProductReferences(topics);
   });
+
+  eleventyConfig.addPlugin(syntaxHighlight);
   eleventyConfig.addPlugin(EleventyVitePlugin, {
     viteOptions: {
       server: {

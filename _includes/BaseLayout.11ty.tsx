@@ -28,6 +28,7 @@ export const BaseLayout = ({
           src="https://use.fontawesome.com/releases/v6.0.0-beta3/js/all.js"
         ></script>
         <link rel="stylesheet" href="/assets/videojs/video-js.min.css" />
+        <link href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css" rel="stylesheet" />
         <script defer src="/assets/videojs/video.min.js"></script>
         <script defer src="/assets/videojs/Youtube.min.js"></script>
         <link rel="shortcut icon" href="/assets/favicon.ico" />
