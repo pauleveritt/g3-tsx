@@ -3,6 +3,9 @@ import { Static, Type } from "@sinclair/typebox";
 import { validateResource } from "../../../src/validators";
 import { EleventyPage } from "../../models";
 import path from "path";
+// @ts-ignore
+import Image from "@11ty/eleventy-img";
+import { imageOptions } from "../../config";
 
 export const AuthorReference = Type.Intersect([
   Reference,

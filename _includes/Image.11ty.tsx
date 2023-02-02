@@ -6,10 +6,7 @@ import { imageOptions } from "./config";
 export type ImageProps = {
   src: string;
   alt?: string;
-  widths: number[];
-  sizes?: string;
-  formats: string[];
-  className?: string;
+  className: string;
 };
 
 const GuideImage = ({ src, alt, className }: ImageProps): JSX.Element => {
@@ -19,7 +16,7 @@ const GuideImage = ({ src, alt, className }: ImageProps): JSX.Element => {
   const attributes = {
     class: className,
     alt,
-    sizes,
+    sizes: "100vw",
     loading: "lazy",
     decoding: "async",
   };
