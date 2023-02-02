@@ -30,5 +30,8 @@ export async function getAuthor(
 
   validateResource(AuthorReference, reference, page.url);
 
+  // generate thumbnail images to output directory
+  await Image(reference.thumbnail, imageOptions);
+
   return reference;
 }

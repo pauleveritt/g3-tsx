@@ -24,9 +24,6 @@ module.exports = function (eleventyConfig) {
     "authorReferences",
     async function (collectionApi) {
       const authors = collectionApi.getFilteredByTag("author");
-      // .filter(
-      //   (item) => item.data.resourceType !== "page"
-      // );
       return await getAuthorReferences(authors);
     }
   );

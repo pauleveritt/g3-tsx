@@ -1,6 +1,6 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
-import GuideImage from "../Image.11ty";
+import Thumbnail from "../Image.11ty";
 
 export type SidebarPublishedProps = {
   date: Date;
@@ -22,12 +22,10 @@ const SidebarPublished = ({
           <article className="media">
             <figure className="media-left">
               <div className="image is-rounded is-48x48">
-                <GuideImage
+                <Thumbnail
                   src={author.thumbnail}
                   alt={`${author.title} Thumbnail`}
                   className="bio-resourcecard-logo"
-                  formats={["webp"]}
-                  widths={[48]}
                 />
               </div>
             </figure>

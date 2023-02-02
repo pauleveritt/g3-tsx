@@ -9,5 +9,6 @@ vi.mock("@11ty/eleventy-img", () => {
   mockImage.generateHTML = vi.fn();
   return {
     default: mockImage,
+    Image: mockImage,
   };
 });
