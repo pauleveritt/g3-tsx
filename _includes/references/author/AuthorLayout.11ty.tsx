@@ -1,7 +1,7 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
 import { AuthorReference } from "./AuthorModels";
-import { Collections, EleventyCollectionItem } from "../../models";
+import { Collections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 
 export type AuthorLayoutResource = {
@@ -75,24 +75,26 @@ export function render({
   const { authorReferences } = collections;
   const author: AuthorReference = authorReferences[page.fileSlug];
   const { title, subtitle, thumbnail } = author;
-  const referenceResources: AuthorLayoutResource[] = collections.all
+  const referenceResources: AuthorLayoutResource[] = Object.values(
+    collections.authorReferences
+  )
     .filter((ci) => {
-      return ci.data.author === author.label;
+      return ci.label === author.label;
     })
-    .sort((ci1: EleventyCollectionItem, ci2: EleventyCollectionItem) => {
-      if (ci1.data.title < ci2.data.title) {
+    .sort((ci1, ci2) => {
+      if (ci1.title < ci2.title) {
         return -1;
       }
-      if (ci1.data.title > ci2.data.title) {
+      if (ci1.title > ci2.title) {
         return 1;
       }
       return 0;
     })
     .map((ci) => {
       return {
-        title: ci.data.title,
-        url: ci.page.url,
-        thumbnail: ci.data.thumbnail,
+        title: ci.title,
+        url: ci.url,
+        thumbnail: ci.thumbnail,
       };
     });
 

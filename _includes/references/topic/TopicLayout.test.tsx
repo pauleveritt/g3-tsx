@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
 import { screen } from "@testing-library/dom";
 
-import { TopicLayout, TopicRenderProps, render } from "./TopicLayout.11ty";
+import { render, TopicLayout, TopicRenderProps } from "./TopicLayout.11ty";
 import fixtures from "../../fixtures";
 
 test("should make TopicLayout", () => {
@@ -10,7 +10,6 @@ test("should make TopicLayout", () => {
   document.body.innerHTML = TopicLayout({
     title: topic.title,
     subtitle: topic.subtitle,
-    thumbnail: topic.thumbnail,
     children: [children],
     referenceResources: [
       { title: "Some Title", url: "/tips/some-url/", thumbnail: "t1" },

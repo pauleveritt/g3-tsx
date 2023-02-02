@@ -14,7 +14,6 @@ test("should make TechnologyLayout", () => {
   document.body.innerHTML = TechnologyLayout({
     title: technology.title,
     subtitle: technology.subtitle,
-    thumbnail: technology.thumbnail,
     children: [children],
     referenceResources: [
       { title: "Some Title", url: "/tips/some-url/", thumbnail: "t1" },

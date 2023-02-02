@@ -3,7 +3,9 @@ import { getAuthor } from "./AuthorModels";
 import { readMarkdown } from "../../../src/validators";
 import fixtures from "../../fixtures";
 
+const rootPath = "sites/webstorm-guide";
 test("Construct a valid author", async () => {
+  // TODO Remove readMarkdown and all tests that use it
   const { frontmatter, body } = readMarkdown(
     "webstorm-guide/authors/pwe/index.md"
   );
@@ -12,22 +14,24 @@ test("Construct a valid author", async () => {
     ...frontmatter,
     content: body,
     resourceType: "author",
-    inputFolder: "sites/webstorm-guide/authors/",
+    inputPath: `${rootPath}/authors/pwe/`,
   };
   const authorPage = {
     fileSlug: "pwe",
     url: "/authors/pwe",
-    inputPath: "./sites/authors/pwe/index.md",
+    inputPath: `${rootPath}/authors/pwe/index.md`,
     thumbnail: "pwe.png",
   };
   const result = await getAuthor(authorData, authorPage);
   expect(result.label).to.equal("pwe");
-  expect(result.thumbnail).to.equal("sites/webstorm-guide/authors/pwe.jpg");
+  expect(result.thumbnail).to.equal(`${rootPath}/authors/pwe/pwe.jpg`);
 });
 
 test("construct an author", async () => {
-  const { all } = fixtures.collections;
-  const { data, page } = all[0];
+  const allAuthors = fixtures.collections.all.filter(
+    (item) => item.data.resourceType === "author"
+  );
+  const { data, page } = allAuthors[0];
   const author = await getAuthor(data, page);
   expect(author).to.exist;
 });

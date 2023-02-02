@@ -74,7 +74,7 @@ export function render({
 }: ProductRenderProps): JSX.Element {
   const { productReferences } = collections;
   const product: ProductReference = productReferences[page.fileSlug];
-  const { title, subtitle, thumbnail } = product;
+  const { title, subtitle } = product;
   const referenceResources: ProductLayoutResource[] = collections.all
     .filter((ci) => {
       // @ts-ignore
@@ -101,7 +101,6 @@ export function render({
     <ProductLayout
       title={title}
       subtitle={subtitle}
-      thumbnail={thumbnail}
       referenceResources={referenceResources}
     >
       {content}

@@ -2,10 +2,14 @@
 
 ## Now
 
+- Switch to collections.author rather than collections.authorReferences in get**
+- 
+
 ## Next
 
 ## Soon
 
+- Make schemas for just the frontmatter part
 - Sort out children vs. content and the vhtml typing issue
 
 ## Eventually

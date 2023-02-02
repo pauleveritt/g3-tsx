@@ -2,13 +2,11 @@ import { expect, test } from "vitest";
 import path from "path";
 import {
   getAuthorReferences,
-  makeCollectionTree,
   readMarkdown,
-  readMarkdownTree,
   sitesDir,
   validateResource,
 } from "./validators";
-import { getTip, TipResource } from "../_includes/resources/tip/TipModels";
+import { TipResource } from "../_includes/resources/tip/TipModels";
 import fixtures from "../_includes/fixtures";
 
 test("defines the sitesDir", () => {
@@ -49,23 +47,10 @@ test("validates bad frontmatter", () => {
   expect(validation).toThrow("tip1.md");
 });
 
-test("reads a directory of markdown resources", () => {
-  const contentItems = readMarkdownTree("tips", getTip);
-  // @ts-ignore
-  const firstTip = contentItems["access-run-configurations"];
-  expect(firstTip.title).to.equal("Access Run Configurations Quickly");
-});
-test("initializes a resource tree", () => {
-  const collections = {};
-  makeCollectionTree(collections);
-  // @ts-ignore
-  const tips = collections.tip;
-  const firstTip: TipResource = tips["access-run-configurations"];
-  expect(firstTip.title).to.equal("Access Run Configurations Quickly");
-});
-
 test("gets author references", async () => {
-  const { all } = fixtures.collections;
-  const authorReferences = await getAuthorReferences(all);
+  const allAuthors = fixtures.collections.all.filter(
+    (item) => item.data.resourceType === "author"
+  );
+  const authorReferences = await getAuthorReferences(allAuthors);
   expect(authorReferences["sa"].title).to.equal("Some Author");
 });

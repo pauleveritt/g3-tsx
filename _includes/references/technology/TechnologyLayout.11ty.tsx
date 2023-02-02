@@ -74,7 +74,7 @@ export function render({
 }: TechnologyRenderProps): JSX.Element {
   const { technologyReferences } = collections;
   const technology: TechnologyReference = technologyReferences[page.fileSlug];
-  const { title, subtitle, thumbnail } = technology;
+  const { title, subtitle } = technology;
   const referenceResources: TechnologyLayoutResource[] = collections.all
     .filter((ci) => {
       // @ts-ignore
@@ -103,7 +103,6 @@ export function render({
     <TechnologyLayout
       title={title}
       subtitle={subtitle}
-      thumbnail={thumbnail}
       referenceResources={referenceResources}
     >
       {content}

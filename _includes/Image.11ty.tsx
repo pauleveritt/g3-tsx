@@ -14,14 +14,12 @@ export type ImageProps = {
 const GuideImage = ({
   src,
   alt,
-  widths,
-  formats,
   sizes,
   className,
 }: ImageProps): JSX.Element => {
   const options = {
-    widths: widths,
-    formats: formats,
+    widths: ["auto"],
+    formats: ["webp"],
     outputDir: "./public/assets/img/",
     urlPath: "/assets/img/",
   };

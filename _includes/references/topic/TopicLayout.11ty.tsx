@@ -74,8 +74,10 @@ export function render({
 }: TopicRenderProps): JSX.Element {
   const { topicReferences } = collections;
   const topic: TopicReference = topicReferences[page.fileSlug];
-  const { title, subtitle, thumbnail } = topic;
-  const referenceResources: TopicLayoutResource[] = collections.all
+  const { title, subtitle } = topic;
+  const referenceResources: TopicLayoutResource[] = Object.values(
+    collections.all
+  )
     .filter((ci) => {
       // @ts-ignore
       return ci.data.technologies && ci.data.technologies.includes(topic.label);
@@ -101,7 +103,6 @@ export function render({
     <TopicLayout
       title={title}
       subtitle={subtitle}
-      thumbnail={thumbnail}
       referenceResources={referenceResources}
     >
       {content}

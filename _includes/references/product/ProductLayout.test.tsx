@@ -14,7 +14,6 @@ test("should make ProductLayout", () => {
   document.body.innerHTML = ProductLayout({
     title: product.title,
     subtitle: product.subtitle,
-    thumbnail: product.thumbnail,
     children: [children],
     referenceResources: [
       { title: "Some Title", url: "/products/some-slug/", thumbnail: "t1" },

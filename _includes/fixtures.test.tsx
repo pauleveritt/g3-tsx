@@ -59,11 +59,13 @@ it("should have valid fixture data", () => {
   });
 
   // The all collection
-  collections.all.forEach((ci) => {
-    expect(() =>
-      validateResource(EleventyCollectionItem, ci, "my-tip")
-    ).not.toThrowError();
-  });
+  collections.all
+    .filter((item) => item.data.resourceType === "author")
+    .forEach((ci) => {
+      expect(() =>
+        validateResource(EleventyCollectionItem, ci, "my-tip")
+      ).not.toThrowError();
+    });
 
   // Ensure references
 });

@@ -5,7 +5,6 @@ import { Collections, EleventyCollectionItem } from "./models";
 import { TechnologyReference } from "./references/technology/TechnologyModels";
 import { TopicReference } from "./references/topic/TopicModels";
 import { ProductReference } from "./references/product/ProductModels";
-import { getInputFolder } from "./references/ReferenceModels";
 
 /**
  * Reusable test data
@@ -42,6 +41,7 @@ const all: EleventyCollectionItem[] = [
       technologies: ["st", "at"],
       topics: ["st", "at"],
       products: ["sp", "ap"],
+      thumbnail: "thumbnail.png",
     },
     page: {
       fileSlug: "another-tip",
@@ -56,6 +56,7 @@ const all: EleventyCollectionItem[] = [
       date: new Date("2023-01-08"),
       resourceType: "author",
       label: "sa",
+      thumbnail: "thumbnail.png",
     },
     page: {
       fileSlug: "sa",
@@ -70,6 +71,7 @@ const all: EleventyCollectionItem[] = [
       date: new Date("2023-01-20"),
       resourceType: "author",
       label: "aa",
+      thumbnail: "thumbnail.png",
     },
     page: {
       fileSlug: "aa",
@@ -170,7 +172,6 @@ const tips: TipResource[] = [
   {
     title: all[0].data.title,
     slug: all[0].page.fileSlug,
-    inputFolder: getInputFolder(all[0].page.inputPath),
     url: all[0].page.url,
     resourceType: all[0].data.resourceType as string,
     author: all[0].data.author as string,
@@ -178,7 +179,6 @@ const tips: TipResource[] = [
   {
     title: all[1].data.title,
     slug: all[1].page.fileSlug,
-    inputFolder: getInputFolder(all[1].page.inputPath),
     url: all[1].page.url,
     resourceType: all[1].data.resourceType as string,
     author: all[1].data.author as string,
@@ -193,7 +193,7 @@ const authors: AuthorReference[] = [
     label: all[2].data.label as string,
     resources: [],
     referenceResources: [],
-    inputFolder: getInputFolder(all[2].page.inputPath),
+    thumbnail: all[2].data.thumbnail as string,
   },
   {
     title: all[3].data.title,
@@ -203,7 +203,7 @@ const authors: AuthorReference[] = [
     label: all[3].data.label as string,
     resources: [],
     referenceResources: [],
-    inputFolder: getInputFolder(all[3].page.inputPath),
+    thumbnail: all[3].data.thumbnail as string,
   },
 ];
 const technologies: TechnologyReference[] = [
@@ -215,7 +215,6 @@ const technologies: TechnologyReference[] = [
     label: all[4].data.label as string,
     resources: [],
     referenceResources: [],
-    inputFolder: getInputFolder(all[4].page.inputPath),
   },
   {
     title: all[5].data.title,
@@ -225,7 +224,6 @@ const technologies: TechnologyReference[] = [
     label: all[5].data.label as string,
     resources: [],
     referenceResources: [],
-    inputFolder: getInputFolder(all[5].page.inputPath),
   },
 ];
 const topics: TopicReference[] = [
@@ -237,7 +235,6 @@ const topics: TopicReference[] = [
     label: all[6].data.label as string,
     resources: [],
     referenceResources: [],
-    inputFolder: getInputFolder(all[6].page.inputPath),
   },
   {
     title: all[7].data.title,
@@ -247,7 +244,6 @@ const topics: TopicReference[] = [
     label: all[7].data.label as string,
     resources: [],
     referenceResources: [],
-    inputFolder: getInputFolder(all[7].page.inputPath),
   },
 ];
 const products: ProductReference[] = [
@@ -260,7 +256,6 @@ const products: ProductReference[] = [
     logo: all[8].data.logo as string,
     resources: [],
     referenceResources: [],
-    inputFolder: getInputFolder(all[8].page.inputPath),
   },
   {
     title: all[9].data.title,
@@ -271,7 +266,6 @@ const products: ProductReference[] = [
     logo: all[9].data.logo as string,
     resources: [],
     referenceResources: [],
-    inputFolder: getInputFolder(all[9].page.inputPath),
   },
 ];
 const tipResources: { [key: string]: TipResource } = {};

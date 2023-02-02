@@ -20,10 +20,16 @@ module.exports = function (eleventyConfig) {
     const tips = collectionApi.getFilteredByTag("tip");
     return getTipResources(tips);
   });
-  eleventyConfig.addCollection("authorReferences", function (collectionApi) {
-    const authors = collectionApi.getFilteredByTag("author");
-    return getAuthorReferences(authors);
-  });
+  eleventyConfig.addCollection(
+    "authorReferences",
+    async function (collectionApi) {
+      const authors = collectionApi.getFilteredByTag("author");
+      // .filter(
+      //   (item) => item.data.resourceType !== "page"
+      // );
+      return await getAuthorReferences(authors);
+    }
+  );
   eleventyConfig.addCollection(
     "technologyReferences",
     function (collectionApi) {

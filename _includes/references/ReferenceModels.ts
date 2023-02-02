@@ -5,7 +5,6 @@ import {
   Resource,
 } from "../resources/ResourceModels";
 import { EleventyPage } from "../models";
-import path from "path";
 
 export const Reference = Type.Intersect([
   BaseResource,
@@ -32,8 +31,4 @@ export function getReference(
     resources,
     referenceResources,
   };
-}
-
-export function getInputFolder(inputPath: string): string {
-  return path.dirname(inputPath);
 }
