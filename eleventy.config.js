@@ -19,14 +19,16 @@ module.exports = function (eleventyConfig) {
   // copy assets from node_modules for static site
   eleventyConfig.addPassthroughCopy({
     "node_modules/video.js/dist/video.min.js": "assets/videojs/video.min.js",
-    "node_modules/video.js/dist/video-js.min.css": "assets/videojs/video-js.min.css",
-    "node_modules/videojs-youtube/dist/Youtube.min.js": "assets/videojs/Youtube.min.js"
+    "node_modules/video.js/dist/video-js.min.css":
+      "assets/videojs/video-js.min.css",
+    "node_modules/videojs-youtube/dist/Youtube.min.js":
+      "assets/videojs/Youtube.min.js",
   });
 
   // Wire up some custom collections which return validated, flattened objects for resources/references
-  eleventyConfig.addCollection("tipResources", function (collectionApi) {
+  eleventyConfig.addCollection("tipResources", async function (collectionApi) {
     const tips = collectionApi.getFilteredByTag("tip");
-    return getTipResources(tips);
+    return await getTipResources(tips);
   });
   eleventyConfig.addCollection(
     "authorReferences",
@@ -37,19 +39,25 @@ module.exports = function (eleventyConfig) {
   );
   eleventyConfig.addCollection(
     "technologyReferences",
-    function (collectionApi) {
+    async function (collectionApi) {
       const technologies = collectionApi.getFilteredByTag("technology");
-      return getTechnologyReferences(technologies);
+      return await getTechnologyReferences(technologies);
     }
   );
-  eleventyConfig.addCollection("topicReferences", function (collectionApi) {
-    const topics = collectionApi.getFilteredByTag("topic");
-    return getTopicReferences(topics);
-  });
-  eleventyConfig.addCollection("productReferences", function (collectionApi) {
-    const topics = collectionApi.getFilteredByTag("product");
-    return getProductReferences(topics);
-  });
+  eleventyConfig.addCollection(
+    "topicReferences",
+    async function (collectionApi) {
+      const topics = collectionApi.getFilteredByTag("topic");
+      return await getTopicReferences(topics);
+    }
+  );
+  eleventyConfig.addCollection(
+    "productReferences",
+    async function (collectionApi) {
+      const topics = collectionApi.getFilteredByTag("product");
+      return await getProductReferences(topics);
+    }
+  );
 
   eleventyConfig.addPlugin(syntaxHighlight);
   eleventyConfig.addPlugin(EleventyVitePlugin, {

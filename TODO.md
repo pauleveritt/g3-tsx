@@ -3,9 +3,11 @@
 ## Now
 
 - Switch to collections.author rather than collections.authorReferences in get**
-- 
+- Get rid of readMarkdownTree and duplicative tests
 
 ## Next
+
+- Get a placeholder.jpg into the site
 
 ## Soon
 
@@ -23,6 +25,7 @@
   - Investigate `--incremental` by storing the validated resource on the `collections.all` instance
     - Learn watch events and add/edit/delete
     - Both for full and incremental
+- Coverage
 
 ## G3
 
@@ -43,6 +46,28 @@
 - Site prefix stuff e.g. starting a `/tips/` instead of `/webstorm-guide/tips/`
 - Tutorials
 
+## Nice To Have
+
+- JSON Schemas
+- HTMX
+
 ## Finished
 
 - Individual pages for each reference type
+
+## WS+CWM Issues
+
+- Markdown preview 404
+  - When Khalid made me follow him on my machine, and we opened `.md`, preview showed 404
+- Breadcrumbs are visible but not activated on click
+- Asks to forward the debugger port
+- Doesn't highlight links in run window
+- Can't view images in editor
+
+## Things To Show Zach
+
+- Vite
+- TS
+- TSX
+- Vitest
+- TypeBox "content types"

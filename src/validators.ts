@@ -63,7 +63,9 @@ export function validateResource(
   }
 }
 
-export function getTipResources(collectionItems: EleventyCollectionItem[]) {
+export async function getTipResources(
+  collectionItems: EleventyCollectionItem[]
+) {
   /* Called from eleventy.config.js to add tip collection's items */
   const results: { [index: string]: TipResource } = {};
   collectionItems
@@ -88,7 +90,7 @@ export async function getAuthorReferences(
   return results;
 }
 
-export function getTechnologyReferences(
+export async function getTechnologyReferences(
   collectionItems: EleventyCollectionItem[]
 ) {
   /* Called from eleventy.config.js to add technology collection's items */
@@ -100,7 +102,9 @@ export function getTechnologyReferences(
   return results;
 }
 
-export function getTopicReferences(collectionItems: EleventyCollectionItem[]) {
+export async function getTopicReferences(
+  collectionItems: EleventyCollectionItem[]
+) {
   /* Called from eleventy.config.js to add topic collection's items */
   const results: { [index: string]: TopicReference } = {};
   collectionItems.forEach((item) => {
@@ -110,7 +114,7 @@ export function getTopicReferences(collectionItems: EleventyCollectionItem[]) {
   return results;
 }
 
-export function getProductReferences(
+export async function getProductReferences(
   collectionItems: EleventyCollectionItem[]
 ) {
   /* Called from eleventy.config.js to add product collection's items */
