@@ -1,24 +1,9 @@
 import { expect, test } from "vitest";
 import { getTechnology } from "./TechnologyModels";
-import { readMarkdown } from "../../../src/validators";
+import fixtures from "../../fixtures";
 
-test("Construct a valid technology", () => {
-  const { frontmatter, body } = readMarkdown(
-    "webstorm-guide/technologies/angular/index.md"
-  );
-
-  const technologyData = {
-    ...frontmatter,
-    url: "/technologies/angular/",
-    content: body,
-    resourceType: "technology",
-  };
-  const technologyPage = {
-    fileSlug: "angular",
-    url: "/technologies/angular/",
-    inputPath: "./sites/technologies/angular/index.md",
-  };
-
-  const result = getTechnology(technologyData, technologyPage);
-  expect(result.label).to.equal("angular");
+test("construct a technology", async () => {
+  const { data, page } = fixtures.collections.technology[0];
+  const technology = await getTechnology(data, page);
+  expect(technology.label).to.equal("st");
 });

@@ -2,8 +2,7 @@
 
 ## Now
 
-- Switch to collections.author rather than collections.authorReferences in get**
-- Get rid of readMarkdownTree and duplicative tests
+- Move getAuthors etc. to the actual resource
 
 ## Next
 
@@ -54,6 +53,7 @@
 ## Finished
 
 - Individual pages for each reference type
+- Get rid of readMarkdownTree and duplicative tests
 
 ## WS+CWM Issues
 
@@ -71,3 +71,4 @@
 - TSX
 - Vitest
 - TypeBox "content types"
+- Switch to collections.author rather than collections.authorReferences in get**

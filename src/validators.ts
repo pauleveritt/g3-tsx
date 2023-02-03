@@ -1,8 +1,4 @@
 import url from "url";
-import { resolve } from "node:path";
-import { existsSync, lstatSync } from "node:fs";
-import * as matter from "gray-matter";
-import MarkdownIt from "markdown-it";
 import { Value } from "@sinclair/typebox/value";
 import { EleventyCollectionItem } from "../_includes/models";
 import { getTip, TipResource } from "../_includes/resources/tip/TipModels";
@@ -24,26 +20,6 @@ import {
 } from "../_includes/references/topic/TopicModels";
 
 export const sitesDir = url.fileURLToPath(new URL(`../sites`, import.meta.url));
-const md = new MarkdownIt("commonmark");
-
-export function readMarkdown(filePath: string): any {
-  if (!lstatSync(sitesDir).isDirectory()) {
-    throw Error(`Sites directory does not exist`);
-  }
-  const markdownFile = resolve(sitesDir, filePath);
-  if (!existsSync(markdownFile)) {
-    throw Error(`Directory "${filePath}" does not exist`);
-  }
-  const tipMatter = matter.read(markdownFile as string);
-  const frontmatter = tipMatter.data;
-
-  // Now the Markdown
-  const body = md.render(tipMatter.content as string);
-  return {
-    frontmatter,
-    body,
-  };
-}
 
 export function validateResource(
   resourceType: any,

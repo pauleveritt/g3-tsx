@@ -42,6 +42,11 @@ export type EleventyCollectionItem = Static<typeof EleventyCollectionItem>;
 
 export type Collections = {
   all: EleventyCollectionItem[];
+  tip: EleventyCollectionItem[];
+  author: EleventyCollectionItem[];
+  technology: EleventyCollectionItem[];
+  topic: EleventyCollectionItem[];
+  product: EleventyCollectionItem[];
   tipResources: TipCollection;
   authorReferences: AuthorCollection;
   technologyReferences: TechnologyCollection;

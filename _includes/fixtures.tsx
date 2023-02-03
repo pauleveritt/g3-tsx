@@ -41,7 +41,7 @@ const all: EleventyCollectionItem[] = [
       technologies: ["st", "at"],
       topics: ["st", "at"],
       products: ["sp", "ap"],
-      thumbnail: "thumbnail.png",
+      thumbnail: "aa.png",
     },
     page: {
       fileSlug: "another-tip",
@@ -56,12 +56,12 @@ const all: EleventyCollectionItem[] = [
       date: new Date("2023-01-08"),
       resourceType: "author",
       label: "sa",
-      thumbnail: "thumbnail.png",
+      thumbnail: "sa.png",
     },
     page: {
       fileSlug: "sa",
       url: "/authors/sa/",
-      inputPath: "./site/authors/sa/index.md",
+      inputPath: "./sites/webstorm-guide/authors/sa/index.md",
     },
     content: "<p>Some Author</p>",
   },
@@ -71,12 +71,12 @@ const all: EleventyCollectionItem[] = [
       date: new Date("2023-01-20"),
       resourceType: "author",
       label: "aa",
-      thumbnail: "thumbnail.png",
+      thumbnail: "aa.png",
     },
     page: {
       fileSlug: "aa",
       url: "/authors/aa/",
-      inputPath: "./site/authors/aa/index.md",
+      inputPath: "./sites/webstorm-guide/authors/aa/index.md",
     },
     content: "<p>Another Author</p>",
   },
@@ -168,6 +168,7 @@ const all: EleventyCollectionItem[] = [
   },
 ];
 
+const tipItems = [all[0], all[1]];
 const tips: TipResource[] = [
   {
     title: all[0].data.title,
@@ -184,6 +185,8 @@ const tips: TipResource[] = [
     author: all[1].data.author as string,
   },
 ];
+
+const authorItems = [all[2], all[3]];
 const authors: AuthorReference[] = [
   {
     title: all[2].data.title,
@@ -206,6 +209,8 @@ const authors: AuthorReference[] = [
     thumbnail: all[3].data.thumbnail as string,
   },
 ];
+
+const technologyItems = [all[4], all[5]];
 const technologies: TechnologyReference[] = [
   {
     title: all[4].data.title,
@@ -226,6 +231,8 @@ const technologies: TechnologyReference[] = [
     referenceResources: [],
   },
 ];
+
+const topicItems = [all[6], all[7]];
 const topics: TopicReference[] = [
   {
     title: all[6].data.title,
@@ -246,6 +253,8 @@ const topics: TopicReference[] = [
     referenceResources: [],
   },
 ];
+
+const productItems = [all[8], all[9]];
 const products: ProductReference[] = [
   {
     title: all[8].data.title,
@@ -284,6 +293,11 @@ products.forEach((product) => (productReferences[product.label] = product));
 
 const collections: Collections = {
   all,
+  tip: tipItems,
+  author: authorItems,
+  technology: technologyItems,
+  topic: topicItems,
+  product: productItems,
   tipResources,
   authorReferences,
   technologyReferences,

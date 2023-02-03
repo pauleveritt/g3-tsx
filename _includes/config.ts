@@ -10,3 +10,5 @@ export const imageOptions: ImageOptions = {
   outputDir: "./public/assets/img/",
   urlPath: "/assets/img/",
 };
+
+export const rootPath = "sites/webstorm-guide";
