@@ -3,6 +3,7 @@ import h, { JSX } from "vhtml";
 import { AuthorReference } from "./AuthorModels";
 import { Collections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
+import Thumbnail from "../../Image.11ty";
 
 export type AuthorLayoutResource = {
   title: string;
@@ -13,7 +14,7 @@ export type AuthorLayoutProps = {
   children: string[];
   referenceResources: AuthorLayoutResource[];
   subtitle?: string;
-  thumbnail?: string;
+  thumbnail: string;
   title: string;
 };
 
@@ -26,12 +27,10 @@ export function AuthorLayout({
 }: AuthorLayoutProps): JSX.Element {
   const figure = (
     <div className="image is-rounded is-96x96">
-      <img
-        alt=""
-        className="bio-resourcecard-logo"
-        height="96"
-        width="96"
+      <Thumbnail
         src={thumbnail}
+        className={"bio-resourcecard-logo"}
+        alt={title}
       />
     </div>
   );
@@ -94,7 +93,7 @@ export function render({
       return {
         title: ci.title,
         url: ci.url,
-        thumbnail: ci.thumbnail,
+        thumbnail: ci.thumbnail as string,
       };
     });
 

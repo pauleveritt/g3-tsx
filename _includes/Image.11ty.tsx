@@ -9,7 +9,7 @@ export type ImageProps = {
   className: string;
 };
 
-const GuideImage = ({ src, alt, className }: ImageProps): JSX.Element => {
+const Thumbnail = ({ src, alt, className }: ImageProps): JSX.Element => {
   // fire and forget
   Image(src, imageOptions);
 
@@ -27,4 +27,4 @@ const GuideImage = ({ src, alt, className }: ImageProps): JSX.Element => {
   return <span dangerouslySetInnerHTML={{ __html: html }}></span>;
 };
 
-export default GuideImage;
+export default Thumbnail;
