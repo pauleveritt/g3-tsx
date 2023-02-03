@@ -1,13 +1,18 @@
 const EleventyVitePlugin = require("@11ty/eleventy-plugin-vite");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-
+const { getTipResources } = require("./_includes/resources/tip/TipModels");
 const {
-  getTipResources,
   getAuthorReferences,
+} = require("./_includes/references/author/AuthorModels");
+const {
   getTechnologyReferences,
+} = require("./_includes/references/technology/TechnologyModels");
+const {
   getTopicReferences,
+} = require("./_includes/references/topic/TopicModels");
+const {
   getProductReferences,
-} = require("./src/validators");
+} = require("./_includes/references/product/ProductModels");
 
 module.exports = function (eleventyConfig) {
   // v2.0.0-canary.19 or newer

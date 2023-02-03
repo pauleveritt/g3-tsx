@@ -1,7 +1,7 @@
 import { getReference, Reference } from "../ReferenceModels";
 import { Static, Type } from "@sinclair/typebox";
 import { validateResource } from "../../../src/validators";
-import { EleventyPage } from "../../models";
+import { EleventyCollectionItem, EleventyPage } from "../../models";
 import path from "path";
 // @ts-ignore
 import Image from "@11ty/eleventy-img";
@@ -37,4 +37,16 @@ export async function getAuthor(
   await Image(reference.thumbnail, imageOptions);
 
   return reference;
+}
+
+export async function getAuthorReferences(
+  collectionItems: EleventyCollectionItem[]
+) {
+  /* Called from eleventy.config.js to add author collection's items */
+  const results: { [index: string]: AuthorReference } = {};
+  for (const item of collectionItems) {
+    const thisAuthor = await getAuthor(item.data, item.page);
+    results[thisAuthor.label] = thisAuthor;
+  }
+  return results;
 }

@@ -5,6 +5,7 @@ import { Collections, EleventyCollectionItem } from "./models";
 import { TechnologyReference } from "./references/technology/TechnologyModels";
 import { TopicReference } from "./references/topic/TopicModels";
 import { ProductReference } from "./references/product/ProductModels";
+import { rootPath } from "./config";
 
 /**
  * Reusable test data
@@ -28,7 +29,7 @@ const all: EleventyCollectionItem[] = [
     page: {
       fileSlug: "some-tip",
       url: "/tips/some-tip/",
-      inputPath: "./site/tips/some-tip/index.md",
+      inputPath: `${rootPath}/tips/some-tip/index.md`,
     },
     content: "<p>Some Tip</p>",
   },
@@ -46,7 +47,7 @@ const all: EleventyCollectionItem[] = [
     page: {
       fileSlug: "another-tip",
       url: "/tips/another-tip/",
-      inputPath: "./site/tips/another-tip/index.md",
+      inputPath: `${rootPath}/tips/another-tip/index.md`,
     },
     content: "<p>Another Tip</p>",
   },
@@ -61,7 +62,7 @@ const all: EleventyCollectionItem[] = [
     page: {
       fileSlug: "sa",
       url: "/authors/sa/",
-      inputPath: "./sites/webstorm-guide/authors/sa/index.md",
+      inputPath: `${rootPath}/authors/sa/index.md`,
     },
     content: "<p>Some Author</p>",
   },
@@ -90,7 +91,7 @@ const all: EleventyCollectionItem[] = [
     page: {
       fileSlug: "st",
       url: "/technologies/st/",
-      inputPath: "./site/technologies/st/index.md",
+      inputPath: `${rootPath}/technologies/st/index.md`,
     },
     content: "<p>Some Technology</p>",
   },
@@ -104,7 +105,7 @@ const all: EleventyCollectionItem[] = [
     page: {
       fileSlug: "at",
       url: "/technologies/at/",
-      inputPath: "./site/technologies/at/index.md",
+      inputPath: `${rootPath}/technologies/at/index.md`,
     },
     content: "<p>Another Technology</p>",
   },
@@ -118,7 +119,7 @@ const all: EleventyCollectionItem[] = [
     page: {
       fileSlug: "st",
       url: "/topics/st/",
-      inputPath: "./site/topics/st/index.md",
+      inputPath: `${rootPath}/topics/st/index.md`,
     },
     content: "<p>Some Topic</p>",
   },
@@ -132,7 +133,7 @@ const all: EleventyCollectionItem[] = [
     page: {
       fileSlug: "at",
       url: "/topics/at/",
-      inputPath: "./site/topics/at/index.md",
+      inputPath: `${rootPath}/topics/at/index.md`,
     },
     content: "<p>Another Topic</p>",
   },
@@ -147,7 +148,7 @@ const all: EleventyCollectionItem[] = [
     page: {
       fileSlug: "sp",
       url: "/products/sp/",
-      inputPath: "./site/products/sp/index.md",
+      inputPath: `${rootPath}/products/sp/index.md`,
     },
     content: "<p>Some Product</p>",
   },
@@ -162,7 +163,7 @@ const all: EleventyCollectionItem[] = [
     page: {
       fileSlug: "ap",
       url: "/topics/ap/",
-      inputPath: "./site/topics/ap/index.md",
+      inputPath: `${rootPath}/topics/ap/index.md`,
     },
     content: "<p>Another Product</p>",
   },

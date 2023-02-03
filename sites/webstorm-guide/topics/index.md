@@ -1,4 +1,5 @@
 ---
+eleventyExcludeFromCollections: true
 resourceType: page
 title: Topics
 subtitle: All the info about topics TODO

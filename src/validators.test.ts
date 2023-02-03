@@ -1,8 +1,7 @@
 import { expect, test } from "vitest";
 import path from "path";
-import { getAuthorReferences, sitesDir, validateResource } from "./validators";
+import { sitesDir, validateResource } from "./validators";
 import { TipResource } from "../_includes/resources/tip/TipModels";
-import fixtures from "../_includes/fixtures";
 
 test("defines the sitesDir", () => {
   expect(path.basename(sitesDir)).to.equal("sites");
@@ -32,12 +31,4 @@ test("validates bad frontmatter", () => {
     validateResource(TipResource, frontmatter, "tip1.md");
   expect(validation).toThrow("Expected required");
   expect(validation).toThrow("tip1.md");
-});
-
-test("gets author references", async () => {
-  const allAuthors = fixtures.collections.all.filter(
-    (item) => item.data.resourceType === "author"
-  );
-  const authorReferences = await getAuthorReferences(allAuthors);
-  expect(authorReferences["sa"].title).to.equal("Some Author");
 });

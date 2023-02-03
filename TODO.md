@@ -1,8 +1,8 @@
 # TODO
 
 ## Now
-
-- Move getAuthors etc. to the actual resource
+- 
+- Make schemas for just the frontmatter part
 
 ## Next
 
@@ -10,7 +10,6 @@
 
 ## Soon
 
-- Make schemas for just the frontmatter part
 - Sort out children vs. content and the vhtml typing issue
 - Clean up the content
 
@@ -54,6 +53,8 @@
 
 - Individual pages for each reference type
 - Get rid of readMarkdownTree and duplicative tests
+- Reorg content models to getAuthors etc. to the actual resource
+
 
 ## WS+CWM Issues
 

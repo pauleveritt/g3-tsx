@@ -1,7 +1,7 @@
 import { Static, Type } from "@sinclair/typebox";
 import { validateResource } from "../../../src/validators";
 import { getResource, Resource } from "../ResourceModels";
-import { EleventyPage } from "../../models";
+import { EleventyCollectionItem, EleventyPage } from "../../models";
 
 // noinspection JSUnusedGlobalSymbols
 export const TipResource = Type.Intersect([
@@ -51,4 +51,15 @@ export function getTip(data: any, page: EleventyPage): TipResource {
   };
   validateResource(TipResource, tip, page.url);
   return tip;
+}
+
+export async function getTipResources(
+  collectionItems: EleventyCollectionItem[]
+) {
+  /* Called from eleventy.config.js to add tip collection's items */
+  const results: { [index: string]: TipResource } = {};
+  collectionItems.forEach((item) => {
+    results[item.page.url] = getTip(item.data, item.page);
+  });
+  return results;
 }
