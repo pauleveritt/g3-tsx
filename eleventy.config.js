@@ -70,12 +70,7 @@ module.exports = function (eleventyConfig) {
   );
 
   eleventyConfig.on("eleventy.after", async ({ results }) => {
-    const tc = testCases;
-    const validations = testCases.validate(results);
-    if (validations.length) {
-      const msg = `Test Case Errors:\n${validations.join("\n")}`;
-      eleventyConfig.logger.info(msg);
-    }
+    testCases.validate(results);
   });
 
   eleventyConfig.addPlugin(syntaxHighlight);
