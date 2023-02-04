@@ -1,11 +1,13 @@
 # TODO
 
 ## Now
-- 
-- Make schemas for just the frontmatter part
+
+- Write a legit E2E `Eleventy` test
 
 ## Next
 
+- De-prop the layouts
+- Make schemas for just the frontmatter part
 - Get a placeholder.jpg into the site
 
 ## Soon

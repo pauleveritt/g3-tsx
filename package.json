@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "start": "node --require esbuild-register node_modules/.bin/eleventy --serve --watch",
+    "test": "node --require esbuild-register node_modules/.bin/vitest tests",
     "incremental": "node --require esbuild-register node_modules/.bin/eleventy --incremental --serve --watch",
     "debug-start": "DEBUG=Eleventy* node --require esbuild-register node_modules/.bin/eleventy --serve --watch",
     "build": "node --require esbuild-register node_modules/.bin/eleventy",
