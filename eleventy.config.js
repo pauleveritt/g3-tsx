@@ -14,8 +14,13 @@ const {
   getProductReferences,
 } = require("./_includes/references/product/ProductModels");
 
+const { TestCases } = require("./src/TestCases");
 module.exports = function (eleventyConfig) {
-  // v2.0.0-canary.19 or newer
+  const testCases = new TestCases();
+  eleventyConfig.addJavaScriptFunction("addTestCase", (url, testCase) => {
+    testCases.add(url, testCase);
+  });
+
   eleventyConfig.addExtension(["11ty.jsx", "11ty.ts", "11ty.tsx"], {
     key: "11ty.js",
   });
@@ -63,6 +68,15 @@ module.exports = function (eleventyConfig) {
       return await getProductReferences(topics);
     }
   );
+
+  eleventyConfig.on("eleventy.after", async ({ results }) => {
+    const tc = testCases;
+    const validations = testCases.validate(results);
+    if (validations.length) {
+      const msg = `Test Case Errors:\n${validations.join("\n")}`;
+      eleventyConfig.logger.info(msg);
+    }
+  });
 
   eleventyConfig.addPlugin(syntaxHighlight);
   eleventyConfig.addPlugin(EleventyVitePlugin, {

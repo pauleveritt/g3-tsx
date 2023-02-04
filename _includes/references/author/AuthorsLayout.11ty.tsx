@@ -1,6 +1,7 @@
 import h, { JSX } from "vhtml";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { Collections } from "../../models";
+import { Assertions, ByText } from "../../../src/TestCases";
 
 export type AuthorsLayoutAuthor = {
   title: string;
@@ -48,16 +49,22 @@ export type AuthorsRenderProps = {
   content: string;
   title: string;
   subtitle?: string;
+  page: {
+    url: string;
+  };
 };
 
 interface Context {
-  title?: string;
+  addTestCase(url: string, assertions: Assertions): void;
 }
+
 export function render(
   this: Context,
-  { collections, content, title, subtitle }: AuthorsRenderProps
+  { collections, content, title, subtitle, page }: AuthorsRenderProps
 ): JSX.Element {
   // Flatten/de-normalize the joins, e.g. author
+
+  this.addTestCase(page.url, [new ByText({ value: "foooooo" })]);
   const authors: AuthorsLayoutAuthor[] = Object.values(
     collections.authorReferences
   ).map((author) => {
