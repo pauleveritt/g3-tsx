@@ -38,7 +38,7 @@ test("should render AuthorsLayout", () => {
     title,
     subtitle,
   };
-  document.body.innerHTML = render(renderProps);
+  document.body.innerHTML = render.call({}, renderProps);
   const items: HTMLUListElement[] = screen.getAllByRole("link", {
     name: "Some Author",
   });

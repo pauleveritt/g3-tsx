@@ -2,7 +2,13 @@
 
 ## Now
 
-- Write a legit E2E `Eleventy` test
+- Baked-in approach to E2E testing
+  - Replace render function with class AuthorsLayout extends View
+  - When rendering, grab the TestCases "filter" filter that has test cases
+  - Add the test cases for this view/page instance
+  - Later, an after-build step grabs TestCases instance
+  - It finds all the registered test cases
+  - Goes through build results, matches URL to test case, makes document, does assertions
 
 ## Next
 

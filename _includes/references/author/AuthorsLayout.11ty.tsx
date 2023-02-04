@@ -50,12 +50,13 @@ export type AuthorsRenderProps = {
   subtitle?: string;
 };
 
-export function render({
-  collections,
-  content,
-  title,
-  subtitle,
-}: AuthorsRenderProps): JSX.Element {
+interface Context {
+  title?: string;
+}
+export function render(
+  this: Context,
+  { collections, content, title, subtitle }: AuthorsRenderProps
+): JSX.Element {
   // Flatten/de-normalize the joins, e.g. author
   const authors: AuthorsLayoutAuthor[] = Object.values(
     collections.authorReferences
