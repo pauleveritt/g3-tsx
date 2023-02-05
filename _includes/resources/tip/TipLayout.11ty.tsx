@@ -4,7 +4,7 @@ import BottomNav from "../../pagenav/BottomNav.11ty";
 import TopNav from "../../pagenav/TopNav.11ty";
 import SeeAlso from "../../seealso/SeeAlso.11ty";
 import { TipResource } from "./TipModels";
-import SidebarLayout from "../../SidebarLayout.11ty";
+import SidebarLayout from "../../layouts/SidebarLayout.11ty";
 import { Collections } from "../../models";
 import { AuthorReference } from "../../references/author/AuthorModels";
 import SidebarPublished from "../../sidebar/SidebarPublished.11ty";
@@ -69,7 +69,14 @@ export function TipLayout({
             style="object-fit: contain; object-position: top"
           />
         )}
-        {tip.shortVideo && <div><VideoPlayer source={tip.shortVideo.url} poster={tip.shortVideo.poster} /></div>}
+        {tip.shortVideo && (
+          <div>
+            <VideoPlayer
+              source={tip.shortVideo.url}
+              poster={tip.shortVideo.poster}
+            />
+          </div>
+        )}
         <div
           className="column content"
           style="display: flex; justify-content: space-between; flex-direction: column"
@@ -91,7 +98,10 @@ export function TipLayout({
                 href="#full-video"
                 style="width: auto; margi-left: 0.5em"
               >
-                <VideoPlayer source={tip.longVideo.url} poster={tip.longVideo.poster} />
+                <VideoPlayer
+                  source={tip.longVideo.url}
+                  poster={tip.longVideo.poster}
+                />
               </a>
             )}
           </div>

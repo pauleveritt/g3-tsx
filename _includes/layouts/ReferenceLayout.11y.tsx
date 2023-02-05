@@ -1,5 +1,5 @@
 import h, { JSX } from "vhtml";
-import { BaseLayout } from "../BaseLayout.11ty";
+import { BaseLayout } from "./BaseLayout.11ty";
 
 export type ReferenceLayoutProps = {
   content?: string;
