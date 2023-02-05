@@ -32,7 +32,11 @@ export async function addCollection({
   eleventyConfig.addCollection(
     `${collectionName}${suffix}`,
     async function (collectionApi: CollectionApi) {
-      const collectionItems = collectionApi.getFilteredByTag(collectionName);
+      const collectionItems = collectionApi
+        .getFilteredByTag(collectionName)
+        .sort((a, b) =>
+          a.data.title.toLowerCase() < b.data.title.toLowerCase() ? -1 : 1
+        );
       const results: { [key: string]: BaseResource } = {};
       for (const { data, page } of collectionItems) {
         const thisResource: BaseResource = await factory(data, page);

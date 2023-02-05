@@ -1,7 +1,6 @@
 import { expect, it, test } from "vitest";
 import {
   TechnologiesLayout,
-  TechnologiesLayoutTechnology,
   TechnologiesRenderProps,
   render,
 } from "./TechnologiesLayout.11ty";
@@ -9,10 +8,7 @@ import { screen } from "@testing-library/dom";
 import fixtures from "../../fixtures";
 
 it("should make TechnologiesLayout", () => {
-  const technologies: TechnologiesLayoutTechnology[] = [
-    { title: "Some Technology", slug: "some-technology" },
-    { title: "Another Technology", slug: "another-technology" },
-  ];
+  const technologies = fixtures.technologies;
   const title = "All Technologies";
   const subtitle = "Some technology subtitle text";
   const content = fixtures.content;

@@ -1,14 +1,10 @@
 import h, { JSX } from "vhtml";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { SiteCollections } from "../../models";
+import { TechnologyReference } from "./TechnologyModels";
 
-// TODO Sunday
-export type TechnologiesLayoutTechnology = {
-  title: string;
-  slug: string;
-};
 export type TechnologiesLayoutProps = {
-  technologies: TechnologiesLayoutTechnology[];
+  technologies: TechnologyReference[];
   title: string;
   subtitle?: string;
   content: string;
@@ -58,14 +54,9 @@ export function render({
   subtitle,
 }: TechnologiesRenderProps): JSX.Element {
   // Flatten/de-normalize the joins, e.g. technology
-  const technologies: TechnologiesLayoutTechnology[] = Object.values(
+  const technologies: TechnologyReference[] = Object.values(
     collections.technologyReferences
-  ).map((technology) => {
-    return {
-      title: technology.title,
-      slug: technology.slug,
-    };
-  });
+  );
   return (
     <TechnologiesLayout
       technologies={technologies}
