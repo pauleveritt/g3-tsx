@@ -1,7 +1,7 @@
 import { Static, Type } from "@sinclair/typebox";
 import { validateResource } from "../../../src/validators";
 import { getResource, Resource } from "../../../src/ResourceModels";
-import { EleventyCollectionItem, EleventyPage } from "../../../src/models";
+import { EleventyPage } from "../../../src/models";
 
 // noinspection JSUnusedGlobalSymbols
 export const TipResource = Type.Intersect([
@@ -38,7 +38,10 @@ export const TipResource = Type.Intersect([
 export type TipResource = Static<typeof TipResource>;
 export type TipCollection = { [name: string]: TipResource };
 
-export function getTip(data: any, page: EleventyPage): TipResource {
+export async function getTip(
+  data: any,
+  page: EleventyPage
+): Promise<TipResource> {
   const tip: TipResource = {
     ...getResource(data, page, "tip"),
     leadin: data.leadin,
@@ -51,15 +54,4 @@ export function getTip(data: any, page: EleventyPage): TipResource {
   };
   validateResource(TipResource, tip, page.url);
   return tip;
-}
-
-export async function getTipResources(
-  collectionItems: EleventyCollectionItem[]
-) {
-  /* Called from eleventy.config.js to add tip collection's items */
-  const results: { [index: string]: TipResource } = {};
-  collectionItems.forEach((item) => {
-    results[item.page.url] = getTip(item.data, item.page);
-  });
-  return results;
 }

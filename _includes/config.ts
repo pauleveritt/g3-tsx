@@ -1,7 +1,3 @@
-import { getAuthorReferences } from "./references/author/AuthorModels";
-import { getTechnologyReferences } from "./references/technology/TechnologyModels";
-import { getTopicReferences } from "./references/topic/TopicModels";
-import { getProductReferences } from "./references/product/ProductModels";
 import { Assertions, TestCases } from "../src/TestCases";
 import { addCollection, RegisterIncludesProps } from "../src/registration";
 
@@ -39,9 +35,7 @@ export async function registerIncludes({
   for (const collection of newCollections) {
     await addCollection({
       resourceTypeConfig: {
-        collectionName: collection.collectionName,
-        suffix: collection.suffix,
-        factory: collection.factory,
+        ...collection,
       },
       eleventyConfig,
     });

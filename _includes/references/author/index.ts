@@ -1,8 +1,9 @@
 import { ResourceTypeConfig } from "../../../src/registration";
-import { getAuthorReferences } from "./AuthorModels";
+import { getAuthor } from "./AuthorModels";
 
 export const authorConfig: ResourceTypeConfig = {
   collectionName: "author",
+  attributeKey: "label",
   suffix: "References",
-  factory: getAuthorReferences,
+  factory: getAuthor,
 };

@@ -2,6 +2,7 @@ import h, { JSX } from "vhtml";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { SiteCollections } from "../../models";
 
+// TODO Sunday
 export type TechnologiesLayoutTechnology = {
   title: string;
   slug: string;

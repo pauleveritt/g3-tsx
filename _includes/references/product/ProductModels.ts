@@ -1,7 +1,7 @@
 import { getReference, Reference } from "../../../src/ReferenceModels";
 import { Static, Type } from "@sinclair/typebox";
 import { validateResource } from "../../../src/validators";
-import { EleventyCollectionItem, EleventyPage } from "../../../src/models";
+import { EleventyPage } from "../../../src/models";
 
 export const ProductReference = Type.Intersect([
   Reference,
@@ -12,23 +12,14 @@ export const ProductReference = Type.Intersect([
 export type ProductReference = Static<typeof ProductReference>;
 export type ProductCollection = { [name: string]: ProductReference };
 
-export function getProduct(data: any, page: EleventyPage): ProductReference {
+export async function getProduct(
+  data: any,
+  page: EleventyPage
+): Promise<ProductReference> {
   const product: ProductReference = {
     ...getReference(data, page, "product"),
     logo: data.logo,
   };
   validateResource(ProductReference, product, page.url);
   return product;
-}
-
-export async function getProductReferences(
-  collectionItems: EleventyCollectionItem[]
-) {
-  /* Called from eleventy.config.js to add product collection's items */
-  const results: { [index: string]: ProductReference } = {};
-  collectionItems.forEach((item) => {
-    const thisProduct = getProduct(item.data, item.page);
-    results[thisProduct.label] = thisProduct;
-  });
-  return results;
 }
