@@ -11,21 +11,23 @@ export type RegisterIncludesProps = {
   eleventyConfig: UserConfig;
 };
 
-export type AddCollectionProps = {
+export type ResourceTypeConfig = {
   collectionName: string;
-  prefix: string;
+  suffix: string;
   factory(collection: EleventyCollectionItem[]): Promise<any>;
+};
+
+export type AddCollectionProps = {
+  resourceTypeConfig: ResourceTypeConfig;
   eleventyConfig: UserConfig;
 };
 
 export async function addCollection({
-  collectionName,
-  prefix,
-  factory,
+  resourceTypeConfig: { collectionName, suffix, factory },
   eleventyConfig,
 }: AddCollectionProps) {
   eleventyConfig.addCollection(
-    `${collectionName}${prefix}`,
+    `${collectionName}${suffix}`,
     async function (collectionApi: CollectionApi) {
       const resources = collectionApi.getFilteredByTag(collectionName);
       return await factory(resources);

@@ -1,4 +1,3 @@
-import { getTipResources } from "./resources/tip/TipModels";
 import { getAuthorReferences } from "./references/author/AuthorModels";
 import { getTechnologyReferences } from "./references/technology/TechnologyModels";
 import { getTopicReferences } from "./references/topic/TopicModels";
@@ -6,28 +5,18 @@ import { getProductReferences } from "./references/product/ProductModels";
 import { Assertions, TestCases } from "../src/TestCases";
 import { addCollection, RegisterIncludesProps } from "../src/registration";
 
+import { tipConfig } from "./resources/tip";
+import { authorConfig } from "./references/author";
+import { productConfig } from "./references/product";
+import { technologyConfig } from "./references/technology";
+import { topicConfig } from "./references/topic";
+
 const newCollections = [
-  { collectionName: "tip", factory: getTipResources, prefix: "Resources" },
-  {
-    collectionName: "author",
-    factory: getAuthorReferences,
-    prefix: "References",
-  },
-  {
-    collectionName: "product",
-    factory: getProductReferences,
-    prefix: "References",
-  },
-  {
-    collectionName: "technology",
-    factory: getTechnologyReferences,
-    prefix: "References",
-  },
-  {
-    collectionName: "topic",
-    factory: getTopicReferences,
-    prefix: "References",
-  },
+  tipConfig,
+  authorConfig,
+  productConfig,
+  technologyConfig,
+  topicConfig,
 ];
 
 export const rootPath = "sites/webstorm-guide";
@@ -49,9 +38,11 @@ export async function registerIncludes({
 
   for (const collection of newCollections) {
     await addCollection({
-      collectionName: collection.collectionName,
-      prefix: collection.prefix,
-      factory: collection.factory,
+      resourceTypeConfig: {
+        collectionName: collection.collectionName,
+        suffix: collection.suffix,
+        factory: collection.factory,
+      },
       eleventyConfig,
     });
   }
