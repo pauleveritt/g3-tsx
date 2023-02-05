@@ -4,8 +4,8 @@ import { validateResource } from "../../../src/validators";
 import path from "path";
 // @ts-ignore
 import Image from "@11ty/eleventy-img";
-import { imageOptions } from "../../config";
 import { EleventyCollectionItem, EleventyPage } from "../../../src/models";
+import { imageOptions } from "../../../src/registration";
 
 export const AuthorReference = Type.Intersect([
   Reference,
