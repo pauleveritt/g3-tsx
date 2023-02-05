@@ -2,13 +2,13 @@
 
 ## Now
 
-- Baked-in approach to E2E testing
-  - Replace render function with class AuthorsLayout extends View
-  - When rendering, grab the TestCases "filter" filter that has test cases
-  - Add the test cases for this view/page instance
-  - Later, an after-build step grabs TestCases instance
-  - It finds all the registered test cases
-  - Goes through build results, matches URL to test case, makes document, does assertions
+- Start some docs
+- Bring back readMarkdownTree
+- Land a proper `resourceType`
+- Create re-invented collections
+  - More automated via a call from eleventy config
+  - Pre-sorted `Set`
+  - 100% coverage
 
 ## Next
 
@@ -62,7 +62,11 @@
 - Individual pages for each reference type
 - Get rid of readMarkdownTree and duplicative tests
 - Reorg content models to getAuthors etc. to the actual resource
-
+- Baked-in approach to E2E testing that runs during build
+  - View renders have `this.addTestCase` to register some assertions for a resulting page at a URL
+  - After build, all the test cases are run, with an exception for violations
+- Move layouts out of the root, into `layouts/`
+- Move generic models out of `_includes` into `src`
 
 ## WS+CWM Issues
 
