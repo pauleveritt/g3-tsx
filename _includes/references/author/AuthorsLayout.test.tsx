@@ -1,5 +1,6 @@
-import { expect, it, test } from "vitest";
+import { expect, it, test, vi } from "vitest";
 import {
+  AuthorsContext,
   AuthorsLayout,
   AuthorsLayoutAuthor,
   AuthorsRenderProps,
@@ -35,10 +36,17 @@ test("should render AuthorsLayout", () => {
   const renderProps: AuthorsRenderProps = {
     collections: fixtures.collections,
     content: fixtures.content,
+    page: {
+      url: "/authors",
+    },
     title,
     subtitle,
   };
-  document.body.innerHTML = render.call({}, renderProps);
+  const addTestCase = vi.fn();
+  const context: AuthorsContext = {
+    addTestCase,
+  };
+  document.body.innerHTML = render.call(context, renderProps);
   const items: HTMLUListElement[] = screen.getAllByRole("link", {
     name: "Some Author",
   });

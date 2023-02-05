@@ -54,16 +54,16 @@ export type AuthorsRenderProps = {
   };
 };
 
-interface Context {
+export interface AuthorsContext {
   addTestCase(url: string, assertions: Assertions): void;
 }
 
 export function render(
-  this: Context,
+  this: AuthorsContext,
   { collections, content, title, subtitle, page }: AuthorsRenderProps
 ): JSX.Element {
   // Schedule a post-build validation for this view
-  this.addTestCase(page.url, [byRole({ role: "link", text: "Crusty Clown" })]);
+  this.addTestCase(page.url, [byRole({ role: "link", text: "Paul Everitt" })]);
 
   const authors: AuthorsLayoutAuthor[] = Object.values(
     collections.authorReferences

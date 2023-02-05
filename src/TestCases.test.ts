@@ -9,13 +9,17 @@ test("update document with content results", () => {
 test("run successful byRole assertion", () => {
   const assertion = byRole({ role: "link", text: "Target" });
   const newDocument = makeDocument(`<a href="/target">Target</a>`);
-  expect(() => assertion(newDocument.body)).not.toThrowError();
+  const body = newDocument.body;
+  const url = "/some-url";
+  expect(() => assertion(body, url)).not.toThrowError();
 });
 
 test("run failed byRole assertion", () => {
   const assertion = byRole({ role: "link", text: "Target" });
   const newDocument = makeDocument(`<a href="/target">XXXTarget</a>`);
-  expect(() => assertion(newDocument.body)).toThrowError();
+  const body = newDocument.body;
+  const url = "/some-url";
+  expect(() => assertion(body, url)).toThrowError();
 });
 
 test("run a test cases with no errors", () => {
