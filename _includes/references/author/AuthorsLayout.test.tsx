@@ -1,8 +1,6 @@
-import { expect, it, test, vi } from "vitest";
+import { expect, it, test } from "vitest";
 import {
-  AuthorsContext,
   AuthorsLayout,
-  AuthorsLayoutAuthor,
   AuthorsRenderProps,
   render,
 } from "./AuthorsLayout.11ty";
@@ -10,10 +8,7 @@ import { screen } from "@testing-library/dom";
 import fixtures from "../../fixtures";
 
 it("should make AuthorsLayout", () => {
-  const authors: AuthorsLayoutAuthor[] = [
-    { title: "Some Author", slug: "some-author" },
-    { title: "Another Author", slug: "another-author" },
-  ];
+  const authors = fixtures.authors;
   const title = "All Authors";
   const subtitle = "Some author subtitle text";
   const content = fixtures.content;
@@ -42,11 +37,7 @@ test("should render AuthorsLayout", () => {
     title,
     subtitle,
   };
-  const addTestCase = vi.fn();
-  const context: AuthorsContext = {
-    addTestCase,
-  };
-  document.body.innerHTML = render.call(context, renderProps);
+  document.body.innerHTML = render.call(fixtures.context, renderProps);
   const items: HTMLUListElement[] = screen.getAllByRole("link", {
     name: "Some Author",
   });

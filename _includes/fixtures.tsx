@@ -1,11 +1,12 @@
 import h from "vhtml";
 import { TipResource } from "./resources/tip/TipModels";
 import { AuthorReference } from "./references/author/AuthorModels";
-import { Collections, EleventyCollectionItem } from "./models";
+import { Collections, EleventyCollectionItem, SiteContext } from "./models";
 import { TechnologyReference } from "./references/technology/TechnologyModels";
 import { TopicReference } from "./references/topic/TopicModels";
 import { ProductReference } from "./references/product/ProductModels";
 import { rootPath } from "./config";
+import { vi } from "vitest";
 
 /**
  * Reusable test data
@@ -306,6 +307,11 @@ const collections: Collections = {
   productReferences,
 };
 
+const addTestCase = vi.fn();
+const context: SiteContext = {
+  addTestCase,
+};
+
 // Now assemble for export
 const fixtures = {
   authors,
@@ -317,5 +323,6 @@ const fixtures = {
   topics,
   products,
   all,
+  context,
 };
 export default fixtures;

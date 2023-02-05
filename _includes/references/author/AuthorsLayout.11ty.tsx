@@ -1,14 +1,11 @@
 import h, { JSX } from "vhtml";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
-import { Collections } from "../../models";
-import { Assertions, byRole } from "../../../src/TestCases";
+import { Collections, SiteContext } from "../../models";
+import { byRole } from "../../../src/TestCases";
+import { AuthorReference } from "./AuthorModels";
 
-export type AuthorsLayoutAuthor = {
-  title: string;
-  slug: string;
-};
 export type AuthorsLayoutProps = {
-  authors: AuthorsLayoutAuthor[];
+  authors: AuthorReference[];
   title: string;
   subtitle?: string;
   content: string;
@@ -26,7 +23,7 @@ export function AuthorsLayout({
       {authors.map((author) => {
         return (
           <li>
-            <a href={author.slug}>{author.title}</a>
+            <a href={author.url}>{author.title}</a>
           </li>
         );
       })}
@@ -54,25 +51,15 @@ export type AuthorsRenderProps = {
   };
 };
 
-export interface AuthorsContext {
-  addTestCase(url: string, assertions: Assertions): void;
-}
-
 export function render(
-  this: AuthorsContext,
+  this: SiteContext,
   { collections, content, title, subtitle, page }: AuthorsRenderProps
 ): JSX.Element {
   // Schedule a post-build validation for this view
   this.addTestCase(page.url, [byRole({ role: "link", text: "Paul Everitt" })]);
-
-  const authors: AuthorsLayoutAuthor[] = Object.values(
+  const authors: AuthorReference[] = Object.values(
     collections.authorReferences
-  ).map((author) => {
-    return {
-      title: author.title,
-      slug: author.slug,
-    };
-  });
+  ).sort((a, b) => (a.title.toLowerCase() < b.title.toLowerCase() ? -1 : 1));
   return (
     <AuthorsLayout
       authors={authors}

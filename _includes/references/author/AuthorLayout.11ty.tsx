@@ -1,7 +1,7 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
 import { AuthorReference } from "./AuthorModels";
-import { Collections } from "../../models";
+import { Collections, SiteContext } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import Thumbnail from "../../Image.11ty";
 
@@ -63,14 +63,17 @@ export type AuthorRenderProps = {
   content: string;
   page: {
     fileSlug: string;
+    url: string;
   };
 };
 
-export function render({
-  collections,
-  content,
-  page,
-}: AuthorRenderProps): JSX.Element {
+export function render(
+  this: SiteContext,
+  { collections, content, page }: AuthorRenderProps
+): JSX.Element {
+  // TODO Get a better test here
+  // this.addTestCase(page.url, [byRole({ role: "link", text: "Paul Everitt" })]);
+
   const { authorReferences } = collections;
   const author: AuthorReference = authorReferences[page.fileSlug];
   const { title, subtitle, thumbnail } = author;

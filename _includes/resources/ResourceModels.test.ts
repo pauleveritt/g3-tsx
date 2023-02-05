@@ -14,3 +14,11 @@ test("construct a resource", async () => {
   const validation = () => validateResource(Resource, result, "my-tip");
   expect(validation).not.to.throw();
 });
+
+// TODO Sunday
+// test("gets all resources", async () => {
+//   const allTips = fixtures.collections.allResources;
+//   const allResources = await getAllResources(allTips);
+//   const key = allResources[0].page.url;
+//   expect(allResources[key].title).to.equal("Some Tip");
+// });

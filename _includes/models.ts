@@ -4,6 +4,7 @@ import { TechnologyCollection } from "./references/technology/TechnologyModels";
 import { TopicCollection } from "./references/topic/TopicModels";
 import { Static, Type } from "@sinclair/typebox";
 import { ProductCollection } from "./references/product/ProductModels";
+import { Assertions } from "../src/TestCases";
 
 export const EleventyPage = Type.Object({
   // The common, page-oriented data 11ty passes in when it reads a Markdown file
@@ -53,3 +54,10 @@ export type Collections = {
   topicReferences: TopicCollection;
   productReferences: ProductCollection;
 };
+
+export interface SiteContext {
+  /**
+   * Used by view renders to grab the `this` object
+   */
+  addTestCase(url: string, assertions: Assertions): void;
+}

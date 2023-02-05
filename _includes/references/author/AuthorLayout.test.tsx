@@ -27,9 +27,10 @@ test("should render AuthorLayout", () => {
     content: fixtures.content,
     page: {
       fileSlug: fixtures.authors[0].slug,
+      url: "/some-url/",
     },
   };
-  document.body.innerHTML = render(renderProps);
+  document.body.innerHTML = render.call(fixtures.context, renderProps);
   const links: HTMLAnchorElement[] = screen.getAllByRole("link", {
     name: "resource",
   });
