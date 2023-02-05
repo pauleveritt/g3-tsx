@@ -1,6 +1,6 @@
 import { Static, Type } from "@sinclair/typebox";
 import { validateResource } from "../../../src/validators";
-import { getResource, Resource } from "../ResourceModels";
+import { getResource, Resource } from "../../../src/ResourceModels";
 import { EleventyCollectionItem, EleventyPage } from "../../../src/models";
 
 // noinspection JSUnusedGlobalSymbols

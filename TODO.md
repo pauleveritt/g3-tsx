@@ -2,8 +2,8 @@
 
 ## Now
 
-- Start some docs
-- Bring back readMarkdownTree
+
+
 - Land a proper `resourceType`
 - Create re-invented collections
   - More automated via a call from eleventy config
@@ -67,6 +67,7 @@
   - After build, all the test cases are run, with an exception for violations
 - Move layouts out of the root, into `layouts/`
 - Move generic models out of `_includes` into `src`
+- Start some docs
 
 ## WS+CWM Issues
 

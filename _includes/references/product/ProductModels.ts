@@ -1,4 +1,4 @@
-import { getReference, Reference } from "../ReferenceModels";
+import { getReference, Reference } from "../../../src/ReferenceModels";
 import { Static, Type } from "@sinclair/typebox";
 import { validateResource } from "../../../src/validators";
 import { EleventyCollectionItem, EleventyPage } from "../../../src/models";

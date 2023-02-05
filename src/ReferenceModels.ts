@@ -1,10 +1,6 @@
 import { Static, Type } from "@sinclair/typebox";
-import {
-  BaseResource,
-  getBaseResource,
-  Resource,
-} from "../resources/ResourceModels";
-import { EleventyPage } from "../../src/models";
+import { BaseResource, getBaseResource, Resource } from "./ResourceModels";
+import { EleventyPage } from "./models";
 
 export const Reference = Type.Intersect([
   BaseResource,

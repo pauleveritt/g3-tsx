@@ -1,5 +1,5 @@
 import { expect, it } from "vitest";
-import fixtures from "../fixtures";
+import fixtures from "../_includes/fixtures";
 import { getReference } from "./ReferenceModels";
 
 it("should use getReference to make a reference", () => {

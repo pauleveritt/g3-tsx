@@ -1,8 +1,8 @@
 import { expect, test } from "vitest";
 import { getResource, Resource } from "./ResourceModels";
-import { validateResource } from "../../src/validators";
-import fixtures from "../fixtures";
-import { getTip } from "./tip/TipModels";
+import { validateResource } from "./validators";
+import fixtures from "../_includes/fixtures";
+import { getTip } from "../_includes/resources/tip/TipModels";
 
 test("construct a resource", async () => {
   const { data, page } = fixtures.collections.tip[0];
