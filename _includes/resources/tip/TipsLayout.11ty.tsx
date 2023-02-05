@@ -1,5 +1,5 @@
 import h, { JSX } from "vhtml";
-import { Collections } from "../../models";
+import { SiteCollections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 
 export type TipsLayoutTip = {
@@ -46,7 +46,7 @@ export function TipsLayout({
 }
 
 export type TipsRenderProps = {
-  collections: Collections;
+  collections: SiteCollections;
   content: string;
   title: string;
   subtitle?: string;

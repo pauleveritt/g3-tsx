@@ -1,7 +1,7 @@
 import { getReference, Reference } from "../ReferenceModels";
 import { Static, Type } from "@sinclair/typebox";
 import { validateResource } from "../../../src/validators";
-import { EleventyCollectionItem, EleventyPage } from "../../models";
+import { EleventyCollectionItem, EleventyPage } from "../../../src/models";
 
 export const TechnologyReference = Type.Intersect([Reference]);
 export type TechnologyReference = Static<typeof TechnologyReference>;

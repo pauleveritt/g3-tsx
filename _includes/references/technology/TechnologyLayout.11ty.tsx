@@ -1,8 +1,9 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
-import { Collections, EleventyCollectionItem } from "../../models";
+import { SiteCollections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { TechnologyReference } from "./TechnologyModels";
+import { EleventyCollectionItem } from "../../../src/models";
 
 export type TechnologyLayoutResource = {
   title: string;
@@ -60,7 +61,7 @@ export function TechnologyLayout({
 }
 
 export type TechnologyRenderProps = {
-  collections: Collections;
+  collections: SiteCollections;
   content: string;
   page: {
     fileSlug: string;

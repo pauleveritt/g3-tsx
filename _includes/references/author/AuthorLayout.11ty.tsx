@@ -1,9 +1,10 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
 import { AuthorReference } from "./AuthorModels";
-import { Collections, SiteContext } from "../../models";
+import { SiteCollections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import Thumbnail from "../../Image.11ty";
+import { RenderContext } from "../../../src/models";
 
 export type AuthorLayoutResource = {
   title: string;
@@ -59,7 +60,7 @@ export function AuthorLayout({
 }
 
 export type AuthorRenderProps = {
-  collections: Collections;
+  collections: SiteCollections;
   content: string;
   page: {
     fileSlug: string;
@@ -68,7 +69,7 @@ export type AuthorRenderProps = {
 };
 
 export function render(
-  this: SiteContext,
+  this: RenderContext,
   { collections, content, page }: AuthorRenderProps
 ): JSX.Element {
   // TODO Get a better test here

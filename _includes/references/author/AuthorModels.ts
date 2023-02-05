@@ -1,11 +1,11 @@
 import { getReference, Reference } from "../ReferenceModels";
 import { Static, Type } from "@sinclair/typebox";
 import { validateResource } from "../../../src/validators";
-import { EleventyCollectionItem, EleventyPage } from "../../models";
 import path from "path";
 // @ts-ignore
 import Image from "@11ty/eleventy-img";
 import { imageOptions } from "../../config";
+import { EleventyCollectionItem, EleventyPage } from "../../../src/models";
 
 export const AuthorReference = Type.Intersect([
   Reference,

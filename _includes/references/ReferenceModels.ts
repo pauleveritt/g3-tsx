@@ -4,7 +4,7 @@ import {
   getBaseResource,
   Resource,
 } from "../resources/ResourceModels";
-import { EleventyPage } from "../models";
+import { EleventyPage } from "../../src/models";
 
 export const Reference = Type.Intersect([
   BaseResource,

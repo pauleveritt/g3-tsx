@@ -1,8 +1,9 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
-import { Collections, EleventyCollectionItem } from "../../models";
+import { SiteCollections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { TopicReference } from "./TopicModels";
+import { EleventyCollectionItem } from "../../../src/models";
 
 export type TopicLayoutResource = {
   title: string;
@@ -60,7 +61,7 @@ export function TopicLayout({
 }
 
 export type TopicRenderProps = {
-  collections: Collections;
+  collections: SiteCollections;
   content: string;
   page: {
     fileSlug: string;

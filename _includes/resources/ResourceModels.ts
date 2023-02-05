@@ -1,5 +1,5 @@
 import { Static, Type } from "@sinclair/typebox";
-import { EleventyPage } from "../models";
+import { EleventyPage } from "../../src/models";
 
 export const BaseResource = Type.Object({
   title: Type.String(),

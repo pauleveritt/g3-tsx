@@ -1,12 +1,13 @@
 import h from "vhtml";
 import { TipResource } from "./resources/tip/TipModels";
 import { AuthorReference } from "./references/author/AuthorModels";
-import { Collections, EleventyCollectionItem, SiteContext } from "./models";
+import { SiteCollections } from "./models";
 import { TechnologyReference } from "./references/technology/TechnologyModels";
 import { TopicReference } from "./references/topic/TopicModels";
 import { ProductReference } from "./references/product/ProductModels";
 import { rootPath } from "./config";
 import { vi } from "vitest";
+import { EleventyCollectionItem, RenderContext } from "../src/models";
 
 /**
  * Reusable test data
@@ -293,7 +294,7 @@ topics.forEach((topic) => (topicReferences[topic.label] = topic));
 const productReferences: { [key: string]: ProductReference } = {};
 products.forEach((product) => (productReferences[product.label] = product));
 
-const collections: Collections = {
+const collections: SiteCollections = {
   all,
   tip: tipItems,
   author: authorItems,
@@ -308,7 +309,7 @@ const collections: Collections = {
 };
 
 const addTestCase = vi.fn();
-const context: SiteContext = {
+const context: RenderContext = {
   addTestCase,
 };
 

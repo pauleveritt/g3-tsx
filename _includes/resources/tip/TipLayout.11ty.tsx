@@ -5,7 +5,7 @@ import TopNav from "../../pagenav/TopNav.11ty";
 import SeeAlso from "../../seealso/SeeAlso.11ty";
 import { TipResource } from "./TipModels";
 import SidebarLayout from "../../layouts/SidebarLayout.11ty";
-import { Collections } from "../../models";
+import { SiteCollections } from "../../models";
 import { AuthorReference } from "../../references/author/AuthorModels";
 import SidebarPublished from "../../sidebar/SidebarPublished.11ty";
 import Sidebar from "../../sidebar/Sidebar.11ty";
@@ -140,7 +140,7 @@ export function TipLayout({
 }
 
 export type TipRenderProps = {
-  collections: Collections;
+  collections: SiteCollections;
   content: string;
   page: {
     url: string;

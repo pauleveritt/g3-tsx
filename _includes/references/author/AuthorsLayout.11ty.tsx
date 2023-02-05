@@ -1,8 +1,9 @@
 import h, { JSX } from "vhtml";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
-import { Collections, SiteContext } from "../../models";
+import { SiteCollections } from "../../models";
 import { byRole } from "../../../src/TestCases";
 import { AuthorReference } from "./AuthorModels";
+import { RenderContext } from "../../../src/models";
 
 export type AuthorsLayoutProps = {
   authors: AuthorReference[];
@@ -42,7 +43,7 @@ export function AuthorsLayout({
 }
 
 export type AuthorsRenderProps = {
-  collections: Collections;
+  collections: SiteCollections;
   content: string;
   title: string;
   subtitle?: string;
@@ -52,7 +53,7 @@ export type AuthorsRenderProps = {
 };
 
 export function render(
-  this: SiteContext,
+  this: RenderContext,
   { collections, content, title, subtitle, page }: AuthorsRenderProps
 ): JSX.Element {
   // Schedule a post-build validation for this view

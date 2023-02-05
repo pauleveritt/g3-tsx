@@ -1,6 +1,6 @@
 import h, { JSX } from "vhtml";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
-import { Collections } from "../../models";
+import { SiteCollections } from "../../models";
 
 export type TechnologiesLayoutTechnology = {
   title: string;
@@ -44,7 +44,7 @@ export function TechnologiesLayout({
 }
 
 export type TechnologiesRenderProps = {
-  collections: Collections;
+  collections: SiteCollections;
   content: string;
   title: string;
   subtitle?: string;

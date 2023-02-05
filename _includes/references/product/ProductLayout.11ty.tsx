@@ -1,8 +1,9 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
-import { Collections, EleventyCollectionItem } from "../../models";
+import { SiteCollections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { ProductReference } from "./ProductModels";
+import { EleventyCollectionItem } from "../../../src/models";
 
 export type ProductLayoutResource = {
   title: string;
@@ -60,7 +61,7 @@ export function ProductLayout({
 }
 
 export type ProductRenderProps = {
-  collections: Collections;
+  collections: SiteCollections;
   content: string;
   page: {
     fileSlug: string;
@@ -80,6 +81,7 @@ export function render({
       // @ts-ignore
       return ci.data.products && ci.data.products.includes(product.label);
     })
+    // TODO Sunday
     .sort((ci1: EleventyCollectionItem, ci2: EleventyCollectionItem) => {
       if (ci1.data.title < ci2.data.title) {
         return -1;

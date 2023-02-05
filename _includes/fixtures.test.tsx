@@ -5,8 +5,8 @@ import { TipResource } from "./resources/tip/TipModels";
 import { AuthorReference } from "./references/author/AuthorModels";
 import { TechnologyReference } from "./references/technology/TechnologyModels";
 import { TopicReference } from "./references/topic/TopicModels";
-import { EleventyCollectionItem } from "./models";
 import { ProductReference } from "./references/product/ProductModels";
+import { EleventyCollectionItem } from "../src/models";
 
 it("should have valid fixture data", () => {
   const {
