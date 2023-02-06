@@ -27,6 +27,9 @@ const all: EleventyCollectionItem[] = [
       date: new Date("2023-02-02"),
       resourceType: "tip",
       author: "sa",
+      products: ["sp", "ap"],
+      technologies: ["st", "at"],
+      topics: ["st", "at"],
       thumbnail: "thumbnail.png",
     },
     page: {
@@ -180,6 +183,9 @@ const tips: TipResource[] = [
     url: all[0].page.url,
     resourceType: all[0].data.resourceType as string,
     author: all[0].data.author as string,
+    products: all[0].data.products,
+    technologies: all[0].data.technologies,
+    topics: all[0].data.topics,
     thumbnail: "thumbnail.png",
   },
   {
@@ -188,6 +194,8 @@ const tips: TipResource[] = [
     url: all[1].page.url,
     resourceType: all[1].data.resourceType as string,
     author: all[1].data.author as string,
+    products: all[1].data.products,
+    technologies: all[1].data.technologies,
     thumbnail: "thumbnail.png",
   },
 ];

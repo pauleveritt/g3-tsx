@@ -40,6 +40,6 @@ test("should render ProductLayout", () => {
   const links: HTMLAnchorElement[] = screen.getAllByRole("link", {
     name: "resource",
   });
-  expect(links.length).to.equal(1);
+  expect(links.length).to.equal(2);
   expect(links[0].href).to.equal("/tips/another-tip/");
 });
