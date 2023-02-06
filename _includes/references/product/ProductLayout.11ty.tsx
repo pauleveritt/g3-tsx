@@ -2,7 +2,6 @@
 import h, { JSX } from "vhtml";
 import { SiteCollections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
-import { ProductReference } from "./ProductModels";
 import { EleventyCollectionItem } from "../../../src/models";
 
 export type ProductLayoutResource = {
@@ -74,7 +73,11 @@ export function render({
   page,
 }: ProductRenderProps): JSX.Element {
   const { productReferences } = collections;
-  const product: ProductReference = productReferences[page.fileSlug];
+  const product = productReferences.get(page.fileSlug);
+  if (!product) {
+    throw new Error(`Product "${page.fileSlug}" not in collection`);
+  }
+
   const { title, subtitle } = product;
   const referenceResources: ProductLayoutResource[] = collections.all
     .filter((ci) => {

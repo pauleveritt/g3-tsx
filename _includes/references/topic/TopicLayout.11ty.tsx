@@ -2,7 +2,6 @@
 import h, { JSX } from "vhtml";
 import { SiteCollections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
-import { TopicReference } from "./TopicModels";
 import { EleventyCollectionItem } from "../../../src/models";
 
 export type TopicLayoutResource = {
@@ -74,7 +73,11 @@ export function render({
   page,
 }: TopicRenderProps): JSX.Element {
   const { topicReferences } = collections;
-  const topic: TopicReference = topicReferences[page.fileSlug];
+  const topic = topicReferences.get(page.fileSlug);
+  if (!topic) {
+    throw new Error(`Topic "${page.fileSlug}" not in collection`);
+  }
+
   const { title, subtitle } = topic;
   const referenceResources: TopicLayoutResource[] = Object.values(
     collections.all

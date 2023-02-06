@@ -1,13 +1,10 @@
 import h, { JSX } from "vhtml";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { SiteCollections } from "../../models";
+import { TopicReference } from "./TopicModels";
 
-export type TopicsLayoutTopic = {
-  title: string;
-  url: string;
-};
 export type TopicsLayoutProps = {
-  topics: TopicsLayoutTopic[];
+  topics: Iterable<TopicReference>;
   title: string;
   subtitle?: string;
   content: string;
@@ -22,7 +19,7 @@ export function TopicsLayout({
   const figure = undefined;
   const listing = (
     <ul>
-      {topics.map((topic) => {
+      {Array.from(topics).map((topic) => {
         return (
           <li>
             <a aria-label="resource" href={topic.url}>
@@ -58,18 +55,9 @@ export function render({
   title,
   subtitle,
 }: TopicsRenderProps): JSX.Element {
-  // Flatten/de-normalize the joins, e.g. topic
-  const topics: TopicsLayoutTopic[] = Object.values(
-    collections.topicReferences
-  ).map((topic) => {
-    return {
-      title: topic.title,
-      url: topic.url,
-    };
-  });
   return (
     <TopicsLayout
-      topics={topics}
+      topics={collections.topicReferences.values()}
       title={title}
       subtitle={subtitle}
       content={content}

@@ -28,7 +28,8 @@ it("should have valid fixture data", () => {
     ).not.toThrowError();
   });
   // Make sure our join works
-  expect(Object.keys(authorReferences)).to.contain(tips[0].author);
+  expect(authorReferences.get(tips[0].author)).to.exist;
+  // expect(Object.keys(authorReferences)).to.contain(tips[0].author);
 
   // Authors
   authors.forEach((author) => {

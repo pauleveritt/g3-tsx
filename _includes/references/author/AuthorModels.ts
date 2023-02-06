@@ -14,7 +14,7 @@ export const AuthorReference = Type.Intersect([
   }),
 ]);
 export type AuthorReference = Static<typeof AuthorReference>;
-export type AuthorCollection = { [name: string]: AuthorReference };
+export type AuthorCollection = Map<string, AuthorReference>;
 
 export async function getAuthor(
   data: any,

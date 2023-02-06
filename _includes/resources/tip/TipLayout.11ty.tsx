@@ -153,9 +153,15 @@ export function render({
   page,
 }: TipRenderProps): JSX.Element {
   const { tipResources, authorReferences } = collections;
-  const tip: TipResource = tipResources[page.url];
+  const tip = tipResources.get(page.url);
+  if (!tip) {
+    throw new Error(`Tip "${page.url}" not in collection`);
+  }
   const thisAuthor = tip.author as string;
-  const author: AuthorReference = authorReferences[thisAuthor];
+  const author = authorReferences.get(thisAuthor);
+  if (!author) {
+    throw new Error(`Author "${thisAuthor}" not in collection`);
+  }
 
   // If there is a tip.leadin, markdown convert it
   let leadin;

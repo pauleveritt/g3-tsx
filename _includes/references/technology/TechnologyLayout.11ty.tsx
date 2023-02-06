@@ -2,7 +2,6 @@
 import h, { JSX } from "vhtml";
 import { SiteCollections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
-import { TechnologyReference } from "./TechnologyModels";
 import { EleventyCollectionItem } from "../../../src/models";
 
 export type TechnologyLayoutResource = {
@@ -74,7 +73,11 @@ export function render({
   page,
 }: TechnologyRenderProps): JSX.Element {
   const { technologyReferences } = collections;
-  const technology: TechnologyReference = technologyReferences[page.fileSlug];
+  const technology = technologyReferences.get(page.fileSlug);
+  if (!technology) {
+    throw new Error(`Technology "${page.fileSlug}" not in collection`);
+  }
+
   const { title, subtitle } = technology;
   const referenceResources: TechnologyLayoutResource[] = collections.all
     .filter((ci) => {

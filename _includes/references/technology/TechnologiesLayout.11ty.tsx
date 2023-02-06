@@ -4,7 +4,7 @@ import { SiteCollections } from "../../models";
 import { TechnologyReference } from "./TechnologyModels";
 
 export type TechnologiesLayoutProps = {
-  technologies: TechnologyReference[];
+  technologies: Iterable<TechnologyReference>;
   title: string;
   subtitle?: string;
   content: string;
@@ -19,7 +19,7 @@ export function TechnologiesLayout({
   const figure = undefined;
   const listing = (
     <ul>
-      {technologies.map((technology) => {
+      {Array.from(technologies).map((technology) => {
         return (
           <li>
             <a href={technology.slug}>{technology.title}</a>
@@ -53,13 +53,9 @@ export function render({
   title,
   subtitle,
 }: TechnologiesRenderProps): JSX.Element {
-  // Flatten/de-normalize the joins, e.g. technology
-  const technologies: TechnologyReference[] = Object.values(
-    collections.technologyReferences
-  );
   return (
     <TechnologiesLayout
-      technologies={technologies}
+      technologies={collections.technologyReferences.values()}
       title={title}
       subtitle={subtitle}
       content={content}

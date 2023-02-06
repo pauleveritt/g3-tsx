@@ -1,6 +1,5 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
-import { AuthorReference } from "./AuthorModels";
 import { SiteCollections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import Thumbnail from "../../Image.11ty";
@@ -76,23 +75,17 @@ export function render(
   // this.addTestCase(page.url, [byRole({ role: "link", text: "Paul Everitt" })]);
 
   const { authorReferences } = collections;
-  const author: AuthorReference = authorReferences[page.fileSlug];
+  const author = authorReferences.get(page.fileSlug);
+  if (!author) {
+    throw new Error(`Author "${page.fileSlug}" not in collection`);
+  }
+
   const { title, subtitle, thumbnail } = author;
-  const referenceResources: AuthorLayoutResource[] = Object.values(
-    collections.authorReferences
+  const referenceResources: AuthorLayoutResource[] = Array.from(
+    collections.authorReferences.values()
   )
-    .filter((ci) => {
-      return ci.label === author.label;
-    })
-    .sort((ci1, ci2) => {
-      if (ci1.title < ci2.title) {
-        return -1;
-      }
-      if (ci1.title > ci2.title) {
-        return 1;
-      }
-      return 0;
-    })
+    .filter((ci) => ci.label === author.label)
+    .sort((a, b) => (a.title.toLowerCase() < b.title.toLowerCase() ? -1 : 1))
     .map((ci) => {
       return {
         title: ci.title,

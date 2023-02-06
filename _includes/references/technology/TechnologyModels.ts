@@ -5,7 +5,7 @@ import { EleventyPage } from "../../../src/models";
 
 export const TechnologyReference = Type.Intersect([Reference]);
 export type TechnologyReference = Static<typeof TechnologyReference>;
-export type TechnologyCollection = { [name: string]: TechnologyReference };
+export type TechnologyCollection = Map<string, TechnologyReference>;
 
 export async function getTechnology(
   data: any,

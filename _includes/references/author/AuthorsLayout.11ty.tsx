@@ -6,7 +6,7 @@ import { AuthorReference } from "./AuthorModels";
 import { RenderContext } from "../../../src/models";
 
 export type AuthorsLayoutProps = {
-  authors: AuthorReference[];
+  authors: Iterable<AuthorReference>;
   title: string;
   subtitle?: string;
   content: string;
@@ -21,7 +21,7 @@ export function AuthorsLayout({
   const figure = undefined;
   const listing = (
     <ul>
-      {authors.map((author) => {
+      {Array.from(authors).map((author) => {
         return (
           <li>
             <a href={author.url}>{author.title}</a>
@@ -58,12 +58,9 @@ export function render(
 ): JSX.Element {
   // Schedule a post-build validation for this view
   this.addTestCase(page.url, [byRole({ role: "link", text: "Paul Everitt" })]);
-  const authors: AuthorReference[] = Object.values(
-    collections.authorReferences
-  ).sort((a, b) => (a.title.toLowerCase() < b.title.toLowerCase() ? -1 : 1));
   return (
     <AuthorsLayout
-      authors={authors}
+      authors={collections.authorReferences.values()}
       title={title}
       subtitle={subtitle}
       content={content}

@@ -37,12 +37,12 @@ export async function addCollection({
         .sort((a, b) =>
           a.data.title.toLowerCase() < b.data.title.toLowerCase() ? -1 : 1
         );
-      const results: { [key: string]: BaseResource } = {};
+      const results: Map<string, BaseResource> = new Map();
       for (const { data, page } of collectionItems) {
         const thisResource: BaseResource = await factory(data, page);
         // @ts-ignore
         const thisKey = thisResource[attributeKey];
-        results[thisKey] = thisResource;
+        results.set(thisKey, thisResource);
       }
       return results;
     }

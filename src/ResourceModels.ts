@@ -59,15 +59,3 @@ export function getResource(
     resourceType,
   };
 }
-
-// TODO Sunday
-// export async function getAllResources(
-//   collectionItems: EleventyCollectionItem[]
-// ) {
-//   /* Called from eleventy.config.js to add all resources */
-//   const results: { [index: string]: Resource } = {};
-//   collectionItems.forEach((item) => {
-//     results[item.page.url] = getResource(item.data, item.page);
-//   });
-//   return results;
-// }

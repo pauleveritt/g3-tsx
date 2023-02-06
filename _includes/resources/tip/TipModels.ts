@@ -36,7 +36,7 @@ export const TipResource = Type.Intersect([
   }),
 ]);
 export type TipResource = Static<typeof TipResource>;
-export type TipCollection = { [name: string]: TipResource };
+export type TipCollection = Map<string, TipResource>;
 
 export async function getTip(
   data: any,

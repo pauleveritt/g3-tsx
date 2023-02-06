@@ -280,19 +280,19 @@ const products: ProductReference[] = [
     referenceResources: [],
   },
 ];
-const tipResources: { [key: string]: TipResource } = {};
-tips.forEach((tip) => (tipResources[tip.url] = tip));
-const authorReferences: { [key: string]: AuthorReference } = {};
+const tipResources: Map<string, TipResource> = new Map();
+tips.forEach((tip) => tipResources.set(tip.url, tip));
+const authorReferences: Map<string, AuthorReference> = new Map();
 
-authors.forEach((author) => (authorReferences[author.label] = author));
-const technologyReferences: { [key: string]: TechnologyReference } = {};
-technologies.forEach(
-  (technology) => (technologyReferences[technology.label] = technology)
+authors.forEach((author) => authorReferences.set(author.label, author));
+const technologyReferences: Map<string, TechnologyReference> = new Map();
+technologies.forEach((technology) =>
+  technologyReferences.set(technology.label, technology)
 );
-const topicReferences: { [key: string]: TopicReference } = {};
-topics.forEach((topic) => (topicReferences[topic.label] = topic));
-const productReferences: { [key: string]: ProductReference } = {};
-products.forEach((product) => (productReferences[product.label] = product));
+const topicReferences: Map<string, TopicReference> = new Map();
+topics.forEach((topic) => topicReferences.set(topic.label, topic));
+const productReferences: Map<string, ProductReference> = new Map();
+products.forEach((product) => productReferences.set(product.label, product));
 
 const collections: SiteCollections = {
   all,

@@ -1,16 +1,10 @@
 import h, { JSX } from "vhtml";
 import { SiteCollections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
+import { TipResource } from "./TipModels";
 
-export type TipsLayoutTip = {
-  title: string;
-  slug: string;
-  author: {
-    title: string;
-  };
-};
 export type TipsLayoutProps = {
-  tips: TipsLayoutTip[];
+  tips: Iterable<TipResource>;
   title: string;
   subtitle?: string;
   content: string;
@@ -25,7 +19,7 @@ export function TipsLayout({
   const figure = undefined;
   const listing = (
     <ul>
-      {tips.map((tip) => {
+      {Array.from(tips).map((tip) => {
         return (
           <li>
             <a href={tip.slug}>{tip.title}</a>
@@ -58,21 +52,9 @@ export function render({
   title,
   subtitle,
 }: TipsRenderProps): JSX.Element {
-  // Flatten/de-normalize the joins, e.g. author
-  const tips: TipsLayoutTip[] = Object.values(collections.tipResources).map(
-    (tip) => {
-      const authorResource = collections.authorReferences[tip.author];
-      const author = { title: authorResource.title };
-      return {
-        title: tip.title,
-        slug: tip.slug,
-        author,
-      };
-    }
-  );
   return (
     <TipsLayout
-      tips={tips}
+      tips={collections.tipResources.values()}
       title={title}
       subtitle={subtitle}
       content={content}

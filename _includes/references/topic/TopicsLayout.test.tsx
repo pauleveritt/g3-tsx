@@ -1,18 +1,10 @@
 import { expect, it, test } from "vitest";
-import {
-  TopicsLayout,
-  TopicsLayoutTopic,
-  TopicsRenderProps,
-  render,
-} from "./TopicsLayout.11ty";
+import { render, TopicsLayout, TopicsRenderProps } from "./TopicsLayout.11ty";
 import { screen } from "@testing-library/dom";
 import fixtures from "../../fixtures";
 
 it("should make TopicsLayout", () => {
-  const topics: TopicsLayoutTopic[] = [
-    { title: "Some Topic", url: "/topics/some-topic/" },
-    { title: "Another Topic", url: "/topics/another-topic/" },
-  ];
+  const topics = fixtures.collections.topicReferences.values();
   const title = "All Topics";
   const subtitle = "Some topic subtitle text";
   const content = fixtures.content;
@@ -25,7 +17,7 @@ it("should make TopicsLayout", () => {
   const items: HTMLUListElement[] = screen.getAllByRole("link", {
     name: "resource",
   });
-  expect(items[0].textContent).to.equal(topics[0].title);
+  expect(items[0].textContent).to.equal("Some Topic");
   expect(screen.getByText("world")).to.exist;
 });
 
