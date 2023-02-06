@@ -34,7 +34,7 @@ test("should render ProductsLayout", () => {
     title,
     subtitle,
   };
-  document.body.innerHTML = render(renderProps);
+  document.body.innerHTML = render.call(fixtures.context, renderProps);
   const items: HTMLUListElement[] = screen.getAllByRole("link", {
     name: "product",
   });

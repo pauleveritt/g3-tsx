@@ -1,8 +1,8 @@
 import { expect, it, test } from "vitest";
 import {
+  render,
   TechnologiesLayout,
   TechnologiesRenderProps,
-  render,
 } from "./TechnologiesLayout.11ty";
 import { screen } from "@testing-library/dom";
 import fixtures from "../../fixtures";
@@ -34,7 +34,7 @@ test("should render TechnologiesLayout", () => {
     title,
     subtitle,
   };
-  document.body.innerHTML = render(renderProps);
+  document.body.innerHTML = render.call(fixtures.context, renderProps);
   const items: HTMLUListElement[] = screen.getAllByRole("link", {
     name: "Some Technology",
   });

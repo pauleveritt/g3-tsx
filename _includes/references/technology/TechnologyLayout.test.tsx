@@ -32,7 +32,7 @@ test("should render TechnologyLayout", () => {
       fileSlug: fixtures.technologies[0].slug,
     },
   };
-  document.body.innerHTML = render(renderProps);
+  document.body.innerHTML = render.call(fixtures.context, renderProps);
   const links: HTMLAnchorElement[] = screen.getAllByRole("link", {
     name: "resource",
   });

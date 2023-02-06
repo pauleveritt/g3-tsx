@@ -1,5 +1,6 @@
 import h, { JSX } from "vhtml";
 import { BaseLayout } from "./BaseLayout.11ty";
+import { RenderContext } from "../../src/models";
 
 export type PageLayoutProps = {
   title: string;
@@ -25,6 +26,9 @@ export type PageRenderProps = {
   title: string;
 };
 
-export function render({ content, title }: PageRenderProps): JSX.Element {
+export function render(
+  this: RenderContext,
+  { content, title }: PageRenderProps
+): JSX.Element {
   return <PageLayout title={title}>{content}</PageLayout>;
 }

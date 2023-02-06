@@ -11,6 +11,7 @@ import SidebarPublished from "../../sidebar/SidebarPublished.11ty";
 import Sidebar from "../../sidebar/Sidebar.11ty";
 import MarkdownIt from "markdown-it";
 import VideoPlayer from "../../video/VideoPlayer.11ty";
+import { RenderContext } from "../../../src/models";
 
 export type TipLayoutProps = {
   author: AuthorReference;
@@ -147,11 +148,10 @@ export type TipRenderProps = {
   };
 };
 
-export function render({
-  collections,
-  content,
-  page,
-}: TipRenderProps): JSX.Element {
+export function render(
+  this: RenderContext,
+  { collections, content, page }: TipRenderProps
+): JSX.Element {
   const { tipResources, authorReferences } = collections;
   const tip = tipResources.get(page.url);
   if (!tip) {

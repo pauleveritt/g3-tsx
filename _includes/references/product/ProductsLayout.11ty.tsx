@@ -2,6 +2,7 @@ import h, { JSX } from "vhtml";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { SiteCollections } from "../../models";
 import { ProductReference } from "./ProductModels";
+import { RenderContext } from "../../../src/models";
 
 export type ProductsLayoutProps = {
   products: Iterable<ProductReference>;
@@ -49,12 +50,10 @@ export type ProductsRenderProps = {
   subtitle?: string;
 };
 
-export function render({
-  collections,
-  content,
-  title,
-  subtitle,
-}: ProductsRenderProps): JSX.Element {
+export function render(
+  this: RenderContext,
+  { collections, content, title, subtitle }: ProductsRenderProps
+): JSX.Element {
   return (
     <ProductsLayout
       products={collections.productReferences.values()}

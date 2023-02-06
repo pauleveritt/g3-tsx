@@ -2,6 +2,7 @@ import h, { JSX } from "vhtml";
 import { SiteCollections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { TipResource } from "./TipModels";
+import { RenderContext } from "../../../src/models";
 
 export type TipsLayoutProps = {
   tips: Iterable<TipResource>;
@@ -46,12 +47,10 @@ export type TipsRenderProps = {
   subtitle?: string;
 };
 
-export function render({
-  collections,
-  content,
-  title,
-  subtitle,
-}: TipsRenderProps): JSX.Element {
+export function render(
+  this: RenderContext,
+  { collections, content, title, subtitle }: TipsRenderProps
+): JSX.Element {
   return (
     <TipsLayout
       tips={collections.tipResources.values()}

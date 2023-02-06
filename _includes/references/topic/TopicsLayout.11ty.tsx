@@ -2,6 +2,7 @@ import h, { JSX } from "vhtml";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { SiteCollections } from "../../models";
 import { TopicReference } from "./TopicModels";
+import { RenderContext } from "../../../src/models";
 
 export type TopicsLayoutProps = {
   topics: Iterable<TopicReference>;
@@ -49,12 +50,10 @@ export type TopicsRenderProps = {
   subtitle?: string;
 };
 
-export function render({
-  collections,
-  content,
-  title,
-  subtitle,
-}: TopicsRenderProps): JSX.Element {
+export function render(
+  this: RenderContext,
+  { collections, content, title, subtitle }: TopicsRenderProps
+): JSX.Element {
   return (
     <TopicsLayout
       topics={collections.topicReferences.values()}

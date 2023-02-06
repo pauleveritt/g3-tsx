@@ -2,7 +2,7 @@
 import h, { JSX } from "vhtml";
 import { SiteCollections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
-import { EleventyCollectionItem } from "../../../src/models";
+import { EleventyCollectionItem, RenderContext } from "../../../src/models";
 
 export type ProductLayoutResource = {
   title: string;
@@ -67,11 +67,10 @@ export type ProductRenderProps = {
   };
 };
 
-export function render({
-  collections,
-  content,
-  page,
-}: ProductRenderProps): JSX.Element {
+export function render(
+  this: RenderContext,
+  { collections, content, page }: ProductRenderProps
+): JSX.Element {
   const { productReferences } = collections;
   const product = productReferences.get(page.fileSlug);
   if (!product) {

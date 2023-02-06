@@ -36,7 +36,7 @@ test("should render ProductLayout", () => {
       fileSlug: fixtures.products[0].slug,
     },
   };
-  document.body.innerHTML = render(renderProps);
+  document.body.innerHTML = render.call(fixtures.context, renderProps);
   const links: HTMLAnchorElement[] = screen.getAllByRole("link", {
     name: "resource",
   });

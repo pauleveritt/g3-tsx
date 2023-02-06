@@ -3,6 +3,7 @@ import h, { JSX } from "vhtml";
 import Navbar from "../navbar/Navbar.11ty";
 import site from "../site.json";
 import Footer from "../footer/Footer.11ty";
+import { RenderContext } from "../../src/models";
 
 export type BaseLayoutProps = {
   pageTitle: string;
@@ -45,6 +46,14 @@ export const BaseLayout = ({
   );
 };
 
-export const render = (data: any): JSX.Element => {
-  return <BaseLayout pageTitle={data.title}>{data.children}</BaseLayout>;
+export type BaseLayoutRenderProps = {
+  children: string[];
+  title: string;
 };
+
+export function render(
+  this: RenderContext,
+  { title, children }: BaseLayoutRenderProps
+): JSX.Element {
+  return <BaseLayout pageTitle={title}>{children}</BaseLayout>;
+}

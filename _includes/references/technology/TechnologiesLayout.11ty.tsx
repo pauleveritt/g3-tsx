@@ -2,6 +2,7 @@ import h, { JSX } from "vhtml";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { SiteCollections } from "../../models";
 import { TechnologyReference } from "./TechnologyModels";
+import { RenderContext } from "../../../src/models";
 
 export type TechnologiesLayoutProps = {
   technologies: Iterable<TechnologyReference>;
@@ -47,12 +48,10 @@ export type TechnologiesRenderProps = {
   subtitle?: string;
 };
 
-export function render({
-  collections,
-  content,
-  title,
-  subtitle,
-}: TechnologiesRenderProps): JSX.Element {
+export function render(
+  this: RenderContext,
+  { collections, content, title, subtitle }: TechnologiesRenderProps
+): JSX.Element {
   return (
     <TechnologiesLayout
       technologies={collections.technologyReferences.values()}

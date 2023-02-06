@@ -2,7 +2,7 @@
 import h, { JSX } from "vhtml";
 import { SiteCollections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
-import { EleventyCollectionItem } from "../../../src/models";
+import { EleventyCollectionItem, RenderContext } from "../../../src/models";
 
 export type TechnologyLayoutResource = {
   title: string;
@@ -67,11 +67,10 @@ export type TechnologyRenderProps = {
   };
 };
 
-export function render({
-  collections,
-  content,
-  page,
-}: TechnologyRenderProps): JSX.Element {
+export function render(
+  this: RenderContext,
+  { collections, content, page }: TechnologyRenderProps
+): JSX.Element {
   const { technologyReferences } = collections;
   const technology = technologyReferences.get(page.fileSlug);
   if (!technology) {

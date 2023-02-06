@@ -2,7 +2,7 @@
 import h, { JSX } from "vhtml";
 import { SiteCollections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
-import { EleventyCollectionItem } from "../../../src/models";
+import { EleventyCollectionItem, RenderContext } from "../../../src/models";
 
 export type TopicLayoutResource = {
   title: string;
@@ -67,11 +67,10 @@ export type TopicRenderProps = {
   };
 };
 
-export function render({
-  collections,
-  content,
-  page,
-}: TopicRenderProps): JSX.Element {
+export function render(
+  this: RenderContext,
+  { collections, content, page }: TopicRenderProps
+): JSX.Element {
   const { topicReferences } = collections;
   const topic = topicReferences.get(page.fileSlug);
   if (!topic) {
