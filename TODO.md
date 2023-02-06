@@ -4,15 +4,8 @@
 
 
 
-- Land a proper `resourceType`
-- Create re-invented collections
-  - More automated via a call from eleventy config
-  - Pre-sorted `Set`
-  - 100% coverage
-
 ## Next
 
-- De-prop the layouts
 - Make schemas for just the frontmatter part
 - Get a placeholder.jpg into the site
 
@@ -68,6 +61,11 @@
 - Move layouts out of the root, into `layouts/`
 - Move generic models out of `_includes` into `src`
 - Start some docs
+- Land a proper `resourceType`
+- Create re-invented collections
+  - More automated via a call from eleventy config
+  - Pre-sorted `Set`
+- De-prop the layouts
 
 ## WS+CWM Issues
 
