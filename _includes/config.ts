@@ -1,7 +1,7 @@
 import { Assertions, TestCases } from "../src/TestCases";
 import {
-  addCollection,
   CollectionApi,
+  getAllCollections,
   RegisterIncludesProps,
 } from "../src/registration";
 
@@ -10,11 +10,6 @@ import { authorConfig } from "./references/author";
 import { productConfig } from "./references/product";
 import { technologyConfig } from "./references/technology";
 import { topicConfig } from "./references/topic";
-import {
-  BaseResource,
-  getResource,
-  getResourceType,
-} from "../src/ResourceModels";
 
 const newCollections = [
   tipConfig,
@@ -29,6 +24,8 @@ export const rootPath = "sites/webstorm-guide";
 export async function registerIncludes({
   eleventyConfig,
 }: RegisterIncludesProps) {
+  let allCollections: any;
+
   eleventyConfig.addExtension(["11ty.jsx", "11ty.ts", "11ty.tsx"], {
     key: "11ty.js",
   });
@@ -47,34 +44,37 @@ export async function registerIncludes({
   eleventyConfig.addCollection(
     `allResources`,
     async function (collectionApi: CollectionApi) {
-      const collectionItems = collectionApi
-        .getAll()
-        .filter((ci) => "author" in ci.data)
-        .sort((a, b) =>
-          a.data.title.toLowerCase() < b.data.title.toLowerCase() ? -1 : 1
-        );
-      const results: Map<string, BaseResource> = new Map();
-      for (const { data, page } of collectionItems) {
-        const resourceType = getResourceType(data, page);
-        const thisResource: BaseResource = getResource(
-          data,
-          page,
-          resourceType
-        );
-        // @ts-ignore
-        const thisKey = thisResource.url;
-        results.set(thisKey, thisResource);
-      }
-      return results;
+      // Get all the collection results
+      allCollections = await getAllCollections({
+        collectionApi,
+        newCollections,
+      });
+
+      return allCollections.allResources;
     }
   );
 
+  // Now all the other entity-specific collections
   for (const collection of newCollections) {
-    await addCollection({
-      resourceTypeConfig: {
-        ...collection,
-      },
-      eleventyConfig,
+    const collectionName = `${collection.collectionName}${collection.suffix}`;
+    eleventyConfig.addCollection(collectionName, async function () {
+      return allCollections[collectionName];
     });
   }
+
+  // eleventyConfig.addCollection("authorReferences", async function () {
+  //   return allCollections.authorReferences;
+  // });
+  //
+  // eleventyConfig.addCollection("productReferences", async function () {
+  //   return allCollections.productReferences;
+  // });
+  //
+  // eleventyConfig.addCollection("topicReferences", async function () {
+  //   return allCollections.topicReferences;
+  // });
+  //
+  // eleventyConfig.addCollection("technologyReferences", async function () {
+  //   return allCollections.technologyReferences;
+  // });
 }

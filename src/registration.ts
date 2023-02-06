@@ -1,10 +1,9 @@
 /**
  * Content registration in a site
  */
-import { EleventyCollectionItem, EleventyData, EleventyPage } from "./models";
+import { EleventyCollectionItem, EleventyPage } from "./models";
 import { UserConfig } from "@11ty/eleventy";
-import { Reference } from "./ReferenceModels";
-import { BaseResource } from "./ResourceModels";
+import { BaseResource, getResource, getResourceType } from "./ResourceModels";
 
 export type CollectionApi = {
   getAll(): EleventyCollectionItem[];
@@ -26,29 +25,52 @@ export type AddCollectionProps = {
   eleventyConfig: UserConfig;
 };
 
-export async function addCollection({
-  resourceTypeConfig: { collectionName, attributeKey, suffix, factory },
-  eleventyConfig,
-}: AddCollectionProps) {
-  eleventyConfig.addCollection(
-    `${collectionName}${suffix}`,
-    async function (collectionApi: CollectionApi) {
-      const collectionItems = collectionApi
-        .getAll()
-        .filter((ci) => ci.data.resourceType === collectionName)
-        .sort((a, b) =>
-          a.data.title.toLowerCase() < b.data.title.toLowerCase() ? -1 : 1
-        );
-      const results: Map<string, BaseResource> = new Map();
-      for (const { data, page } of collectionItems) {
-        const thisResource: BaseResource = await factory(data, page);
-        // @ts-ignore
-        const thisKey = thisResource[attributeKey];
-        results.set(thisKey, thisResource);
-      }
-      return results;
-    }
+export type GetAllCollectionsProps = {
+  collectionApi: CollectionApi;
+  newCollections: ResourceTypeConfig[];
+};
+
+export async function getAllCollections({
+  collectionApi,
+  newCollections,
+}: GetAllCollectionsProps) {
+  // This what we'll return
+  const allCollections: any = {};
+
+  const allCollectionItems = collectionApi.getAll();
+  const allResourceItems = allCollectionItems.filter(
+    (ci) => "author" in ci.data
   );
+  const allResources: Map<string, BaseResource> = new Map();
+  for (const { data, page } of allResourceItems) {
+    const resourceType = getResourceType(data, page);
+    const thisResource: BaseResource = getResource(data, page, resourceType);
+    // @ts-ignore
+    const thisKey = thisResource.url;
+    allResources.set(thisKey, thisResource);
+  }
+  allCollections.allResources = allResources;
+
+  // Let's now add the reference collections
+  for (const collection of newCollections) {
+    const { collectionName, attributeKey, suffix, factory } = collection;
+    const collectionItems = allCollectionItems
+      .filter((ci) => ci.data.resourceType === collectionName)
+      .sort((a, b) =>
+        a.data.title.toLowerCase() < b.data.title.toLowerCase() ? -1 : 1
+      );
+    const results: Map<string, BaseResource> = new Map();
+    for (const { data, page } of collectionItems) {
+      const thisResource: BaseResource = await factory(data, page);
+      // @ts-ignore
+      const thisKey = thisResource[attributeKey];
+      results.set(thisKey, thisResource);
+    }
+    const thisKey = `${collectionName}${suffix}`;
+    allCollections[thisKey] = results;
+  }
+
+  return allCollections;
 }
 
 export type ImageOptions = {
@@ -63,20 +85,3 @@ export const imageOptions: ImageOptions = {
   outputDir: "./public/assets/img/",
   urlPath: "/assets/img/",
 };
-
-export type GetReferencesProps = {
-  collectionItems: EleventyCollectionItem[];
-  factory(data: EleventyData, page: EleventyPage): Promise<any>;
-};
-
-export async function getReferences({
-  collectionItems,
-  factory,
-}: GetReferencesProps) {
-  const results: { [index: string]: Reference } = {};
-  for (const item of collectionItems) {
-    const thisReference = await factory(item.data, item.page);
-    results[thisReference.label] = thisReference;
-  }
-  return results;
-}

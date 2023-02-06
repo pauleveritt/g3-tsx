@@ -51,6 +51,9 @@ export function render(
   this: RenderContext,
   { collections, content, title, subtitle }: TipsRenderProps
 ): JSX.Element {
+  // When returning...
+  // In tips, I want the flattened resources. But tipResources isn't flattened.
+  // The referenceMap has flattened. But not actual TipResource objects.
   return (
     <TipsLayout
       tips={collections.tipResources.values()}
