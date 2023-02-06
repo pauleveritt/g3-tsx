@@ -38,9 +38,6 @@ export async function registerIncludes({
     }
   );
 
-  // Make the primary collections.allResources used by everybody else
-  // TODO Tried putting this in registration but it caused the next line
-  //    of iterating through collection registrations to never run.
   eleventyConfig.addCollection(
     `allResources`,
     async function (collectionApi: CollectionApi) {
@@ -61,20 +58,4 @@ export async function registerIncludes({
       return allCollections[collectionName];
     });
   }
-
-  // eleventyConfig.addCollection("authorReferences", async function () {
-  //   return allCollections.authorReferences;
-  // });
-  //
-  // eleventyConfig.addCollection("productReferences", async function () {
-  //   return allCollections.productReferences;
-  // });
-  //
-  // eleventyConfig.addCollection("topicReferences", async function () {
-  //   return allCollections.topicReferences;
-  // });
-  //
-  // eleventyConfig.addCollection("technologyReferences", async function () {
-  //   return allCollections.technologyReferences;
-  // });
 }

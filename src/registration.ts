@@ -20,11 +20,6 @@ export type ResourceTypeConfig = {
   factory(data: any, page: EleventyPage): Promise<BaseResource>;
 };
 
-export type AddCollectionProps = {
-  resourceTypeConfig: ResourceTypeConfig;
-  eleventyConfig: UserConfig;
-};
-
 export type GetAllCollectionsProps = {
   collectionApi: CollectionApi;
   newCollections: ResourceTypeConfig[];
