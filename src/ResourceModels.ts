@@ -16,6 +16,7 @@ export type BaseResource = Static<typeof BaseResource>;
 export const Resource = Type.Intersect([
   BaseResource,
   Type.Object({
+    thumbnail: Type.String(),
     author: Type.String(),
     technologies: Type.Optional(Type.Array(Type.String())),
     topics: Type.Optional(Type.Array(Type.String())),
@@ -57,6 +58,7 @@ export function getResource(
     body: data.content,
     excerpt: data.excerpt,
     author: data.author,
+    thumbnail: data.thumbnail,
     resourceType,
   };
 }

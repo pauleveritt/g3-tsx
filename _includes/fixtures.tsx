@@ -180,6 +180,7 @@ const tips: TipResource[] = [
     url: all[0].page.url,
     resourceType: all[0].data.resourceType as string,
     author: all[0].data.author as string,
+    thumbnail: "thumbnail.png",
   },
   {
     title: all[1].data.title,
@@ -187,6 +188,7 @@ const tips: TipResource[] = [
     url: all[1].page.url,
     resourceType: all[1].data.resourceType as string,
     author: all[1].data.author as string,
+    thumbnail: "thumbnail.png",
   },
 ];
 

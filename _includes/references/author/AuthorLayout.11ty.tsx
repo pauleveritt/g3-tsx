@@ -82,9 +82,9 @@ export function render(
 
   const { title, subtitle, thumbnail } = author;
   const referenceResources: AuthorLayoutResource[] = Array.from(
-    collections.authorReferences.values()
+    collections.allResources.values()
   )
-    .filter((ci) => ci.label === author.label)
+    .filter((ci) => ci.author === author.label)
     .sort((a, b) => (a.title.toLowerCase() < b.title.toLowerCase() ? -1 : 1))
     .map((ci) => {
       return {

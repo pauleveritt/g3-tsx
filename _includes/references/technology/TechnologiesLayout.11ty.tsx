@@ -22,7 +22,7 @@ export function TechnologiesLayout({
       {Array.from(technologies).map((technology) => {
         return (
           <li>
-            <a href={technology.slug}>{technology.title}</a>
+            <a href={technology.url}>{technology.title}</a>
           </li>
         );
       })}
