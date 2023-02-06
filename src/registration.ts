@@ -3,7 +3,12 @@
  */
 import { EleventyCollectionItem, EleventyPage } from "./models";
 import { UserConfig } from "@11ty/eleventy";
-import { BaseResource, getResource, getResourceType } from "./ResourceModels";
+import {
+  BaseResource,
+  getResource,
+  getResourceType,
+  Resource,
+} from "./ResourceModels";
 
 export type CollectionApi = {
   getAll(): EleventyCollectionItem[];
@@ -36,10 +41,10 @@ export async function getAllCollections({
   const allResourceItems = allCollectionItems.filter(
     (ci) => "author" in ci.data
   );
-  const allResources: Map<string, BaseResource> = new Map();
+  const allResources: Map<string, Resource> = new Map();
   for (const { data, page } of allResourceItems) {
     const resourceType = getResourceType(data, page);
-    const thisResource: BaseResource = getResource(data, page, resourceType);
+    const thisResource: Resource = getResource(data, page, resourceType);
     // @ts-ignore
     const thisKey = thisResource.url;
     allResources.set(thisKey, thisResource);
@@ -63,6 +68,26 @@ export async function getAllCollections({
     }
     const thisKey = `${collectionName}${suffix}`;
     allCollections[thisKey] = results;
+  }
+
+  // With this in place, we can de-reference resources.
+  // @ts-ignore
+  for (const [url, resource] of allCollections.tipResources) {
+    resource.references = {
+      author: allCollections.authorReferences.get("pwe"),
+    };
+    if (resource.technologies) {
+      resource.references.technologies = resource.technologies.map(
+        (label: string) => {
+          return allCollections.technologyReferences.get(label);
+        }
+      );
+    }
+    if (resource.topics) {
+      resource.references.topics = resource.topics.map((label: string) => {
+        return allCollections.topicReferences.get(label);
+      });
+    }
   }
 
   return allCollections;

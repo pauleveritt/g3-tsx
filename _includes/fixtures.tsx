@@ -175,31 +175,6 @@ const all: EleventyCollectionItem[] = [
   },
 ];
 
-const tipItems = [all[0], all[1]];
-const tips: TipResource[] = [
-  {
-    title: all[0].data.title,
-    slug: all[0].page.fileSlug,
-    url: all[0].page.url,
-    resourceType: all[0].data.resourceType as string,
-    author: all[0].data.author as string,
-    products: all[0].data.products,
-    technologies: all[0].data.technologies,
-    topics: all[0].data.topics,
-    thumbnail: "thumbnail.png",
-  },
-  {
-    title: all[1].data.title,
-    slug: all[1].page.fileSlug,
-    url: all[1].page.url,
-    resourceType: all[1].data.resourceType as string,
-    author: all[1].data.author as string,
-    products: all[1].data.products,
-    technologies: all[1].data.technologies,
-    thumbnail: "thumbnail.png",
-  },
-];
-
 const authorItems = [all[2], all[3]];
 const authors: AuthorReference[] = [
   {
@@ -291,6 +266,39 @@ const products: ProductReference[] = [
     referenceResources: [],
   },
 ];
+
+const tipItems = [all[0], all[1]];
+const tips: TipResource[] = [
+  {
+    title: all[0].data.title,
+    slug: all[0].page.fileSlug,
+    url: all[0].page.url,
+    resourceType: all[0].data.resourceType as string,
+    author: all[0].data.author as string,
+    products: all[0].data.products,
+    technologies: all[0].data.technologies,
+    topics: all[0].data.topics,
+    thumbnail: "thumbnail.png",
+    references: {
+      author: authors[0],
+      technologies: [...technologies],
+      topics: [...topics],
+      products: [...products],
+    },
+  },
+  {
+    title: all[1].data.title,
+    slug: all[1].page.fileSlug,
+    url: all[1].page.url,
+    resourceType: all[1].data.resourceType as string,
+    author: all[1].data.author as string,
+    products: all[1].data.products,
+    technologies: all[1].data.technologies,
+    thumbnail: "thumbnail.png",
+    references: { author: authors[1] },
+  },
+];
+
 const tipResources: Map<string, TipResource> = new Map();
 tips.forEach((tip) => tipResources.set(tip.url, tip));
 const authorReferences: Map<string, AuthorReference> = new Map();
