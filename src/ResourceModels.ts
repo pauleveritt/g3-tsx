@@ -24,6 +24,7 @@ export const Resource = Type.Intersect([
 ]);
 
 export type Resource = Static<typeof Resource>;
+export type ResourceCollection = Map<string, Resource>;
 
 export function getBaseResource(
   data: any,
@@ -58,4 +59,19 @@ export function getResource(
     author: data.author,
     resourceType,
   };
+}
+
+export function getResourceType(data: any, page: EleventyPage): string {
+  /* Determine the resource type based on some policies */
+  if (data.resourceType) {
+    return data.resourceType;
+  }
+
+  // The data cascade should return a resourceType
+  try {
+    return data.resourceType;
+  } catch (e) {
+    const msg = `Page at "${page.url} does not have a resourceType`;
+    throw new Error(msg);
+  }
 }

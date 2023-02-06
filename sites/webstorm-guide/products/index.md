@@ -1,5 +1,4 @@
 ---
-eleventyExcludeFromCollections: true
 resourceType: page
 title: Products
 subtitle: All the info about products TODO

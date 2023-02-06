@@ -1,5 +1,4 @@
 ---
-eleventyExcludeFromCollections: true
 resourceType: page
 title: Tips
 subtitle: All the info about tips TODO

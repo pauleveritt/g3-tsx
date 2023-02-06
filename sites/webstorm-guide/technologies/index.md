@@ -1,5 +1,4 @@
 ---
-eleventyExcludeFromCollections: true
 resourceType: page
 title: Technologies
 subtitle: All the info about technologies TODO

@@ -8,6 +8,7 @@ import { ProductReference } from "./references/product/ProductModels";
 import { rootPath } from "./config";
 import { vi } from "vitest";
 import { EleventyCollectionItem, RenderContext } from "../src/models";
+import { Resource } from "../src/ResourceModels";
 
 /**
  * Reusable test data
@@ -293,19 +294,17 @@ const topicReferences: Map<string, TopicReference> = new Map();
 topics.forEach((topic) => topicReferences.set(topic.label, topic));
 const productReferences: Map<string, ProductReference> = new Map();
 products.forEach((product) => productReferences.set(product.label, product));
+const allResources: Map<string, Resource> = new Map();
+[...tips].forEach((resource) => allResources.set(resource.url, resource));
 
 const collections: SiteCollections = {
   all,
-  tip: tipItems,
-  author: authorItems,
-  technology: technologyItems,
-  topic: topicItems,
-  product: productItems,
   tipResources,
   authorReferences,
   technologyReferences,
   topicReferences,
   productReferences,
+  allResources,
 };
 
 const addTestCase = vi.fn();
@@ -316,13 +315,18 @@ const context: RenderContext = {
 // Now assemble for export
 const fixtures = {
   authors,
+  authorItems,
   children,
   collections,
   content,
   technologies,
+  technologyItems,
   tips,
+  tipItems,
   topics,
+  topicItems,
   products,
+  productItems,
   all,
   context,
 };

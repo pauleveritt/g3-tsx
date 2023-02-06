@@ -7,6 +7,7 @@ import { Reference } from "./ReferenceModels";
 import { BaseResource } from "./ResourceModels";
 
 export type CollectionApi = {
+  getAll(): EleventyCollectionItem[];
   getFilteredByTag(a: string): EleventyCollectionItem[];
 };
 export type RegisterIncludesProps = {
@@ -33,7 +34,8 @@ export async function addCollection({
     `${collectionName}${suffix}`,
     async function (collectionApi: CollectionApi) {
       const collectionItems = collectionApi
-        .getFilteredByTag(collectionName)
+        .getAll()
+        .filter((ci) => ci.data.resourceType === collectionName)
         .sort((a, b) =>
           a.data.title.toLowerCase() < b.data.title.toLowerCase() ? -1 : 1
         );

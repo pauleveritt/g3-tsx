@@ -1,5 +1,4 @@
 ---
-eleventyExcludeFromCollections: true
 resourceType: page
 title: Authors
 subtitle: All the info about authors TODO

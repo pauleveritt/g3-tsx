@@ -13,6 +13,7 @@ it("should have valid fixture data", () => {
     children,
     tips,
     authors,
+    authorItems,
     collections,
     technologies,
     topics,
@@ -60,7 +61,7 @@ it("should have valid fixture data", () => {
   });
 
   // The all collection
-  collections.author.forEach((ci) => {
+  authorItems.forEach((ci) => {
     expect(() =>
       validateResource(EleventyCollectionItem, ci, "my-tip")
     ).not.toThrowError();

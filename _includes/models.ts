@@ -3,14 +3,11 @@ import { AuthorCollection } from "./references/author/AuthorModels";
 import { TechnologyCollection } from "./references/technology/TechnologyModels";
 import { TopicCollection } from "./references/topic/TopicModels";
 import { ProductCollection } from "./references/product/ProductModels";
-import { Collections, EleventyCollectionItem } from "../src/models";
+import { Collections } from "../src/models";
+import { ResourceCollection } from "../src/ResourceModels";
 
 export type SiteCollections = {
-  tip: EleventyCollectionItem[];
-  author: EleventyCollectionItem[];
-  technology: EleventyCollectionItem[];
-  topic: EleventyCollectionItem[];
-  product: EleventyCollectionItem[];
+  allResources: ResourceCollection;
   tipResources: TipCollection;
   authorReferences: AuthorCollection;
   technologyReferences: TechnologyCollection;
