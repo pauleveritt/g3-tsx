@@ -18,24 +18,34 @@ export function TechnologiesLayout({
   content,
 }: TechnologiesLayoutProps): JSX.Element {
   const figure = undefined;
-  const listing = (
-    <ul>
-      {Array.from(technologies).map((technology) => {
-        return (
-          <li>
-            <a href={technology.url}>{technology.title}</a>
-          </li>
-        );
-      })}
-    </ul>
-  );
+  const listing: string[] =
+    technologies &&
+    Array.from(technologies).map((technology) => (
+      <a className="bd-link" href={technology.url}>
+        <h2 className="bd-link-name">
+          <figure className="bd-link-figure">
+            <div className="image is-64x64">
+              <img
+                src={technology.logo}
+                alt={technology.title}
+                className="bio-resourcecard-logo"
+              />
+            </div>
+          </figure>
+          {technology.title}
+        </h2>
+        {technology.subtitle && (
+          <p className="bd-link-subtitle">{technology.subtitle}</p>
+        )}
+      </a>
+    ));
 
   return (
     <ReferenceLayout
       title={title}
       subtitle={subtitle}
       figure={figure}
-      listing={[listing]}
+      listing={[listing.join("")]}
       content={content}
     />
   );

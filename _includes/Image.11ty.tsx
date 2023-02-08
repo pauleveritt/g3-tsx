@@ -6,7 +6,7 @@ import { imageOptions } from "../src/registration";
 export type ImageProps = {
   src: string;
   alt?: string;
-  className: string;
+  className?: string;
 };
 
 const Thumbnail = ({ src, alt, className }: ImageProps): JSX.Element => {
@@ -14,8 +14,8 @@ const Thumbnail = ({ src, alt, className }: ImageProps): JSX.Element => {
   Image(src, imageOptions);
 
   const attributes = {
-    class: className,
     alt,
+    class: className,
     sizes: "100vw",
     loading: "lazy",
     decoding: "async",

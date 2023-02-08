@@ -20,16 +20,15 @@ export async function getAuthor(
   data: any,
   page: EleventyPage
 ): Promise<AuthorReference> {
+  // we know we have a thumbnail, fix it to the correct path
+  const dirname = path.dirname(page.inputPath);
+  const thumbnail = path.join(dirname, data.thumbnail);
   const reference: AuthorReference = getReference(
     data,
     page,
     "author"
   ) as AuthorReference;
-
-  // we know we have a thumbnail
-  // now fix it to the correct path
-  const dirname = path.dirname(page.inputPath);
-  reference.thumbnail = path.join(dirname, data.thumbnail);
+  reference.thumbnail = thumbnail;
 
   validateResource(AuthorReference, reference, page.url);
 

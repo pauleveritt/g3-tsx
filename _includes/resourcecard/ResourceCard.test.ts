@@ -1,12 +1,13 @@
 import { expect, test } from "vitest";
 import { screen } from "@testing-library/dom";
 
-import ResourceCard, { ResourceCardProps } from "./ResourceCard.11ty";
-
-const props: ResourceCardProps = {};
+import ResourceCard from "./ResourceCard.11ty";
+import fixtures from "../fixtures";
 
 test("ResourceCard", () => {
-  document.body.innerHTML = ResourceCard(props);
-  const result = screen.getByRole("button");
-  expect(result).to.exist;
+  const resource = fixtures.tips[0];
+
+  document.body.innerHTML = ResourceCard({ resource });
+  const result: HTMLImageElement = screen.getByAltText("Logo");
+  expect(result.src).to.equal(resource.thumbnail);
 });

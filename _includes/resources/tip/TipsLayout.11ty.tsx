@@ -3,6 +3,7 @@ import { SiteCollections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { TipResource } from "./TipModels";
 import { RenderContext } from "../../../src/models";
+import ResourceCard from "../../resourcecard/ResourceCard.11ty";
 
 export type TipsLayoutProps = {
   tips: Iterable<TipResource>;
@@ -21,11 +22,7 @@ export function TipsLayout({
   const listing = (
     <ul>
       {Array.from(tips).map((tip) => {
-        return (
-          <li>
-            <a href={tip.slug}>{tip.title}</a>
-          </li>
-        );
+        return <ResourceCard resource={tip}></ResourceCard>;
       })}
     </ul>
   );
@@ -51,9 +48,6 @@ export function render(
   this: RenderContext,
   { collections, content, title, subtitle }: TipsRenderProps
 ): JSX.Element {
-  // When returning...
-  // In tips, I want the flattened resources. But tipResources isn't flattened.
-  // The referenceMap has flattened. But not actual TipResource objects.
   return (
     <TipsLayout
       tips={collections.tipResources.values()}

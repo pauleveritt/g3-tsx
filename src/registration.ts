@@ -74,7 +74,10 @@ export async function getAllCollections({
   // @ts-ignore
   for (const [url, resource] of allCollections.tipResources) {
     resource.references = {
-      author: allCollections.authorReferences.get("pwe"),
+      author: allCollections.authorReferences.get(resource.author),
+      products: [],
+      technologies: [],
+      topics: [],
     };
     if (resource.technologies) {
       resource.references.technologies = resource.technologies.map(
@@ -82,6 +85,11 @@ export async function getAllCollections({
           return allCollections.technologyReferences.get(label);
         }
       );
+    }
+    if (resource.products) {
+      resource.references.products = resource.products.map((label: string) => {
+        return allCollections.productReferences.get(label);
+      });
     }
     if (resource.topics) {
       resource.references.topics = resource.topics.map((label: string) => {

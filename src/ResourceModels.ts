@@ -1,5 +1,6 @@
 import { Static, Type } from "@sinclair/typebox";
 import { EleventyPage } from "./models";
+import path from "path";
 
 export const BaseResource = Type.Object({
   title: Type.String(),
@@ -57,6 +58,10 @@ export function getResource(
   page: EleventyPage,
   resourceType: string
 ): Resource {
+  // we know we have a thumbnail, fix it to the correct path
+  const dirname = path.dirname(page.inputPath);
+  const thumbnail = path.join(dirname, data.thumbnail);
+
   return {
     title: data.title,
     slug: page.fileSlug,
@@ -66,7 +71,10 @@ export function getResource(
     body: data.content,
     excerpt: data.excerpt,
     author: data.author,
-    thumbnail: data.thumbnail,
+    products: data.products,
+    technologies: data.technologies,
+    topics: data.topics,
+    thumbnail,
     resourceType,
   };
 }
