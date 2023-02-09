@@ -16,33 +16,40 @@ const {
 
 // New start
 const { registerIncludes } = require("./_includes/config");
+const { resolve } = require("path");
 
-module.exports = function (eleventyConfig) {
+module.exports = function(eleventyConfig) {
   // eleventyConfig.setServerPassthroughCopyBehavior("copy");
   eleventyConfig.addPassthroughCopy("sites/**/*.{gif,jpg,png,svg}");
-  // copy assets from node_modules for static site
-  eleventyConfig.addPassthroughCopy({
-    "node_modules/video.js/dist/video.min.js": "assets/videojs/video.min.js",
-    "node_modules/video.js/dist/video-js.min.css":
-      "assets/videojs/video-js.min.css",
-    "node_modules/videojs-youtube/dist/Youtube.min.js":
-      "assets/videojs/Youtube.min.js",
-  });
+  eleventyConfig.addWatchTarget("./public/assets/img");
 
-  registerIncludes({ eleventyConfig });
+  registerIncludes({ eleventyConfig })
+    .then(r => {})
+    .catch(e => console.log(e));
 
   eleventyConfig.addPlugin(syntaxHighlight);
   eleventyConfig.addPlugin(EleventyVitePlugin, {
     viteOptions: {
       server: {
         mode: "development",
+        middlewareMode: true,
         watch: {
           ignored: ["_site/**"],
+
         },
       },
       build: {
         mode: "production",
       },
+
+      // New in v2.0.0
+      resolve: {
+        alias: {
+          // Allow references to `node_modules` folder directly
+          '/node_modules': resolve(".", 'node_modules')
+        }
+      }
+
     },
   });
 

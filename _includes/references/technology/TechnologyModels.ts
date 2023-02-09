@@ -17,10 +17,9 @@ export async function getTechnology(
   data: any,
   page: EleventyPage
 ): Promise<TechnologyReference> {
-  // we know we have a thumbnail, fix it to the correct path
   const technology: TechnologyReference = {
     ...getReference(data, page, "technology"),
-    logo: path.join(page.url, data.logo),
+    logo: path.join(page.url, data.logo)
   };
   validateResource(TechnologyReference, technology, page.url);
   return technology;

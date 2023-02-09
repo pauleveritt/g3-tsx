@@ -24,23 +24,26 @@ export const BaseLayout = ({
         </title>
         <link rel="stylesheet" href="/assets/guide.css" />
         <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="/assets/favicon.ico" />
         <script
           defer
           src="https://use.fontawesome.com/releases/v6.0.0-beta3/js/all.js"
         ></script>
-        <link rel="stylesheet" href="/assets/videojs/video-js.min.css" />
         <link
           href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css"
           rel="stylesheet"
         />
-        <script defer src="/assets/videojs/video.min.js"></script>
-        <script defer src="/assets/videojs/Youtube.min.js"></script>
-        <link rel="shortcut icon" href="/assets/favicon.ico" />
+        <link
+          href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.21.2/video-js.min.css"
+          rel="stylesheet"
+          />
       </head>
       <body>
         <Navbar></Navbar>
         {children}
         <Footer copyright={copyright}></Footer>
+        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.21.2/video.min.js" />
+        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/2.6.1/Youtube.min.js" />
       </body>
     </html>
   );
