@@ -158,7 +158,7 @@ export function render(
     throw new Error(`Tip "${page.url}" not in collection`);
   }
   // @ts-ignore
-  const author = tip.references.author;
+  const author = tip.references.author as AuthorReference;
   if (!author) {
     throw new Error(`Author "${tip.author}" not in collection`);
   }

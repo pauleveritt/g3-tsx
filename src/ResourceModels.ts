@@ -14,6 +14,12 @@ export const BaseResource = Type.Object({
 });
 export type BaseResource = Static<typeof BaseResource>;
 
+export const References = Type.Object({
+  author: BaseResource,
+  products: Type.Array(BaseResource),
+  technologies: Type.Array(BaseResource),
+  topics: Type.Array(BaseResource),
+});
 export const Resource = Type.Intersect([
   BaseResource,
   Type.Object({
@@ -22,14 +28,7 @@ export const Resource = Type.Intersect([
     technologies: Type.Optional(Type.Array(Type.String())),
     topics: Type.Optional(Type.Array(Type.String())),
     products: Type.Optional(Type.Array(Type.String())),
-    references: Type.Optional(
-      Type.Object({
-        author: Type.Any(),
-        products: Type.Optional(Type.Any()),
-        technologies: Type.Optional(Type.Any()),
-        topics: Type.Optional(Type.Any()),
-      })
-    ),
+    references: Type.Optional(References),
   }),
 ]);
 
