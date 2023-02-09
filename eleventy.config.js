@@ -19,7 +19,7 @@ const { registerIncludes } = require("./_includes/config");
 
 module.exports = function (eleventyConfig) {
   // eleventyConfig.setServerPassthroughCopyBehavior("copy");
-  eleventyConfig.addPassthroughCopy("sites/**/*.{gif,jpg,png}");
+  eleventyConfig.addPassthroughCopy("sites/**/*.{gif,jpg,png,svg}");
   // copy assets from node_modules for static site
   eleventyConfig.addPassthroughCopy({
     "node_modules/video.js/dist/video.min.js": "assets/videojs/video.min.js",
