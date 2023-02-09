@@ -10,14 +10,18 @@ import { authorConfig } from "./references/author";
 import { productConfig } from "./references/product";
 import { technologyConfig } from "./references/technology";
 import { topicConfig } from "./references/topic";
+import { Resource } from "../src/ResourceModels";
+import { Reference } from "../src/ReferenceModels";
 
-const newCollections = [
-  tipConfig,
-  authorConfig,
-  productConfig,
-  technologyConfig,
-  topicConfig,
-];
+const resourceCollections = {
+  tip: tipConfig,
+};
+const referenceCollections = {
+  author: authorConfig,
+  product: productConfig,
+  technology: technologyConfig,
+  topic: topicConfig,
+};
 
 export const rootPath = "sites/webstorm-guide";
 
@@ -38,24 +42,47 @@ export async function registerIncludes({
     }
   );
 
+  let allResourcesList: Resource[];
+  let allReferencesList: Reference[];
   eleventyConfig.addCollection(
     `allResources`,
     async function (collectionApi: CollectionApi) {
       // Get all the collection results
       allCollections = await getAllCollections({
         collectionApi,
-        newCollections,
+        resourceCollections,
+        referenceCollections,
       });
+
+      // Update closure value so we can add function
+      allResourcesList = Array.from(allCollections.allResources.values());
+      allReferencesList = Array.from(allCollections.allReferences.values());
 
       return allCollections.allResources;
     }
   );
 
-  // Now all the other entity-specific collections
-  for (const collection of newCollections) {
-    const collectionName = `${collection.collectionName}${collection.suffix}`;
-    eleventyConfig.addCollection(collectionName, async function () {
-      return allCollections[collectionName];
-    });
-  }
+  eleventyConfig.addCollection("allReferences", function () {
+    return allCollections.allReferences;
+  });
+
+  // Query helpers
+  eleventyConfig.addJavaScriptFunction(
+    "getResources",
+    (resourceType?: string): Resource[] => {
+      if (!resourceType) return allResourcesList;
+      return allResourcesList.filter(
+        (resource) => resource.resourceType === resourceType
+      );
+    }
+  );
+  eleventyConfig.addJavaScriptFunction(
+    "getReferences",
+    (resourceType?: string): Reference[] => {
+      if (!resourceType) return allReferencesList;
+      return allReferencesList.filter(
+        (reference) => reference.resourceType === resourceType
+      );
+    }
+  );
 }

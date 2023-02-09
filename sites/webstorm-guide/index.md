@@ -1,5 +1,5 @@
 ---
-resourceType: page
+eleventyExcludeFromCollections: true
 title: WebStorm Guide
 ---
 

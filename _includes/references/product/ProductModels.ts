@@ -10,7 +10,6 @@ export const ProductReference = Type.Intersect([
   }),
 ]);
 export type ProductReference = Static<typeof ProductReference>;
-export type ProductCollection = Map<string, ProductReference>;
 
 export async function getProduct(
   data: any,

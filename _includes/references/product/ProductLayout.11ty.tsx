@@ -2,16 +2,13 @@
 import h, { JSX } from "vhtml";
 import { SiteCollections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
-import { EleventyCollectionItem, RenderContext } from "../../../src/models";
+import { RenderContext } from "../../../src/models";
+import { ProductReference } from "./ProductModels";
+import { Resource } from "../../../src/ResourceModels";
 
-export type ProductLayoutResource = {
-  title: string;
-  url: string;
-  thumbnail?: string;
-};
 export type ProductLayoutProps = {
   children: string[];
-  referenceResources: ProductLayoutResource[];
+  referenceResources: Resource[];
   subtitle?: string;
   thumbnail?: string;
   title: string;
@@ -71,40 +68,21 @@ export function render(
   this: RenderContext,
   { collections, content, page }: ProductRenderProps
 ): JSX.Element {
-  const { productReferences } = collections;
-  const product = productReferences.get(page.fileSlug);
+  const product = collections.allReferences.get(
+    page.fileSlug
+  ) as ProductReference;
   if (!product) {
     throw new Error(`Product "${page.fileSlug}" not in collection`);
   }
 
-  const { title, subtitle } = product;
-  const referenceResources: ProductLayoutResource[] = collections.all
-    .filter((ci) => {
-      // @ts-ignore
-      return ci.data.products && ci.data.products.includes(product.label);
-    })
-    // TODO Sunday
-    .sort((ci1: EleventyCollectionItem, ci2: EleventyCollectionItem) => {
-      if (ci1.data.title < ci2.data.title) {
-        return -1;
-      }
-      if (ci1.data.title > ci2.data.title) {
-        return 1;
-      }
-      return 0;
-    })
-    .map((ci) => {
-      return {
-        title: ci.data.title,
-        url: ci.page.url,
-        thumbnail: ci.data.thumbnail,
-      };
-    });
+  const referenceResources: Resource[] = this.getResources().filter(
+    (ci) => ci.products && ci.products.includes(product.label)
+  );
 
   return (
     <ProductLayout
-      title={title}
-      subtitle={subtitle}
+      title={product.title}
+      subtitle={product.subtitle}
       referenceResources={referenceResources}
     >
       {content}

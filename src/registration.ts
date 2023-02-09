@@ -3,12 +3,8 @@
  */
 import { EleventyCollectionItem, EleventyPage } from "./models";
 import { UserConfig } from "@11ty/eleventy";
-import {
-  BaseResource,
-  getResource,
-  getResourceType,
-  Resource,
-} from "./ResourceModels";
+import { getResourceType, Resource } from "./ResourceModels";
+import { Reference } from "./ReferenceModels";
 
 export type CollectionApi = {
   getAll(): EleventyCollectionItem[];
@@ -22,57 +18,64 @@ export type ResourceTypeConfig = {
   collectionName: string;
   suffix: string;
   attributeKey: string; // Which attribute to use as Map key
-  factory(data: any, page: EleventyPage): Promise<BaseResource>;
+  factory(data: any, page: EleventyPage): Promise<Resource>;
+};
+
+export type ReferenceTypeConfig = {
+  collectionName: string;
+  suffix: string;
+  attributeKey: string; // Which attribute to use as Map key
+  factory(data: any, page: EleventyPage): Promise<Reference>;
 };
 
 export type GetAllCollectionsProps = {
   collectionApi: CollectionApi;
-  newCollections: ResourceTypeConfig[];
+  resourceCollections: { [key: string]: ResourceTypeConfig };
+  referenceCollections: { [key: string]: ReferenceTypeConfig };
 };
 
 export async function getAllCollections({
   collectionApi,
-  newCollections,
+  resourceCollections,
+  referenceCollections,
 }: GetAllCollectionsProps) {
   // This what we'll return
   const allCollections: any = {};
 
-  const allCollectionItems = collectionApi.getAll();
-  const allResourceItems = allCollectionItems.filter(
-    (ci) => "author" in ci.data
-  );
-  const allResources: Map<string, Resource> = new Map();
-  for (const { data, page } of allResourceItems) {
-    const resourceType = getResourceType(data, page);
-    const thisResource: Resource = getResource(data, page, resourceType);
-    // @ts-ignore
-    const thisKey = thisResource.url;
-    allResources.set(thisKey, thisResource);
-  }
-  allCollections.allResources = allResources;
+  const allCollectionItems: EleventyCollectionItem[] = collectionApi
+    .getAll()
+    .filter((ci) => ci.data.resourceType);
 
-  // Let's now add the reference collections
-  for (const collection of newCollections) {
-    const { collectionName, attributeKey, suffix, factory } = collection;
-    const collectionItems = allCollectionItems
-      .filter((ci) => ci.data.resourceType === collectionName)
-      .sort((a, b) =>
-        a.data.title.toLowerCase() < b.data.title.toLowerCase() ? -1 : 1
-      );
-    const results: Map<string, BaseResource> = new Map();
-    for (const { data, page } of collectionItems) {
-      const thisResource: BaseResource = await factory(data, page);
-      // @ts-ignore
-      const thisKey = thisResource[attributeKey];
-      results.set(thisKey, thisResource);
+  const allResources: Map<string, Resource> = new Map();
+  const allReferences: Map<string, Reference> = new Map();
+
+  for (const { data, page } of allCollectionItems) {
+    const resourceType = getResourceType(data, page);
+    try {
+      if (resourceCollections[data.resourceType]) {
+        const { factory } = resourceCollections[resourceType];
+        const resource = await factory(data, page);
+        allResources.set(page.url, resource);
+      } else if (referenceCollections[data.resourceType]) {
+        const { factory } = referenceCollections[resourceType];
+        const reference = await factory(data, page);
+        allReferences.set(reference.label, reference);
+      } else {
+        // TODO shouldn't get here
+        console.warn(`Unregistered resource type: ${resourceType}`);
+      }
+    } catch (err) {
+      console.error(`Failed to create resource/reference at ${page.url}`);
+      throw err;
     }
-    const thisKey = `${collectionName}${suffix}`;
-    allCollections[thisKey] = results;
   }
+
+  allCollections.allResources = allResources;
+  allCollections.allReferences = allReferences;
 
   // With this in place, we can de-reference resources.
   // @ts-ignore
-  for (const [url, resource] of allCollections.tipResources) {
+  for (const [url, resource] of allCollections.allResources) {
     resource.references = {
       author: allCollections.authorReferences.get(resource.author),
       products: [],
@@ -81,20 +84,18 @@ export async function getAllCollections({
     };
     if (resource.technologies) {
       resource.references.technologies = resource.technologies.map(
-        (label: string) => {
-          return allCollections.technologyReferences.get(label);
-        }
+        (label: string) => allReferences.get(label)
       );
     }
     if (resource.products) {
-      resource.references.products = resource.products.map((label: string) => {
-        return allCollections.productReferences.get(label);
-      });
+      resource.references.products = resource.products.map((label: string) =>
+        allReferences.get(label)
+      );
     }
     if (resource.topics) {
-      resource.references.topics = resource.topics.map((label: string) => {
-        return allCollections.topicReferences.get(label);
-      });
+      resource.references.topics = resource.topics.map((label: string) =>
+        allReferences.get(label)
+      );
     }
   }
 

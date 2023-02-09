@@ -1,5 +1,7 @@
 import { Static, Type } from "@sinclair/typebox";
 import { Assertions } from "./TestCases";
+import { Resource } from "./ResourceModels";
+import { Reference } from "./ReferenceModels";
 
 export const EleventyPage = Type.Object({
   // The common, page-oriented data 11ty passes in when it reads a Markdown file
@@ -16,7 +18,7 @@ export const EleventyData = Type.Object({
   title: Type.String(),
   subtitle: Type.Optional(Type.String()),
   date: Type.Date(),
-  resourceType: Type.Optional(Type.String()),
+  resourceType: Type.String(),
   thumbnail: Type.Optional(Type.String()),
   label: Type.Optional(Type.String()),
   logo: Type.Optional(Type.String()),
@@ -45,4 +47,6 @@ export interface RenderContext {
    * Used by view renders to grab the `this` object
    */
   addTestCase(url: string, assertions: Assertions): void;
+  getResources(resourceType?: string): Resource[];
+  getReferences(resourceType?: string): Reference[];
 }

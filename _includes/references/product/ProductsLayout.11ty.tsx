@@ -5,7 +5,7 @@ import { ProductReference } from "./ProductModels";
 import { RenderContext } from "../../../src/models";
 
 export type ProductsLayoutProps = {
-  products: Iterable<ProductReference>;
+  products: ProductReference[];
   title: string;
   subtitle?: string;
   content: string;
@@ -20,7 +20,7 @@ export function ProductsLayout({
   const figure = undefined;
   const listing = (
     <ul>
-      {Array.from(products).map((product) => {
+      {products.map((product) => {
         return (
           <li>
             <a aria-label="product" href={product.slug}>
@@ -52,11 +52,12 @@ export type ProductsRenderProps = {
 
 export function render(
   this: RenderContext,
-  { collections, content, title, subtitle }: ProductsRenderProps
+  { content, title, subtitle }: ProductsRenderProps
 ): JSX.Element {
+  const products = this.getReferences("product") as ProductReference[];
   return (
     <ProductsLayout
-      products={collections.productReferences.values()}
+      products={products}
       title={title}
       subtitle={subtitle}
       content={content}

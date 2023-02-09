@@ -1,7 +1,7 @@
-import { ResourceTypeConfig } from "../../../src/registration";
+import { ReferenceTypeConfig } from "../../../src/registration";
 import { getAuthor } from "./AuthorModels";
 
-export const authorConfig: ResourceTypeConfig = {
+export const authorConfig: ReferenceTypeConfig = {
   collectionName: "author",
   attributeKey: "label",
   suffix: "References",

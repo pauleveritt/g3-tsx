@@ -4,15 +4,13 @@ import { SiteCollections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import Thumbnail from "../../Image.11ty";
 import { RenderContext } from "../../../src/models";
+import ResourceCard from "../../resourcecard/ResourceCard.11ty";
+import { Resource } from "../../../src/ResourceModels";
+import { AuthorReference } from "./AuthorModels";
 
-export type AuthorLayoutResource = {
-  title: string;
-  url: string;
-  thumbnail?: string;
-};
 export type AuthorLayoutProps = {
   children: string[];
-  referenceResources: AuthorLayoutResource[];
+  referenceResources: Resource[];
   subtitle?: string;
   thumbnail: string;
   title: string;
@@ -35,15 +33,11 @@ export function AuthorLayout({
     </div>
   );
   const listing = (
-    <ul>
+    <>
       {referenceResources.map((resource) => (
-        <li>
-          <a aria-label="resource" href={resource.url}>
-            {resource.title}
-          </a>
-        </li>
+        <ResourceCard resource={resource}></ResourceCard>
       ))}
-    </ul>
+    </>
   );
   const content = <div dangerouslySetInnerHTML={{ __html: children[0] }} />;
 
@@ -74,31 +68,22 @@ export function render(
   // TODO Get a better test here
   // this.addTestCase(page.url, [byRole({ role: "link", text: "Paul Everitt" })]);
 
-  const { authorReferences } = collections;
-  const author = authorReferences.get(page.fileSlug);
+  const author = collections.allReferences.get(
+    page.fileSlug
+  ) as AuthorReference;
   if (!author) {
     throw new Error(`Author "${page.fileSlug}" not in collection`);
   }
 
-  const { title, subtitle, thumbnail } = author;
-  const referenceResources: AuthorLayoutResource[] = Array.from(
-    collections.allResources.values()
-  )
-    .filter((ci) => ci.author === author.label)
-    .sort((a, b) => (a.title.toLowerCase() < b.title.toLowerCase() ? -1 : 1))
-    .map((ci) => {
-      return {
-        title: ci.title,
-        url: ci.url,
-        thumbnail: ci.thumbnail as string,
-      };
-    });
+  const referenceResources: Resource[] = this.getResources().filter(
+    (ci) => ci.author === author.label
+  );
 
   return (
     <AuthorLayout
-      title={title}
-      subtitle={subtitle}
-      thumbnail={thumbnail}
+      title={author.title}
+      subtitle={author.subtitle}
+      thumbnail={author.thumbnail}
       referenceResources={referenceResources}
     >
       {content}

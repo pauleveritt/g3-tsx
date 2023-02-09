@@ -5,7 +5,7 @@ import { TopicReference } from "./TopicModels";
 import { RenderContext } from "../../../src/models";
 
 export type TopicsLayoutProps = {
-  topics: Iterable<TopicReference>;
+  topics: TopicReference[];
   title: string;
   subtitle?: string;
   content: string;
@@ -20,7 +20,7 @@ export function TopicsLayout({
   const figure = undefined;
   const listing = (
     <ul>
-      {Array.from(topics).map((topic) => {
+      {topics.map((topic) => {
         return (
           <li>
             <a aria-label="resource" href={topic.url}>
@@ -52,11 +52,12 @@ export type TopicsRenderProps = {
 
 export function render(
   this: RenderContext,
-  { collections, content, title, subtitle }: TopicsRenderProps
+  { content, title, subtitle }: TopicsRenderProps
 ): JSX.Element {
+  const topics = this.getReferences("topic") as TopicReference[];
   return (
     <TopicsLayout
-      topics={collections.topicReferences.values()}
+      topics={topics}
       title={title}
       subtitle={subtitle}
       content={content}

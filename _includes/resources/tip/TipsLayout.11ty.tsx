@@ -6,7 +6,7 @@ import { RenderContext } from "../../../src/models";
 import ResourceCard from "../../resourcecard/ResourceCard.11ty";
 
 export type TipsLayoutProps = {
-  tips: Iterable<TipResource>;
+  tips: TipResource[];
   title: string;
   subtitle?: string;
   content: string;
@@ -20,11 +20,11 @@ export function TipsLayout({
 }: TipsLayoutProps): JSX.Element {
   const figure = undefined;
   const listing = (
-    <ul>
-      {Array.from(tips).map((tip) => {
+    <>
+      {tips.map((tip) => {
         return <ResourceCard resource={tip}></ResourceCard>;
       })}
-    </ul>
+    </>
   );
   return (
     <ReferenceLayout
@@ -46,11 +46,12 @@ export type TipsRenderProps = {
 
 export function render(
   this: RenderContext,
-  { collections, content, title, subtitle }: TipsRenderProps
+  { content, title, subtitle }: TipsRenderProps
 ): JSX.Element {
+  const tips = this.getResources("tip");
   return (
     <TipsLayout
-      tips={collections.tipResources.values()}
+      tips={tips}
       title={title}
       subtitle={subtitle}
       content={content}

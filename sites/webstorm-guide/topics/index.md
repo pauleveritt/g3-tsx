@@ -1,5 +1,5 @@
 ---
-resourceType: page
+eleventyExcludeFromCollections: true
 title: Topics
 subtitle: All the info about topics TODO
 layout: "references/topic/TopicsLayout.11ty.tsx"

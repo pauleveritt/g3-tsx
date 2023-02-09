@@ -1,5 +1,5 @@
 ---
-resourceType: page
+eleventyExcludeFromCollections: true
 title: Authors
 subtitle: All the info about authors TODO
 layout: "references/author/AuthorsLayout.11ty.tsx"

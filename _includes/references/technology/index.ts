@@ -1,7 +1,7 @@
-import { ResourceTypeConfig } from "../../../src/registration";
+import { ReferenceTypeConfig } from "../../../src/registration";
 import { getTechnology } from "./TechnologyModels";
 
-export const technologyConfig: ResourceTypeConfig = {
+export const technologyConfig: ReferenceTypeConfig = {
   collectionName: "technology",
   attributeKey: "label",
   suffix: "References",

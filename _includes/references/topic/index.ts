@@ -1,7 +1,7 @@
-import { ResourceTypeConfig } from "../../../src/registration";
+import { ReferenceTypeConfig } from "../../../src/registration";
 import { getTopic } from "./TopicModels";
 
-export const topicConfig: ResourceTypeConfig = {
+export const topicConfig: ReferenceTypeConfig = {
   collectionName: "topic",
   attributeKey: "label",
   suffix: "References",

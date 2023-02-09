@@ -1,5 +1,5 @@
 ---
-resourceType: page
+eleventyExcludeFromCollections: true
 title: Products
 subtitle: All the info about products TODO
 layout: "references/product/ProductsLayout.11ty.tsx"

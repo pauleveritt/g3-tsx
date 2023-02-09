@@ -2,16 +2,13 @@
 import h, { JSX } from "vhtml";
 import { SiteCollections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
-import { EleventyCollectionItem, RenderContext } from "../../../src/models";
+import { RenderContext } from "../../../src/models";
+import { Resource } from "../../../src/ResourceModels";
+import { TechnologyReference } from "./TechnologyModels";
 
-export type TechnologyLayoutResource = {
-  title: string;
-  url: string;
-  thumbnail?: string;
-};
 export type TechnologyLayoutProps = {
   children: string[];
-  referenceResources: TechnologyLayoutResource[];
+  referenceResources: Resource[];
   subtitle?: string;
   thumbnail?: string;
   title: string;
@@ -71,42 +68,22 @@ export function render(
   this: RenderContext,
   { collections, content, page }: TechnologyRenderProps
 ): JSX.Element {
-  const { technologyReferences } = collections;
-  const technology = technologyReferences.get(page.fileSlug);
+  const technology = collections.allReferences.get(
+    page.fileSlug
+  ) as TechnologyReference;
   if (!technology) {
     throw new Error(`Technology "${page.fileSlug}" not in collection`);
   }
 
-  const { title, subtitle } = technology;
-  const referenceResources: TechnologyLayoutResource[] = collections.all
-    .filter((ci) => {
-      // @ts-ignore
-      return (
-        ci.data.technologies && ci.data.technologies.includes(technology.label)
-      );
-    })
-    .sort((ci1: EleventyCollectionItem, ci2: EleventyCollectionItem) => {
-      if (ci1.data.title < ci2.data.title) {
-        return -1;
-      }
-      if (ci1.data.title > ci2.data.title) {
-        return 1;
-      }
-      return 0;
-    })
-    .map((ci) => {
-      return {
-        title: ci.data.title,
-        url: ci.page.url,
-        thumbnail: ci.data.thumbnail,
-      };
-    });
+  const linkedResources = this.getResources().filter(
+    (ci) => ci.technologies && ci.technologies.includes(technology.label)
+  ) as Resource[];
 
   return (
     <TechnologyLayout
-      title={title}
-      subtitle={subtitle}
-      referenceResources={referenceResources}
+      title={technology.title}
+      subtitle={technology.subtitle}
+      referenceResources={linkedResources}
     >
       {content}
     </TechnologyLayout>

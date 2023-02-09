@@ -1,5 +1,5 @@
 ---
-resourceType: page
+eleventyExcludeFromCollections: true
 title: Technologies
 subtitle: All the info about technologies TODO
 layout: "references/technology/TechnologiesLayout.11ty.tsx"
