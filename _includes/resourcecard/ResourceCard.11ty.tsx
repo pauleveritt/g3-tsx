@@ -35,7 +35,7 @@ const ResourceCard = ({
             <nav className="level">
               <div className="level-left">
                 {thumbnail && (
-                  <a className="level-item bio-card-author" href={author.href}>
+                  <a className="level-item bio-card-author" href={author.url}>
                     <figure
                       className="image is-rounded is-24x24"
                       style="margin-left: 0.2rem; margin-right: 0.2rem"
