@@ -8,16 +8,16 @@ author: pwe
 subtitle: How to write React applications in TypeScript using TDD, highlighting features of the IDE
 thumbnail: ./thumbnail.png
 tutorialItems:
-  - /tutorials/react_typescript_tdd/project_setup/
-  - /tutorials/react_typescript_tdd/project_cleanup/
-  - /tutorials/react_typescript_tdd/testing/
-  - /tutorials/react_typescript_tdd/nodejs_debugging/
-  - /tutorials/react_typescript_tdd/chrome_debugging/
-  - /tutorials/react_typescript_tdd/tsx_es6/
-  - /tutorials/react_typescript_tdd/class_props/
-  - /tutorials/react_typescript_tdd/class_state/
-  - /tutorials/react_typescript_tdd/rich_events_and_testing/
-  - /tutorials/react_typescript_tdd/presentation_components/
+  - ./project_setup/
+  - ./project_cleanup/
+  - ./testing/
+  - ./nodejs_debugging/
+  - ./chrome_debugging/
+  - ./tsx_es6/
+  - ./class_props/
+  - ./class_state/
+  - ./rich_events_and_testing/
+  - ./presentation_components/
 ---
 
 ReactJS is wildly popular and thus wildly supported. TypeScript is increasingly popular, 
