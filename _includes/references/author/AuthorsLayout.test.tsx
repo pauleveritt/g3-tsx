@@ -39,7 +39,7 @@ test("should render AuthorsLayout", () => {
   fixtures.context.getReferences = () => fixtures.authors;
   document.body.innerHTML = render.call(fixtures.context, renderProps);
   const links: HTMLAnchorElement[] = screen.getAllByRole("link", {
-    name: "Some Author",
+    name: "Author",
   });
   expect(links[0].href).to.equal("/authors/sa/");
 });

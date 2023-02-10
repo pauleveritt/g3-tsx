@@ -4,6 +4,7 @@ import { SiteCollections } from "../../models";
 import { byRole } from "../../../src/TestCases";
 import { AuthorReference } from "./AuthorModels";
 import { RenderContext } from "../../../src/models";
+import Thumbnail from "../../Image.11ty";
 
 export type AuthorsLayoutProps = {
   authors: AuthorReference[];
