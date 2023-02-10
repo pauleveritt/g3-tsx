@@ -4,13 +4,13 @@ import { SiteCollections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { RenderContext } from "../../../src/models";
 import { Resource } from "../../../src/ResourceModels";
-import { TopicReference } from "./TopicModels";
+import { Topic } from "./TopicModels";
 import ResourceCard from "../../resourcecard/ResourceCard.11ty";
 
 export type TopicLayoutProps = {
   children: string[];
   referenceResources: Resource[];
-  topic: TopicReference;
+  topic: Topic;
 };
 
 export function TopicLayout({
@@ -57,7 +57,7 @@ export function render(
   this: RenderContext,
   { collections, content, page }: TopicRenderProps
 ): JSX.Element {
-  const topic = collections.allReferences.get(page.fileSlug) as TopicReference;
+  const topic = collections.allReferences.get(page.fileSlug) as Topic;
   if (!topic) {
     throw new Error(`Topic "${page.fileSlug}" not in collection`);
   }

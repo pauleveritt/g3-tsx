@@ -4,8 +4,7 @@ import { getResource, Resource } from "../../../src/ResourceModels";
 import { EleventyPage } from "../../../src/models";
 import path from "path";
 
-// noinspection JSUnusedGlobalSymbols
-export const TutorialStepResource = Type.Intersect([
+export const TutorialStep = Type.Intersect([
   Resource,
   Type.Object({
     thumbnail: Type.Optional(Type.String()),
@@ -19,21 +18,20 @@ export const TutorialStepResource = Type.Intersect([
     ),
   }),
 ]);
-export type TutorialStepResource = Static<typeof TutorialStepResource>;
-export type TutorialStepCollection = Map<string, TutorialStepResource>;
+export type TutorialStep = Static<typeof TutorialStep>;
 
 export async function getTutorialStep(
   data: any,
   page: EleventyPage
-): Promise<TutorialStepResource> {
+): Promise<TutorialStep> {
   // we know we have a thumbnail, fix it to the correct path
   const dirname = path.dirname(page.inputPath);
   const thumbnail = path.join(dirname, data.thumbnail);
 
-  const tutorialStep: TutorialStepResource = {
+  const tutorialStep: TutorialStep = {
     ...getResource(data, page, "tutorial"),
     thumbnail,
   };
-  validateResource(TutorialStepResource, tutorialStep, page.url);
+  validateResource(TutorialStep, tutorialStep, page.url);
   return tutorialStep;
 }

@@ -1,6 +1,6 @@
 import h from "vhtml";
 import { getTip } from "./resources/tip/TipModels";
-import { AuthorReference } from "./references/author/AuthorModels";
+import { Author } from "./references/author/AuthorModels";
 import { SiteCollections } from "./models";
 import { getTechnology } from "./references/technology/TechnologyModels";
 import { getTopic } from "./references/topic/TopicModels";
@@ -183,7 +183,7 @@ const all: EleventyCollectionItem[] = [
 ];
 
 const authorItems = [all[2], all[3]];
-const authors: AuthorReference[] = [
+const authors: Author[] = [
   {
     title: all[2].data.title,
     slug: all[2].page.fileSlug,

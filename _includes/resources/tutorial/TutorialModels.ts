@@ -7,8 +7,7 @@ import { imageOptions } from "../../../src/registration";
 // @ts-ignore
 import Image from "@11ty/eleventy-img";
 
-// noinspection JSUnusedGlobalSymbols
-export const TutorialResource = Type.Intersect([
+export const Tutorial = Type.Intersect([
   Resource,
   Type.Object({
     thumbnail: Type.Optional(Type.String()),
@@ -16,8 +15,7 @@ export const TutorialResource = Type.Intersect([
     videoBottom: Type.Optional(Type.Boolean()),
   }),
 ]);
-export type TutorialResource = Static<typeof TutorialResource>;
-export type TutorialCollection = Map<string, TutorialResource>;
+export type Tutorial = Static<typeof Tutorial>;
 
 export function resolveChildPaths(
   pathPrefix: string,
@@ -32,7 +30,7 @@ export function resolveChildPaths(
 export async function getTutorial(
   data: any,
   page: EleventyPage
-): Promise<TutorialResource> {
+): Promise<Tutorial> {
   if (data.resourceType != "tutorial") {
     throw new Error("This resource type is not right");
   }
@@ -45,14 +43,14 @@ export async function getTutorial(
   const rootPath = page.url;
   const tutorialItems = resolveChildPaths(rootPath, data.tutorialItems);
 
-  const tutorial: TutorialResource = {
+  const tutorial: Tutorial = {
     ...getResource(data, page, "tutorial"),
     thumbnail,
     tutorialItems: tutorialItems,
   };
   tutorial.thumbnail = thumbnail;
 
-  validateResource(TutorialResource, tutorial, page.url);
+  validateResource(Tutorial, tutorial, page.url);
   await Image(tutorial.thumbnail, imageOptions);
   return tutorial;
 }

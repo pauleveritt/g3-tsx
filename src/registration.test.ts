@@ -7,8 +7,8 @@ import {
   resolveReferences,
 } from "./registration";
 import { referenceCollections, resourceCollections } from "../_includes/config";
-import { TipResource } from "../_includes/resources/tip/TipModels";
-import { AuthorReference } from "../_includes/references/author/AuthorModels";
+import { Tip } from "../_includes/resources/tip/TipModels";
+import { Author } from "../_includes/references/author/AuthorModels";
 import {
   ReferenceCollection,
   References,
@@ -30,8 +30,8 @@ let productItems: EleventyCollectionItem[];
 let tipItem0: EleventyCollectionItem;
 let authorItem0: EleventyCollectionItem;
 let productItem0: EleventyCollectionItem;
-let tip0: TipResource;
-let author0: AuthorReference;
+let tip0: Tip;
+let author0: Author;
 
 beforeEach(() => {
   allResources = fixtures.collections.allResources;
@@ -42,9 +42,9 @@ beforeEach(() => {
   tipItem0 = tipItems[0];
   authorItem0 = authorItems[0];
   productItem0 = productItems[0];
-  tip0 = allResources.get(tipItem0.page.url) as TipResource;
+  tip0 = allResources.get(tipItem0.page.url) as Tip;
   if (authorItem0.data.label) {
-    author0 = allReferences.get(authorItem0.data.label) as AuthorReference;
+    author0 = allReferences.get(authorItem0.data.label) as Author;
   }
 });
 
@@ -64,13 +64,13 @@ test("should construct collections", async () => {
     referenceCollections,
   });
   expect(allResources).to.exist;
-  const thisTip0 = allResources.get(tipItem0.page.url) as TipResource;
+  const thisTip0 = allResources.get(tipItem0.page.url) as Tip;
   expect(thisTip0).to.exist;
 
   // Authors
   const thisAuthor0 = allReferences.get(
     authorItem0.data.label as string
-  ) as AuthorReference;
+  ) as Author;
   expect(thisAuthor0).to.exist;
   expect(thisAuthor0.title).to.equal(authorItem0.data.title);
 
@@ -92,7 +92,7 @@ test("should construct collections", async () => {
 });
 
 describe("Resolve References", () => {
-  let resource: TipResource;
+  let resource: Tip;
 
   beforeEach(() => {
     resource = structuredClone(tip0);
@@ -134,7 +134,7 @@ describe("Resolve References", () => {
       fieldName,
       resource,
       allReferences,
-    }) as AuthorReference;
+    }) as Author;
     expect(resolved.title).to.equal(authorItem0.data.title);
   });
 

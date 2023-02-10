@@ -3,7 +3,7 @@ import h, { JSX } from "vhtml";
 import { SiteCollections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { RenderContext } from "../../../src/models";
-import { ProductReference } from "./ProductModels";
+import { Product } from "./ProductModels";
 import { Resource } from "../../../src/ResourceModels";
 
 export type ProductLayoutProps = {
@@ -68,9 +68,7 @@ export function render(
   this: RenderContext,
   { collections, content, page }: ProductRenderProps
 ): JSX.Element {
-  const product = collections.allReferences.get(
-    page.fileSlug
-  ) as ProductReference;
+  const product = collections.allReferences.get(page.fileSlug) as Product;
   if (!product) {
     throw new Error(`Product "${page.fileSlug}" not in collection`);
   }

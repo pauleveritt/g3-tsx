@@ -2,12 +2,12 @@ import h, { JSX } from "vhtml";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { SiteCollections } from "../../models";
 import { byRole } from "../../../src/TestCases";
-import { AuthorReference } from "./AuthorModels";
+import { Author } from "./AuthorModels";
 import { RenderContext } from "../../../src/models";
 import Thumbnail from "../../Image.11ty";
 
 export type AuthorsLayoutProps = {
-  authors: AuthorReference[];
+  authors: Author[];
   title: string;
   subtitle?: string;
   content: string;
@@ -71,7 +71,7 @@ export function render(
 ): JSX.Element {
   // Schedule a post-build validation for this view
   this.addTestCase(page.url, [byRole({ role: "link", text: "Paul Everitt" })]);
-  const authors = this.getReferences("author") as AuthorReference[];
+  const authors = this.getReferences("author") as Author[];
   return (
     <AuthorsLayout
       authors={authors}

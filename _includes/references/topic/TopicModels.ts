@@ -3,24 +3,21 @@ import { Static, Type } from "@sinclair/typebox";
 import { validateResource } from "../../../src/validators";
 import { EleventyPage } from "../../../src/models";
 
-export const TopicReference = Type.Intersect([
+export const Topic = Type.Intersect([
   Reference,
   Type.Object({
     accent: Type.String(),
     icon: Type.String(),
   }),
 ]);
-export type TopicReference = Static<typeof TopicReference>;
+export type Topic = Static<typeof Topic>;
 
-export async function getTopic(
-  data: any,
-  page: EleventyPage
-): Promise<TopicReference> {
-  const topic: TopicReference = {
+export async function getTopic(data: any, page: EleventyPage): Promise<Topic> {
+  const topic: Topic = {
     ...getReference(data, page, "topic"),
     accent: data.accent,
     icon: data.icon,
   };
-  validateResource(TopicReference, topic, page.url);
+  validateResource(Topic, topic, page.url);
   return topic;
 }

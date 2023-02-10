@@ -1,11 +1,11 @@
 import h, { JSX } from "vhtml";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
-import { TipResource } from "./TipModels";
+import { Tip } from "./TipModels";
 import { RenderContext } from "../../../src/models";
 import ResourceCard from "../../resourcecard/ResourceCard.11ty";
 
 export type TipsLayoutProps = {
-  tips: TipResource[];
+  tips: Tip[];
   title: string;
   subtitle?: string;
   content: string;

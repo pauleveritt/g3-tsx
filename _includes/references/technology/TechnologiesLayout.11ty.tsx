@@ -1,10 +1,10 @@
 import h, { JSX } from "vhtml";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
-import { TechnologyReference } from "./TechnologyModels";
+import { Technology } from "./TechnologyModels";
 import { RenderContext } from "../../../src/models";
 
 export type TechnologiesLayoutProps = {
-  technologies: TechnologyReference[];
+  technologies: Technology[];
   title: string;
   subtitle?: string;
   content: string;
@@ -58,9 +58,7 @@ export function render(
   this: RenderContext,
   { content, title, subtitle }: TechnologiesRenderProps
 ): JSX.Element {
-  const technologies = this.getReferences(
-    "technology"
-  ) as TechnologyReference[];
+  const technologies = this.getReferences("technology") as Technology[];
 
   return (
     <TechnologiesLayout

@@ -4,22 +4,22 @@ import { validateResource } from "../../../src/validators";
 import { EleventyPage } from "../../../src/models";
 import path from "path";
 
-export const TechnologyReference = Type.Intersect([
+export const Technology = Type.Intersect([
   Reference,
   Type.Object({
     logo: Type.String(),
   }),
 ]);
-export type TechnologyReference = Static<typeof TechnologyReference>;
+export type Technology = Static<typeof Technology>;
 
 export async function getTechnology(
   data: any,
   page: EleventyPage
-): Promise<TechnologyReference> {
-  const technology: TechnologyReference = {
+): Promise<Technology> {
+  const technology: Technology = {
     ...getReference(data, page, "technology"),
     logo: path.join(page.url, data.logo),
   };
-  validateResource(TechnologyReference, technology, page.url);
+  validateResource(Technology, technology, page.url);
   return technology;
 }

@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
 import path from "path";
 import { sitesDir, validateResource } from "./validators";
-import { TipResource } from "../_includes/resources/tip/TipModels";
+import { Tip } from "../_includes/resources/tip/TipModels";
 
 test("defines the sitesDir", () => {
   expect(path.basename(sitesDir)).to.equal("sites");
@@ -20,15 +20,13 @@ test("validates good frontmatter", () => {
     thumbnail: "thumbnail.png",
     inputFolder: "sites/webstorm-guide/tips/some-slug/",
   };
-  const validation = () =>
-    validateResource(TipResource, frontmatter, "tip1.md");
+  const validation = () => validateResource(Tip, frontmatter, "tip1.md");
   expect(validation).not.toThrow();
 });
 
 test("validates bad frontmatter", () => {
   const frontmatter = { age: 49 };
-  const validation = () =>
-    validateResource(TipResource, frontmatter, "tip1.md");
+  const validation = () => validateResource(Tip, frontmatter, "tip1.md");
   expect(validation).toThrow("Expected required");
   expect(validation).toThrow("tip1.md");
 });

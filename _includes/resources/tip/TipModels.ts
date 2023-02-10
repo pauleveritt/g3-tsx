@@ -4,7 +4,7 @@ import { getResource, Resource } from "../../../src/ResourceModels";
 import { EleventyPage } from "../../../src/models";
 
 // noinspection JSUnusedGlobalSymbols
-export const TipResource = Type.Intersect([
+export const Tip = Type.Intersect([
   Resource,
   Type.Object({
     thumbnail: Type.Optional(Type.String()),
@@ -35,14 +35,10 @@ export const TipResource = Type.Intersect([
     seealso: Type.Optional(Type.Any()),
   }),
 ]);
-export type TipResource = Static<typeof TipResource>;
-export type TipCollection = Map<string, TipResource>;
+export type Tip = Static<typeof Tip>;
 
-export async function getTip(
-  data: any,
-  page: EleventyPage
-): Promise<TipResource> {
-  const tip: TipResource = {
+export async function getTip(data: any, page: EleventyPage): Promise<Tip> {
+  const tip: Tip = {
     ...getResource(data, page, "tip"),
     leadin: data.leadin,
     animatedGif: data.animatedGif,
@@ -52,6 +48,6 @@ export async function getTip(
     hasBody: data.hasBody,
     seealso: data.seealso,
   };
-  validateResource(TipResource, tip, page.url);
+  validateResource(Tip, tip, page.url);
   return tip;
 }

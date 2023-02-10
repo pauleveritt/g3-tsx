@@ -3,22 +3,22 @@ import { Static, Type } from "@sinclair/typebox";
 import { validateResource } from "../../../src/validators";
 import { EleventyPage } from "../../../src/models";
 
-export const ProductReference = Type.Intersect([
+export const Product = Type.Intersect([
   Reference,
   Type.Object({
     logo: Type.Optional(Type.String()),
   }),
 ]);
-export type ProductReference = Static<typeof ProductReference>;
+export type Product = Static<typeof Product>;
 
 export async function getProduct(
   data: any,
   page: EleventyPage
-): Promise<ProductReference> {
-  const product: ProductReference = {
+): Promise<Product> {
+  const product: Product = {
     ...getReference(data, page, "product"),
     logo: data.logo,
   };
-  validateResource(ProductReference, product, page.url);
+  validateResource(Product, product, page.url);
   return product;
 }

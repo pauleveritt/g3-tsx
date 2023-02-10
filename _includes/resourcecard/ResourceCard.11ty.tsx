@@ -2,9 +2,9 @@
 import h, { JSX } from "vhtml";
 import { Resource } from "../../src/ResourceModels";
 import Thumbnail from "../Image.11ty";
-import { ProductReference } from "../references/product/ProductModels";
-import { TechnologyReference } from "../references/technology/TechnologyModels";
-import { TopicReference } from "../references/topic/TopicModels";
+import { Product } from "../references/product/ProductModels";
+import { Technology } from "../references/technology/TechnologyModels";
+import { Topic } from "../references/topic/TopicModels";
 
 export type ResourceCardProps = {
   resource: Resource;
@@ -57,7 +57,7 @@ const ResourceCard = ({
                 )}
 
                 <div className="level-item tags">
-                  {products.map((product: ProductReference) => (
+                  {products.map((product: Product) => (
                     <span className="bio-common-card-references">
                       <span className="tag is-rounded">
                         <a href={product.url} className="has-text-info">
@@ -66,7 +66,7 @@ const ResourceCard = ({
                       </span>
                     </span>
                   ))}
-                  {technologies.map((technology: TechnologyReference) => (
+                  {technologies.map((technology: Technology) => (
                     <span className="bio-common-card-references">
                       <span className="tag is-rounded">
                         <a href={technology.url} className="has-text-danger">
@@ -75,7 +75,7 @@ const ResourceCard = ({
                       </span>
                     </span>
                   ))}
-                  {topics.map((topic: TopicReference) => (
+                  {topics.map((topic: Topic) => (
                     <span className="bio-common-card-references">
                       <span className="tag is-rounded">
                         <a href={topic.url} className="has-text-primary">

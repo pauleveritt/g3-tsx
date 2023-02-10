@@ -3,10 +3,10 @@ import h, { JSX } from "vhtml";
 import BottomNav from "../../pagenav/BottomNav.11ty";
 import TopNav from "../../pagenav/TopNav.11ty";
 import SeeAlso from "../../seealso/SeeAlso.11ty";
-import { TipResource } from "./TipModels";
+import { Tip } from "./TipModels";
 import SidebarLayout from "../../layouts/SidebarLayout.11ty";
 import { SiteCollections } from "../../models";
-import { AuthorReference } from "../../references/author/AuthorModels";
+import { Author } from "../../references/author/AuthorModels";
 import SidebarPublished from "../../sidebar/SidebarPublished.11ty";
 import Sidebar from "../../sidebar/Sidebar.11ty";
 import MarkdownIt from "markdown-it";
@@ -14,9 +14,9 @@ import VideoPlayer from "../../video/VideoPlayer.11ty";
 import { RenderContext } from "../../../src/models";
 
 export type TipLayoutProps = {
-  author: AuthorReference;
+  author: Author;
   children: string[];
-  tip: TipResource;
+  tip: Tip;
   leadin?: string;
 };
 
@@ -152,12 +152,12 @@ export function render(
   this: RenderContext,
   { collections, content, page }: TipRenderProps
 ): JSX.Element {
-  const tip = collections.allResources.get(page.url) as TipResource;
+  const tip = collections.allResources.get(page.url) as Tip;
   if (!tip) {
     throw new Error(`Tip "${page.url}" not in collection`);
   }
   // @ts-ignore
-  const author = tip.references.author as AuthorReference;
+  const author = tip.references.author as Author;
   if (!author) {
     throw new Error(`Author "${tip.author}" not in collection`);
   }

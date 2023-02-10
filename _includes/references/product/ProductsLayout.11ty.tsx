@@ -1,10 +1,10 @@
 import h, { JSX } from "vhtml";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
-import { ProductReference } from "./ProductModels";
+import { Product } from "./ProductModels";
 import { RenderContext } from "../../../src/models";
 
 export type ProductsLayoutProps = {
-  products: ProductReference[];
+  products: Product[];
   title: string;
   subtitle?: string;
   content: string;
@@ -52,7 +52,7 @@ export function render(
   this: RenderContext,
   { content, title, subtitle }: ProductsRenderProps
 ): JSX.Element {
-  const products = this.getReferences("product") as ProductReference[];
+  const products = this.getReferences("product") as Product[];
   return (
     <ProductsLayout
       products={products}
