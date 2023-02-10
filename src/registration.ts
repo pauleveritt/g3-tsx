@@ -16,15 +16,11 @@ export type RegisterIncludesProps = {
 
 export type ResourceTypeConfig = {
   collectionName: string;
-  suffix: string;
-  attributeKey: string; // Which attribute to use as Map key
   factory(data: any, page: EleventyPage): Promise<Resource>;
 };
 
 export type ReferenceTypeConfig = {
   collectionName: string;
-  suffix: string;
-  attributeKey: string; // Which attribute to use as Map key
   factory(data: any, page: EleventyPage): Promise<Reference>;
 };
 
