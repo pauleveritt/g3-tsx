@@ -3,40 +3,51 @@ import { EleventyPage } from "./models";
 import path from "path";
 import { Reference } from "./ReferenceModels";
 
-export const BaseEntity = Type.Object({
+export const BaseFrontmatter = Type.Object({
   title: Type.String(),
-  slug: Type.String(),
-  url: Type.String(),
-  date: Type.Optional(Type.Date()),
-  subtitle: Type.Optional(Type.String()),
-  body: Type.Optional(Type.String()),
-  excerpt: Type.Optional(Type.String()),
   resourceType: Type.String(),
 });
+export type BaseFrontmatter = Static<typeof BaseFrontmatter>;
+export const BaseEntity = Type.Intersect([
+  BaseFrontmatter,
+  Type.Object({
+    slug: Type.String(),
+    url: Type.String(),
+    body: Type.Optional(Type.String()),
+  }),
+]);
 export type BaseEntity = Static<typeof BaseEntity>;
-
 export const References = Type.Object({
   author: BaseEntity,
   products: Type.Array(BaseEntity),
   technologies: Type.Array(BaseEntity),
   topics: Type.Array(BaseEntity),
 });
+export type References = Static<typeof References>;
+
+export const ResourceFrontmatter = Type.Intersect([
+  BaseFrontmatter,
+  Type.Object({
+    author: Type.String(),
+    date: Type.Date(),
+    products: Type.Optional(Type.Array(Type.String())),
+    subtitle: Type.Optional(Type.String()),
+    technologies: Type.Optional(Type.Array(Type.String())),
+    thumbnail: Type.String(),
+    topics: Type.Optional(Type.Array(Type.String())),
+  }),
+]);
+export type ResourceFrontmatter = Static<typeof ResourceFrontmatter>;
 export const Resource = Type.Intersect([
+  ResourceFrontmatter,
   BaseEntity,
   Type.Object({
-    thumbnail: Type.String(),
-    author: Type.String(),
-    technologies: Type.Optional(Type.Array(Type.String())),
-    topics: Type.Optional(Type.Array(Type.String())),
-    products: Type.Optional(Type.Array(Type.String())),
     references: Type.Optional(References),
   }),
 ]);
-
 export type Resource = Static<typeof Resource>;
 export type ResourceCollection = Map<string, Resource>;
 export type ReferenceCollection = Map<string, Reference>;
-export type References = Static<typeof References>;
 
 export function getBaseResource(
   data: any,
@@ -44,14 +55,11 @@ export function getBaseResource(
   resourceType: string
 ): BaseEntity {
   return {
-    title: data.title,
-    slug: page.fileSlug,
-    url: page.url,
-    date: data.date,
-    subtitle: data.subtitle,
     body: data.content,
-    excerpt: data.excerpt,
     resourceType,
+    slug: page.fileSlug,
+    title: data.title,
+    url: page.url,
   };
 }
 
@@ -65,19 +73,18 @@ export function getResource(
   const thumbnail = path.join(dirname, data.thumbnail);
 
   return {
-    title: data.title,
-    slug: page.fileSlug,
-    url: page.url,
-    date: data.date,
-    subtitle: data.subtitle,
-    body: data.content,
-    excerpt: data.excerpt,
     author: data.author,
+    body: data.content,
+    date: data.date,
     products: data.products,
-    technologies: data.technologies,
-    topics: data.topics,
-    thumbnail,
     resourceType,
+    slug: page.fileSlug,
+    subtitle: data.subtitle,
+    technologies: data.technologies,
+    thumbnail,
+    title: data.title,
+    topics: data.topics,
+    url: page.url,
   };
 }
 
