@@ -11,14 +11,14 @@ import fixtures from "../../fixtures";
 test("should make ProductLayout", () => {
   const product = fixtures.products[0];
   const children = fixtures.content;
-  const referenceResources = Array.from(
+  const linkedResources = Array.from(
     fixtures.collections.allResources.values()
   );
   document.body.innerHTML = ProductLayout({
     title: product.title,
     subtitle: product.subtitle,
     children: [children],
-    referenceResources,
+    linkedResources,
   });
   const results = screen.getAllByText(product.title);
   expect(results).to.exist;

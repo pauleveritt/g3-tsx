@@ -11,14 +11,14 @@ import fixtures from "../../fixtures";
 test("should make TechnologyLayout", () => {
   const technology = fixtures.technologies[0];
   const children = fixtures.content;
-  const referenceResources = Array.from(
+  const linkedResources = Array.from(
     fixtures.resolvedCollections.allResources.values()
   );
   document.body.innerHTML = TechnologyLayout({
     title: technology.title,
     subtitle: technology.subtitle,
     children: [children],
-    referenceResources,
+    linkedResources,
   });
   const results = screen.getAllByText(technology.title);
   expect(results).to.exist;

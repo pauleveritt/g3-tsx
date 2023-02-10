@@ -2,15 +2,9 @@
 
 ## Now
 
-- Fix tests
-
-- Change referenceResources to linkedResources
-- Change label to be topic:label key
-- Change TipResource to Tip
-  - Then get rid of that key in config
 - Perfect coverage in registration
 - Perfect coverage in config
-
+- Change label to be topic:label key
 
 ## Next
 
@@ -74,6 +68,9 @@
   - More automated via a call from eleventy config
   - Pre-sorted `Set`
 - De-prop the layouts
+- Change referenceResources to linkedResources
+- Change TipResource to Tip
+  - Then get rid of that key in config
 
 ## WS+CWM Issues
 

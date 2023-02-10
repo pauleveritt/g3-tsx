@@ -7,13 +7,13 @@ import fixtures from "../../fixtures";
 test("should make TopicLayout", () => {
   const topic = fixtures.topics[0];
   const children = fixtures.content;
-  const referenceResources = Array.from(
+  const linkedResources = Array.from(
     fixtures.resolvedCollections.allResources.values()
   );
   document.body.innerHTML = TopicLayout({
     topic,
     children: [children],
-    referenceResources,
+    linkedResources,
   });
   const results = screen.getAllByText(topic.title);
   expect(results).to.exist;

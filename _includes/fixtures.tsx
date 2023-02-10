@@ -191,7 +191,7 @@ const authors: Author[] = [
     resourceType: all[2].data.resourceType as string,
     label: all[2].data.label as string,
     resources: [],
-    referenceResources: [],
+    linkedResources: [],
     thumbnail: all[2].data.thumbnail as string,
   },
   {
@@ -201,7 +201,7 @@ const authors: Author[] = [
     resourceType: all[3].data.resourceType as string,
     label: all[3].data.label as string,
     resources: [],
-    referenceResources: [],
+    linkedResources: [],
     thumbnail: all[3].data.thumbnail as string,
   },
 ];

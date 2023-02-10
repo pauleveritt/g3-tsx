@@ -8,7 +8,7 @@ import { Resource } from "../../../src/ResourceModels";
 
 export type ProductLayoutProps = {
   children: string[];
-  referenceResources: Resource[];
+  linkedResources: Resource[];
   subtitle?: string;
   thumbnail?: string;
   title: string;
@@ -19,7 +19,7 @@ export function ProductLayout({
   subtitle,
   thumbnail,
   title,
-  referenceResources,
+  linkedResources,
 }: ProductLayoutProps): JSX.Element {
   const figure = (
     <div className="image is-rounded is-96x96">
@@ -34,7 +34,7 @@ export function ProductLayout({
   );
   const listing = (
     <ul>
-      {referenceResources.map((resource) => (
+      {linkedResources.map((resource) => (
         <li>
           <a aria-label="Resource" href={resource.url}>
             {resource.title}
@@ -73,7 +73,7 @@ export function render(
     throw new Error(`Product "${page.fileSlug}" not in collection`);
   }
 
-  const referenceResources: Resource[] = this.getResources().filter(
+  const linkedResources: Resource[] = this.getResources().filter(
     (ci) => ci.products && ci.products.includes(product.label)
   );
 
@@ -81,7 +81,7 @@ export function render(
     <ProductLayout
       title={product.title}
       subtitle={product.subtitle}
-      referenceResources={referenceResources}
+      linkedResources={linkedResources}
     >
       {content}
     </ProductLayout>

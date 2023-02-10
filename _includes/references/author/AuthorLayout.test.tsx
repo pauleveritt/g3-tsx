@@ -7,7 +7,7 @@ import fixtures from "../../fixtures";
 test("should make AuthorLayout", () => {
   const author = fixtures.authors[0];
   const children = fixtures.content;
-  const referenceResources = Array.from(
+  const linkedResources = Array.from(
     fixtures.resolvedCollections.allResources.values()
   );
   document.body.innerHTML = AuthorLayout({
@@ -15,7 +15,7 @@ test("should make AuthorLayout", () => {
     subtitle: author.subtitle,
     thumbnail: author.thumbnail,
     children: [children],
-    referenceResources,
+    linkedResources,
   });
   const results = screen.getAllByText(author.title);
   expect(results).to.exist;

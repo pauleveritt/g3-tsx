@@ -10,7 +10,7 @@ import { Author } from "./AuthorModels";
 
 export type AuthorLayoutProps = {
   children: string[];
-  referenceResources: Resource[];
+  linkedResources: Resource[];
   subtitle?: string;
   thumbnail: string;
   title: string;
@@ -21,7 +21,7 @@ export function AuthorLayout({
   subtitle,
   thumbnail,
   title,
-  referenceResources,
+  linkedResources,
 }: AuthorLayoutProps): JSX.Element {
   const figure = (
     <div className="image is-rounded is-96x96">
@@ -34,7 +34,7 @@ export function AuthorLayout({
   );
   const listing = (
     <>
-      {referenceResources.map((resource) => (
+      {linkedResources.map((resource) => (
         <ResourceCard resource={resource}></ResourceCard>
       ))}
     </>
@@ -73,7 +73,7 @@ export function render(
     throw new Error(`Author "${page.fileSlug}" not in collection`);
   }
 
-  const referenceResources: Resource[] = this.getResources().filter(
+  const linkedResources: Resource[] = this.getResources().filter(
     (ci) => ci.author === author.label
   );
 
@@ -82,7 +82,7 @@ export function render(
       title={author.title}
       subtitle={author.subtitle}
       thumbnail={author.thumbnail}
-      referenceResources={referenceResources}
+      linkedResources={linkedResources}
     >
       {content}
     </AuthorLayout>

@@ -9,14 +9,14 @@ import ResourceCard from "../../resourcecard/ResourceCard.11ty";
 
 export type TopicLayoutProps = {
   children: string[];
-  referenceResources: Resource[];
+  linkedResources: Resource[];
   topic: Topic;
 };
 
 export function TopicLayout({
   children,
   topic,
-  referenceResources,
+  linkedResources,
 }: TopicLayoutProps): JSX.Element {
   const figure = (
     <figure className="media-left">
@@ -27,7 +27,7 @@ export function TopicLayout({
   );
   const listing = (
     <>
-      {referenceResources.map((resource) => (
+      {linkedResources.map((resource) => (
         <ResourceCard resource={resource}></ResourceCard>
       ))}
     </>
@@ -67,7 +67,7 @@ export function render(
   ) as Resource[];
 
   return (
-    <TopicLayout topic={topic} referenceResources={linkedResources}>
+    <TopicLayout topic={topic} linkedResources={linkedResources}>
       {content}
     </TopicLayout>
   );

@@ -9,7 +9,7 @@ import ResourceCard from "../../resourcecard/ResourceCard.11ty";
 
 export type TechnologyLayoutProps = {
   children: string[];
-  referenceResources: Resource[];
+  linkedResources: Resource[];
   subtitle?: string;
   logo?: string;
   title: string;
@@ -20,7 +20,7 @@ export function TechnologyLayout({
   subtitle,
   logo,
   title,
-  referenceResources,
+  linkedResources,
 }: TechnologyLayoutProps): JSX.Element {
   const figure = (
     <div className="image is-rounded is-96x96">
@@ -29,7 +29,7 @@ export function TechnologyLayout({
   );
   const listing = (
     <>
-      {referenceResources.map((resource) => (
+      {linkedResources.map((resource) => (
         <ResourceCard resource={resource}></ResourceCard>
       ))}
     </>
@@ -73,7 +73,7 @@ export function render(
       title={technology.title}
       subtitle={technology.subtitle}
       logo={technology.logo}
-      referenceResources={linkedResources}
+      linkedResources={linkedResources}
     >
       {content}
     </TechnologyLayout>
