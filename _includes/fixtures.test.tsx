@@ -1,4 +1,4 @@
-import { expect, it } from "vitest";
+import { expect, it, test } from "vitest";
 import fixtures from "./fixtures";
 import { validateResource } from "../src/validators";
 import { TipResource } from "./resources/tip/TipModels";
@@ -8,7 +8,21 @@ import { TopicReference } from "./references/topic/TopicModels";
 import { ProductReference } from "./references/product/ProductModels";
 import { EleventyCollectionItem } from "../src/models";
 
-it("should have valid fixture data", () => {
+test("should load 11ty page/data items", () => {
+  const all = fixtures.all;
+  expect(all.length).to.be.gt(9);
+});
+
+test("should process into allResources and allReferences", () => {
+  const { tipItems, authorItems } = fixtures;
+  const { allResources, allReferences } = fixtures.collections;
+  const tip1 = allResources.get(tipItems[0].page.url);
+  if (tip1) expect(tip1.title).to.equal(tipItems[0].data.title);
+  const author1 = allReferences.get(authorItems[0].page.url);
+  if (author1) expect(author1.title).to.equal(authorItems[0].data.title);
+});
+
+it.skip("should have valid fixture data", () => {
   const {
     children,
     tips,

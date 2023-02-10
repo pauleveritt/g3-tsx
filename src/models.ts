@@ -22,6 +22,8 @@ export const EleventyData = Type.Object({
   thumbnail: Type.Optional(Type.String()),
   label: Type.Optional(Type.String()),
   logo: Type.Optional(Type.String()),
+  accent: Type.Optional(Type.String()),
+  icon: Type.Optional(Type.String()),
   author: Type.Optional(Type.String()),
   technologies: Type.Optional(Type.Array(Type.String())),
   topics: Type.Optional(Type.Array(Type.String())),

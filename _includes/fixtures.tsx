@@ -1,14 +1,15 @@
 import h from "vhtml";
-import { TipResource } from "./resources/tip/TipModels";
+import { getTip } from "./resources/tip/TipModels";
 import { AuthorReference } from "./references/author/AuthorModels";
 import { SiteCollections } from "./models";
-import { TechnologyReference } from "./references/technology/TechnologyModels";
-import { TopicReference } from "./references/topic/TopicModels";
-import { ProductReference } from "./references/product/ProductModels";
+import { getTechnology } from "./references/technology/TechnologyModels";
+import { getTopic } from "./references/topic/TopicModels";
+import { getProduct } from "./references/product/ProductModels";
 import { rootPath } from "./config";
 import { vi } from "vitest";
 import { EleventyCollectionItem, RenderContext } from "../src/models";
 import { Resource } from "../src/ResourceModels";
+import { Reference } from "../src/ReferenceModels";
 
 /**
  * Reusable test data
@@ -93,6 +94,7 @@ const all: EleventyCollectionItem[] = [
       date: new Date("2023-01-22"),
       resourceType: "technology",
       label: "st",
+      logo: "stlogo.svg",
     },
     page: {
       fileSlug: "st",
@@ -107,6 +109,7 @@ const all: EleventyCollectionItem[] = [
       date: new Date("2023-01-14"),
       resourceType: "technology",
       label: "at",
+      logo: "atlogo.svg",
     },
     page: {
       fileSlug: "at",
@@ -121,6 +124,8 @@ const all: EleventyCollectionItem[] = [
       date: new Date("2023-01-28"),
       resourceType: "topic",
       label: "st",
+      accent: "st-accent",
+      icon: "st-icon.png",
     },
     page: {
       fileSlug: "st",
@@ -135,6 +140,8 @@ const all: EleventyCollectionItem[] = [
       date: new Date("2023-01-12"),
       resourceType: "topic",
       label: "at",
+      accent: "at-accent",
+      icon: "at-icon.png",
     },
     page: {
       fileSlug: "at",
@@ -200,134 +207,44 @@ const authors: AuthorReference[] = [
 ];
 
 const technologyItems = [all[4], all[5]];
-const technologies: TechnologyReference[] = [
-  {
-    title: all[4].data.title,
-    slug: all[4].page.fileSlug,
-    url: all[4].page.url,
-    resourceType: all[4].data.resourceType as string,
-    label: all[4].data.label as string,
-    resources: [],
-    referenceResources: [],
-  },
-  {
-    title: all[5].data.title,
-    slug: all[5].page.fileSlug,
-    url: all[5].page.url,
-    resourceType: all[5].data.resourceType as string,
-    label: all[5].data.label as string,
-    resources: [],
-    referenceResources: [],
-  },
-];
+const technologies = await Promise.all(
+  technologyItems.map((ref) => getTechnology(ref.data, ref.page))
+);
 
 const topicItems = [all[6], all[7]];
-const topics: TopicReference[] = [
-  {
-    title: all[6].data.title,
-    slug: all[6].page.fileSlug,
-    url: all[6].page.url,
-    resourceType: all[6].data.resourceType as string,
-    label: all[6].data.label as string,
-    resources: [],
-    referenceResources: [],
-  },
-  {
-    title: all[7].data.title,
-    slug: all[7].page.fileSlug,
-    url: all[7].page.url,
-    resourceType: all[7].data.resourceType as string,
-    label: all[7].data.label as string,
-    resources: [],
-    referenceResources: [],
-  },
-];
+const topics = await Promise.all(
+  topicItems.map(async (ref) => await getTopic(ref.data, ref.page))
+);
 
 const productItems = [all[8], all[9]];
-const products: ProductReference[] = [
-  {
-    title: all[8].data.title,
-    slug: all[8].page.fileSlug,
-    url: all[8].page.url,
-    resourceType: all[8].data.resourceType as string,
-    label: all[8].data.label as string,
-    logo: all[8].data.logo as string,
-    resources: [],
-    referenceResources: [],
-  },
-  {
-    title: all[9].data.title,
-    slug: all[9].page.fileSlug,
-    url: all[9].page.url,
-    resourceType: all[9].data.resourceType as string,
-    label: all[9].data.label as string,
-    logo: all[9].data.logo as string,
-    resources: [],
-    referenceResources: [],
-  },
-];
+const products = await Promise.all(
+  productItems.map(async (ref) => await getProduct(ref.data, ref.page))
+);
 
 const tipItems = [all[0], all[1]];
-const tips: TipResource[] = [
-  {
-    title: all[0].data.title,
-    slug: all[0].page.fileSlug,
-    url: all[0].page.url,
-    resourceType: all[0].data.resourceType as string,
-    author: all[0].data.author as string,
-    products: all[0].data.products,
-    technologies: all[0].data.technologies,
-    topics: all[0].data.topics,
-    thumbnail: "thumbnail.png",
-    references: {
-      author: authors[0],
-      technologies: [...technologies],
-      topics: [...topics],
-      products: [...products],
-    },
-  },
-  {
-    title: all[1].data.title,
-    slug: all[1].page.fileSlug,
-    url: all[1].page.url,
-    resourceType: all[1].data.resourceType as string,
-    author: all[1].data.author as string,
-    products: all[1].data.products,
-    technologies: all[1].data.technologies,
-    thumbnail: "thumbnail.png",
-    references: { author: authors[1] },
-  },
-];
-
-const tipResources: Map<string, TipResource> = new Map();
-tips.forEach((tip) => tipResources.set(tip.url, tip));
-const authorReferences: Map<string, AuthorReference> = new Map();
-
-authors.forEach((author) => authorReferences.set(author.label, author));
-const technologyReferences: Map<string, TechnologyReference> = new Map();
-technologies.forEach((technology) =>
-  technologyReferences.set(technology.label, technology)
+const tips = await Promise.all(
+  tipItems.map(async (ref) => await getTip(ref.data, ref.page))
 );
-const topicReferences: Map<string, TopicReference> = new Map();
-topics.forEach((topic) => topicReferences.set(topic.label, topic));
-const productReferences: Map<string, ProductReference> = new Map();
-products.forEach((product) => productReferences.set(product.label, product));
+
 const allResources: Map<string, Resource> = new Map();
+[...tips].forEach((resource) => allResources.set(resource.url, resource));
+
+const allReferences: Map<string, Reference> = new Map();
 [...tips].forEach((resource) => allResources.set(resource.url, resource));
 
 const collections: SiteCollections = {
   all,
-  tipResources,
-  authorReferences,
-  technologyReferences,
-  topicReferences,
-  productReferences,
   allResources,
+  allReferences,
 };
 
 const addTestCase = vi.fn();
+const getResources = vi.fn();
+const getReferences = vi.fn();
 const context: RenderContext = {
   addTestCase,
+  getResources,
+  getReferences,
 };
 
 // Now assemble for export
