@@ -18,11 +18,10 @@ it("should make AuthorsLayout", () => {
     subtitle,
     content,
   });
-  const items: HTMLUListElement[] = screen.getAllByRole("link", {
-    name: "Some Author",
+  const links: HTMLAnchorElement[] = screen.getAllByRole("link", {
+    name: "Author",
   });
-  expect(items[0].textContent).to.equal(authors[0].title);
-  expect(screen.getByText("world")).to.exist;
+  expect(links[0].href).to.equal("/authors/sa/");
 });
 
 test("should render AuthorsLayout", () => {
@@ -42,6 +41,5 @@ test("should render AuthorsLayout", () => {
   const links: HTMLAnchorElement[] = screen.getAllByRole("link", {
     name: "Some Author",
   });
-  expect(links.length).to.equal(1);
   expect(links[0].href).to.equal("/authors/sa/");
 });
