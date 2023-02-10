@@ -11,7 +11,7 @@ import { TipResource } from "../_includes/resources/tip/TipModels";
 import { AuthorReference } from "../_includes/references/author/AuthorModels";
 import {
   ReferenceCollection,
-  ReferenceMap,
+  References,
   ResourceCollection,
 } from "./ResourceModels";
 import { EleventyCollectionItem } from "./models";
@@ -21,12 +21,15 @@ const mockCollectionApi: CollectionApi = {
   getFilteredByTag: () => fixtures.all,
 };
 
+const fieldNames = ["author", "products", "technologies", "topics"];
 let allResources: ResourceCollection;
 let allReferences: ReferenceCollection;
 let tipItems: EleventyCollectionItem[];
 let authorItems: EleventyCollectionItem[];
+let productItems: EleventyCollectionItem[];
 let tipItem0: EleventyCollectionItem;
 let authorItem0: EleventyCollectionItem;
+let productItem0: EleventyCollectionItem;
 let tip0: TipResource;
 let author0: AuthorReference;
 
@@ -35,8 +38,10 @@ beforeEach(() => {
   allReferences = fixtures.collections.allReferences;
   tipItems = fixtures.tipItems;
   authorItems = fixtures.authorItems;
+  productItems = fixtures.productItems;
   tipItem0 = tipItems[0];
   authorItem0 = authorItems[0];
+  productItem0 = productItems[0];
   tip0 = allResources.get(tipItem0.page.url) as TipResource;
   if (authorItem0.data.label) {
     author0 = allReferences.get(authorItem0.data.label) as AuthorReference;
@@ -53,17 +58,17 @@ test("a resource and a reference exist in fixture data", () => {
 });
 
 test("should construct collections", async () => {
-  const { theseResources, theseReferences } = await getAllCollections({
+  const { allReferences, allResources } = await getAllCollections({
     collectionApi: mockCollectionApi,
     resourceCollections,
     referenceCollections,
   });
-  expect(theseResources).to.exist;
-  const thisTip0 = theseResources.get(tipItem0.page.url) as TipResource;
+  expect(allResources).to.exist;
+  const thisTip0 = allResources.get(tipItem0.page.url) as TipResource;
   expect(thisTip0).to.exist;
 
   // Authors
-  const thisAuthor0 = theseReferences.get(
+  const thisAuthor0 = allReferences.get(
     authorItem0.data.label as string
   ) as AuthorReference;
   expect(thisAuthor0).to.exist;
@@ -134,14 +139,29 @@ describe("Resolve References", () => {
   });
 
   test("resolve a set of references", () => {
-    const fieldNames = ["author", "product", "technology", "topic"];
     expect(tip0.references).not.to.exist;
-    const referenceMap: ReferenceMap = resolveReferences({
+    const referenceMap: References = resolveReferences({
       fieldNames,
       resource: tip0,
       allReferences,
     });
     const refAuthor = referenceMap.author;
     expect(refAuthor.title).to.equal(authorItem0.data.title);
+    const refProducts = referenceMap.products;
+    expect(refProducts[0].title).to.equal(productItem0.data.title);
+  });
+
+  test("resolve a missing products", () => {
+    // Get rid of products
+    delete resource.products;
+    expect(resource.references).not.to.exist;
+    const referenceMap: References = resolveReferences({
+      fieldNames,
+      resource,
+      allReferences,
+    });
+    const refAuthor = referenceMap.author;
+    expect(refAuthor.title).to.equal(authorItem0.data.title);
+    expect(referenceMap.products).to.exist;
   });
 });

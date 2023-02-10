@@ -3,7 +3,13 @@
  */
 import { EleventyCollectionItem, EleventyPage } from "./models";
 import { UserConfig } from "@11ty/eleventy";
-import { getResourceType, References, Resource } from "./ResourceModels";
+import {
+  getResourceType,
+  ReferenceCollection,
+  References,
+  Resource,
+  ResourceCollection,
+} from "./ResourceModels";
 import { Reference } from "./ReferenceModels";
 
 export type CollectionApi = {
@@ -30,11 +36,9 @@ export type GetAllCollectionsProps = {
   referenceCollections: { [key: string]: ReferenceTypeConfig };
 };
 
-export type AllResources = Map<string, Resource>;
-export type AllReferences = Map<string, Reference>;
 export type AllCollections = {
-  theseResources: AllResources;
-  theseReferences: AllReferences;
+  allResources: ResourceCollection;
+  allReferences: ReferenceCollection;
 };
 
 export async function getAllCollections({
@@ -44,16 +48,16 @@ export async function getAllCollections({
 }: GetAllCollectionsProps) {
   // This what we'll return
   const allCollections: AllCollections = {
-    theseResources: new Map(),
-    theseReferences: new Map(),
+    allResources: new Map(),
+    allReferences: new Map(),
   };
 
   const allCollectionItems: EleventyCollectionItem[] = collectionApi
     .getAll()
     .filter((ci) => ci.data.resourceType);
 
-  const allResources: AllResources = new Map();
-  const allReferences: AllReferences = new Map();
+  const allResources: ResourceCollection = new Map();
+  const allReferences: ReferenceCollection = new Map();
 
   for (const { data, page } of allCollectionItems) {
     const resourceType = getResourceType(data, page);
@@ -76,60 +80,23 @@ export async function getAllCollections({
     }
   }
 
-  allCollections.theseResources = allResources;
-  allCollections.theseReferences = allReferences;
+  allCollections.allResources = allResources;
+  allCollections.allReferences = allReferences;
 
   // With this in place, we can de-reference resources.
   // @ts-ignore
-  for (const [url, resource] of allCollections.theseResources) {
-    const author = allCollections.theseReferences.get(resource.author);
+  for (const [url, resource] of allCollections.allResources) {
+    const author = allCollections.allReferences.get(resource.author);
     if (!author) {
       throw new Error(
         `Resource "${url}" has unresolved author ${resource.author}`
       );
     }
     resource.references = resolveReferences({
-      fieldNames: ["author", "product", "technology", "topic"],
+      fieldNames: ["author", "products", "technologies", "topics"],
       resource,
       allReferences,
     });
-    // resource.references = {
-    //   author,
-    //   products: [],
-    //   technologies: [],
-    //   topics: [],
-    // };
-    // if (resource.technologies) {
-    //   resource.references.technologies = resource.technologies.map(
-    //     (label: string) => {
-    //       const technology = allReferences.get(label);
-    //       if (!technology) {
-    //         throw new Error(
-    //           `Resource "${url}" has unresolved technology ${label}`
-    //         );
-    //       }
-    //       return technology;
-    //     }
-    //   );
-    // }
-    // if (resource.products) {
-    //   resource.references.products = resource.products.map((label: string) => {
-    //     const product = allReferences.get(label);
-    //     if (!product) {
-    //       throw new Error(`Resource "${url} has unresolved product ${label}"`);
-    //     }
-    //     return product;
-    //   });
-    // }
-    // if (resource.topics) {
-    //   resource.references.topics = resource.topics.map((label: string) => {
-    //     const topic = allReferences.get(label);
-    //     if (!topic) {
-    //       throw new Error(`Resource "${url}" has unresolved topic ${label}`);
-    //     }
-    //     return topic;
-    //   });
-    // }
   }
 
   return allCollections;
@@ -138,7 +105,7 @@ export async function getAllCollections({
 export type ResolveReferencesProps = {
   fieldName: string;
   resource: Resource;
-  allReferences: AllReferences;
+  allReferences: ReferenceCollection;
 };
 
 export function resolveReference({
@@ -182,7 +149,7 @@ export function resolveReference({
 export type ResolveReferences = {
   fieldNames: string[];
   resource: Resource;
-  allReferences: AllReferences;
+  allReferences: ReferenceCollection;
 };
 
 export function resolveReferences({
@@ -201,6 +168,10 @@ export function resolveReferences({
         resource,
         allReferences,
       });
+    } else {
+      // Only array references things should be empty;
+      // @ts-ignore
+      references[fieldName] = [];
     }
   }
   return references;
