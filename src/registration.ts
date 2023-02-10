@@ -46,15 +46,33 @@ export async function getAllCollections({
   resourceCollections,
   referenceCollections,
 }: GetAllCollectionsProps) {
+  const allCollectionItems: EleventyCollectionItem[] = collectionApi
+    .getAll()
+    .filter((ci) => ci.data.resourceType);
+
+  return await resolveAllCollections({
+    allCollectionItems,
+    resourceCollections,
+    referenceCollections,
+  });
+}
+
+export type ResolveAllCollections = {
+  allCollectionItems: EleventyCollectionItem[];
+  resourceCollections: { [key: string]: ResourceTypeConfig };
+  referenceCollections: { [key: string]: ReferenceTypeConfig };
+};
+
+export async function resolveAllCollections({
+  allCollectionItems,
+  resourceCollections,
+  referenceCollections,
+}: ResolveAllCollections) {
   // This what we'll return
   const allCollections: AllCollections = {
     allResources: new Map(),
     allReferences: new Map(),
   };
-
-  const allCollectionItems: EleventyCollectionItem[] = collectionApi
-    .getAll()
-    .filter((ci) => ci.data.resourceType);
 
   const allResources: ResourceCollection = new Map();
   const allReferences: ReferenceCollection = new Map();

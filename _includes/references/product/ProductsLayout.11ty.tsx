@@ -1,6 +1,5 @@
 import h, { JSX } from "vhtml";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
-import { SiteCollections } from "../../models";
 import { ProductReference } from "./ProductModels";
 import { RenderContext } from "../../../src/models";
 
@@ -44,7 +43,6 @@ export function ProductsLayout({
 }
 
 export type ProductsRenderProps = {
-  collections: SiteCollections;
   content: string;
   title: string;
   subtitle?: string;

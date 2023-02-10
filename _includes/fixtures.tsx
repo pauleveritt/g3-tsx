@@ -5,11 +5,11 @@ import { SiteCollections } from "./models";
 import { getTechnology } from "./references/technology/TechnologyModels";
 import { getTopic } from "./references/topic/TopicModels";
 import { getProduct } from "./references/product/ProductModels";
-import { rootPath } from "./config";
+import { referenceCollections, resourceCollections, rootPath } from "./config";
 import { vi } from "vitest";
 import { EleventyCollectionItem, RenderContext } from "../src/models";
-import { Resource } from "../src/ResourceModels";
-import { Reference } from "../src/ReferenceModels";
+import { ReferenceCollection, ResourceCollection } from "../src/ResourceModels";
+import { resolveAllCollections } from "../src/registration";
 
 /**
  * Reusable test data
@@ -226,14 +226,21 @@ const tips = await Promise.all(
   tipItems.map(async (ref) => await getTip(ref.data, ref.page))
 );
 
-const allResources: Map<string, Resource> = new Map();
+const allResources: ResourceCollection = new Map();
 [...tips].forEach((resource) => allResources.set(resource.url, resource));
 
-const allReferences: Map<string, Reference> = new Map();
+const allReferences: ReferenceCollection = new Map();
 [...authors, ...products, ...technologies, ...topics].forEach((reference) =>
   allReferences.set(reference.label, reference)
 );
 
+// Make duplicates as resolved collections
+const clonedCollectionItems = structuredClone(all);
+const resolvedCollections = await resolveAllCollections({
+  allCollectionItems: clonedCollectionItems,
+  resourceCollections,
+  referenceCollections,
+});
 const collections: SiteCollections = {
   all,
   allResources,
@@ -266,5 +273,6 @@ const fixtures = {
   productItems,
   all,
   context,
+  resolvedCollections: resolvedCollections,
 };
 export default fixtures;

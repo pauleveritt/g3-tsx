@@ -1,6 +1,5 @@
 import h, { JSX } from "vhtml";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
-import { SiteCollections } from "../../models";
 import { TechnologyReference } from "./TechnologyModels";
 import { RenderContext } from "../../../src/models";
 
@@ -19,7 +18,7 @@ export function TechnologiesLayout({
 }: TechnologiesLayoutProps): JSX.Element {
   const figure = undefined;
   const listing: string[] = technologies.map((technology) => (
-    <a className="bd-link" href={technology.url}>
+    <a aria-label={`Technology`} className="bd-link" href={technology.url}>
       <h2 className="bd-link-name">
         <figure className="bd-link-figure">
           <div className="image is-64x64">
@@ -50,7 +49,6 @@ export function TechnologiesLayout({
 }
 
 export type TechnologiesRenderProps = {
-  collections: SiteCollections;
   content: string;
   title: string;
   subtitle?: string;

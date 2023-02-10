@@ -1,5 +1,4 @@
 import h, { JSX } from "vhtml";
-import { SiteCollections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { TipResource } from "./TipModels";
 import { RenderContext } from "../../../src/models";
@@ -38,7 +37,6 @@ export function TipsLayout({
 }
 
 export type TipsRenderProps = {
-  collections: SiteCollections;
   content: string;
   title: string;
   subtitle?: string;

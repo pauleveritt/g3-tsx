@@ -4,27 +4,30 @@ import { screen } from "@testing-library/dom";
 import fixtures from "../../fixtures";
 
 test("should make TipsLayout", () => {
-  const tips = fixtures.collections.tipResources.values();
+  const tips = Array.from(fixtures.resolvedCollections.allResources.values());
   const title = "These Tips";
   const subtitle = "Some tips text";
   const content = fixtures.content;
   document.body.innerHTML = TipsLayout({ tips, title, subtitle, content });
-  const items: HTMLUListElement[] = screen.getAllByRole("link", {
-    name: "Some Tip",
+  const links: HTMLAnchorElement[] = screen.getAllByRole("link", {
+    name: "Resource",
   });
-  expect(items[0].textContent).to.equal("Some Tip");
-  expect(screen.getByText("world")).to.exist;
+  expect(links[0].href).to.equal("/tips/some-tip/");
 });
 
 test("should render TipsLayout", () => {
   const title = "These Tips";
   const subtitle = "Some tips text";
   const renderProps: TipsRenderProps = {
-    collections: fixtures.collections,
     content: fixtures.content,
     title,
     subtitle,
   };
+  fixtures.context.getResources = () =>
+    Array.from(fixtures.resolvedCollections.allResources.values());
   document.body.innerHTML = render.call(fixtures.context, renderProps);
-  expect(screen.getByText("world")).to.exist;
+  const links: HTMLAnchorElement[] = screen.getAllByRole("link", {
+    name: "Resource",
+  });
+  expect(links[0].href).to.equal("/tips/some-tip/");
 });

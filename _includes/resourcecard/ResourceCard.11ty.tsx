@@ -25,7 +25,7 @@ const ResourceCard = ({
         <div className="media-content is-clipped">
           <div className="content">
             <div className="content bio-resourcecard-props">
-              <a href={url}>
+              <a aria-label={`Resource`} href={url}>
                 <strong>
                   {title} {resourceType && <small>({resourceType})</small>}
                 </strong>

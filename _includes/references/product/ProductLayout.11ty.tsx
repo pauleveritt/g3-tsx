@@ -36,7 +36,7 @@ export function ProductLayout({
     <ul>
       {referenceResources.map((resource) => (
         <li>
-          <a aria-label="resource" href={resource.url}>
+          <a aria-label="Resource" href={resource.url}>
             {resource.title}
           </a>
         </li>

@@ -18,26 +18,24 @@ it("should make TechnologiesLayout", () => {
     subtitle,
     content,
   });
-  const items: HTMLUListElement[] = screen.getAllByRole("link", {
-    name: "Some Technology",
+  const links: HTMLAnchorElement[] = screen.getAllByRole("link", {
+    name: "Technology",
   });
-  expect(items[0].textContent).to.equal(technologies[0].title);
-  expect(screen.getByText("world")).to.exist;
+  expect(links[0].href).to.equal("/technologies/st/");
 });
 
 test("should render TechnologiesLayout", () => {
   const title = "These Technologies";
   const subtitle = "Some technologies text";
   const renderProps: TechnologiesRenderProps = {
-    collections: fixtures.collections,
     content: fixtures.content,
     title,
     subtitle,
   };
+  fixtures.context.getReferences = () => fixtures.technologies;
   document.body.innerHTML = render.call(fixtures.context, renderProps);
-  const items: HTMLUListElement[] = screen.getAllByRole("link", {
-    name: "Some Technology",
+  const links: HTMLAnchorElement[] = screen.getAllByRole("link", {
+    name: "Technology",
   });
-  expect(items[0].textContent).to.equal("Some Technology");
-  expect(screen.getByText("world")).to.exist;
+  expect(links[0].href).to.equal("/technologies/st/");
 });

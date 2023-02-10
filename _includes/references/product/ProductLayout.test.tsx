@@ -11,18 +11,14 @@ import fixtures from "../../fixtures";
 test("should make ProductLayout", () => {
   const product = fixtures.products[0];
   const children = fixtures.content;
+  const referenceResources = Array.from(
+    fixtures.collections.allResources.values()
+  );
   document.body.innerHTML = ProductLayout({
     title: product.title,
     subtitle: product.subtitle,
     children: [children],
-    referenceResources: [
-      { title: "Some Title", url: "/products/some-slug/", thumbnail: "t1" },
-      {
-        title: "Another Title",
-        url: "/products/another-slug/",
-        thumbnail: "t2",
-      },
-    ],
+    referenceResources,
   });
   const results = screen.getAllByText(product.title);
   expect(results).to.exist;
@@ -36,10 +32,12 @@ test("should render ProductLayout", () => {
       fileSlug: fixtures.products[0].slug,
     },
   };
+  fixtures.context.getResources = () =>
+    Array.from(fixtures.resolvedCollections.allResources.values());
   document.body.innerHTML = render.call(fixtures.context, renderProps);
   const links: HTMLAnchorElement[] = screen.getAllByRole("link", {
-    name: "resource",
+    name: "Resource",
   });
   expect(links.length).to.equal(2);
-  expect(links[0].href).to.equal("/tips/another-tip/");
+  expect(links[0].href).to.equal("/tips/some-tip/");
 });

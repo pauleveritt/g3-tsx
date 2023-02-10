@@ -5,16 +5,15 @@ import { render, TopicLayout, TopicRenderProps } from "./TopicLayout.11ty";
 import fixtures from "../../fixtures";
 
 test("should make TopicLayout", () => {
-  const topic = fixtures.technologies[0];
+  const topic = fixtures.topics[0];
   const children = fixtures.content;
+  const referenceResources = Array.from(
+    fixtures.resolvedCollections.allResources.values()
+  );
   document.body.innerHTML = TopicLayout({
-    title: topic.title,
-    subtitle: topic.subtitle,
+    topic,
     children: [children],
-    referenceResources: [
-      { title: "Some Title", url: "/tips/some-url/", thumbnail: "t1" },
-      { title: "Another Title", url: "/tips/another-url/", thumbnail: "t2" },
-    ],
+    referenceResources,
   });
   const results = screen.getAllByText(topic.title);
   expect(results).to.exist;
@@ -28,10 +27,12 @@ test("should render TopicLayout", () => {
       fileSlug: fixtures.technologies[0].slug,
     },
   };
+  fixtures.context.getResources = () =>
+    Array.from(fixtures.resolvedCollections.allResources.values());
   document.body.innerHTML = render.call(fixtures.context, renderProps);
   const links: HTMLAnchorElement[] = screen.getAllByRole("link", {
-    name: "resource",
+    name: "Resource",
   });
   expect(links.length).to.equal(2);
-  expect(links[0].href).to.equal("/tips/another-tip/");
+  expect(links[0].href).to.equal("/tips/some-tip/");
 });

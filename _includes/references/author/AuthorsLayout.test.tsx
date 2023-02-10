@@ -37,10 +37,11 @@ test("should render AuthorsLayout", () => {
     title,
     subtitle,
   };
+  fixtures.context.getReferences = () => fixtures.authors;
   document.body.innerHTML = render.call(fixtures.context, renderProps);
-  const items: HTMLUListElement[] = screen.getAllByRole("link", {
+  const links: HTMLAnchorElement[] = screen.getAllByRole("link", {
     name: "Some Author",
   });
-  expect(items[0].textContent).to.equal("Some Author");
-  expect(screen.getByText("world")).to.exist;
+  expect(links.length).to.equal(1);
+  expect(links[0].href).to.equal("/authors/sa/");
 });

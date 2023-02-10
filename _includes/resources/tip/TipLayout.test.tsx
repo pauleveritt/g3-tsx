@@ -22,8 +22,9 @@ test("should make TipLayout", () => {
 });
 
 test("should render TipLayout", () => {
+  // @ts-ignore
   const renderProps: TipRenderProps = {
-    collections: fixtures.collections,
+    collections: { ...fixtures.resolvedCollections, all: fixtures.all },
     content: fixtures.content,
     page: {
       url: fixtures.tips[0].url,

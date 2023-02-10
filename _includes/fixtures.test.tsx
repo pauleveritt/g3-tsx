@@ -11,6 +11,25 @@ test("should process into allResources and allReferences", () => {
   const { allResources, allReferences } = fixtures.collections;
   const tip1 = allResources.get(tipItems[0].page.url);
   expect(tip1 && tip1.title).to.equal(tipItems[0].data.title);
-  const author1 = allReferences.get(authorItems[0].page.url);
-  expect(author1 && author1.title).to.equal(authorItems[0].data.title);
+  const author0Label = authorItems[0].data.label as string;
+  const author0 = allReferences.get(author0Label);
+  expect(author0 && author0.title).to.equal(authorItems[0].data.title);
+});
+
+test("should NOT have resolved refrences", () => {
+  const { tipItems } = fixtures;
+  const { allResources } = fixtures.collections;
+  const tip0 = allResources.get(tipItems[0].page.url);
+  expect(tip0 && tip0.references).not.to.exist;
+});
+test("should have resolved refrences", () => {
+  const { tipItems, authorItems, topicItems } = fixtures;
+  const { resolvedCollections } = fixtures;
+  const tip0 = resolvedCollections.allResources.get(tipItems[0].page.url);
+  if (tip0 && tip0.references) {
+    expect(tip0).to.exist;
+    expect(tip0.references).to.exist;
+    expect(tip0.references.author.title).to.equal(authorItems[0].data.title);
+    expect(tip0.references.topics[0].title).to.equal(topicItems[0].data.title);
+  }
 });

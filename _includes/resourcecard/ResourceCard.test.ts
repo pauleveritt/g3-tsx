@@ -5,9 +5,13 @@ import ResourceCard from "./ResourceCard.11ty";
 import fixtures from "../fixtures";
 
 test("ResourceCard", () => {
-  const resource = fixtures.tips[0];
+  const resource = Array.from(
+    fixtures.resolvedCollections.allResources.values()
+  )[0];
 
   document.body.innerHTML = ResourceCard({ resource });
-  const result: HTMLImageElement = screen.getByAltText("Logo");
-  expect(result.src).to.equal(resource.thumbnail);
+  const links: HTMLAnchorElement[] = screen.getAllByRole("link", {
+    name: "Resource",
+  });
+  expect(links[0].href).to.equal(fixtures.tips[0].url);
 });

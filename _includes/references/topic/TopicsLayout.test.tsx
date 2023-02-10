@@ -4,7 +4,7 @@ import { screen } from "@testing-library/dom";
 import fixtures from "../../fixtures";
 
 it("should make TopicsLayout", () => {
-  const topics = fixtures.collections.topicReferences.values();
+  const topics = fixtures.topics;
   const title = "All Topics";
   const subtitle = "Some topic subtitle text";
   const content = fixtures.content;
@@ -14,26 +14,24 @@ it("should make TopicsLayout", () => {
     subtitle,
     content,
   });
-  const items: HTMLUListElement[] = screen.getAllByRole("link", {
-    name: "resource",
+  const links: HTMLAnchorElement[] = screen.getAllByRole("link", {
+    name: "Topic",
   });
-  expect(items[0].textContent).to.equal("Some Topic");
-  expect(screen.getByText("world")).to.exist;
+  expect(links[0].href).to.equal("/topics/st/");
 });
 
 test("should render TopicsLayout", () => {
   const title = "These Topics";
   const subtitle = "Some topics text";
   const renderProps: TopicsRenderProps = {
-    collections: fixtures.collections,
     content: fixtures.content,
     title,
     subtitle,
   };
+  fixtures.context.getReferences = () => fixtures.topics;
   document.body.innerHTML = render.call(fixtures.context, renderProps);
-  const items: HTMLUListElement[] = screen.getAllByRole("link", {
-    name: "resource",
+  const links: HTMLAnchorElement[] = screen.getAllByRole("link", {
+    name: "Topic",
   });
-  expect(items[0].textContent).to.equal("Some Topic");
-  expect(screen.getByText("world")).to.exist;
+  expect(links[0].href).to.equal("/topics/st/");
 });

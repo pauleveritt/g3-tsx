@@ -1,6 +1,5 @@
 import h, { JSX } from "vhtml";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
-import { SiteCollections } from "../../models";
 import { TopicReference } from "./TopicModels";
 import { RenderContext } from "../../../src/models";
 
@@ -19,7 +18,7 @@ export function TopicsLayout({
 }: TopicsLayoutProps): JSX.Element {
   const figure = undefined;
   const listing: string[] = topics.map((topic) => (
-    <a className="bd-link" href={topic.url}>
+    <a aria-label={`Topic`} className="bd-link" href={topic.url}>
       <h2 className="bd-link-name">
         <figure className="bd-link-figure">
           <span
@@ -47,7 +46,6 @@ export function TopicsLayout({
 }
 
 export type TopicsRenderProps = {
-  collections: SiteCollections;
   content: string;
   title: string;
   subtitle?: string;

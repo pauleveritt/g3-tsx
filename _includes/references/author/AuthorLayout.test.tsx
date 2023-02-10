@@ -8,7 +8,7 @@ test("should make AuthorLayout", () => {
   const author = fixtures.authors[0];
   const children = fixtures.content;
   const referenceResources = Array.from(
-    fixtures.collections.allResources.values()
+    fixtures.resolvedCollections.allResources.values()
   );
   document.body.innerHTML = AuthorLayout({
     title: author.title,
@@ -30,9 +30,11 @@ test("should render AuthorLayout", () => {
       url: "/some-url/",
     },
   };
+  fixtures.context.getResources = () =>
+    Array.from(fixtures.resolvedCollections.allResources.values());
   document.body.innerHTML = render.call(fixtures.context, renderProps);
   const links: HTMLAnchorElement[] = screen.getAllByRole("link", {
-    name: "resource",
+    name: "Resource",
   });
   expect(links.length).to.equal(1);
   expect(links[0].href).to.equal("/tips/some-tip/");
