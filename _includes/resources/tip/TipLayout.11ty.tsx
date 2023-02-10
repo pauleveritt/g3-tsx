@@ -152,8 +152,7 @@ export function render(
   this: RenderContext,
   { collections, content, page }: TipRenderProps
 ): JSX.Element {
-  const { tipResources } = collections;
-  const tip = tipResources.get(page.url);
+  const tip = collections.allResources.get(page.url) as TipResource;
   if (!tip) {
     throw new Error(`Tip "${page.url}" not in collection`);
   }

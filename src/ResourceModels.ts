@@ -1,6 +1,7 @@
 import { Static, Type } from "@sinclair/typebox";
 import { EleventyPage } from "./models";
 import path from "path";
+import { Reference } from "./ReferenceModels";
 
 export const BaseResource = Type.Object({
   title: Type.String(),
@@ -34,6 +35,7 @@ export const Resource = Type.Intersect([
 
 export type Resource = Static<typeof Resource>;
 export type ResourceCollection = Map<string, Resource>;
+export type ReferenceCollection = Map<string, Reference>;
 
 export function getBaseResource(
   data: any,

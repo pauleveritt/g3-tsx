@@ -5,43 +5,34 @@ import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { RenderContext } from "../../../src/models";
 import { Resource } from "../../../src/ResourceModels";
 import { TechnologyReference } from "./TechnologyModels";
+import ResourceCard from "../../resourcecard/ResourceCard.11ty";
 
 export type TechnologyLayoutProps = {
   children: string[];
   referenceResources: Resource[];
   subtitle?: string;
-  thumbnail?: string;
+  logo?: string;
   title: string;
 };
 
 export function TechnologyLayout({
   children,
   subtitle,
-  thumbnail,
+  logo,
   title,
   referenceResources,
 }: TechnologyLayoutProps): JSX.Element {
   const figure = (
     <div className="image is-rounded is-96x96">
-      <img
-        alt=""
-        className="bio-resourcecard-logo"
-        height="96"
-        width="96"
-        src={thumbnail}
-      />
+      <img className="bio-resourcecard-logo" src={logo} alt="Logo" />
     </div>
   );
   const listing = (
-    <ul>
+    <>
       {referenceResources.map((resource) => (
-        <li>
-          <a aria-label="resource" href={resource.url}>
-            {resource.title}
-          </a>
-        </li>
+        <ResourceCard resource={resource}></ResourceCard>
       ))}
-    </ul>
+    </>
   );
   const content = <div dangerouslySetInnerHTML={{ __html: children[0] }} />;
 
@@ -83,6 +74,7 @@ export function render(
     <TechnologyLayout
       title={technology.title}
       subtitle={technology.subtitle}
+      logo={technology.logo}
       referenceResources={linkedResources}
     >
       {content}

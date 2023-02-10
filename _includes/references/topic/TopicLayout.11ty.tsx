@@ -5,50 +5,39 @@ import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { RenderContext } from "../../../src/models";
 import { Resource } from "../../../src/ResourceModels";
 import { TopicReference } from "./TopicModels";
+import ResourceCard from "../../resourcecard/ResourceCard.11ty";
 
 export type TopicLayoutProps = {
   children: string[];
   referenceResources: Resource[];
-  subtitle?: string;
-  thumbnail?: string;
-  title: string;
+  topic: TopicReference;
 };
 
 export function TopicLayout({
   children,
-  subtitle,
-  thumbnail,
-  title,
+  topic,
   referenceResources,
 }: TopicLayoutProps): JSX.Element {
   const figure = (
-    <div className="image is-rounded is-96x96">
-      <img
-        alt=""
-        className="bio-resourcecard-logo"
-        height="96"
-        width="96"
-        src={thumbnail}
-      />
-    </div>
+    <figure className="media-left">
+      <span className={`icon is-large has-text-${topic.accent}`}>
+        <i className={`${topic.icon} fa-3x`} />
+      </span>
+    </figure>
   );
   const listing = (
-    <ul>
+    <>
       {referenceResources.map((resource) => (
-        <li>
-          <a aria-label="resource" href={resource.url}>
-            {resource.title}
-          </a>
-        </li>
+        <ResourceCard resource={resource}></ResourceCard>
       ))}
-    </ul>
+    </>
   );
   const content = <div dangerouslySetInnerHTML={{ __html: children[0] }} />;
 
   return (
     <ReferenceLayout
-      title={title}
-      subtitle={subtitle}
+      title={topic.title}
+      subtitle={topic.subtitle}
       figure={[figure]}
       listing={[listing]}
       content={content}
@@ -78,11 +67,7 @@ export function render(
   ) as Resource[];
 
   return (
-    <TopicLayout
-      title={topic.title}
-      subtitle={topic.subtitle}
-      referenceResources={linkedResources}
-    >
+    <TopicLayout topic={topic} referenceResources={linkedResources}>
       {content}
     </TopicLayout>
   );

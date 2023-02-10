@@ -18,26 +18,29 @@ export function TopicsLayout({
   content,
 }: TopicsLayoutProps): JSX.Element {
   const figure = undefined;
-  const listing = (
-    <ul>
-      {topics.map((topic) => {
-        return (
-          <li>
-            <a aria-label="resource" href={topic.url}>
-              {topic.title}
-            </a>
-          </li>
-        );
-      })}
-    </ul>
-  );
+  const listing: string[] = topics.map((topic) => (
+    <a className="bd-link" href={topic.url}>
+      <h2 className="bd-link-name">
+        <figure className="bd-link-figure">
+          <span
+            data-testid={`sto-accent`}
+            className={`bd-link-icon has-text-${topic.accent}`}
+          >
+            <i data-testid={`sto-icon`} className={topic.icon} />
+          </span>
+        </figure>
+        {topic.title}
+      </h2>
+      {topic.subtitle && <p className="bd-link-subtitle">{topic.subtitle}</p>}
+    </a>
+  ));
 
   return (
     <ReferenceLayout
       title={title}
       subtitle={subtitle}
       figure={figure}
-      listing={[listing]}
+      listing={[listing.join("")]}
       content={content}
     />
   );

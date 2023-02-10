@@ -77,7 +77,7 @@ export async function getAllCollections({
   // @ts-ignore
   for (const [url, resource] of allCollections.allResources) {
     resource.references = {
-      author: allCollections.authorReferences.get(resource.author),
+      author: allCollections.allReferences.get(resource.author),
       products: [],
       technologies: [],
       topics: [],
