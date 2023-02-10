@@ -1,4 +1,5 @@
 ---
+resourceType: tutorial
 date: 2021-10-04
 title: React, TypeScript, and TDD
 technologies: [typescript, jest, react]

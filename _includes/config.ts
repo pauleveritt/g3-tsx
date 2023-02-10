@@ -12,9 +12,11 @@ import { technologyConfig } from "./references/technology";
 import { topicConfig } from "./references/topic";
 import { Resource } from "../src/ResourceModels";
 import { Reference } from "../src/ReferenceModels";
+import { tutorialConfig } from "./resources/tutorial";
 
 export const resourceCollections = {
   tip: tipConfig,
+  tutorial: tutorialConfig,
 };
 export const referenceCollections = {
   author: authorConfig,

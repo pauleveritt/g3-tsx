@@ -92,3 +92,7 @@
 - Vitest
 - TypeBox "content types"
 - Switch to collections.author rather than collections.authorReferences in get**
+
+# Manual Migration Tasks
+
+- Change tutorialItems to remove prefix

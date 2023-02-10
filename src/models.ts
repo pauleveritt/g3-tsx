@@ -28,6 +28,7 @@ export const EleventyData = Type.Object({
   technologies: Type.Optional(Type.Array(Type.String())),
   topics: Type.Optional(Type.Array(Type.String())),
   products: Type.Optional(Type.Array(Type.String())),
+  tutorialItems: Type.Optional(Type.Array(Type.String())),
 });
 export type EleventyData = Static<typeof EleventyData>;
 
