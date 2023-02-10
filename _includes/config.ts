@@ -13,10 +13,10 @@ import { topicConfig } from "./references/topic";
 import { Resource } from "../src/ResourceModels";
 import { Reference } from "../src/ReferenceModels";
 
-const resourceCollections = {
+export const resourceCollections = {
   tip: tipConfig,
 };
-const referenceCollections = {
+export const referenceCollections = {
   author: authorConfig,
   product: productConfig,
   technology: technologyConfig,

@@ -2,6 +2,14 @@
 
 ## Now
 
+- Fix tests
+
+- Change referenceResources to linkedResources
+- Change label to be topic:label key
+- Change TipResource to Tip
+  - Then get rid of that key in config
+- Perfect coverage in registration
+- Perfect coverage in config
 
 
 ## Next

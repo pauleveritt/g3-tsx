@@ -36,6 +36,7 @@ export const Resource = Type.Intersect([
 export type Resource = Static<typeof Resource>;
 export type ResourceCollection = Map<string, Resource>;
 export type ReferenceCollection = Map<string, Reference>;
+export type References = Static<typeof References>;
 
 export function getBaseResource(
   data: any,

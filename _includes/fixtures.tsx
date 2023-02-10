@@ -230,7 +230,9 @@ const allResources: Map<string, Resource> = new Map();
 [...tips].forEach((resource) => allResources.set(resource.url, resource));
 
 const allReferences: Map<string, Reference> = new Map();
-[...tips].forEach((resource) => allResources.set(resource.url, resource));
+[...authors, ...products, ...technologies, ...topics].forEach((reference) =>
+  allReferences.set(reference.label, reference)
+);
 
 const collections: SiteCollections = {
   all,

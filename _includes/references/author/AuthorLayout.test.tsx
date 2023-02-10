@@ -7,15 +7,15 @@ import fixtures from "../../fixtures";
 test("should make AuthorLayout", () => {
   const author = fixtures.authors[0];
   const children = fixtures.content;
+  const referenceResources = Array.from(
+    fixtures.collections.allResources.values()
+  );
   document.body.innerHTML = AuthorLayout({
     title: author.title,
     subtitle: author.subtitle,
     thumbnail: author.thumbnail,
     children: [children],
-    referenceResources: [
-      { title: "Some Title", url: "/tips/some-slug/", thumbnail: "t1" },
-      { title: "Another Title", url: "/tips/another-slug/", thumbnail: "t2" },
-    ],
+    referenceResources,
   });
   const results = screen.getAllByText(author.title);
   expect(results).to.exist;
