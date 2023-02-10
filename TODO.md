@@ -2,7 +2,6 @@
 
 ## Now
 
-- Perfect coverage in registration
 - Perfect coverage in config
 - Change label to be topic:label key
 

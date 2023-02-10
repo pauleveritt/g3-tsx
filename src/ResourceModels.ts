@@ -3,7 +3,7 @@ import { EleventyPage } from "./models";
 import path from "path";
 import { Reference } from "./ReferenceModels";
 
-export const BaseResource = Type.Object({
+export const BaseEntity = Type.Object({
   title: Type.String(),
   slug: Type.String(),
   url: Type.String(),
@@ -13,16 +13,16 @@ export const BaseResource = Type.Object({
   excerpt: Type.Optional(Type.String()),
   resourceType: Type.String(),
 });
-export type BaseResource = Static<typeof BaseResource>;
+export type BaseEntity = Static<typeof BaseEntity>;
 
 export const References = Type.Object({
-  author: BaseResource,
-  products: Type.Array(BaseResource),
-  technologies: Type.Array(BaseResource),
-  topics: Type.Array(BaseResource),
+  author: BaseEntity,
+  products: Type.Array(BaseEntity),
+  technologies: Type.Array(BaseEntity),
+  topics: Type.Array(BaseEntity),
 });
 export const Resource = Type.Intersect([
-  BaseResource,
+  BaseEntity,
   Type.Object({
     thumbnail: Type.String(),
     author: Type.String(),
@@ -42,7 +42,7 @@ export function getBaseResource(
   data: any,
   page: EleventyPage,
   resourceType: string
-): BaseResource {
+): BaseEntity {
   return {
     title: data.title,
     slug: page.fileSlug,
