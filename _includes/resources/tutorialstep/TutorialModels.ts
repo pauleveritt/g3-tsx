@@ -1,11 +1,15 @@
 import { Static, Type } from "@sinclair/typebox";
-import { validateResource } from "../../../src/validators";
-import { getResource, Resource } from "../../../src/ResourceModels";
+import { validateFrontmatter } from "../../../src/validators";
+import {
+  getResourceFrontmatter,
+  Resource,
+  ResourceFrontmatter,
+} from "../../../src/ResourceModels";
 import { EleventyPage } from "../../../src/models";
 import path from "path";
 
-export const TutorialStep = Type.Intersect([
-  Resource,
+export const TutorialStepFrontmatter = Type.Intersect([
+  ResourceFrontmatter,
   Type.Object({
     thumbnail: Type.Optional(Type.String()),
     videoBottom: Type.Optional(Type.Boolean()),
@@ -18,8 +22,9 @@ export const TutorialStep = Type.Intersect([
     ),
   }),
 ]);
-export type TutorialStep = Static<typeof TutorialStep>;
+export type TutorialStepFrontmatter = Static<typeof TutorialStepFrontmatter>;
 
+export type TutorialStep = {} & TutorialStepFrontmatter & Resource;
 export async function getTutorialStep(
   data: any,
   page: EleventyPage
@@ -29,9 +34,9 @@ export async function getTutorialStep(
   const thumbnail = path.join(dirname, data.thumbnail);
 
   const tutorialStep: TutorialStep = {
-    ...getResource(data, page, "tutorial"),
+    ...getResourceFrontmatter(data, page, "tutorial"),
     thumbnail,
   };
-  validateResource(TutorialStep, tutorialStep, page.url);
+  validateFrontmatter(TutorialStepFrontmatter, tutorialStep, page.url);
   return tutorialStep;
 }

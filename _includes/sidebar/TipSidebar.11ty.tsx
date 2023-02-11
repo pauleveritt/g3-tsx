@@ -1,9 +1,5 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
-import { ResourceCardAuthorProps } from "../resourcecard/ResourceCardAuthor.11ty";
-import { ResourceCardTechnology } from "../resourcecard/ResourceCardTechnologies.11ty";
-import { ResourceCardTopic } from "../resourcecard/ResourceCardTopics.11ty";
-import { ResourceCardProduct } from "../resourcecard/ResourceCardProducts.11ty";
 import { SeeAlsos } from "../seealso/SeeAlso.11ty";
 import SidebarPublished, {
   SidebarPublishedProps,
@@ -12,13 +8,17 @@ import { SidebarDoclinkProps } from "./SidebarDoclink.11ty";
 import Sidebar from "./Sidebar.11ty";
 import SidebarReferencesGroup from "./SidebarReferencesGroup.11ty";
 import SidebarDoclinks from "./SidebarDoclinks.11ty";
+import { Author } from "../references/author/AuthorModels";
+import { Product } from "../references/product/ProductModels";
+import { Topic } from "../references/topic/TopicModels";
+import { Technology } from "../references/technology/TechnologyModels";
 
 export type TipSidebarProps = {
-  date: string;
-  author: ResourceCardAuthorProps;
-  products: ResourceCardProduct[];
-  technologies: ResourceCardTechnology[];
-  topics: ResourceCardTopic[];
+  date: Date;
+  author: Author;
+  products: Product[];
+  technologies: Technology[];
+  topics: Topic[];
   body?: string;
   seealsos?: SeeAlsos;
   hasLongVideo?: boolean;
@@ -53,17 +53,17 @@ const TipSidebar = ({
       <SidebarReferencesGroup
         reftype={`technologies`}
         accent={`danger`}
-        references={technologies ? technologies.map((t) => t.label) : []}
+        references={technologies}
       />
       <SidebarReferencesGroup
         reftype={`products`}
         accent={`info`}
-        references={products ? products.map((t) => t.label) : []}
+        references={products}
       />
       <SidebarReferencesGroup
         reftype={`topics`}
         accent={`success`}
-        references={topics ? topics.map((t) => t.label) : []}
+        references={topics}
       />
       <SidebarDoclinks links={links} />
     </Sidebar>

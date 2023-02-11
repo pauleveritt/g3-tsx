@@ -1,17 +1,22 @@
-import { getReference, Reference } from "../../../src/ReferenceModels";
+import {
+  getReference,
+  Reference,
+  ReferenceFrontmatter,
+} from "../../../src/ReferenceModels";
 import { Static, Type } from "@sinclair/typebox";
-import { validateResource } from "../../../src/validators";
+import { validateFrontmatter } from "../../../src/validators";
 import { EleventyPage } from "../../../src/models";
 import path from "path";
 
-export const Technology = Type.Intersect([
-  Reference,
+export const TechnologyFrontmatter = Type.Intersect([
+  ReferenceFrontmatter,
   Type.Object({
     logo: Type.String(),
   }),
 ]);
-export type Technology = Static<typeof Technology>;
+export type TechnologyFrontmatter = Static<typeof TechnologyFrontmatter>;
 
+export type Technology = {} & TechnologyFrontmatter & Reference;
 export async function getTechnology(
   data: any,
   page: EleventyPage
@@ -20,6 +25,6 @@ export async function getTechnology(
     ...getReference(data, page, "technology"),
     logo: path.join(page.url, data.logo),
   };
-  validateResource(Technology, technology, page.url);
+  validateFrontmatter(TechnologyFrontmatter, technology, page.url);
   return technology;
 }

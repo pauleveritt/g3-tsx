@@ -6,7 +6,7 @@ import Thumbnail from "../../Image.11ty";
 import { RenderContext } from "../../../src/models";
 import ResourceCard from "../../resourcecard/ResourceCard.11ty";
 import { Resource } from "../../../src/ResourceModels";
-import { Author } from "./AuthorModels";
+import { AuthorFrontmatter } from "./AuthorModels";
 
 export type AuthorLayoutProps = {
   children: string[];
@@ -68,7 +68,9 @@ export function render(
   // TODO Get a better test here
   // this.addTestCase(page.url, [byRole({ role: "link", text: "Paul Everitt" })]);
 
-  const author = collections.allReferences.get(page.fileSlug) as Author;
+  const author = collections.allReferences.get(
+    page.fileSlug
+  ) as AuthorFrontmatter;
   if (!author) {
     throw new Error(`Author "${page.fileSlug}" not in collection`);
   }

@@ -4,7 +4,7 @@ import { SiteCollections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { RenderContext } from "../../../src/models";
 import { Resource } from "../../../src/ResourceModels";
-import { Technology } from "./TechnologyModels";
+import { TechnologyFrontmatter } from "./TechnologyModels";
 import ResourceCard from "../../resourcecard/ResourceCard.11ty";
 
 export type TechnologyLayoutProps = {
@@ -59,7 +59,9 @@ export function render(
   this: RenderContext,
   { collections, content, page }: TechnologyRenderProps
 ): JSX.Element {
-  const technology = collections.allReferences.get(page.fileSlug) as Technology;
+  const technology = collections.allReferences.get(
+    page.fileSlug
+  ) as TechnologyFrontmatter;
   if (!technology) {
     throw new Error(`Technology "${page.fileSlug}" not in collection`);
   }

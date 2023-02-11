@@ -1,21 +1,27 @@
 import { Static, Type } from "@sinclair/typebox";
-import { validateResource } from "../../../src/validators";
-import { getResource, Resource } from "../../../src/ResourceModels";
+import { validateFrontmatter } from "../../../src/validators";
+import {
+  getResourceFrontmatter,
+  Resource,
+  ResourceFrontmatter,
+} from "../../../src/ResourceModels";
 import { EleventyPage } from "../../../src/models";
 import path from "path";
 import { imageOptions } from "../../../src/registration";
 // @ts-ignore
 import Image from "@11ty/eleventy-img";
 
-export const Tutorial = Type.Intersect([
-  Resource,
+export const TutorialFrontmatter = Type.Intersect([
+  ResourceFrontmatter,
   Type.Object({
     thumbnail: Type.Optional(Type.String()),
     tutorialItems: Type.Array(Type.String()),
     videoBottom: Type.Optional(Type.Boolean()),
   }),
 ]);
-export type Tutorial = Static<typeof Tutorial>;
+export type TutorialFrontmatter = Static<typeof TutorialFrontmatter>;
+
+export type Tutorial = {} & TutorialFrontmatter & Resource;
 
 export function resolveChildPaths(
   pathPrefix: string,
@@ -44,13 +50,13 @@ export async function getTutorial(
   const tutorialItems = resolveChildPaths(rootPath, data.tutorialItems);
 
   const tutorial: Tutorial = {
-    ...getResource(data, page, "tutorial"),
+    ...getResourceFrontmatter(data, page, "tutorial"),
     thumbnail,
     tutorialItems: tutorialItems,
   };
   tutorial.thumbnail = thumbnail;
 
-  validateResource(Tutorial, tutorial, page.url);
+  validateFrontmatter(TutorialFrontmatter, tutorial, page.url);
   await Image(tutorial.thumbnail, imageOptions);
   return tutorial;
 }

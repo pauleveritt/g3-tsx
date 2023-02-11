@@ -1,11 +1,14 @@
 import { Static, Type } from "@sinclair/typebox";
-import { validateResource } from "../../../src/validators";
-import { getResource, Resource } from "../../../src/ResourceModels";
+import { validateFrontmatter } from "../../../src/validators";
+import {
+  getResourceFrontmatter,
+  Resource,
+  ResourceFrontmatter,
+} from "../../../src/ResourceModels";
 import { EleventyPage } from "../../../src/models";
 
-// noinspection JSUnusedGlobalSymbols
-export const Tip = Type.Intersect([
-  Resource,
+export const TipFrontmatter = Type.Intersect([
+  ResourceFrontmatter,
   Type.Object({
     thumbnail: Type.Optional(Type.String()),
     leadin: Type.Optional(Type.String()),
@@ -35,11 +38,13 @@ export const Tip = Type.Intersect([
     seealso: Type.Optional(Type.Any()),
   }),
 ]);
-export type Tip = Static<typeof Tip>;
+export type TipFrontmatter = Static<typeof TipFrontmatter>;
+
+export type Tip = {} & TipFrontmatter & Resource;
 
 export async function getTip(data: any, page: EleventyPage): Promise<Tip> {
   const tip: Tip = {
-    ...getResource(data, page, "tip"),
+    ...getResourceFrontmatter(data, page, "tip"),
     leadin: data.leadin,
     animatedGif: data.animatedGif,
     screenshot: data.screenshot,
@@ -48,6 +53,6 @@ export async function getTip(data: any, page: EleventyPage): Promise<Tip> {
     hasBody: data.hasBody,
     seealso: data.seealso,
   };
-  validateResource(Tip, tip, page.url);
+  validateFrontmatter(TipFrontmatter, tip, page.url);
   return tip;
 }

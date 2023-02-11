@@ -1,7 +1,7 @@
 import { Static, Type } from "@sinclair/typebox";
 import { Assertions } from "./TestCases";
 import { Resource } from "./ResourceModels";
-import { Reference } from "./ReferenceModels";
+import { ReferenceFrontmatter } from "./ReferenceModels";
 
 export const EleventyPage = Type.Object({
   // The common, page-oriented data 11ty passes in when it reads a Markdown file
@@ -51,5 +51,5 @@ export interface RenderContext {
    */
   addTestCase(url: string, assertions: Assertions): void;
   getResources(resourceType?: string): Resource[];
-  getReferences(resourceType?: string): Reference[];
+  getReferences(resourceType?: string): ReferenceFrontmatter[];
 }

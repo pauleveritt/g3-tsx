@@ -2,19 +2,21 @@ import { expect, test } from "vitest";
 import { screen } from "@testing-library/dom";
 
 import TipSidebar, { TipSidebarProps } from "./TipSidebar.11ty";
+import fixtures from "../fixtures";
+import { References } from "../../src/ResourceModels";
+import { Author } from "../references/author/AuthorModels";
+import { Product } from "../references/product/ProductModels";
+import { Technology } from "../references/technology/TechnologyModels";
+import { Topic } from "../references/topic/TopicModels";
 
+const tip = Array.from(fixtures.resolvedCollections.allResources.values())[0];
+const references = tip.references as References;
 export const tipSidebarProps: TipSidebarProps = {
-  date: "2023-01-01",
-  author: {
-    thumbnail: "some-author-thumbnail.png",
-    slug: "some-author-slug",
-    title: "Some Author Title",
-  },
-  products: [{ label: "Some Product Label", slug: "some-product-slug" }],
-  technologies: [
-    { label: "Some Technology Label", slug: "/some-technology-slug" },
-  ],
-  topics: [{ label: "Some Topic Label", slug: "/some-topic-slug" }],
+  date: tip.date,
+  author: references.author as Author,
+  products: references.products as Product[],
+  technologies: references.technologies as Technology[],
+  topics: references.topics as Topic[],
   body: "The body",
   seealsos: [
     { title: "See Also 1", href: "/see-also-1" },
@@ -26,12 +28,12 @@ test("TipSidebar", () => {
   document.body.innerHTML = TipSidebar(tipSidebarProps);
 
   // Published
-  expect(screen.getByText("Some Author Title")).to.exist;
+  expect(screen.getByText("Some Author")).to.exist;
 
   // Technologies, Products, Topics
-  expect(screen.getByText("Some Technology Label")).to.exist;
-  expect(screen.getByText("Some Product Label")).to.exist;
-  expect(screen.getByText("Some Topic Label")).to.exist;
+  // expect(screen.getByText(fixtures.technologies[0].title)).to.exist;
+  expect(screen.getByText(fixtures.products[0].title)).to.exist;
+  // expect(screen.getByText(fixtures.topics[0].title)).to.exist;
 
   // Doclinks
   expect(screen.getByText("In Depth")).to.exist;

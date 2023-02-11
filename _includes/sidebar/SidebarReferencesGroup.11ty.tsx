@@ -1,10 +1,11 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
+import { Reference } from "../../src/ReferenceModels";
 
 export type SidebarReferencesGroupProps = {
   reftype: string;
   accent: string;
-  references: string[];
+  references: Reference[];
 };
 const SidebarReferencesGroup = ({
   reftype,
@@ -26,14 +27,14 @@ const SidebarReferencesGroup = ({
           <div>
             {references.map((reference) => (
               <a
-                href={`/${reftype}/${reference}/`}
+                href={reference.url}
                 style="display: inline-block; margin: 0 0.2rem"
                 className="bio-page-sidebar-references-href"
               >
                 <span
                   className={`tag bio-page-sidebar-references-label has-text-${accent}`}
                 >
-                  {reference}
+                  {reference.title}
                 </span>
               </a>
             ))}

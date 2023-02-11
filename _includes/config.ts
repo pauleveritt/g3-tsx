@@ -11,7 +11,7 @@ import { productConfig } from "./references/product";
 import { technologyConfig } from "./references/technology";
 import { topicConfig } from "./references/topic";
 import { Resource } from "../src/ResourceModels";
-import { Reference } from "../src/ReferenceModels";
+import { ReferenceFrontmatter } from "../src/ReferenceModels";
 import { tutorialConfig } from "./resources/tutorial";
 
 export const resourceCollections = {
@@ -45,7 +45,7 @@ export async function registerIncludes({
   );
 
   let allResourcesList: Resource[];
-  let allReferencesList: Reference[];
+  let allReferencesList: ReferenceFrontmatter[];
   eleventyConfig.addCollection(
     `allResources`,
     async function (collectionApi: CollectionApi) {
@@ -80,7 +80,7 @@ export async function registerIncludes({
   );
   eleventyConfig.addJavaScriptFunction(
     "getReferences",
-    (resourceType?: string): Reference[] => {
+    (resourceType?: string): ReferenceFrontmatter[] => {
       if (!resourceType) return allReferencesList;
       return allReferencesList.filter(
         (reference) => reference.resourceType === resourceType

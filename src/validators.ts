@@ -3,7 +3,7 @@ import { Value } from "@sinclair/typebox/value";
 
 export const sitesDir = url.fileURLToPath(new URL(`../sites`, import.meta.url));
 
-export function validateResource(
+export function validateFrontmatter(
   resourceType: any,
   frontmatter: any,
   url: string

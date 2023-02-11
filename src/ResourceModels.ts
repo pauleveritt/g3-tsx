@@ -1,35 +1,50 @@
 import { Static, Type } from "@sinclair/typebox";
 import { EleventyPage } from "./models";
 import path from "path";
-import { Reference } from "./ReferenceModels";
+import { ReferenceFrontmatter } from "./ReferenceModels";
 
 export const BaseFrontmatter = Type.Object({
-  title: Type.String(),
+  date: Type.Date(),
   resourceType: Type.String(),
+  title: Type.String(),
 });
 export type BaseFrontmatter = Static<typeof BaseFrontmatter>;
-export const BaseEntity = Type.Intersect([
-  BaseFrontmatter,
-  Type.Object({
-    slug: Type.String(),
-    url: Type.String(),
-    body: Type.Optional(Type.String()),
-  }),
-]);
-export type BaseEntity = Static<typeof BaseEntity>;
-export const References = Type.Object({
-  author: BaseEntity,
-  products: Type.Array(BaseEntity),
-  technologies: Type.Array(BaseEntity),
-  topics: Type.Array(BaseEntity),
-});
-export type References = Static<typeof References>;
+// export const BaseEntity = Type.Intersect([
+//   BaseFrontmatter,
+//   Type.Object({
+//     slug: Type.String(),
+//     url: Type.String(),
+//     body: Type.Optional(Type.String()),
+//   }),
+// ]);
+// export type BaseEntity = Static<typeof BaseEntity>;
+
+export type BaseEntity = {
+  body?: string;
+  slug: string; // TODO Is this used on our side?
+  url: string;
+} & BaseFrontmatter;
+
+// export const References = Type.Object({
+//   author: BaseEntity,
+//   products: Type.Array(BaseEntity),
+//   technologies: Type.Array(BaseEntity),
+//   topics: Type.Array(BaseEntity),
+// });
+// export type References = Static<typeof References>;
+
+export type References = {
+  // TODO Move this to ReferenceModels
+  author: BaseEntity; // TODO Have BaseRefs over here, Refs over there
+  products: BaseEntity[];
+  technologies: BaseEntity[];
+  topics: BaseEntity[];
+};
 
 export const ResourceFrontmatter = Type.Intersect([
   BaseFrontmatter,
   Type.Object({
     author: Type.String(),
-    date: Type.Date(),
     products: Type.Optional(Type.Array(Type.String())),
     subtitle: Type.Optional(Type.String()),
     technologies: Type.Optional(Type.Array(Type.String())),
@@ -38,24 +53,31 @@ export const ResourceFrontmatter = Type.Intersect([
   }),
 ]);
 export type ResourceFrontmatter = Static<typeof ResourceFrontmatter>;
-export const Resource = Type.Intersect([
-  ResourceFrontmatter,
-  BaseEntity,
-  Type.Object({
-    references: Type.Optional(References),
-  }),
-]);
-export type Resource = Static<typeof Resource>;
+// export const Resource = Type.Intersect([
+//   ResourceFrontmatter,
+//   BaseEntity,
+//   Type.Object({
+//     references: Type.Optional(References),
+//   }),
+// ]);
+// export type Resource = Static<typeof Resource>;
+
+export type Resource = {
+  references?: References;
+} & ResourceFrontmatter &
+  BaseEntity;
 export type ResourceCollection = Map<string, Resource>;
-export type ReferenceCollection = Map<string, Reference>;
+export type ReferenceCollection = Map<string, ReferenceFrontmatter>;
 
 export function getBaseResource(
   data: any,
   page: EleventyPage,
   resourceType: string
 ): BaseEntity {
+  const date = new Date(data.date);
   return {
     body: data.content,
+    date,
     resourceType,
     slug: page.fileSlug,
     title: data.title,
@@ -63,7 +85,7 @@ export function getBaseResource(
   };
 }
 
-export function getResource(
+export function getResourceFrontmatter(
   data: any,
   page: EleventyPage,
   resourceType: string

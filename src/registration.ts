@@ -10,7 +10,7 @@ import {
   Resource,
   ResourceCollection,
 } from "./ResourceModels";
-import { Reference } from "./ReferenceModels";
+import { ReferenceFrontmatter } from "./ReferenceModels";
 
 export type CollectionApi = {
   getAll(): EleventyCollectionItem[];
@@ -27,7 +27,7 @@ export type ResourceTypeConfig = {
 
 export type ReferenceTypeConfig = {
   collectionName: string;
-  factory(data: any, page: EleventyPage): Promise<Reference>;
+  factory(data: any, page: EleventyPage): Promise<ReferenceFrontmatter>;
 };
 
 export type GetAllCollectionsProps = {
@@ -130,7 +130,7 @@ export function resolveReference({
   fieldName,
   resource,
   allReferences,
-}: ResolveReferencesProps): Reference | Reference[] {
+}: ResolveReferencesProps): ReferenceFrontmatter | ReferenceFrontmatter[] {
   /* Return the matching reference or references  */
 
   // @ts-ignore

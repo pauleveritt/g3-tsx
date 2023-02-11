@@ -1,14 +1,11 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
 import Thumbnail from "../Image.11ty";
+import { Author } from "../references/author/AuthorModels";
 
 export type SidebarPublishedProps = {
   date: Date;
-  author: {
-    slug: string;
-    title: string;
-    thumbnail: string;
-  };
+  author: Author;
 };
 const SidebarPublished = ({
   date,

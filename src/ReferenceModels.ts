@@ -1,30 +1,37 @@
-import { Static, Type } from "@sinclair/typebox";
-import { BaseEntity, getBaseResource, Resource } from "./ResourceModels";
-import { EleventyPage } from "./models";
-
-export const Reference = Type.Intersect([
+import {
   BaseEntity,
+  BaseFrontmatter,
+  getBaseResource,
+  Resource,
+} from "./ResourceModels";
+import { EleventyPage } from "./models";
+import { Static, Type } from "@sinclair/typebox";
+
+export const ReferenceFrontmatter = Type.Intersect([
+  BaseFrontmatter,
   Type.Object({
     label: Type.String(),
-    resources: Type.Array(Resource),
-    linkedResources: Type.Array(Resource),
+    subtitle: Type.Optional(Type.String()),
   }),
 ]);
-export type Reference = Static<typeof Reference>;
+export type ReferenceFrontmatter = Static<typeof ReferenceFrontmatter>;
+
+export type Reference = {
+  linkedResources: Resource[];
+} & ReferenceFrontmatter &
+  BaseEntity;
 
 export function getReference(
   data: any,
   page: EleventyPage,
   resourceType: string
 ): Reference {
-  // Use frontmatter label, or infer from the parent directory
+  // Use frontmatter label, or infer from the filename
   const label = data.label ? data.label : page.fileSlug;
-  const resources: Resource[] = [];
   const linkedResources: Resource[] = [];
   return {
     ...getBaseResource(data, page, resourceType),
     label,
-    resources,
     linkedResources,
   };
 }

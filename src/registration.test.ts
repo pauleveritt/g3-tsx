@@ -8,7 +8,7 @@ import {
 } from "./registration";
 import { referenceCollections, resourceCollections } from "../_includes/config";
 import { Tip } from "../_includes/resources/tip/TipModels";
-import { Author } from "../_includes/references/author/AuthorModels";
+import { AuthorFrontmatter } from "../_includes/references/author/AuthorModels";
 import {
   ReferenceCollection,
   References,
@@ -31,7 +31,7 @@ let tipItem0: EleventyCollectionItem;
 let authorItem0: EleventyCollectionItem;
 let productItem0: EleventyCollectionItem;
 let tip0: Tip;
-let author0: Author;
+let author0: AuthorFrontmatter;
 
 beforeEach(() => {
   allResources = fixtures.collections.allResources;
@@ -44,7 +44,7 @@ beforeEach(() => {
   productItem0 = productItems[0];
   tip0 = allResources.get(tipItem0.page.url) as Tip;
   if (authorItem0.data.label) {
-    author0 = allReferences.get(authorItem0.data.label) as Author;
+    author0 = allReferences.get(authorItem0.data.label) as AuthorFrontmatter;
   }
 });
 
@@ -70,7 +70,7 @@ test("should construct collections", async () => {
   // Authors
   const thisAuthor0 = allReferences.get(
     authorItem0.data.label as string
-  ) as Author;
+  ) as AuthorFrontmatter;
   expect(thisAuthor0).to.exist;
   expect(thisAuthor0.title).to.equal(authorItem0.data.title);
 
@@ -134,7 +134,7 @@ describe("Resolve References", () => {
       fieldName,
       resource,
       allReferences,
-    }) as Author;
+    }) as AuthorFrontmatter;
     expect(resolved.title).to.equal(authorItem0.data.title);
   });
 

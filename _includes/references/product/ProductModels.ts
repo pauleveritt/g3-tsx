@@ -1,16 +1,21 @@
-import { getReference, Reference } from "../../../src/ReferenceModels";
+import {
+  getReference,
+  Reference,
+  ReferenceFrontmatter,
+} from "../../../src/ReferenceModels";
 import { Static, Type } from "@sinclair/typebox";
-import { validateResource } from "../../../src/validators";
+import { validateFrontmatter } from "../../../src/validators";
 import { EleventyPage } from "../../../src/models";
 
-export const Product = Type.Intersect([
-  Reference,
+export const ProductFrontmatter = Type.Intersect([
+  ReferenceFrontmatter,
   Type.Object({
     logo: Type.Optional(Type.String()),
   }),
 ]);
-export type Product = Static<typeof Product>;
+export type ProductFrontmatter = Static<typeof ProductFrontmatter>;
 
+export type Product = {} & ProductFrontmatter & Reference;
 export async function getProduct(
   data: any,
   page: EleventyPage
@@ -19,6 +24,6 @@ export async function getProduct(
     ...getReference(data, page, "product"),
     logo: data.logo,
   };
-  validateResource(Product, product, page.url);
+  validateFrontmatter(ProductFrontmatter, product, page.url);
   return product;
 }

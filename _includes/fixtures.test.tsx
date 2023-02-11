@@ -16,14 +16,14 @@ test("should process into allResources and allReferences", () => {
   expect(author0 && author0.title).to.equal(authorItems[0].data.title);
 });
 
-test("should NOT have resolved refrences", () => {
+test("should NOT have resolved references", () => {
   const { tipItems } = fixtures;
   const { allResources } = fixtures.collections;
   const tip0 = allResources.get(tipItems[0].page.url);
   expect(tip0 && tip0.references).not.to.exist;
 });
-test("should have resolved refrences", () => {
-  const { tipItems, authorItems, topicItems } = fixtures;
+test("should have resolved references", () => {
+  const { tipItems, authorItems, topicItems, technologyItems } = fixtures;
   const { resolvedCollections } = fixtures;
   const tip0 = resolvedCollections.allResources.get(tipItems[0].page.url);
   if (tip0 && tip0.references) {
@@ -31,5 +31,9 @@ test("should have resolved refrences", () => {
     expect(tip0.references).to.exist;
     expect(tip0.references.author.title).to.equal(authorItems[0].data.title);
     expect(tip0.references.topics[0].title).to.equal(topicItems[0].data.title);
+    // TODO Move from label to type:label
+    // expect(tip0.references.technologies[0].title).to.equal(
+    //   technologyItems[0].data.title
+    // );
   }
 });
