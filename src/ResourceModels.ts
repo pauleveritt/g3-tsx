@@ -10,16 +10,19 @@ export const BaseFrontmatter = Type.Object({
 });
 export type BaseFrontmatter = Static<typeof BaseFrontmatter>;
 
+// On our side, content is stored on the data. But in the collection
+// API, content comes in with data/page/content.
 export type BaseData = {
   content: string;
 } & BaseFrontmatter;
 export type BaseItem = {
-  data: BaseData;
+  content: string;
+  data: BaseFrontmatter;
   page: EleventyPage;
 };
 
 export class BaseEntity implements BaseFrontmatter {
-  body: string;
+  content: string;
   date: Date;
   resourceType: string;
   slug: string;
@@ -27,7 +30,7 @@ export class BaseEntity implements BaseFrontmatter {
   url: string;
 
   constructor({ data, page }: { data: BaseData; page: EleventyPage }) {
-    this.body = data.content;
+    this.content = data.content;
     this.date = new Date(data.date);
     this.resourceType = data.resourceType;
     this.slug = page.fileSlug;
@@ -36,11 +39,7 @@ export class BaseEntity implements BaseFrontmatter {
   }
 }
 
-// export type BaseEntity = {
-//   body?: string;
-//   slug: string; // TODO Is this used on our side?
-//   url: string;
-// } & BaseFrontmatter;
+// TODO Get rid of slug in models if it isn't used
 
 export type References = {
   // TODO Move this to ReferenceModels
@@ -72,6 +71,7 @@ export class Resource extends BaseEntity implements ResourceFrontmatter {
   technologies?: string[];
   thumbnail: string;
   topics?: string[];
+  references?: References;
 
   // TODO Add in references
   constructor({ data, page }: { data: ResourceData; page: EleventyPage }) {
@@ -106,26 +106,26 @@ export function getBaseResource(data: any, page: EleventyPage): BaseEntity {
   //   };
 }
 
-export function getResourceFrontmatter(
-  data: any,
-  page: EleventyPage
-): Resource {
-  return new Resource({ data, page });
-  // return {
-  //   author: data.author,
-  //   body: data.content,
-  //   date: data.date,
-  //   products: data.products,
-  //   resourceType,
-  //   slug: page.fileSlug,
-  //   subtitle: data.subtitle,
-  //   technologies: data.technologies,
-  //   thumbnail,
-  //   title: data.title,
-  //   topics: data.topics,
-  //   url: page.url,
-  // };
-}
+// export function getResourceFrontmatter(
+//   data: any,
+//   page: EleventyPage
+// ): Resource {
+//   return new Resource({ data, page });
+//   // return {
+//   //   author: data.author,
+//   //   body: data.content,
+//   //   date: data.date,
+//   //   products: data.products,
+//   //   resourceType,
+//   //   slug: page.fileSlug,
+//   //   subtitle: data.subtitle,
+//   //   technologies: data.technologies,
+//   //   thumbnail,
+//   //   title: data.title,
+//   //   topics: data.topics,
+//   //   url: page.url,
+//   // };
+// }
 
 export function getResourceType(data: any, page: EleventyPage): string {
   /* Determine the resource type based on some policies */

@@ -1,6 +1,10 @@
 import h from "vhtml";
-import { getTip, TipFrontmatter } from "./resources/tip/TipModels";
-import { AuthorFrontmatter, getAuthor } from "./references/author/AuthorModels";
+import { getTip, TipData, TipFrontmatter } from "./resources/tip/TipModels";
+import {
+  AuthorData,
+  AuthorFrontmatter,
+  getAuthor,
+} from "./references/author/AuthorModels";
 import { SiteCollections } from "./models";
 import {
   getTechnology,
@@ -59,6 +63,7 @@ const tipFrontmatters: TipFrontmatter[] = [
     thumbnail: "aa.png",
   },
 ];
+// This is data shaped like the collection API sends it: data/page/content.
 const tipItems: {
   content: string;
   data: TipFrontmatter;
@@ -83,6 +88,17 @@ const tipItems: {
     },
   },
 ];
+// This is data shaped like on our side.
+const tipDatas: { data: TipData; page: EleventyPage }[] = [
+  {
+    data: { ...tipItems[0].data, content: tipItems[0].content },
+    page: tipItems[0].page,
+  },
+  {
+    data: { ...tipItems[1].data, content: tipItems[1].content },
+    page: tipItems[1].page,
+  },
+];
 
 const authorsFrontmatters: AuthorFrontmatter[] = [
   {
@@ -100,6 +116,7 @@ const authorsFrontmatters: AuthorFrontmatter[] = [
     thumbnail: "aa.png",
   },
 ];
+// This is data shaped like the collection API sends it: data/page/content.
 const authorItems: {
   content: string;
   data: AuthorFrontmatter;
@@ -124,6 +141,17 @@ const authorItems: {
     },
   },
 ];
+// This is data shaped like on our side.
+const authorDatas: { data: AuthorData; page: EleventyPage }[] = [
+  {
+    data: { ...authorItems[0].data, content: authorItems[0].content },
+    page: authorItems[0].page,
+  },
+  {
+    data: { ...authorItems[1].data, content: authorItems[1].content },
+    page: authorItems[1].page,
+  },
+];
 
 const technologyFrontmatters: TechnologyFrontmatter[] = [
   {
@@ -141,6 +169,7 @@ const technologyFrontmatters: TechnologyFrontmatter[] = [
     logo: "atlogo.svg",
   },
 ];
+// This is data shaped like the collection API sends it: data/page/content.
 const technologyItems: {
   content: string;
   data: TechnologyFrontmatter;
@@ -165,6 +194,17 @@ const technologyItems: {
     },
   },
 ];
+// This is data shaped like on our side.
+const technologyDatas: { data: TechnologyData; page: EleventyPage }[] = [
+  {
+    data: { ...technologyItems[0].data, content: technologyItems[0].content },
+    page: technologyItems[0].page,
+  },
+  {
+    data: { ...technologyItems[1].data, content: technologyItems[1].content },
+    page: technologyItems[1].page,
+  },
+];
 
 const topicFrontmatters: TopicFrontmatter[] = [
   {
@@ -184,6 +224,7 @@ const topicFrontmatters: TopicFrontmatter[] = [
     icon: "at-icon.png",
   },
 ];
+// This is data shaped like the collection API sends it: data/page/content.
 const topicItems: {
   content: string;
   data: TopicFrontmatter;
@@ -208,6 +249,17 @@ const topicItems: {
     },
   },
 ];
+// This is data shaped like on our side.
+const topicDatas: { data: TopicData; page: EleventyPage }[] = [
+  {
+    data: { ...topicItems[0].data, content: topicItems[0].content },
+    page: topicItems[0].page,
+  },
+  {
+    data: { ...topicItems[1].data, content: topicItems[1].content },
+    page: topicItems[1].page,
+  },
+];
 
 const productFrontmatters: ProductFrontmatter[] = [
   {
@@ -226,6 +278,7 @@ const productFrontmatters: ProductFrontmatter[] = [
   },
 ];
 
+// This is data shaped like the collection API sends it: data/page/content.
 const productItems: {
   content: string;
   data: ProductFrontmatter;
@@ -250,6 +303,17 @@ const productItems: {
     },
   },
 ];
+// This is data shaped like on our side.
+const productDatas: { data: ProductData; page: EleventyPage }[] = [
+  {
+    data: { ...productItems[0].data, content: productItems[0].content },
+    page: productItems[0].page,
+  },
+  {
+    data: { ...productItems[1].data, content: productItems[1].content },
+    page: productItems[1].page,
+  },
+];
 
 // This data structure matches collections.all
 // https://www.11ty.dev/docs/collections/#collection-item-data-structure
@@ -259,125 +323,26 @@ const all: BaseItem[] = [
   ...productItems,
   ...technologyItems,
   ...topicItems,
-  // {
-  //   data: authorsData[0],
-  //   page: {
-  //     fileSlug: "sa",
-  //     url: "/authors/sa/",
-  //     inputPath: `${rootPath}/authors/sa/index.md`,
-  //   },
-  //   content: "<p>Some Author</p>",
-  // },
-  // {
-  //   data: authorsData[1],
-  //   page: {
-  //     fileSlug: "aa",
-  //     url: "/authors/aa/",
-  //     inputPath: "./sites/webstorm-guide/authors/aa/index.md",
-  //   },
-  //   content: "<p>Another Author</p>",
-  // },
-  // {
-  //   data: technologiesData[0],
-  //   page: {
-  //     fileSlug: "st",
-  //     url: "/technologies/st/",
-  //     inputPath: `${rootPath}/technologies/st/index.md`,
-  //   },
-  //   content: "<p>Some Technology</p>",
-  // },
-  // {
-  //   data: technologiesData[1],
-  //   page: {
-  //     fileSlug: "at",
-  //     url: "/technologies/at/",
-  //     inputPath: `${rootPath}/technologies/at/index.md`,
-  //   },
-  //   content: "<p>Another Technology</p>",
-  // },
-  // {
-  //   data: topicsData[0],
-  //   page: {
-  //     fileSlug: "st",
-  //     url: "/topics/st/",
-  //     inputPath: `${rootPath}/topics/st/index.md`,
-  //   },
-  //   content: "<p>Some Topic</p>",
-  // },
-  // {
-  //   data: topicsData[1],
-  //   page: {
-  //     fileSlug: "at",
-  //     url: "/topics/at/",
-  //     inputPath: `${rootPath}/topics/at/index.md`,
-  //   },
-  //   content: "<p>Another Topic</p>",
-  // },
-  // {
-  //   data: productsData[0],
-  //   page: {
-  //     fileSlug: "sp",
-  //     url: "/products/sp/",
-  //     inputPath: `${rootPath}/products/sp/index.md`,
-  //   },
-  //   content: "<p>Some Product</p>",
-  // },
-  // {
-  //   data: productsData[1],
-  //   page: {
-  //     fileSlug: "ap",
-  //     url: "/topics/ap/",
-  //     inputPath: `${rootPath}/topics/ap/index.md`,
-  //   },
-  //   content: "<p>Another Product</p>",
-  // },
 ];
 
-// const authorItems = [all[2], all[3]];
-// const authors: Author[] = [
-//   {
-//     date: all[2].data.date,
-//     title: all[2].data.title,
-//     slug: all[2].page.fileSlug,
-//     url: all[2].page.url,
-//     resourceType: all[2].data.resourceType as string,
-//     label: all[2].data.label as string,
-//     linkedResources: [],
-//     thumbnail: all[2].data.thumbnail as string,
-//   },
-//   {
-//     date: all[3].data.date,
-//     title: all[3].data.title,
-//     slug: all[3].page.fileSlug,
-//     url: all[3].page.url,
-//     resourceType: all[3].data.resourceType as string,
-//     label: all[3].data.label as string,
-//     linkedResources: [],
-//     thumbnail: all[3].data.thumbnail as string,
-//   },
-// ];
-
 const authors = await Promise.all(
-  authorItems.map((ref) => getAuthor(ref.data, ref.page))
+  authorDatas.map((ref) => getAuthor(ref.data, ref.page))
 );
 
-// const technologyItems = [all[4], all[5]];
 const technologies = await Promise.all(
-  technologyItems.map((ref) => getTechnology(ref.data, ref.page))
+  technologyDatas.map((ref) => getTechnology(ref.data, ref.page))
 );
 
-// const topicItems = [all[6], all[7]];
 const topics = await Promise.all(
-  topicItems.map(async (ref) => await getTopic(ref.data, ref.page))
+  topicDatas.map(async (ref) => await getTopic(ref.data, ref.page))
 );
 
-// const productItems = [all[8], all[9]];
 const products = await Promise.all(
-  productItems.map(async (ref) => await getProduct(ref.data, ref.page))
+  productDatas.map(async (ref) => await getProduct(ref.data, ref.page))
 );
 
 const tips = await Promise.all(
-  tipItems.map(async (ref) => await getTip(ref.data, ref.page))
+  tipDatas.map(async (ref) => await getTip(ref.data, ref.page))
 );
 
 const allResources: ResourceCollection = new Map();

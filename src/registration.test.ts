@@ -9,12 +9,7 @@ import {
 import { referenceCollections, resourceCollections } from "../_includes/config";
 import { Tip } from "../_includes/resources/tip/TipModels";
 import { AuthorFrontmatter } from "../_includes/references/author/AuthorModels";
-import {
-  ReferenceCollection,
-  References,
-  ResourceCollection,
-} from "./ResourceModels";
-import { EleventyCollectionItem } from "./models";
+import { References } from "./ResourceModels";
 
 const mockCollectionApi: CollectionApi = {
   getAll: () => fixtures.all,
@@ -22,37 +17,16 @@ const mockCollectionApi: CollectionApi = {
 };
 
 const fieldNames = ["author", "products", "technologies", "topics"];
-let allResources: ResourceCollection;
-let allReferences: ReferenceCollection;
-let tipItems: EleventyCollectionItem[];
-let authorItems: EleventyCollectionItem[];
-let productItems: EleventyCollectionItem[];
-let tipItem0: EleventyCollectionItem;
-let authorItem0: EleventyCollectionItem;
-let productItem0: EleventyCollectionItem;
-let tip0: Tip;
-let author0: AuthorFrontmatter;
-
-beforeEach(() => {
-  allResources = fixtures.collections.allResources;
-  allReferences = fixtures.collections.allReferences;
-  tipItems = fixtures.tipItems;
-  authorItems = fixtures.authorItems;
-  productItems = fixtures.productItems;
-  tipItem0 = tipItems[0];
-  authorItem0 = authorItems[0];
-  productItem0 = productItems[0];
-  tip0 = allResources.get(tipItem0.page.url) as Tip;
-  if (authorItem0.data.label) {
-    author0 = allReferences.get(authorItem0.data.label) as AuthorFrontmatter;
-  }
-});
 
 test("should start with unresolved references on tips", () => {
-  expect(tip0.references).to.be.undefined;
+  const tip0 = fixtures.collections.allResources.get("/tips/some-tip/");
+  expect(tip0).to.exist;
+  expect(tip0 && tip0.references).to.be.undefined;
 });
 
 test("a resource and a reference exist in fixture data", () => {
+  const tip0 = fixtures.collections.allResources.get("/tips/some-tip/");
+  const author0 = fixtures.collections.allReferences.get("sa");
   expect(tip0).to.exist;
   expect(author0).to.exist;
 });
@@ -64,10 +38,12 @@ test("should construct collections", async () => {
     referenceCollections,
   });
   expect(allResources).to.exist;
+  const tipItem0 = fixtures.tipItems[0];
   const thisTip0 = allResources.get(tipItem0.page.url) as Tip;
   expect(thisTip0).to.exist;
 
   // Authors
+  const authorItem0 = fixtures.authorItems[0];
   const thisAuthor0 = allReferences.get(
     authorItem0.data.label as string
   ) as AuthorFrontmatter;
@@ -92,7 +68,11 @@ test("should construct collections", async () => {
 });
 
 describe("Resolve References", () => {
+  const allReferences = fixtures.collections.allReferences;
+  const authorItem0 = fixtures.authorItems[0];
   let resource: Tip;
+  const tip0 = fixtures.collections.allResources.get("/tips/some-tip/") as Tip;
+  expect(tip0).to.exist;
 
   beforeEach(() => {
     resource = structuredClone(tip0);
@@ -139,6 +119,10 @@ describe("Resolve References", () => {
   });
 
   test("resolve a set of references", () => {
+    const tip0 = fixtures.collections.allResources.get(
+      "/tips/some-tip/"
+    ) as Tip;
+    expect(tip0).to.exist;
     expect(tip0.references).not.to.exist;
     const referenceMap: References = resolveReferences({
       fieldNames,
@@ -148,6 +132,7 @@ describe("Resolve References", () => {
     const refAuthor = referenceMap.author;
     expect(refAuthor.title).to.equal(authorItem0.data.title);
     const refProducts = referenceMap.products;
+    const productItem0 = fixtures.productItems[0];
     expect(refProducts[0].title).to.equal(productItem0.data.title);
   });
 
