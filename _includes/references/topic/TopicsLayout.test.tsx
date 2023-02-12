@@ -17,7 +17,7 @@ it("should make TopicsLayout", () => {
   const links: HTMLAnchorElement[] = screen.getAllByRole("link", {
     name: "Topic",
   });
-  expect(links[0].href).to.equal("/topics/st/");
+  expect(links[0].href).to.equal("/topics/at/");
 });
 
 test("should render TopicsLayout", () => {
@@ -33,5 +33,5 @@ test("should render TopicsLayout", () => {
   const links: HTMLAnchorElement[] = screen.getAllByRole("link", {
     name: "Topic",
   });
-  expect(links[0].href).to.equal("/topics/st/");
+  expect(links[0].href).to.equal("/topics/at/");
 });
