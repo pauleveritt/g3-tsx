@@ -38,7 +38,7 @@ export class TutorialStep extends Resource implements TutorialStepFrontmatter {
 }
 
 export async function getTutorialStep(
-  data: TutorialStepFrontmatter,
+  data: TutorialStepData,
   page: EleventyPage
 ): Promise<TutorialStep> {
   validateFrontmatter(TutorialStepFrontmatter, data, page.url);

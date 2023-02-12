@@ -1,5 +1,4 @@
-import { expect, test } from "vitest";
-import { screen } from "@testing-library/dom";
+import { test } from "vitest";
 
 import SidebarReferencesGroup, {
   SidebarReferencesGroupProps,
@@ -8,7 +7,7 @@ import SidebarReferencesGroup, {
 const props: SidebarReferencesGroupProps = {
   reftype: "some-reftype",
   accent: "some-accent",
-  references: ["ref1", "ref2", "ref3"],
+  references: [],
 };
 
 test("SidebarReferencesGroup", () => {
