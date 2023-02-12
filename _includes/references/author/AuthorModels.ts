@@ -1,8 +1,4 @@
-import {
-  getReference,
-  Reference,
-  ReferenceFrontmatter,
-} from "../../../src/ReferenceModels";
+import { Reference, ReferenceFrontmatter } from "../../../src/ReferenceModels";
 import { Static, Type } from "@sinclair/typebox";
 import { validateFrontmatter } from "../../../src/validators";
 import path from "path";

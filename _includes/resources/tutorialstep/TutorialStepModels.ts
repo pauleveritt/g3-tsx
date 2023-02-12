@@ -1,17 +1,18 @@
 import { Static, Type } from "@sinclair/typebox";
 import { validateFrontmatter } from "../../../src/validators";
 import {
-  getResourceFrontmatter,
+  BaseData,
   Resource,
   ResourceFrontmatter,
 } from "../../../src/ResourceModels";
 import { EleventyPage } from "../../../src/models";
-import path from "path";
+import { imageOptions } from "../../../src/registration";
+// @ts-ignore
+import Image from "@11ty/eleventy-img";
 
 export const TutorialStepFrontmatter = Type.Intersect([
   ResourceFrontmatter,
   Type.Object({
-    thumbnail: Type.Optional(Type.String()),
     videoBottom: Type.Optional(Type.Boolean()),
     longVideo: Type.Optional(
       Type.Object({
@@ -23,20 +24,25 @@ export const TutorialStepFrontmatter = Type.Intersect([
   }),
 ]);
 export type TutorialStepFrontmatter = Static<typeof TutorialStepFrontmatter>;
+export type TutorialStepData = TutorialStepFrontmatter & BaseData;
 
-export type TutorialStep = {} & TutorialStepFrontmatter & Resource;
+export class TutorialStep extends Resource implements TutorialStepFrontmatter {
+  longVideo: TutorialStepFrontmatter["longVideo"];
+  videoBottom: boolean;
+
+  constructor({ data, page }: { data: TutorialStepData; page: EleventyPage }) {
+    super({ data, page });
+    this.longVideo = data.longVideo;
+    this.videoBottom = !!data.videoBottom;
+  }
+}
+
 export async function getTutorialStep(
-  data: any,
+  data: TutorialStepFrontmatter,
   page: EleventyPage
 ): Promise<TutorialStep> {
-  // we know we have a thumbnail, fix it to the correct path
-  const dirname = path.dirname(page.inputPath);
-  const thumbnail = path.join(dirname, data.thumbnail);
-
-  const tutorialStep: TutorialStep = {
-    ...getResourceFrontmatter(data, page, "tutorial"),
-    thumbnail,
-  };
-  validateFrontmatter(TutorialStepFrontmatter, tutorialStep, page.url);
+  validateFrontmatter(TutorialStepFrontmatter, data, page.url);
+  const tutorialStep = new TutorialStep({ data, page });
+  await Image(tutorialStep.thumbnail, imageOptions);
   return tutorialStep;
 }

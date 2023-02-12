@@ -1,7 +1,7 @@
 import { Static, Type } from "@sinclair/typebox";
 import { validateFrontmatter } from "../../../src/validators";
 import {
-  getResourceFrontmatter,
+  BaseData,
   Resource,
   ResourceFrontmatter,
 } from "../../../src/ResourceModels";
@@ -20,8 +20,18 @@ export const TutorialFrontmatter = Type.Intersect([
   }),
 ]);
 export type TutorialFrontmatter = Static<typeof TutorialFrontmatter>;
+export type TutorialData = TutorialFrontmatter & BaseData;
 
-export type Tutorial = {} & TutorialFrontmatter & Resource;
+export class Tutorial extends Resource implements TutorialFrontmatter {
+  tutorialItems: string[];
+  videoBottom: boolean;
+
+  constructor({ data, page }: { data: TutorialData; page: EleventyPage }) {
+    super({ data, page });
+    this.tutorialItems = data.tutorialItems;
+    this.videoBottom = !!data.videoBottom;
+  }
+}
 
 export function resolveChildPaths(
   pathPrefix: string,
@@ -34,29 +44,15 @@ export function resolveChildPaths(
 }
 
 export async function getTutorial(
-  data: any,
+  data: TutorialData,
   page: EleventyPage
 ): Promise<Tutorial> {
-  if (data.resourceType != "tutorial") {
-    throw new Error("This resource type is not right");
-  }
-
-  // we know we have a thumbnail, fix it to the correct path
-  const dirname = path.dirname(page.inputPath);
-  const thumbnail = path.join(dirname, data.thumbnail);
-
   // absolute paths to tutorial items
-  const rootPath = page.url;
-  const tutorialItems = resolveChildPaths(rootPath, data.tutorialItems);
+  // const rootPath = page.url;
+  // const tutorialItems = resolveChildPaths(rootPath, data.tutorialItems);
 
-  const tutorial: Tutorial = {
-    ...getResourceFrontmatter(data, page, "tutorial"),
-    thumbnail,
-    tutorialItems: tutorialItems,
-  };
-  tutorial.thumbnail = thumbnail;
-
-  validateFrontmatter(TutorialFrontmatter, tutorial, page.url);
+  validateFrontmatter(TutorialFrontmatter, data, page.url);
+  const tutorial = new Tutorial({ data, page });
   await Image(tutorial.thumbnail, imageOptions);
   return tutorial;
 }

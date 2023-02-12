@@ -10,7 +10,6 @@ import { EleventyPage } from "../../../src/models";
 export const TipFrontmatter = Type.Intersect([
   ResourceFrontmatter,
   Type.Object({
-    thumbnail: Type.Optional(Type.String()),
     leadin: Type.Optional(Type.String()),
     animatedGif: Type.Optional(
       Type.Object({
