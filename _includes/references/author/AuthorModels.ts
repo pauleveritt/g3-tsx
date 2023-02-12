@@ -10,6 +10,7 @@ import path from "path";
 import Image from "@11ty/eleventy-img";
 import { EleventyPage } from "../../../src/models";
 import { imageOptions } from "../../../src/registration";
+import { BaseData } from "../../../src/ResourceModels";
 
 export const AuthorFrontmatter = Type.Intersect([
   ReferenceFrontmatter,
@@ -18,23 +19,25 @@ export const AuthorFrontmatter = Type.Intersect([
   }),
 ]);
 export type AuthorFrontmatter = Static<typeof AuthorFrontmatter>;
+export type AuthorData = AuthorFrontmatter & BaseData;
 
-export type Author = {} & AuthorFrontmatter & Reference;
+export class Author extends Reference implements AuthorFrontmatter {
+  thumbnail: string;
+
+  constructor({ data, page }: { data: AuthorData; page: EleventyPage }) {
+    super({ data, page });
+    this.thumbnail = path.join(path.dirname(page.inputPath), data.thumbnail);
+  }
+}
 
 export async function getAuthor(
-  data: any,
+  data: AuthorData,
   page: EleventyPage
 ): Promise<Author> {
-  // we know we have a thumbnail, fix it to the correct path
-  const dirname = path.dirname(page.inputPath); // TODO Centralize in getReference
-  const thumbnail = path.join(dirname, data.thumbnail);
-  const reference = getReference(data, page, "author") as Author;
-  reference.thumbnail = thumbnail;
+  validateFrontmatter(AuthorFrontmatter, data, page.url);
 
-  validateFrontmatter(AuthorFrontmatter, reference, page.url);
-
-  // generate thumbnail images to output directory
-  await Image(reference.thumbnail, imageOptions);
-
-  return reference;
+  // TODO Would be nice to put this in class, but needs async constructor
+  const author = new Author({ data, page });
+  await Image(author.thumbnail, imageOptions);
+  return author;
 }

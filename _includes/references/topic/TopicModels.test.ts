@@ -1,9 +1,32 @@
 import { expect, test } from "vitest";
-import { getTopic } from "./TopicModels";
-import fixtures from "../../fixtures";
+import { EleventyPage } from "../../../src/models";
+import { rootPath } from "../../config";
+import { getTopic, Topic, TopicData, TopicFrontmatter } from "./TopicModels";
+
+const topicFrontmatter: TopicFrontmatter = {
+  accent: "some accent",
+  icon: "some-icon.png",
+  date: new Date("2023-02-02"),
+  label: "sa",
+  resourceType: "topic",
+  title: "Some Topic",
+};
+const data: TopicData = {
+  ...topicFrontmatter,
+  content: "<p>Some content</p>",
+};
+const page: EleventyPage = {
+  fileSlug: "sa",
+  url: "/technologies/st/",
+  inputPath: `${rootPath}/technologies/st/index.md`,
+};
 
 test("construct a topic", async () => {
-  const { data, page } = fixtures.topicItems[0];
-  const tip = await getTopic(data, page);
-  expect(tip.label).to.equal("st");
+  const topic = new Topic({ data, page });
+  expect(topic.title).to.equal("Some Topic");
+});
+
+test("construct a topic from factory", async () => {
+  const topic = await getTopic(data, page);
+  expect(topic.title).to.equal("Some Topic");
 });

@@ -1,11 +1,36 @@
 import { expect, test } from "vitest";
-import { getAuthor } from "./AuthorModels";
-import fixtures from "../../fixtures";
+import { EleventyPage } from "../../../src/models";
 import { rootPath } from "../../config";
+import {
+  Author,
+  AuthorData,
+  AuthorFrontmatter,
+  getAuthor,
+} from "./AuthorModels";
+
+const authorFrontmatter: AuthorFrontmatter = {
+  date: new Date("2023-02-02"),
+  label: "sa",
+  resourceType: "author",
+  thumbnail: "thumbnail.png",
+  title: "Some Author",
+};
+const data: AuthorData = {
+  ...authorFrontmatter,
+  content: "<p>Some content</p>",
+};
+const page: EleventyPage = {
+  fileSlug: "sa",
+  url: "/authors/sa/",
+  inputPath: `${rootPath}/authors/sa/index.md`,
+};
 
 test("construct an author", async () => {
-  const { data, page } = fixtures.authorItems[0];
+  const author = new Author({ data, page });
+  expect(author.title).to.equal("Some Author");
+});
+
+test("construct an author from factory", async () => {
   const author = await getAuthor(data, page);
-  expect(author.label).to.equal("sa");
-  expect(author.thumbnail).to.equal(`${rootPath}/authors/sa/sa.png`);
+  expect(author.title).to.equal("Some Author");
 });

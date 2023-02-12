@@ -41,7 +41,7 @@ export const TipFrontmatter = Type.Intersect([
 export type TipFrontmatter = Static<typeof TipFrontmatter>;
 export type TipData = TipFrontmatter & BaseData;
 
-class Tip extends Resource implements TipFrontmatter {
+export class Tip extends Resource implements TipFrontmatter {
   animatedGif?: TipFrontmatter["animatedGif"];
   hasBody?: boolean;
   leadin?: string;

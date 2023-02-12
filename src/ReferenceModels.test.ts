@@ -4,12 +4,12 @@ import { EleventyPage } from "./models";
 import { rootPath } from "../_includes/config";
 
 const data: ReferenceData = {
-  label: "sr",
   content: "<p>Some content</p>",
-  title: "Some Reference",
-  subtitle: "Some Subtitle",
   date: new Date("2023-02-02"),
+  label: "sr",
   resourceType: "author",
+  subtitle: "Some Subtitle",
+  title: "Some Reference",
 };
 const page: EleventyPage = {
   fileSlug: "some-tip",

@@ -80,8 +80,7 @@ export class Resource extends BaseEntity implements ResourceFrontmatter {
     this.products = data.products;
     this.subtitle = data.subtitle;
     this.technologies = data.technologies;
-    data.thumbnail = path.join(path.dirname(page.inputPath), data.thumbnail);
-    this.thumbnail = data.thumbnail;
+    this.thumbnail = path.join(path.dirname(page.inputPath), data.thumbnail);
     this.topics = data.topics;
   }
 }

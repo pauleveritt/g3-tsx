@@ -1,12 +1,9 @@
-import {
-  getReference,
-  Reference,
-  ReferenceFrontmatter,
-} from "../../../src/ReferenceModels";
+import { Reference, ReferenceFrontmatter } from "../../../src/ReferenceModels";
 import { Static, Type } from "@sinclair/typebox";
 import { validateFrontmatter } from "../../../src/validators";
 import { EleventyPage } from "../../../src/models";
 import path from "path";
+import { BaseData } from "../../../src/ResourceModels";
 
 export const TechnologyFrontmatter = Type.Intersect([
   ReferenceFrontmatter,
@@ -15,16 +12,21 @@ export const TechnologyFrontmatter = Type.Intersect([
   }),
 ]);
 export type TechnologyFrontmatter = Static<typeof TechnologyFrontmatter>;
+export type TechnologyData = TechnologyFrontmatter & BaseData;
 
-export type Technology = {} & TechnologyFrontmatter & Reference;
+export class Technology extends Reference implements TechnologyFrontmatter {
+  logo: string;
+
+  constructor({ data, page }: { data: TechnologyData; page: EleventyPage }) {
+    super({ data, page });
+    this.logo = path.join(page.url, data.logo);
+  }
+}
+
 export async function getTechnology(
-  data: any,
+  data: TechnologyData,
   page: EleventyPage
 ): Promise<Technology> {
-  const technology: Technology = {
-    ...getReference(data, page, "technology"),
-    logo: path.join(page.url, data.logo),
-  };
-  validateFrontmatter(TechnologyFrontmatter, technology, page.url);
-  return technology;
+  validateFrontmatter(TechnologyFrontmatter, data, page.url);
+  return new Technology({ data, page });
 }
