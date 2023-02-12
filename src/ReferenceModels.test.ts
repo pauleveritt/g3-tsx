@@ -1,9 +1,27 @@
 import { expect, it } from "vitest";
-import fixtures from "../_includes/fixtures";
-import { getReference } from "./ReferenceModels";
+import { getReference, Reference, ReferenceData } from "./ReferenceModels";
+import { EleventyPage } from "./models";
+import { rootPath } from "../_includes/config";
 
-it("should use getReference to make a reference", () => {
-  const { data, page } = fixtures.all[0];
-  const reference = getReference(data, page, "tip");
-  expect(reference.label).to.equal("some-tip");
+const data: ReferenceData = {
+  label: "sr",
+  content: "<p>Some content</p>",
+  title: "Some Reference",
+  subtitle: "Some Subtitle",
+  date: new Date("2023-02-02"),
+  resourceType: "author",
+};
+const page: EleventyPage = {
+  fileSlug: "some-tip",
+  url: "/tips/some-tip/",
+  inputPath: `${rootPath}/tips/some-tip/index.md`,
+};
+it("should construct a Reference", () => {
+  const reference = new Reference({ data, page });
+  expect(reference.title).to.equal(data.title);
+});
+
+it("should construct a reference via the factory", async () => {
+  const reference = await getReference(data, page);
+  expect(reference.title).to.equal(data.title);
 });

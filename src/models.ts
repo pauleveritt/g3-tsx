@@ -13,8 +13,7 @@ export const EleventyPage = Type.Object({
 export type EleventyPage = Static<typeof EleventyPage>;
 
 export const EleventyData = Type.Object({
-  // Some stuff from resource, but not all, and you can't really
-  // count on it. Just a pile of stuff.
+  // TODO Can this go away, with frontmatter in its own schema?
   title: Type.String(),
   subtitle: Type.Optional(Type.String()),
   date: Type.Date(),

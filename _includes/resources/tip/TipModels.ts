@@ -1,7 +1,7 @@
 import { Static, Type } from "@sinclair/typebox";
 import { validateFrontmatter } from "../../../src/validators";
 import {
-  getResourceFrontmatter,
+  BaseData,
   Resource,
   ResourceFrontmatter,
 } from "../../../src/ResourceModels";
@@ -39,20 +39,42 @@ export const TipFrontmatter = Type.Intersect([
   }),
 ]);
 export type TipFrontmatter = Static<typeof TipFrontmatter>;
+export type TipData = TipFrontmatter & BaseData;
 
-export type Tip = {} & TipFrontmatter & Resource;
+class Tip extends Resource implements TipFrontmatter {
+  animatedGif?: TipFrontmatter["animatedGif"];
+  hasBody?: boolean;
+  leadin?: string;
+  longVideo?: TipFrontmatter["longVideo"];
+  screenshot?: TipFrontmatter["screenshot"];
+  seealso?: any;
+  shortVideo?: TipFrontmatter["shortVideo"];
 
-export async function getTip(data: any, page: EleventyPage): Promise<Tip> {
-  const tip: Tip = {
-    ...getResourceFrontmatter(data, page, "tip"),
-    leadin: data.leadin,
-    animatedGif: data.animatedGif,
-    screenshot: data.screenshot,
-    shortVideo: data.shortVideo,
-    longVideo: data.longVideo,
-    hasBody: data.hasBody,
-    seealso: data.seealso,
-  };
-  validateFrontmatter(TipFrontmatter, tip, page.url);
-  return tip;
+  constructor({ data, page }: { data: TipData; page: EleventyPage }) {
+    super({ data, page });
+    this.animatedGif = data.animatedGif;
+    this.hasBody = data.hasBody;
+    this.leadin = data.leadin;
+    this.longVideo = data.longVideo;
+    this.screenshot = data.screenshot;
+    this.seealso = data.seealso;
+    this.shortVideo = data.shortVideo;
+  }
+}
+
+export async function getTip(data: TipData, page: EleventyPage): Promise<Tip> {
+  // const tip: Tip = {
+  //   ...getResourceFrontmatter(data, page, "tip"),
+  //   leadin: data.leadin,
+  //   animatedGif: data.animatedGif,
+  //   screenshot: data.screenshot,
+  //   shortVideo: data.shortVideo,
+  //   longVideo: data.longVideo,
+  //   hasBody: data.hasBody,
+  //   seealso: data.seealso,
+  // };
+
+  // TODO Move this to base class
+  validateFrontmatter(TipFrontmatter, data, page.url);
+  return new Tip({ data, page });
 }

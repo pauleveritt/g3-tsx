@@ -1,5 +1,5 @@
 import h from "vhtml";
-import { getTip, TipFrontmatter } from "./resources/tip/TipModels";
+import { getTip, TipData, TipFrontmatter } from "./resources/tip/TipModels";
 import { Author, AuthorFrontmatter } from "./references/author/AuthorModels";
 import { SiteCollections } from "./models";
 import {
@@ -13,8 +13,16 @@ import {
 } from "./references/product/ProductModels";
 import { referenceCollections, resourceCollections, rootPath } from "./config";
 import { vi } from "vitest";
-import { EleventyCollectionItem, RenderContext } from "../src/models";
-import { ReferenceCollection, ResourceCollection } from "../src/ResourceModels";
+import {
+  EleventyCollectionItem,
+  EleventyPage,
+  RenderContext,
+} from "../src/models";
+import {
+  BaseItem,
+  ReferenceCollection,
+  ResourceCollection,
+} from "../src/ResourceModels";
 import { resolveAllCollections } from "../src/registration";
 
 /**
@@ -27,7 +35,7 @@ const children: string[] = [
   }),
 ];
 
-const tipsData: TipFrontmatter[] = [
+const tipFrontmatters: TipFrontmatter[] = [
   {
     title: "Some Tip",
     date: new Date("2023-02-02"),
@@ -47,6 +55,24 @@ const tipsData: TipFrontmatter[] = [
     topics: ["st", "at"],
     products: ["sp", "ap"],
     thumbnail: "aa.png",
+  },
+];
+const tipItems: { data: TipData; page: EleventyPage }[] = [
+  {
+    data: { ...tipFrontmatters[0], content },
+    page: {
+      fileSlug: "some-tip",
+      url: "/tips/some-tip/",
+      inputPath: `${rootPath}/tips/some-tip/index.md`,
+    },
+  },
+  {
+    data: { ...tipFrontmatters[1], content },
+    page: {
+      fileSlug: "another-tip",
+      url: "/tips/another-tip/",
+      inputPath: `${rootPath}/tips/another-tip/index.md`,
+    },
   },
 ];
 
@@ -118,25 +144,9 @@ const productsData: ProductFrontmatter[] = [
     logo: "another.png",
   },
 ];
-const all: EleventyCollectionItem[] = [
-  {
-    data: tipsData[0],
-    page: {
-      fileSlug: "some-tip",
-      url: "/tips/some-tip/",
-      inputPath: `${rootPath}/tips/some-tip/index.md`,
-    },
-    content: "<p>Some Tip</p>",
-  },
-  {
-    data: tipsData[1],
-    page: {
-      fileSlug: "another-tip",
-      url: "/tips/another-tip/",
-      inputPath: `${rootPath}/tips/another-tip/index.md`,
-    },
-    content: "<p>Another Tip</p>",
-  },
+
+const all: BaseItem[] = [
+  ...tipItems,
   {
     data: authorsData[0],
     page: {
@@ -250,7 +260,6 @@ const products = await Promise.all(
   productItems.map(async (ref) => await getProduct(ref.data, ref.page))
 );
 
-const tipItems = [all[0], all[1]];
 const tips = await Promise.all(
   tipItems.map(async (ref) => await getTip(ref.data, ref.page))
 );

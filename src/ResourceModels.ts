@@ -9,29 +9,38 @@ export const BaseFrontmatter = Type.Object({
   title: Type.String(),
 });
 export type BaseFrontmatter = Static<typeof BaseFrontmatter>;
-// export const BaseEntity = Type.Intersect([
-//   BaseFrontmatter,
-//   Type.Object({
-//     slug: Type.String(),
-//     url: Type.String(),
-//     body: Type.Optional(Type.String()),
-//   }),
-// ]);
-// export type BaseEntity = Static<typeof BaseEntity>;
 
-export type BaseEntity = {
-  body?: string;
-  slug: string; // TODO Is this used on our side?
-  url: string;
+export type BaseData = {
+  content: string;
 } & BaseFrontmatter;
+export type BaseItem = {
+  data: BaseData;
+  page: EleventyPage;
+};
 
-// export const References = Type.Object({
-//   author: BaseEntity,
-//   products: Type.Array(BaseEntity),
-//   technologies: Type.Array(BaseEntity),
-//   topics: Type.Array(BaseEntity),
-// });
-// export type References = Static<typeof References>;
+export class BaseEntity implements BaseFrontmatter {
+  body: string;
+  date: Date;
+  resourceType: string;
+  slug: string;
+  title: string;
+  url: string;
+
+  constructor({ data, page }: { data: BaseData; page: EleventyPage }) {
+    this.body = data.content;
+    this.date = new Date(data.date);
+    this.resourceType = data.resourceType;
+    this.slug = page.fileSlug;
+    this.title = data.title;
+    this.url = page.url;
+  }
+}
+
+// export type BaseEntity = {
+//   body?: string;
+//   slug: string; // TODO Is this used on our side?
+//   url: string;
+// } & BaseFrontmatter;
 
 export type References = {
   // TODO Move this to ReferenceModels
@@ -53,61 +62,70 @@ export const ResourceFrontmatter = Type.Intersect([
   }),
 ]);
 export type ResourceFrontmatter = Static<typeof ResourceFrontmatter>;
-// export const Resource = Type.Intersect([
-//   ResourceFrontmatter,
-//   BaseEntity,
-//   Type.Object({
-//     references: Type.Optional(References),
-//   }),
-// ]);
-// export type Resource = Static<typeof Resource>;
 
-export type Resource = {
-  references?: References;
-} & ResourceFrontmatter &
-  BaseEntity;
+export type ResourceData = ResourceFrontmatter & BaseData;
+
+export class Resource extends BaseEntity implements ResourceFrontmatter {
+  author: string;
+  products?: string[];
+  subtitle?: string;
+  technologies?: string[];
+  thumbnail: string;
+  topics?: string[];
+
+  // TODO Add in references
+  constructor({ data, page }: { data: ResourceData; page: EleventyPage }) {
+    super({ data, page });
+    this.author = data.author;
+    this.products = data.products;
+    this.subtitle = data.subtitle;
+    this.technologies = data.technologies;
+    data.thumbnail = path.join(path.dirname(page.inputPath), data.thumbnail);
+    this.thumbnail = data.thumbnail;
+    this.topics = data.topics;
+  }
+}
+
+// export type Resource = {
+//   references?: References;
+// } & ResourceFrontmatter &
+//   BaseEntity;
 export type ResourceCollection = Map<string, Resource>;
 export type ReferenceCollection = Map<string, ReferenceFrontmatter>;
 
-export function getBaseResource(
-  data: any,
-  page: EleventyPage,
-  resourceType: string
-): BaseEntity {
-  const date = new Date(data.date);
-  return {
-    body: data.content,
-    date,
-    resourceType,
-    slug: page.fileSlug,
-    title: data.title,
-    url: page.url,
-  };
+export function getBaseResource(data: any, page: EleventyPage): BaseEntity {
+  // we know we have a thumbnail, fix it to the correct path
+
+  return new Resource({ data, page });
+  //   return {
+  //     body: data.content,
+  //     date,
+  //     resourceType,
+  //     slug: page.fileSlug,
+  //     title: data.title,
+  //     url: page.url,
+  //   };
 }
 
 export function getResourceFrontmatter(
   data: any,
-  page: EleventyPage,
-  resourceType: string
+  page: EleventyPage
 ): Resource {
-  // we know we have a thumbnail, fix it to the correct path
-  const dirname = path.dirname(page.inputPath);
-  const thumbnail = path.join(dirname, data.thumbnail);
-
-  return {
-    author: data.author,
-    body: data.content,
-    date: data.date,
-    products: data.products,
-    resourceType,
-    slug: page.fileSlug,
-    subtitle: data.subtitle,
-    technologies: data.technologies,
-    thumbnail,
-    title: data.title,
-    topics: data.topics,
-    url: page.url,
-  };
+  return new Resource({ data, page });
+  // return {
+  //   author: data.author,
+  //   body: data.content,
+  //   date: data.date,
+  //   products: data.products,
+  //   resourceType,
+  //   slug: page.fileSlug,
+  //   subtitle: data.subtitle,
+  //   technologies: data.technologies,
+  //   thumbnail,
+  //   title: data.title,
+  //   topics: data.topics,
+  //   url: page.url,
+  // };
 }
 
 export function getResourceType(data: any, page: EleventyPage): string {

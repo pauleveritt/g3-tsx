@@ -1,17 +1,44 @@
 import { expect, test } from "vitest";
-import { getResourceFrontmatter, ResourceFrontmatter } from "./ResourceModels";
-import { validateFrontmatter } from "./validators";
-import fixtures from "../_includes/fixtures";
-import { getTip } from "../_includes/resources/tip/TipModels";
+import {
+  BaseData,
+  BaseEntity,
+  getBaseResource,
+  Resource,
+  ResourceData,
+} from "./ResourceModels";
+// import fixtures from "../_includes/fixtures";
+import { rootPath } from "../_includes/config";
+import { EleventyPage } from "./models";
 
-test("construct a resource", async () => {
-  const { data, page } = fixtures.tipItems[0];
-  const tip = await getTip(data, page);
-  expect(tip.title).to.equal("Some Tip");
-  const result = getResourceFrontmatter(data, page, "resource");
-  expect(result.title).to.equal(data.title);
-  expect(result.resourceType).to.equal("resource");
-  const validation = () =>
-    validateFrontmatter(ResourceFrontmatter, result, "my-tip");
-  expect(validation).not.to.throw();
+const baseData: BaseData = {
+  content: "<p>Some content</p>",
+  date: new Date("2023-02-02"),
+  resourceType: "tip",
+  title: "Some Tip",
+};
+const data: ResourceData = {
+  ...baseData,
+  author: "sa",
+  products: ["sp", "ap"],
+  technologies: ["st", "at"],
+  thumbnail: "thumbnail.png",
+  topics: ["st", "at"],
+};
+const page: EleventyPage = {
+  fileSlug: "some-tip",
+  url: "/tips/some-tip/",
+  inputPath: `${rootPath}/tips/some-tip/index.md`,
+};
+
+test("construct a BaseEntity", () => {
+  const baseEntity = new BaseEntity({ data: baseData, page });
+  expect(baseEntity).to.exist;
+});
+test("construct a Resource", () => {
+  const resource = new Resource({ data, page });
+  expect(resource).to.exist;
+});
+test("construct a Resource from the factory", () => {
+  const resource = getBaseResource(data, page);
+  expect(resource).to.exist;
 });
