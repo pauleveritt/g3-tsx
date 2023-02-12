@@ -1,6 +1,6 @@
 import { Static, Type } from "@sinclair/typebox";
 import { Assertions } from "./TestCases";
-import { Resource } from "./ResourceModels";
+import { BaseFrontmatter, Resource } from "./ResourceModels";
 import { ReferenceFrontmatter } from "./ReferenceModels";
 
 export const EleventyPage = Type.Object({
@@ -35,7 +35,7 @@ export const EleventyCollectionItem = Type.Object({
   // The combination of page, data, and content for
   // each item in a collection, when 11ty's API provides them
   page: EleventyPage,
-  data: EleventyData,
+  data: BaseFrontmatter,
   content: Type.String(),
 });
 export type EleventyCollectionItem = Static<typeof EleventyCollectionItem>;
