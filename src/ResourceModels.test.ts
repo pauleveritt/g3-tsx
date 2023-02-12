@@ -12,13 +12,13 @@ import { EleventyPage } from "./models";
 
 const baseData: BaseData = {
   content: "<p>Some content</p>",
-  date: new Date("2023-02-02"),
   resourceType: "tip",
   title: "Some Tip",
 };
 const data: ResourceData = {
   ...baseData,
   author: "sa",
+  date: new Date("2023-02-02"),
   products: ["sp", "ap"],
   technologies: ["st", "at"],
   thumbnail: "thumbnail.png",

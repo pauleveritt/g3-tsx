@@ -9,7 +9,6 @@ import { EleventyPage } from "../../../src/models";
 import { rootPath } from "../../config";
 
 const productFrontmatter: ProductFrontmatter = {
-  date: new Date("2023-02-02"),
   label: "sa",
   logo: "some-logo.png",
   resourceType: "author",

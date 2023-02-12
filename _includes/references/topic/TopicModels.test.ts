@@ -6,7 +6,6 @@ import { getTopic, Topic, TopicData, TopicFrontmatter } from "./TopicModels";
 const topicFrontmatter: TopicFrontmatter = {
   accent: "some accent",
   icon: "some-icon.png",
-  date: new Date("2023-02-02"),
   label: "sa",
   resourceType: "topic",
   title: "Some Topic",

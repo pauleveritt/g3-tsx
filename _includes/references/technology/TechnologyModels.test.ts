@@ -9,7 +9,6 @@ import {
 } from "./TechnologyModels";
 
 const technologyFrontmatter: TechnologyFrontmatter = {
-  date: new Date("2023-02-02"),
   label: "sa",
   logo: "some-logo.png",
   resourceType: "technology",

@@ -4,7 +4,6 @@ import path from "path";
 import { ReferenceFrontmatter } from "./ReferenceModels";
 
 export const BaseFrontmatter = Type.Object({
-  date: Type.Date(),
   resourceType: Type.String(),
   title: Type.String(),
 });
@@ -23,7 +22,6 @@ export type BaseItem = {
 
 export class BaseEntity implements BaseFrontmatter {
   content: string;
-  date: Date;
   resourceType: string;
   slug: string;
   title: string;
@@ -31,7 +29,6 @@ export class BaseEntity implements BaseFrontmatter {
 
   constructor({ data, page }: { data: BaseData; page: EleventyPage }) {
     this.content = data.content;
-    this.date = new Date(data.date);
     this.resourceType = data.resourceType;
     this.slug = page.fileSlug;
     this.title = data.title;
@@ -53,6 +50,7 @@ export const ResourceFrontmatter = Type.Intersect([
   BaseFrontmatter,
   Type.Object({
     author: Type.String(),
+    date: Type.Date(),
     products: Type.Optional(Type.Array(Type.String())),
     subtitle: Type.Optional(Type.String()),
     technologies: Type.Optional(Type.Array(Type.String())),
@@ -66,6 +64,7 @@ export type ResourceData = ResourceFrontmatter & BaseData;
 
 export class Resource extends BaseEntity implements ResourceFrontmatter {
   author: string;
+  date: Date;
   products?: string[];
   subtitle?: string;
   technologies?: string[];
@@ -77,6 +76,7 @@ export class Resource extends BaseEntity implements ResourceFrontmatter {
   constructor({ data, page }: { data: ResourceData; page: EleventyPage }) {
     super({ data, page });
     this.author = data.author;
+    this.date = new Date(data.date);
     this.products = data.products;
     this.subtitle = data.subtitle;
     this.technologies = data.technologies;

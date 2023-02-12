@@ -103,14 +103,12 @@ const tipDatas: { data: TipData; page: EleventyPage }[] = [
 const authorsFrontmatters: AuthorFrontmatter[] = [
   {
     title: "Some Author",
-    date: new Date("2023-01-08"),
     resourceType: "author",
     label: "sa",
     thumbnail: "sa.png",
   },
   {
     title: "Another Author",
-    date: new Date("2023-01-20"),
     resourceType: "author",
     label: "aa",
     thumbnail: "aa.png",
@@ -156,14 +154,12 @@ const authorDatas: { data: AuthorData; page: EleventyPage }[] = [
 const technologyFrontmatters: TechnologyFrontmatter[] = [
   {
     title: "Some Technology",
-    date: new Date("2023-01-22"),
     resourceType: "technology",
     label: "st",
     logo: "stlogo.svg",
   },
   {
     title: "Another Technology",
-    date: new Date("2023-01-14"),
     resourceType: "technology",
     label: "at",
     logo: "atlogo.svg",
@@ -209,7 +205,6 @@ const technologyDatas: { data: TechnologyData; page: EleventyPage }[] = [
 const topicFrontmatters: TopicFrontmatter[] = [
   {
     title: "Some Topic",
-    date: new Date("2023-01-28"),
     resourceType: "topic",
     label: "st",
     accent: "st-accent",
@@ -217,7 +212,6 @@ const topicFrontmatters: TopicFrontmatter[] = [
   },
   {
     title: "Another Topic",
-    date: new Date("2023-01-12"),
     resourceType: "topic",
     label: "at",
     accent: "at-accent",
@@ -264,14 +258,12 @@ const topicDatas: { data: TopicData; page: EleventyPage }[] = [
 const productFrontmatters: ProductFrontmatter[] = [
   {
     title: "Some Product",
-    date: new Date("2023-01-22"),
     resourceType: "product",
     label: "sp",
     logo: "some.png",
   },
   {
     title: "Another Product",
-    date: new Date("2023-01-13"),
     resourceType: "product",
     label: "ap",
     logo: "another.png",

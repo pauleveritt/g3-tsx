@@ -12,25 +12,6 @@ export const EleventyPage = Type.Object({
 });
 export type EleventyPage = Static<typeof EleventyPage>;
 
-export const EleventyData = Type.Object({
-  // TODO Can this go away, with frontmatter in its own schema?
-  title: Type.String(),
-  subtitle: Type.Optional(Type.String()),
-  date: Type.Date(),
-  resourceType: Type.String(),
-  thumbnail: Type.Optional(Type.String()),
-  label: Type.Optional(Type.String()),
-  logo: Type.Optional(Type.String()),
-  accent: Type.Optional(Type.String()),
-  icon: Type.Optional(Type.String()),
-  author: Type.Optional(Type.String()),
-  technologies: Type.Optional(Type.Array(Type.String())),
-  topics: Type.Optional(Type.Array(Type.String())),
-  products: Type.Optional(Type.Array(Type.String())),
-  tutorialItems: Type.Optional(Type.Array(Type.String())),
-});
-export type EleventyData = Static<typeof EleventyData>;
-
 export const EleventyCollectionItem = Type.Object({
   // The combination of page, data, and content for
   // each item in a collection, when 11ty's API provides them
@@ -49,6 +30,8 @@ export interface RenderContext {
    * Used by view renders to grab the `this` object
    */
   addTestCase(url: string, assertions: Assertions): void;
+
   getResources(resourceType?: string): Resource[];
+
   getReferences(resourceType?: string): ReferenceFrontmatter[];
 }

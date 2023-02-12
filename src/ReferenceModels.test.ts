@@ -5,7 +5,6 @@ import { rootPath } from "../_includes/config";
 
 const data: ReferenceData = {
   content: "<p>Some content</p>",
-  date: new Date("2023-02-02"),
   label: "sr",
   resourceType: "author",
   subtitle: "Some Subtitle",

@@ -9,7 +9,6 @@ import {
 } from "./AuthorModels";
 
 const authorFrontmatter: AuthorFrontmatter = {
-  date: new Date("2023-02-02"),
   label: "sa",
   resourceType: "author",
   thumbnail: "thumbnail.png",
