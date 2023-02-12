@@ -9,7 +9,6 @@ import {
 } from "./AuthorModels";
 
 const authorFrontmatter: AuthorFrontmatter = {
-  label: "sa",
   resourceType: "author",
   thumbnail: "thumbnail.png",
   title: "Some Author",
@@ -26,10 +25,12 @@ const page: EleventyPage = {
 
 test("construct an author", async () => {
   const author = new Author({ data, page });
+  expect(author.label).to.equal("sa");
   expect(author.title).to.equal("Some Author");
 });
 
 test("construct an author from factory", async () => {
   const author = await getAuthor(data, page);
+  expect(author.label).to.equal("sa");
   expect(author.title).to.equal("Some Author");
 });

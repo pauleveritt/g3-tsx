@@ -30,7 +30,7 @@ const SidebarPublished = ({
               <div className="content">
                 <div className="bio-page-sidebar-published-date">{date}</div>
                 <div>by:</div>
-                <a href={author.slug}>{author.title}</a>
+                <a href={author.url}>{author.title}</a>
               </div>
             </div>
           </article>
