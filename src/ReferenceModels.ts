@@ -36,3 +36,11 @@ export async function getReference(
   // const linkedResources: Resource[] = [];
   return new Reference({ data, page });
 }
+
+export type References = {
+  // TODO Move this to ReferenceModels
+  author: BaseEntity; // TODO Have BaseRefs over here, Refs over there
+  products: BaseEntity[];
+  technologies: BaseEntity[];
+  topics: BaseEntity[];
+};

@@ -1,7 +1,7 @@
 import { Static, Type } from "@sinclair/typebox";
 import { EleventyPage } from "./models";
 import path from "path";
-import { ReferenceFrontmatter } from "./ReferenceModels";
+import { ReferenceFrontmatter, References } from "./ReferenceModels";
 import { imageOptions } from "./registration";
 // @ts-ignore
 import Image from "@11ty/eleventy-img";
@@ -53,14 +53,6 @@ export class BaseEntity implements BaseFrontmatter {
 }
 
 // TODO Get rid of slug in models if it isn't used
-
-export type References = {
-  // TODO Move this to ReferenceModels
-  author: BaseEntity; // TODO Have BaseRefs over here, Refs over there
-  products: BaseEntity[];
-  technologies: BaseEntity[];
-  topics: BaseEntity[];
-};
 
 export const ResourceFrontmatter = Type.Intersect([
   BaseFrontmatter,
