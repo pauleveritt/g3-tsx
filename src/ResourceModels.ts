@@ -2,6 +2,9 @@ import { Static, Type } from "@sinclair/typebox";
 import { EleventyPage } from "./models";
 import path from "path";
 import { ReferenceFrontmatter } from "./ReferenceModels";
+import { imageOptions } from "./registration";
+// @ts-ignore
+import Image from "@11ty/eleventy-img";
 
 export const BaseFrontmatter = Type.Object({
   resourceType: Type.String(),
@@ -33,6 +36,13 @@ export class BaseEntity implements BaseFrontmatter {
     this.slug = page.fileSlug;
     this.title = data.title;
     this.url = page.url;
+  }
+
+  async init(): Promise<this> {
+    if ("thumbnail" in this) {
+      await Image(this.thumbnail, imageOptions);
+    }
+    return this;
   }
 }
 
@@ -83,18 +93,19 @@ export class Resource extends BaseEntity implements ResourceFrontmatter {
     this.thumbnail = path.join(path.dirname(page.inputPath), data.thumbnail);
     this.topics = data.topics;
   }
+
+  async init(): Promise<this> {
+    await Image(this.thumbnail, imageOptions);
+    return this;
+  }
 }
 
-// export type Resource = {
-//   references?: References;
-// } & ResourceFrontmatter &
-//   BaseEntity;
 export type ResourceCollection = Map<string, Resource>;
 export type ReferenceCollection = Map<string, ReferenceFrontmatter>;
 
 export function getBaseResource(data: any, page: EleventyPage): BaseEntity {
   // we know we have a thumbnail, fix it to the correct path
-
+  // TODO Clean all this up
   return new Resource({ data, page });
   //   return {
   //     body: data.content,

@@ -5,7 +5,6 @@ import path from "path";
 // @ts-ignore
 import Image from "@11ty/eleventy-img";
 import { EleventyPage } from "../../../src/models";
-import { imageOptions } from "../../../src/registration";
 import { BaseData } from "../../../src/ResourceModels";
 
 export const AuthorFrontmatter = Type.Intersect([
@@ -26,14 +25,14 @@ export class Author extends Reference implements AuthorFrontmatter {
   }
 }
 
+// TODO We should be able to get rid of this
 export async function getAuthor(
   data: AuthorData,
   page: EleventyPage
 ): Promise<Author> {
   validateFrontmatter(AuthorFrontmatter, data, page.url);
 
-  // TODO Would be nice to put this in class, but needs async constructor
   const author = new Author({ data, page });
-  await Image(author.thumbnail, imageOptions);
+  await author.init();
   return author;
 }

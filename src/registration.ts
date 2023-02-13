@@ -87,9 +87,8 @@ export async function resolveAllCollections({
       } else if (referenceCollections[data.resourceType]) {
         const { factory } = referenceCollections[resourceType];
         const reference = await factory(data, page);
-        allReferences.set(reference.label, reference);
+        allReferences.set(reference.label as string, reference);
       } else {
-        // TODO shouldn't get here
         console.warn(`Unregistered resource type: ${resourceType}`);
       }
     } catch (err) {

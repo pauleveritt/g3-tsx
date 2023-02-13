@@ -65,7 +65,7 @@ export function render(
   }
 
   const linkedResources = this.getResources().filter(
-    (ci) => ci.topics && ci.topics.includes(topic.label)
+    (ci) => ci.topics && ci.topics.includes(topic.label as string)
   ) as Resource[];
 
   return (

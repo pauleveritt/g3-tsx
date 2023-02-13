@@ -45,7 +45,7 @@ export function TipLayout({
   const sidebarPublished = (
     <SidebarPublished
       date={tip.date as Date}
-      author={{ ...author }}
+      author={author}
     ></SidebarPublished>
   );
   const sidebar = <Sidebar>{sidebarPublished}</Sidebar>;

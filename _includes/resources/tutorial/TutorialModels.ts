@@ -7,9 +7,6 @@ import {
 } from "../../../src/ResourceModels";
 import { EleventyPage } from "../../../src/models";
 import path from "path";
-import { imageOptions } from "../../../src/registration";
-// @ts-ignore
-import Image from "@11ty/eleventy-img";
 
 export const TutorialFrontmatter = Type.Intersect([
   ResourceFrontmatter,
@@ -53,6 +50,6 @@ export async function getTutorial(
 
   validateFrontmatter(TutorialFrontmatter, data, page.url);
   const tutorial = new Tutorial({ data, page });
-  await Image(tutorial.thumbnail, imageOptions);
+  await tutorial.init();
   return tutorial;
 }

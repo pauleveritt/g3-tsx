@@ -62,18 +62,9 @@ export class Tip extends Resource implements TipFrontmatter {
 }
 
 export async function getTip(data: TipData, page: EleventyPage): Promise<Tip> {
-  // const tip: Tip = {
-  //   ...getResourceFrontmatter(data, page, "tip"),
-  //   leadin: data.leadin,
-  //   animatedGif: data.animatedGif,
-  //   screenshot: data.screenshot,
-  //   shortVideo: data.shortVideo,
-  //   longVideo: data.longVideo,
-  //   hasBody: data.hasBody,
-  //   seealso: data.seealso,
-  // };
-
   // TODO Move this to base class
   validateFrontmatter(TipFrontmatter, data, page.url);
-  return new Tip({ data, page });
+  const tip = new Tip({ data, page });
+  await tip.init();
+  return tip;
 }

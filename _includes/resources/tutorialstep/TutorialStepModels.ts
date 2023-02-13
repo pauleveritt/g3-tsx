@@ -6,9 +6,6 @@ import {
   ResourceFrontmatter,
 } from "../../../src/ResourceModels";
 import { EleventyPage } from "../../../src/models";
-import { imageOptions } from "../../../src/registration";
-// @ts-ignore
-import Image from "@11ty/eleventy-img";
 
 export const TutorialStepFrontmatter = Type.Intersect([
   ResourceFrontmatter,
@@ -43,6 +40,6 @@ export async function getTutorialStep(
 ): Promise<TutorialStep> {
   validateFrontmatter(TutorialStepFrontmatter, data, page.url);
   const tutorialStep = new TutorialStep({ data, page });
-  await Image(tutorialStep.thumbnail, imageOptions);
+  await tutorialStep.init();
   return tutorialStep;
 }
