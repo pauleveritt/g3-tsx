@@ -2,7 +2,7 @@ import { Static, Type } from "@sinclair/typebox";
 import { EleventyPage } from "./models";
 import path from "path";
 import { ReferenceFrontmatter, References } from "./ReferenceModels";
-import { imageOptions } from "./registration";
+import { imageOptions, resolveReferences } from "./registration";
 // @ts-ignore
 import Image from "@11ty/eleventy-img";
 import { validateFrontmatter } from "./validators";
@@ -96,6 +96,14 @@ export class Resource extends BaseEntity implements ResourceFrontmatter {
   async init(): Promise<this> {
     await Image(this.thumbnail, imageOptions);
     return this;
+  }
+
+  resolve(allReferences: ReferenceCollection): void {
+    this.references = resolveReferences({
+      fieldNames: ["author", "products", "technologies", "topics"],
+      resource: this,
+      allReferences,
+    });
   }
 }
 

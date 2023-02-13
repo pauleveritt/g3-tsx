@@ -110,11 +110,14 @@ export async function resolveAllCollections({
         `Resource "${url}" has unresolved author ${resource.author}`
       );
     }
-    resource.references = resolveReferences({
-      fieldNames: ["author", "products", "technologies", "topics"],
-      resource,
-      allReferences,
-    });
+    resource.resolve(allReferences);
+    // } else {
+    //   resource.references = resolveReferences({
+    //     fieldNames: ["author", "products", "technologies", "topics"],
+    //     resource,
+    //     allReferences,
+    //   });
+    // }
   }
 
   return allCollections;
