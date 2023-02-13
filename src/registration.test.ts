@@ -4,19 +4,15 @@ import {
   CollectionApi,
   getAllCollections,
   resolveReference,
-  resolveReferences,
 } from "./registration";
 import { referenceCollections, resourceCollections } from "../_includes/config";
 import { Tip } from "../_includes/resources/tip/TipModels";
 import { AuthorFrontmatter } from "../_includes/references/author/AuthorModels";
-import { References } from "./ReferenceModels";
 
 const mockCollectionApi: CollectionApi = {
   getAll: () => fixtures.all,
   getFilteredByTag: () => fixtures.all,
 };
-
-const fieldNames = ["author", "products", "technologies", "topics"];
 
 test("should start with unresolved references on tips", () => {
   const tip0 = fixtures.collections.allResources.get("/tips/some-tip/");
@@ -70,6 +66,7 @@ test("should construct collections", async () => {
 describe("Resolve References", () => {
   const allReferences = fixtures.collections.allReferences;
   const authorItem0 = fixtures.authorItems[0];
+  const authorItem1 = fixtures.authorItems[1];
   let resource: Tip;
   const tip0 = fixtures.collections.allResources.get("/tips/some-tip/") as Tip;
   expect(tip0).to.exist;
@@ -124,29 +121,35 @@ describe("Resolve References", () => {
     ) as Tip;
     expect(tip0).to.exist;
     expect(tip0.references).not.to.exist;
-    const referenceMap: References = resolveReferences({
-      fieldNames,
-      resource: tip0,
-      allReferences,
-    });
-    const refAuthor = referenceMap.author;
-    expect(refAuthor.title).to.equal(authorItem0.data.title);
-    const refProducts = referenceMap.products;
-    const productItem0 = fixtures.productItems[0];
-    expect(refProducts[0].title).to.equal(productItem0.data.title);
+    // const referenceMap: References = resolveReferences({
+    //   fieldNames,
+    //   resource: tip0,
+    //   allReferences,
+    // });
+    tip0.resolve(allReferences);
+    expect(tip0.references).to.exist;
+    if (tip0.references) {
+      const refAuthor = tip0.references.author;
+      expect(refAuthor.title).to.equal(authorItem0.data.title);
+      const refProducts = tip0.references.products;
+      const productItem0 = fixtures.productItems[0];
+      expect(refProducts[0].title).to.equal(productItem0.data.title);
+    }
   });
 
   test("resolve a missing products", () => {
-    // Get rid of products
-    delete resource.products;
-    expect(resource.references).not.to.exist;
-    const referenceMap: References = resolveReferences({
-      fieldNames,
-      resource,
-      allReferences,
-    });
-    const refAuthor = referenceMap.author;
-    expect(refAuthor.title).to.equal(authorItem0.data.title);
-    expect(referenceMap.products).to.exist;
+    // Get a tip with no products in frontmatter
+    const tip1 = fixtures.collections.allResources.get(
+      "/tips/another-tip/"
+    ) as Tip;
+    expect(tip1).to.exist;
+    expect(tip1.references).not.to.exist;
+    tip1.resolve(allReferences);
+    expect(tip1.references).to.exist;
+    if (tip1.references) {
+      const refAuthor = tip1.references.author;
+      expect(refAuthor.title).to.equal(authorItem1.data.title);
+      expect(tip1.references.products).to.exist;
+    }
   });
 });

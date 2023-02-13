@@ -59,7 +59,6 @@ const tipFrontmatters: TipFrontmatter[] = [
     author: "aa",
     technologies: ["st", "at"],
     topics: ["st", "at"],
-    products: ["sp", "ap"],
     thumbnail: "aa.png",
   },
 ];

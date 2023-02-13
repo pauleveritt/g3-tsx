@@ -9,7 +9,7 @@ import {
   Resource,
   ResourceCollection,
 } from "./ResourceModels";
-import { ReferenceFrontmatter, References } from "./ReferenceModels";
+import { ReferenceFrontmatter } from "./ReferenceModels";
 
 export type CollectionApi = {
   getAll(): EleventyCollectionItem[];
@@ -102,15 +102,14 @@ export async function resolveAllCollections({
   allCollections.allReferences = allReferences;
 
   // With this in place, we can de-reference resources.
-  // @ts-ignore
-  for (const [url, resource] of allCollections.allResources) {
-    resource.resolve(allReferences);
-  }
+  Array.from(allResources.values()).map((resource) =>
+    resource.resolve(allReferences)
+  );
 
   return allCollections;
 }
 
-export type ResolveReferencesProps = {
+export type ResolveReferenceProps = {
   fieldName: string;
   resource: Resource;
   allReferences: ReferenceCollection;
@@ -120,7 +119,7 @@ export function resolveReference({
   fieldName,
   resource,
   allReferences,
-}: ResolveReferencesProps): ReferenceFrontmatter | ReferenceFrontmatter[] {
+}: ResolveReferenceProps): ReferenceFrontmatter | ReferenceFrontmatter[] {
   /* Return the matching reference or references  */
 
   // @ts-ignore
@@ -159,31 +158,6 @@ export type ResolveReferences = {
   resource: Resource;
   allReferences: ReferenceCollection;
 };
-
-export function resolveReferences({
-  fieldNames,
-  resource,
-  allReferences,
-}: ResolveReferences): References {
-  // @ts-ignore
-  const references: References = {};
-  for (const fieldName of fieldNames) {
-    // @ts-ignore
-    if (resource[fieldName]) {
-      // @ts-ignore
-      references[fieldName] = resolveReference({
-        fieldName,
-        resource,
-        allReferences,
-      });
-    } else {
-      // Only array references things should be empty;
-      // @ts-ignore
-      references[fieldName] = [];
-    }
-  }
-  return references;
-}
 
 export type ImageOptions = {
   widths: any[];

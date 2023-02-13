@@ -2,7 +2,7 @@ import { Static, Type } from "@sinclair/typebox";
 import { EleventyPage } from "./models";
 import path from "path";
 import { ReferenceFrontmatter, References } from "./ReferenceModels";
-import { imageOptions, resolveReferences } from "./registration";
+import { imageOptions, resolveReference } from "./registration";
 // @ts-ignore
 import Image from "@11ty/eleventy-img";
 import { validateFrontmatter } from "./validators";
@@ -101,11 +101,26 @@ export class Resource extends BaseEntity implements ResourceFrontmatter {
   resolve(allReferences: ReferenceCollection): void {
     // @ts-ignore
     const fieldNames: string[] = this.constructor.referenceFields;
-    this.references = resolveReferences({
-      fieldNames,
-      resource: this,
-      allReferences,
-    });
+
+    // @ts-ignore
+    const references: References = {};
+    for (const fieldName of fieldNames) {
+      // @ts-ignore
+      if (this[fieldName]) {
+        // @ts-ignore
+        references[fieldName] = resolveReference({
+          fieldName,
+          resource: this,
+          allReferences,
+        });
+      } else {
+        // Only array references things should be empty;
+        // @ts-ignore
+        references[fieldName] = [];
+      }
+    }
+
+    this.references = references;
   }
 }
 
