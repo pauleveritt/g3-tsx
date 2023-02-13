@@ -40,15 +40,6 @@ export function resolveChildPaths(
   });
 }
 
-export async function getTutorial(
-  data: TutorialData,
-  page: EleventyPage
-): Promise<Tutorial> {
-  // absolute paths to tutorial items
-  // const rootPath = page.url;
-  // const tutorialItems = resolveChildPaths(rootPath, data.tutorialItems);
-
-  const tutorial = new Tutorial({ data, page });
-  await tutorial.init();
-  return tutorial;
-}
+// absolute paths to tutorial items
+// const rootPath = page.url;
+// const tutorialItems = resolveChildPaths(rootPath, data.tutorialItems);

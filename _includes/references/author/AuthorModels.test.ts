@@ -1,12 +1,7 @@
 import { expect, test } from "vitest";
 import { EleventyPage } from "../../../src/models";
 import { rootPath } from "../../config";
-import {
-  Author,
-  AuthorData,
-  AuthorFrontmatter,
-  getAuthor,
-} from "./AuthorModels";
+import { Author, AuthorData, AuthorFrontmatter } from "./AuthorModels";
 
 const authorFrontmatter: AuthorFrontmatter = {
   resourceType: "author",
@@ -30,7 +25,7 @@ test("construct an author", async () => {
 });
 
 test("construct an author from factory", async () => {
-  const author = await getAuthor(data, page);
+  const author = await new Author({ data, page }).init();
   expect(author.label).to.equal("sa");
   expect(author.title).to.equal("Some Author");
 });

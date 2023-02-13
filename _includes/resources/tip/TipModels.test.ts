@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { getTip, Tip, TipData, TipFrontmatter } from "./TipModels";
+import { Tip, TipData, TipFrontmatter } from "./TipModels";
 import { EleventyPage } from "../../../src/models";
 import { rootPath } from "../../config";
 
@@ -25,10 +25,6 @@ const page: EleventyPage = {
 
 test("construct a tip", async () => {
   const tip = new Tip({ data, page });
-  expect(tip.title).to.equal("Some Tip");
-});
-
-test("construct a tip from the factory", async () => {
-  const tip = await getTip(data, page);
+  tip.init();
   expect(tip.title).to.equal("Some Tip");
 });

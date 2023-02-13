@@ -1,23 +1,23 @@
 import h from "vhtml";
-import { getTip, TipData, TipFrontmatter } from "./resources/tip/TipModels";
+import { Tip, TipData, TipFrontmatter } from "./resources/tip/TipModels";
 import {
+  Author,
   AuthorData,
   AuthorFrontmatter,
-  getAuthor,
 } from "./references/author/AuthorModels";
 import { SiteCollections } from "./models";
 import {
-  getTechnology,
+  Technology,
   TechnologyData,
   TechnologyFrontmatter,
 } from "./references/technology/TechnologyModels";
 import {
-  getTopic,
+  Topic,
   TopicData,
   TopicFrontmatter,
 } from "./references/topic/TopicModels";
 import {
-  getProduct,
+  Product,
   ProductData,
   ProductFrontmatter,
 } from "./references/product/ProductModels";
@@ -318,23 +318,34 @@ const all: BaseItem[] = [
 ];
 
 const authors = await Promise.all(
-  authorDatas.map((ref) => getAuthor(ref.data, ref.page))
+  authorDatas.map(
+    async (ref) => await new Author({ data: ref.data, page: ref.page }).init()
+  )
 );
 
 const technologies = await Promise.all(
-  technologyDatas.map((ref) => getTechnology(ref.data, ref.page))
+  technologyDatas.map(
+    async (ref) =>
+      await new Technology({ data: ref.data, page: ref.page }).init()
+  )
 );
 
 const topics = await Promise.all(
-  topicDatas.map(async (ref) => await getTopic(ref.data, ref.page))
+  topicDatas.map(
+    async (ref) => await new Topic({ data: ref.data, page: ref.page }).init()
+  )
 );
 
 const products = await Promise.all(
-  productDatas.map(async (ref) => await getProduct(ref.data, ref.page))
+  productDatas.map(
+    async (ref) => await new Product({ data: ref.data, page: ref.page }).init()
+  )
 );
 
 const tips = await Promise.all(
-  tipDatas.map(async (ref) => await getTip(ref.data, ref.page))
+  tipDatas.map(
+    async (ref) => await new Tip({ data: ref.data, page: ref.page }).init()
+  )
 );
 
 const allResources: ResourceCollection = new Map();

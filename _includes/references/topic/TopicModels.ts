@@ -24,12 +24,3 @@ export class Topic extends Reference implements TopicFrontmatter {
     this.icon = data.icon;
   }
 }
-
-export async function getTopic(
-  data: TopicData,
-  page: EleventyPage
-): Promise<Topic> {
-  const topic = new Topic({ data, page });
-  await topic.init();
-  return topic;
-}

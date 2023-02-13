@@ -24,13 +24,3 @@ export class Author extends Reference implements AuthorFrontmatter {
     this.thumbnail = path.join(path.dirname(page.inputPath), data.thumbnail);
   }
 }
-
-// TODO We should be able to get rid of this
-export async function getAuthor(
-  data: AuthorData,
-  page: EleventyPage
-): Promise<Author> {
-  const author = new Author({ data, page });
-  await author.init();
-  return author;
-}

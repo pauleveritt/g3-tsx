@@ -21,12 +21,3 @@ export class Product extends Reference implements ProductFrontmatter {
     this.logo = data.logo;
   }
 }
-
-export async function getProduct(
-  data: ProductData,
-  page: EleventyPage
-): Promise<Product> {
-  const product = new Product({ data, page });
-  await product.init();
-  return product;
-}

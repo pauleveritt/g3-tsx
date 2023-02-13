@@ -22,12 +22,3 @@ export class Technology extends Reference implements TechnologyFrontmatter {
     this.logo = path.join(page.url, data.logo);
   }
 }
-
-export async function getTechnology(
-  data: TechnologyData,
-  page: EleventyPage
-): Promise<Technology> {
-  const technology = new Technology({ data, page });
-  await technology.init();
-  return technology;
-}

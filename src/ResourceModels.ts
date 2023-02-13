@@ -102,41 +102,6 @@ export class Resource extends BaseEntity implements ResourceFrontmatter {
 export type ResourceCollection = Map<string, Resource>;
 export type ReferenceCollection = Map<string, ReferenceFrontmatter>;
 
-export function getBaseResource(data: any, page: EleventyPage): BaseEntity {
-  // we know we have a thumbnail, fix it to the correct path
-  // TODO Clean all this up
-  return new Resource({ data, page });
-  //   return {
-  //     body: data.content,
-  //     date,
-  //     resourceType,
-  //     slug: page.fileSlug,
-  //     title: data.title,
-  //     url: page.url,
-  //   };
-}
-
-// export function getResourceFrontmatter(
-//   data: any,
-//   page: EleventyPage
-// ): Resource {
-//   return new Resource({ data, page });
-//   // return {
-//   //   author: data.author,
-//   //   body: data.content,
-//   //   date: data.date,
-//   //   products: data.products,
-//   //   resourceType,
-//   //   slug: page.fileSlug,
-//   //   subtitle: data.subtitle,
-//   //   technologies: data.technologies,
-//   //   thumbnail,
-//   //   title: data.title,
-//   //   topics: data.topics,
-//   //   url: page.url,
-//   // };
-// }
-
 export function getResourceType(data: any, page: EleventyPage): string {
   /* Determine the resource type based on some policies */
   if (data.resourceType) {

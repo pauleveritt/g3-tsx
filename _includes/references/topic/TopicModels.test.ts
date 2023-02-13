@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
 import { EleventyPage } from "../../../src/models";
 import { rootPath } from "../../config";
-import { getTopic, Topic, TopicData, TopicFrontmatter } from "./TopicModels";
+import { Topic, TopicData, TopicFrontmatter } from "./TopicModels";
 
 const topicFrontmatter: TopicFrontmatter = {
   accent: "some accent",
@@ -26,6 +26,6 @@ test("construct a topic", async () => {
 });
 
 test("construct a topic from factory", async () => {
-  const topic = await getTopic(data, page);
+  const topic = await new Topic({ data, page }).init();
   expect(topic.title).to.equal("Some Topic");
 });

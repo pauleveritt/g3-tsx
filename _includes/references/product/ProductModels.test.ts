@@ -1,10 +1,5 @@
 import { expect, test } from "vitest";
-import {
-  getProduct,
-  Product,
-  ProductData,
-  ProductFrontmatter,
-} from "./ProductModels";
+import { Product, ProductData, ProductFrontmatter } from "./ProductModels";
 import { EleventyPage } from "../../../src/models";
 import { rootPath } from "../../config";
 
@@ -30,6 +25,6 @@ test("construct a product", async () => {
 });
 
 test("construct a product from factory", async () => {
-  const product = await getProduct(data, page);
+  const product = await new Product({ data, page }).init();
   expect(product.title).to.equal("Some Product");
 });

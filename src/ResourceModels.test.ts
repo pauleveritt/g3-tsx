@@ -3,7 +3,6 @@ import {
   BaseData,
   BaseEntity,
   BaseFrontmatter,
-  getBaseResource,
   Resource,
   ResourceData,
   ResourceFrontmatter,
@@ -38,10 +37,7 @@ test("construct a BaseEntity", () => {
 });
 test("construct a Resource", () => {
   const resource = new Resource({ data, page });
-  expect(resource).to.exist;
-});
-test("construct a Resource from the factory", () => {
-  const resource = getBaseResource(data, page);
+  resource.init();
   expect(resource).to.exist;
 });
 

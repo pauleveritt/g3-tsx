@@ -2,7 +2,6 @@ import { expect, test } from "vitest";
 import { EleventyPage } from "../../../src/models";
 import { rootPath } from "../../config";
 import {
-  getTechnology,
   Technology,
   TechnologyData,
   TechnologyFrontmatter,
@@ -30,6 +29,6 @@ test("construct a technology", async () => {
 });
 
 test("construct a technology from factory", async () => {
-  const technology = await getTechnology(data, page);
+  const technology = await new Technology({ data, page }).init();
   expect(technology.title).to.equal("Some Technology");
 });

@@ -1,7 +1,6 @@
 import { ResourceTypeConfig } from "../../../src/registration";
-import { getTip } from "./TipModels";
 
 export const tipConfig: ResourceTypeConfig = {
+  // TODO Get rid of this
   collectionName: "tip",
-  factory: getTip,
 };

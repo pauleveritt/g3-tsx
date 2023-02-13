@@ -9,7 +9,7 @@ import {
 import { referenceCollections, resourceCollections } from "../_includes/config";
 import { Tip } from "../_includes/resources/tip/TipModels";
 import { AuthorFrontmatter } from "../_includes/references/author/AuthorModels";
-import { References } from "./ResourceModels";
+import { References } from "./ReferenceModels";
 
 const mockCollectionApi: CollectionApi = {
   getAll: () => fixtures.all,

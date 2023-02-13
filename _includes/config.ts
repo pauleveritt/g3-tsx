@@ -4,25 +4,22 @@ import {
   getAllCollections,
   RegisterIncludesProps,
 } from "../src/registration";
-
-import { tipConfig } from "./resources/tip";
-import { authorConfig } from "./references/author";
-import { productConfig } from "./references/product";
-import { technologyConfig } from "./references/technology";
-import { topicConfig } from "./references/topic";
 import { Resource } from "../src/ResourceModels";
 import { ReferenceFrontmatter } from "../src/ReferenceModels";
-import { tutorialConfig } from "./resources/tutorial";
+import { Author } from "./references/author/AuthorModels";
+import { Product } from "./references/product/ProductModels";
+import { Technology } from "./references/technology/TechnologyModels";
+import { Topic } from "./references/topic/TopicModels";
+import { Tip } from "./resources/tip/TipModels";
 
 export const resourceCollections = {
-  tip: tipConfig,
-  tutorial: tutorialConfig,
+  tip: Tip,
 };
 export const referenceCollections = {
-  author: authorConfig,
-  product: productConfig,
-  technology: technologyConfig,
-  topic: topicConfig,
+  author: Author,
+  product: Product,
+  technology: Technology,
+  topic: Topic,
 };
 
 export const rootPath = "sites/webstorm-guide";
