@@ -1,6 +1,5 @@
 import { Reference, ReferenceFrontmatter } from "../../../src/ReferenceModels";
 import { Static, Type } from "@sinclair/typebox";
-import { validateFrontmatter } from "../../../src/validators";
 import { EleventyPage } from "../../../src/models";
 import { BaseData } from "../../../src/ResourceModels";
 
@@ -15,6 +14,7 @@ export type ProductData = ProductFrontmatter & BaseData;
 
 export class Product extends Reference implements ProductFrontmatter {
   logo?: string;
+  static frontmatterSchema = ProductFrontmatter;
 
   constructor({ data, page }: { data: ProductData; page: EleventyPage }) {
     super({ data, page });
@@ -22,11 +22,11 @@ export class Product extends Reference implements ProductFrontmatter {
   }
 }
 
-// export type Product = {} & ProductFrontmatter & Reference;
 export async function getProduct(
   data: ProductData,
   page: EleventyPage
 ): Promise<Product> {
-  validateFrontmatter(ProductFrontmatter, data, page.url);
-  return new Product({ data, page });
+  const product = new Product({ data, page });
+  await product.init();
+  return product;
 }

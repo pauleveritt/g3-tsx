@@ -2,9 +2,11 @@ import { expect, test } from "vitest";
 import {
   BaseData,
   BaseEntity,
+  BaseFrontmatter,
   getBaseResource,
   Resource,
   ResourceData,
+  ResourceFrontmatter,
 } from "./ResourceModels";
 // import fixtures from "../_includes/fixtures";
 import { rootPath } from "../_includes/config";
@@ -41,4 +43,11 @@ test("construct a Resource", () => {
 test("construct a Resource from the factory", () => {
   const resource = getBaseResource(data, page);
   expect(resource).to.exist;
+});
+
+test("get a class attribute from base class", () => {
+  expect(BaseEntity.frontmatterSchema).to.equal(BaseFrontmatter);
+});
+test("get a class attribute from base class", () => {
+  expect(Resource.frontmatterSchema).to.equal(ResourceFrontmatter);
 });

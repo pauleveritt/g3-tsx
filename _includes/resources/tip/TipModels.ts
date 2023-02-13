@@ -1,5 +1,4 @@
 import { Static, Type } from "@sinclair/typebox";
-import { validateFrontmatter } from "../../../src/validators";
 import {
   BaseData,
   Resource,
@@ -48,6 +47,7 @@ export class Tip extends Resource implements TipFrontmatter {
   screenshot?: TipFrontmatter["screenshot"];
   seealso?: any;
   shortVideo?: TipFrontmatter["shortVideo"];
+  static frontmatterSchema = TipFrontmatter;
 
   constructor({ data, page }: { data: TipData; page: EleventyPage }) {
     super({ data, page });
@@ -63,7 +63,7 @@ export class Tip extends Resource implements TipFrontmatter {
 
 export async function getTip(data: TipData, page: EleventyPage): Promise<Tip> {
   // TODO Move this to base class
-  validateFrontmatter(TipFrontmatter, data, page.url);
+  // validateFrontmatter(TipFrontmatter, data, page.url);
   const tip = new Tip({ data, page });
   await tip.init();
   return tip;

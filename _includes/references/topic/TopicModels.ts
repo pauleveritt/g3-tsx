@@ -1,6 +1,5 @@
 import { Reference, ReferenceFrontmatter } from "../../../src/ReferenceModels";
 import { Static, Type } from "@sinclair/typebox";
-import { validateFrontmatter } from "../../../src/validators";
 import { EleventyPage } from "../../../src/models";
 import { BaseData } from "../../../src/ResourceModels";
 
@@ -17,6 +16,7 @@ export type TopicData = TopicFrontmatter & BaseData;
 export class Topic extends Reference implements TopicFrontmatter {
   accent: string;
   icon: string;
+  static frontmatterSchema = TopicFrontmatter;
 
   constructor({ data, page }: { data: TopicData; page: EleventyPage }) {
     super({ data, page });
@@ -29,6 +29,7 @@ export async function getTopic(
   data: TopicData,
   page: EleventyPage
 ): Promise<Topic> {
-  validateFrontmatter(TopicFrontmatter, data, page.url);
-  return new Topic({ data, page });
+  const topic = new Topic({ data, page });
+  await topic.init();
+  return topic;
 }

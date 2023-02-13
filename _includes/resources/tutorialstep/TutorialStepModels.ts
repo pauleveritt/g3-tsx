@@ -26,6 +26,7 @@ export type TutorialStepData = TutorialStepFrontmatter & BaseData;
 export class TutorialStep extends Resource implements TutorialStepFrontmatter {
   longVideo: TutorialStepFrontmatter["longVideo"];
   videoBottom: boolean;
+  static frontmatterSchema = TutorialStepFrontmatter;
 
   constructor({ data, page }: { data: TutorialStepData; page: EleventyPage }) {
     super({ data, page });

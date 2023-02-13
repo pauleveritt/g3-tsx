@@ -1,5 +1,4 @@
 import { Static, Type } from "@sinclair/typebox";
-import { validateFrontmatter } from "../../../src/validators";
 import {
   BaseData,
   Resource,
@@ -22,6 +21,7 @@ export type TutorialData = TutorialFrontmatter & BaseData;
 export class Tutorial extends Resource implements TutorialFrontmatter {
   tutorialItems: string[];
   videoBottom: boolean;
+  static frontmatterSchema = TutorialFrontmatter;
 
   constructor({ data, page }: { data: TutorialData; page: EleventyPage }) {
     super({ data, page });
@@ -48,7 +48,6 @@ export async function getTutorial(
   // const rootPath = page.url;
   // const tutorialItems = resolveChildPaths(rootPath, data.tutorialItems);
 
-  validateFrontmatter(TutorialFrontmatter, data, page.url);
   const tutorial = new Tutorial({ data, page });
   await tutorial.init();
   return tutorial;

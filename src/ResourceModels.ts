@@ -5,6 +5,7 @@ import { ReferenceFrontmatter } from "./ReferenceModels";
 import { imageOptions } from "./registration";
 // @ts-ignore
 import Image from "@11ty/eleventy-img";
+import { validateFrontmatter } from "./validators";
 
 export const BaseFrontmatter = Type.Object({
   resourceType: Type.String(),
@@ -29,6 +30,7 @@ export class BaseEntity implements BaseFrontmatter {
   slug: string;
   title: string;
   url: string;
+  static frontmatterSchema = BaseFrontmatter;
 
   constructor({ data, page }: { data: BaseData; page: EleventyPage }) {
     this.content = data.content;
@@ -36,6 +38,10 @@ export class BaseEntity implements BaseFrontmatter {
     this.slug = page.fileSlug;
     this.title = data.title;
     this.url = page.url;
+
+    // @ts-ignore
+    const frontmatter = this.constructor.frontmatterSchema;
+    validateFrontmatter(frontmatter, data, page.url);
   }
 
   async init(): Promise<this> {
@@ -81,6 +87,7 @@ export class Resource extends BaseEntity implements ResourceFrontmatter {
   thumbnail: string;
   topics?: string[];
   references?: References;
+  static frontmatterSchema = ResourceFrontmatter;
 
   // TODO Add in references
   constructor({ data, page }: { data: ResourceData; page: EleventyPage }) {

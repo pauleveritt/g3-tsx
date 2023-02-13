@@ -1,6 +1,5 @@
 import { Reference, ReferenceFrontmatter } from "../../../src/ReferenceModels";
 import { Static, Type } from "@sinclair/typebox";
-import { validateFrontmatter } from "../../../src/validators";
 import { EleventyPage } from "../../../src/models";
 import path from "path";
 import { BaseData } from "../../../src/ResourceModels";
@@ -16,6 +15,7 @@ export type TechnologyData = TechnologyFrontmatter & BaseData;
 
 export class Technology extends Reference implements TechnologyFrontmatter {
   logo: string;
+  static frontmatterSchema = TechnologyFrontmatter;
 
   constructor({ data, page }: { data: TechnologyData; page: EleventyPage }) {
     super({ data, page });
@@ -27,6 +27,7 @@ export async function getTechnology(
   data: TechnologyData,
   page: EleventyPage
 ): Promise<Technology> {
-  validateFrontmatter(TechnologyFrontmatter, data, page.url);
-  return new Technology({ data, page });
+  const technology = new Technology({ data, page });
+  await technology.init();
+  return technology;
 }

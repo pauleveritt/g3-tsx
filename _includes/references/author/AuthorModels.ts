@@ -1,6 +1,5 @@
 import { Reference, ReferenceFrontmatter } from "../../../src/ReferenceModels";
 import { Static, Type } from "@sinclair/typebox";
-import { validateFrontmatter } from "../../../src/validators";
 import path from "path";
 // @ts-ignore
 import Image from "@11ty/eleventy-img";
@@ -18,6 +17,7 @@ export type AuthorData = AuthorFrontmatter & BaseData;
 
 export class Author extends Reference implements AuthorFrontmatter {
   thumbnail: string;
+  static frontmatterSchema = AuthorFrontmatter;
 
   constructor({ data, page }: { data: AuthorData; page: EleventyPage }) {
     super({ data, page });
@@ -30,8 +30,6 @@ export async function getAuthor(
   data: AuthorData,
   page: EleventyPage
 ): Promise<Author> {
-  validateFrontmatter(AuthorFrontmatter, data, page.url);
-
   const author = new Author({ data, page });
   await author.init();
   return author;
