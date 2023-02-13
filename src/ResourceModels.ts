@@ -80,8 +80,8 @@ export class Resource extends BaseEntity implements ResourceFrontmatter {
   topics?: string[];
   references?: References;
   static frontmatterSchema = ResourceFrontmatter;
+  static referenceFields = ["author", "products", "technologies", "topics"];
 
-  // TODO Add in references
   constructor({ data, page }: { data: ResourceData; page: EleventyPage }) {
     super({ data, page });
     this.author = data.author;
@@ -99,8 +99,10 @@ export class Resource extends BaseEntity implements ResourceFrontmatter {
   }
 
   resolve(allReferences: ReferenceCollection): void {
+    // @ts-ignore
+    const fieldNames: string[] = this.constructor.referenceFields;
     this.references = resolveReferences({
-      fieldNames: ["author", "products", "technologies", "topics"],
+      fieldNames,
       resource: this,
       allReferences,
     });

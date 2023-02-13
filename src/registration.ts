@@ -104,20 +104,7 @@ export async function resolveAllCollections({
   // With this in place, we can de-reference resources.
   // @ts-ignore
   for (const [url, resource] of allCollections.allResources) {
-    const author = allCollections.allReferences.get(resource.author);
-    if (!author) {
-      throw new Error(
-        `Resource "${url}" has unresolved author ${resource.author}`
-      );
-    }
     resource.resolve(allReferences);
-    // } else {
-    //   resource.references = resolveReferences({
-    //     fieldNames: ["author", "products", "technologies", "topics"],
-    //     resource,
-    //     allReferences,
-    //   });
-    // }
   }
 
   return allCollections;
