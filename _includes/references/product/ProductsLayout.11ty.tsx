@@ -22,7 +22,7 @@ export function ProductsLayout({
       {products.map((product) => {
         return (
           <li>
-            <a aria-label="product" href={product.slug}>
+            <a aria-label="product" href={product.url}>
               {product.title}
             </a>
           </li>

@@ -38,9 +38,8 @@ export async function getReference(
 }
 
 export type References = {
-  // TODO Move this to ReferenceModels
-  author: BaseEntity; // TODO Have BaseRefs over here, Refs over there
-  products: BaseEntity[];
-  technologies: BaseEntity[];
-  topics: BaseEntity[];
+  author: Reference;
+  products: Reference[];
+  technologies: Reference[];
+  topics: Reference[];
 };
