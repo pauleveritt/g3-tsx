@@ -30,9 +30,19 @@ import {
   ResourceCollection,
 } from "../src/ResourceModels";
 import { resolveAllCollections } from "../src/registration";
+import {
+  Tutorial,
+  TutorialData,
+  TutorialFrontmatter,
+} from "./resources/tutorial/TutorialModels";
+import {
+  TutorialStep,
+  TutorialStepData,
+  TutorialStepFrontmatter,
+} from "./resources/tutorialstep/TutorialStepModels";
 
 /**
- * Reusable test data
+ * Reusable test data``
  */
 const content = `<p>Hello <em id="world">world</em>.</p>`;
 const children: string[] = [
@@ -306,10 +316,128 @@ const productDatas: { data: ProductData; page: EleventyPage }[] = [
   },
 ];
 
+export const tutorialFrontmatters: TutorialFrontmatter[] = [
+  {
+    title: "Some Tutorial",
+    resourceType: "tutorial",
+    author: "sa",
+    date: new Date("2023-02-02"),
+    thumbnail: "thumbnail.png",
+    tutorialItems: ["./some-tutorialstep", "./another-tutorialstep"],
+  },
+  {
+    title: "Another Tutorial",
+    resourceType: "tutorial",
+    author: "sa",
+    date: new Date("2023-02-02"),
+    thumbnail: "thumbnail.png",
+    tutorialItems: [],
+  },
+];
+
+export const tutorialItems: {
+  content: string;
+  data: TutorialFrontmatter;
+  page: EleventyPage;
+}[] = [
+  {
+    content,
+    data: { ...tutorialFrontmatters[0] },
+    page: {
+      fileSlug: "some-tutorial",
+      url: "/tutorials/some-tutorial/",
+      inputPath: `${rootPath}/tutorials/some-tutorial/index.md`,
+    },
+  },
+  {
+    content,
+    data: { ...tutorialFrontmatters[1] },
+    page: {
+      fileSlug: "another-tutorial",
+      url: "/tutorials/another-tutorial/",
+      inputPath: `${rootPath}/tutorials/another-tutorial/index.md`,
+    },
+  },
+];
+
+export const tutorialDatas: { data: TutorialData; page: EleventyPage }[] = [
+  {
+    data: { ...tutorialItems[0].data, content: tutorialItems[0].content },
+    page: tutorialItems[0].page,
+  },
+  {
+    data: { ...tutorialItems[1].data, content: tutorialItems[1].content },
+    page: tutorialItems[1].page,
+  },
+];
+
+export const tutorialStepFrontmatters: TutorialStepFrontmatter[] = [
+  {
+    title: "Some Tutorial Step",
+    resourceType: "tutorialstep",
+    author: "sa",
+    date: new Date("2023-02-02"),
+    thumbnail: "thumbnail.png",
+  },
+  {
+    title: "Another Tutorial Step",
+    resourceType: "tutorialstep",
+    author: "sa",
+    date: new Date("2023-02-02"),
+    thumbnail: "thumbnail.png",
+  },
+];
+
+export const tutorialStepItems: {
+  content: string;
+  data: TutorialStepFrontmatter;
+  page: EleventyPage;
+}[] = [
+  {
+    content,
+    data: { ...tutorialStepFrontmatters[0] },
+    page: {
+      fileSlug: "some-tutorialstep",
+      url: "/tutorials/some-tutorial/some-tutorialstep/",
+      inputPath: `${rootPath}/tutorials/some-tutorial/some-tutorialstep/index.md`,
+    },
+  },
+  {
+    content,
+    data: { ...tutorialStepFrontmatters[1] },
+    page: {
+      fileSlug: "another-tutorialstep",
+      url: "/tutorials/some-tutorial/another-tutorialstep/",
+      inputPath: `${rootPath}/tutorials/some-tutorial/another-tutorialstep/index.md`,
+    },
+  },
+];
+export const tutorialStepDatas: {
+  data: TutorialStepData;
+  page: EleventyPage;
+}[] = [
+  {
+    data: {
+      ...tutorialStepItems[0].data,
+      content: tutorialStepItems[0].content,
+    },
+    page: tutorialStepItems[0].page,
+  },
+  {
+    data: {
+      ...tutorialStepItems[1].data,
+      content: tutorialStepItems[1].content,
+    },
+    page: tutorialStepItems[1].page,
+  },
+];
+
 // This data structure matches collections.all
 // https://www.11ty.dev/docs/collections/#collection-item-data-structure
 const all: BaseItem[] = [
   ...tipItems,
+  ...tutorialItems,
+  ...tutorialStepItems,
   ...authorItems,
   ...productItems,
   ...technologyItems,
@@ -347,8 +475,23 @@ const tips = await Promise.all(
   )
 );
 
+const tutorials = await Promise.all(
+  tutorialDatas.map(
+    async (ref) => await new Tutorial({ data: ref.data, page: ref.page }).init()
+  )
+);
+
+const tutorialSteps = await Promise.all(
+  tutorialStepDatas.map(
+    async (ref) =>
+      await new TutorialStep({ data: ref.data, page: ref.page }).init()
+  )
+);
+
 const allResources: ResourceCollection = new Map();
-[...tips].forEach((resource) => allResources.set(resource.url, resource));
+[...tips, ...tutorials, ...tutorialSteps].forEach((resource) =>
+  allResources.set(resource.url, resource)
+);
 
 const allReferences: ReferenceCollection = new Map();
 [...authors, ...products, ...technologies, ...topics].forEach((reference) =>
@@ -392,6 +535,10 @@ const fixtures = {
   topicItems,
   products,
   productItems,
+  tutorials,
+  tutorialItems,
+  tutorialSteps,
+  tutorialStepItems,
   all,
   context,
   resolvedCollections: resolvedCollections,

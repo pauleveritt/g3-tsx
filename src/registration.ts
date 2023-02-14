@@ -103,7 +103,7 @@ export async function resolveAllCollections({
 
   // With this in place, we can de-reference resources.
   Array.from(allResources.values()).map((resource) =>
-    resource.resolve(allReferences)
+    resource.resolve(allCollections)
   );
 
   return allCollections;

@@ -24,7 +24,6 @@ const page: EleventyPage = {
 };
 
 test("construct a tip", async () => {
-  const tip = new Tip({ data, page });
-  tip.init();
+  const tip = await new Tip({ data, page }).init();
   expect(tip.title).to.equal("Some Tip");
 });

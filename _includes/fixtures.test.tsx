@@ -1,5 +1,6 @@
 import { expect, test } from "vitest";
 import fixtures from "./fixtures";
+import { Tutorial } from "./resources/tutorial/TutorialModels";
 
 test("should load 11ty page/data items", () => {
   const all = fixtures.all;
@@ -7,13 +8,17 @@ test("should load 11ty page/data items", () => {
 });
 
 test("should process into allResources and allReferences", () => {
-  const { tipItems, authorItems } = fixtures;
+  const { tipItems, authorItems, tutorialItems } = fixtures;
   const { allResources, allReferences } = fixtures.collections;
-  const tip1 = allResources.get(tipItems[0].page.url);
-  expect(tip1 && tip1.title).to.equal(tipItems[0].data.title);
+  const tip0 = allResources.get(tipItems[0].page.url);
+  expect(tip0 && tip0.title).to.equal(tipItems[0].data.title);
   const author0Label = authorItems[0].data.label as string;
   const author0 = allReferences.get(author0Label);
   expect(author0 && author0.title).to.equal(authorItems[0].data.title);
+
+  // Tutorial
+  const tutorial0 = allResources.get(tutorialItems[0].page.url);
+  expect(tutorial0 && tutorial0.title).to.equal(tutorialItems[0].data.title);
 });
 
 test("each of the kinds of items", () => {
@@ -42,4 +47,16 @@ test("should have resolved references", () => {
     //   technologyItems[0].data.title
     // );
   }
+});
+
+test("resolve tutorial steps", () => {
+  const { tutorialItems, tutorialStepItems } = fixtures;
+  const { resolvedCollections } = fixtures;
+  const tutorial0 = resolvedCollections.allResources.get(
+    tutorialItems[0].page.url
+  ) as Tutorial;
+  expect(tutorial0).to.exist;
+  const tutorialStep0 = tutorial0.tutorialSteps[0];
+  expect(tutorialStep0).to.exist;
+  expect(tutorialStep0.title).to.equal(tutorialStepItems[0].data.title);
 });

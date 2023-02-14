@@ -11,9 +11,13 @@ import { Product } from "./references/product/ProductModels";
 import { Technology } from "./references/technology/TechnologyModels";
 import { Topic } from "./references/topic/TopicModels";
 import { Tip } from "./resources/tip/TipModels";
+import { Tutorial } from "./resources/tutorial/TutorialModels";
+import { TutorialStep } from "./resources/tutorialstep/TutorialStepModels";
 
 export const resourceCollections = {
   tip: Tip,
+  tutorial: Tutorial,
+  tutorialstep: TutorialStep,
 };
 export const referenceCollections = {
   author: Author,
