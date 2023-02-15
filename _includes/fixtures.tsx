@@ -39,7 +39,7 @@ import {
   TutorialStep,
   TutorialStepData,
   TutorialStepFrontmatter,
-} from "./resources/tutorialstep/TutorialStepModels";
+} from "./resources/tutorial/TutorialStepModels";
 
 /**
  * Reusable test data``

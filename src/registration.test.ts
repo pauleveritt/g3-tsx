@@ -64,6 +64,7 @@ test("should construct collections", async () => {
 });
 
 describe("Resolve References", () => {
+  const allCollections = fixtures.collections;
   const allReferences = fixtures.collections.allReferences;
   const authorItem0 = fixtures.authorItems[0];
   const authorItem1 = fixtures.authorItems[1];
@@ -104,29 +105,13 @@ describe("Resolve References", () => {
     expect(resolver).toThrowError(`has unresolved reference "xxx"`);
   });
 
-  test("should resolve a single label", () => {
-    expect(resource.author).to.exist;
-    const fieldName = "author";
-    const resolved = resolveReference({
-      fieldName,
-      resource,
-      allReferences,
-    }) as AuthorFrontmatter;
-    expect(resolved.title).to.equal(authorItem0.data.title);
-  });
-
   test("resolve a set of references", () => {
     const tip0 = fixtures.collections.allResources.get(
       "/tips/some-tip/"
     ) as Tip;
     expect(tip0).to.exist;
     expect(tip0.references).not.to.exist;
-    // const referenceMap: References = resolveReferences({
-    //   fieldNames,
-    //   resource: tip0,
-    //   allReferences,
-    // });
-    tip0.resolve(allReferences);
+    tip0.resolve(allCollections);
     expect(tip0.references).to.exist;
     if (tip0.references) {
       const refAuthor = tip0.references.author;
@@ -144,7 +129,7 @@ describe("Resolve References", () => {
     ) as Tip;
     expect(tip1).to.exist;
     expect(tip1.references).not.to.exist;
-    tip1.resolve(allReferences);
+    tip1.resolve(allCollections);
     expect(tip1.references).to.exist;
     if (tip1.references) {
       const refAuthor = tip1.references.author;

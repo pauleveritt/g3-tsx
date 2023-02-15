@@ -1,18 +1,18 @@
 import { expect, test } from "vitest";
 import { screen } from "@testing-library/dom";
 
-import { render, TipRenderProps } from "./TipLayout.11ty";
+import { render, TutorialRenderProps } from "./TutorialLayout.11ty";
 import fixtures from "../../fixtures";
 
-test("should render TipLayout", () => {
+test("should render TutorialLayout", () => {
   // @ts-ignore
-  const renderProps: TipRenderProps = {
+  const renderProps: TutorialRenderProps = {
     collections: { ...fixtures.resolvedCollections, all: fixtures.all },
-    content: fixtures.content,
     page: {
-      url: fixtures.tips[0].url,
+      url: fixtures.tutorials[0].url,
     },
   };
   document.body.innerHTML = render.call(fixtures.context, renderProps);
-  expect(screen.getByText("Some Tip")).to.exist;
+  const cards = screen.getAllByRole("link", { name: "Resource" });
+  expect(cards && cards.length).to.equal(2);
 });

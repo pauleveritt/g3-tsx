@@ -12,7 +12,7 @@ import { Technology } from "./references/technology/TechnologyModels";
 import { Topic } from "./references/topic/TopicModels";
 import { Tip } from "./resources/tip/TipModels";
 import { Tutorial } from "./resources/tutorial/TutorialModels";
-import { TutorialStep } from "./resources/tutorialstep/TutorialStepModels";
+import { TutorialStep } from "./resources/tutorial/TutorialStepModels";
 
 export const resourceCollections = {
   tip: Tip,

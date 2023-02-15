@@ -7,7 +7,7 @@ import {
 import { EleventyPage } from "../../../src/models";
 import path from "path";
 import { AllCollections } from "../../../src/registration";
-import { TutorialStep } from "../tutorialstep/TutorialStepModels";
+import { TutorialStep } from "./TutorialStepModels";
 
 export const TutorialFrontmatter = Type.Intersect([
   ResourceFrontmatter,
