@@ -1,52 +1,12 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
-import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { RenderContext, RenderProps } from "../../../src/models";
 import { Resource } from "../../../src/ResourceModels";
 import { TechnologyFrontmatter } from "./TechnologyModels";
 import ResourceCard from "../../resourcecard/ResourceCard.11ty";
+import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 
-export type TechnologyLayoutProps = {
-  children: string[];
-  linkedResources: Resource[];
-  subtitle?: string;
-  logo?: string;
-  title: string;
-};
-
-export function TechnologyLayout({
-  children,
-  subtitle,
-  logo,
-  title,
-  linkedResources,
-}: TechnologyLayoutProps): JSX.Element {
-  const figure = (
-    <div className="image is-rounded is-96x96">
-      <img className="bio-resourcecard-logo" src={logo} alt="Logo" />
-    </div>
-  );
-  const listing = (
-    <>
-      {linkedResources.map((resource) => (
-        <ResourceCard resource={resource}></ResourceCard>
-      ))}
-    </>
-  );
-  const content = <div dangerouslySetInnerHTML={{ __html: children[0] }} />;
-
-  return (
-    <ReferenceLayout
-      title={title}
-      subtitle={subtitle}
-      figure={[figure]}
-      listing={[listing]}
-      content={content}
-    />
-  );
-}
-
-export function render(
+export function TechnologyLayout(
   this: RenderContext,
   { collections, content, page }: RenderProps
 ): JSX.Element {
@@ -62,14 +22,29 @@ export function render(
       ci.technologies && ci.technologies.includes(technology.label as string)
   ) as Resource[];
 
+  const figure = (
+    <div className="image is-rounded is-96x96">
+      <img className="bio-resourcecard-logo" src={technology.logo} alt="Logo" />
+    </div>
+  );
+  const listing = (
+    <>
+      {linkedResources.map((resource) => (
+        <ResourceCard resource={resource}></ResourceCard>
+      ))}
+    </>
+  );
+  const contentDiv = <div dangerouslySetInnerHTML={{ __html: content }} />;
+
   return (
-    <TechnologyLayout
+    <ReferenceLayout
       title={technology.title}
       subtitle={technology.subtitle}
-      logo={technology.logo}
-      linkedResources={linkedResources}
-    >
-      {content}
-    </TechnologyLayout>
+      figure={[figure]}
+      listing={[listing]}
+      content={contentDiv}
+    />
   );
 }
+
+export const render = TechnologyLayout;

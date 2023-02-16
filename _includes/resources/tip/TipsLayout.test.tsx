@@ -1,20 +1,8 @@
 import { expect, test } from "vitest";
-import { render, TipsLayout } from "./TipsLayout.11ty";
+import { TipsLayout } from "./TipsLayout.11ty";
 import { screen } from "@testing-library/dom";
 import fixtures from "../../fixtures";
 import { RenderProps } from "../../../src/models";
-
-test("should make TipsLayout", () => {
-  const tips = Array.from(fixtures.resolvedCollections.allResources.values());
-  const title = "These Tips";
-  const subtitle = "Some tips text";
-  const content = fixtures.content;
-  document.body.innerHTML = TipsLayout({ tips, title, subtitle, content });
-  const links: HTMLAnchorElement[] = screen.getAllByRole("link", {
-    name: "Resource",
-  });
-  expect(links[0].href).to.equal("/tips/some-tip/");
-});
 
 test("should render TipsLayout", () => {
   const title = "These Tips";
@@ -22,10 +10,8 @@ test("should render TipsLayout", () => {
   const renderProps: RenderProps = {
     collections: fixtures.collections,
     content: fixtures.content,
-    data: {
-      title,
-      subtitle,
-    },
+    title,
+    subtitle,
     page: {
       fileSlug: "slug",
       url: "url",
@@ -33,7 +19,7 @@ test("should render TipsLayout", () => {
   };
   fixtures.context.getResources = () =>
     Array.from(fixtures.resolvedCollections.allResources.values());
-  document.body.innerHTML = render.call(fixtures.context, renderProps);
+  document.body.innerHTML = TipsLayout.call(fixtures.context, renderProps);
   const links: HTMLAnchorElement[] = screen.getAllByRole("link", {
     name: "Resource",
   });

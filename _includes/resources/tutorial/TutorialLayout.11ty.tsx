@@ -12,11 +12,12 @@ import { References } from "../../../src/ReferenceModels";
 import ResourceCard from "../../resourcecard/ResourceCard.11ty";
 import { byRole } from "../../../src/TestCases";
 
-export type TutorialLayoutProps = {
-  tutorial: Tutorial;
-};
-
-export function TutorialLayout({ tutorial }: TutorialLayoutProps): JSX.Element {
+export function TutorialLayout(
+  this: RenderContext,
+  { collections, page }: RenderProps
+): JSX.Element {
+  const tutorial = collections.allResources.get(page.url) as Tutorial;
+  this.addTestCase(page.url, [byRole({ role: "link", text: "Paul Everitt" })]);
   // Top/Bottom Nav
   const topNav = TopNav({
     parent: { label: "Parent Label", slug: "parent-slug" },
@@ -76,11 +77,4 @@ export function TutorialLayout({ tutorial }: TutorialLayoutProps): JSX.Element {
   );
 }
 
-export function render(
-  this: RenderContext,
-  { collections, page }: RenderProps
-): JSX.Element {
-  const tutorial = collections.allResources.get(page.url) as Tutorial;
-  this.addTestCase(page.url, [byRole({ role: "link", text: "Paul Everitt" })]);
-  return <TutorialLayout tutorial={tutorial}></TutorialLayout>;
-}
+export const render = TutorialLayout;

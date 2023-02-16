@@ -5,57 +5,7 @@ import { RenderContext, RenderProps } from "../../../src/models";
 import { ProductFrontmatter } from "./ProductModels";
 import { Resource } from "../../../src/ResourceModels";
 
-export type ProductLayoutProps = {
-  children: string[];
-  linkedResources: Resource[];
-  subtitle?: string;
-  thumbnail?: string;
-  title: string;
-};
-
-export function ProductLayout({
-  children,
-  subtitle,
-  thumbnail,
-  title,
-  linkedResources,
-}: ProductLayoutProps): JSX.Element {
-  const figure = (
-    <div className="image is-rounded is-96x96">
-      <img
-        alt=""
-        className="bio-resourcecard-logo"
-        height="96"
-        width="96"
-        src={thumbnail}
-      />
-    </div>
-  );
-  const listing = (
-    <ul>
-      {linkedResources.map((resource) => (
-        <li>
-          <a aria-label="Resource" href={resource.url}>
-            {resource.title}
-          </a>
-        </li>
-      ))}
-    </ul>
-  );
-  const content = <div dangerouslySetInnerHTML={{ __html: children[0] }} />;
-
-  return (
-    <ReferenceLayout
-      title={title}
-      subtitle={subtitle}
-      figure={[figure]}
-      listing={[listing]}
-      content={content}
-    />
-  );
-}
-
-export function render(
+export function ProductLayout(
   this: RenderContext,
   { collections, content, page }: RenderProps
 ): JSX.Element {
@@ -70,13 +20,39 @@ export function render(
     (ci) => ci.products && ci.products.includes(product.label as string)
   );
 
+  const figure = (
+    <div className="image is-rounded is-96x96">
+      <img
+        alt=""
+        className="bio-resourcecard-logo"
+        height="96"
+        width="96"
+        src={product.logo}
+      />
+    </div>
+  );
+  const listing = (
+    <ul>
+      {linkedResources.map((resource) => (
+        <li>
+          <a aria-label="Resource" href={resource.url}>
+            {resource.title}
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
+  const contentDiv = <div dangerouslySetInnerHTML={{ __html: content }} />;
+
   return (
-    <ProductLayout
+    <ReferenceLayout
       title={product.title}
       subtitle={product.subtitle}
-      linkedResources={linkedResources}
-    >
-      {content}
-    </ProductLayout>
+      figure={[figure]}
+      listing={[listing]}
+      content={contentDiv}
+    />
   );
 }
+
+export const render = ProductLayout;

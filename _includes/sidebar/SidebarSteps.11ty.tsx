@@ -1,17 +1,14 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
 import SidebarStep from "./SidebarStep.11ty";
+import { TutorialStep } from "../resources/tutorial/TutorialStepModels";
 
-type Step = {
-  label: string;
-  href: string;
-};
 export type SidebarStepsProps = {
-  steps: Step[];
-  currentSlug?: string;
+  steps: TutorialStep[];
+  tutorialStep: TutorialStep;
 };
 const SidebarSteps = ({
-  currentSlug,
+  tutorialStep,
   steps,
 }: SidebarStepsProps): JSX.Element => {
   {
@@ -28,10 +25,10 @@ const SidebarSteps = ({
             <ul className="steps has-content-centered is-vertical is-small">
               {steps.map((step, index) => (
                 <SidebarStep
-                  label={step.label}
-                  target={step.href}
+                  label={step.title}
+                  target={step.url}
                   marker={index + 1}
-                  isActive={step.href === currentSlug}
+                  isActive={step.url === tutorialStep.url}
                 />
               ))}
             </ul>

@@ -3,19 +3,12 @@ import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { Technology } from "./TechnologyModels";
 import { RenderContext, RenderProps } from "../../../src/models";
 
-export type TechnologiesLayoutProps = {
-  technologies: Technology[];
-  title: string;
-  subtitle?: string;
-  content: string;
-};
+export function TechnologiesLayout(
+  this: RenderContext,
+  { content, title, subtitle }: RenderProps
+): JSX.Element {
+  const technologies = this.getReferences("technology") as Technology[];
 
-export function TechnologiesLayout({
-  technologies,
-  title,
-  subtitle,
-  content,
-}: TechnologiesLayoutProps): JSX.Element {
   const figure = undefined;
   const listing: string[] = technologies.map((technology) => (
     <a aria-label={`Technology`} className="bd-link" href={technology.url}>
@@ -39,7 +32,7 @@ export function TechnologiesLayout({
 
   return (
     <ReferenceLayout
-      title={title}
+      title={title as string}
       subtitle={subtitle}
       figure={figure}
       listing={[listing.join("")]}
@@ -48,18 +41,4 @@ export function TechnologiesLayout({
   );
 }
 
-export function render(
-  this: RenderContext,
-  { content, data }: RenderProps
-): JSX.Element {
-  const technologies = this.getReferences("technology") as Technology[];
-
-  return (
-    <TechnologiesLayout
-      technologies={technologies}
-      title={data.title}
-      subtitle={data.subtitle}
-      content={content}
-    />
-  );
-}
+export const render = TechnologiesLayout;

@@ -8,37 +8,63 @@ import { RenderContext, RenderProps } from "../../../src/models";
 import { References } from "../../../src/ReferenceModels";
 import { TutorialStep } from "./TutorialStepModels";
 import VideoPlayer from "../../video/VideoPlayer.11ty";
+import { Tutorial } from "./TutorialModels";
+import SidebarStep from "../../sidebar/SidebarStep.11ty";
 
-export function render(
+export function TutorialStepLayout(
   this: RenderContext,
   { collections, page, content }: RenderProps
 ): JSX.Element {
-  const tutorialstep = collections.allResources.get(page.url) as TutorialStep;
-  // Sidebars
-  const references = tutorialstep.references as References;
-  const sidebarPublished = (
-    <SidebarPublished
-      date={tutorialstep.date as Date}
-      author={references.author as Author}
-    ></SidebarPublished>
-  );
-  const sidebar = <Sidebar>{sidebarPublished}</Sidebar>;
+  const tutorialStep = collections.allResources.get(page.url) as TutorialStep;
+  const parent = tutorialStep.parentTutorial as Tutorial;
 
-  const longVideo = tutorialstep.longVideo && (
+  // Sidebars
+  const references = tutorialStep.references as References;
+
+  const longVideo = tutorialStep.longVideo && (
     <a
       className="button is-light"
       href="#full-video"
       style="width: auto; margi-left: 0.5em"
     >
       <VideoPlayer
-        source={tutorialstep.longVideo.url}
-        poster={tutorialstep.longVideo.poster}
+        source={tutorialStep.longVideo.url}
+        poster={tutorialStep.longVideo.poster}
       />
     </a>
   );
 
+  // #### Sidebar
+  const sidebarPublished = (
+    <SidebarPublished
+      date={tutorialStep.date as Date}
+      author={references.author as Author}
+    ></SidebarPublished>
+  );
+  const sidebarSteps = parent.tutorialSteps && (
+    <div className="bio-page-sidebar-references-group" style="margin-top: 1rem">
+      <p className="menu-label bio-page-sidebar-published">Tutorial Steps</p>
+      <ul className="steps has-content-centered is-vertical is-small">
+        {parent.tutorialSteps.map((step, index) => (
+          <SidebarStep
+            label={step.title}
+            target={step.url}
+            marker={index + 1}
+            isActive={step == tutorialStep}
+          />
+        ))}
+      </ul>
+    </div>
+  );
+  const sidebar = (
+    <Sidebar>
+      {sidebarPublished}
+      {sidebarSteps}
+    </Sidebar>
+  );
+
   // Main
-  const videoBottom = tutorialstep.videoBottom;
+  const videoBottom = tutorialStep.videoBottom;
   const main = (
     <>
       {longVideo && !videoBottom && (
@@ -60,11 +86,13 @@ export function render(
 
   return (
     <SidebarLayout
-      pageTitle={tutorialstep.title}
-      subtitle={tutorialstep.subtitle}
+      pageTitle={tutorialStep.title}
+      subtitle={tutorialStep.subtitle}
       sidebar={[sidebar]}
     >
       <main>{main}</main>
     </SidebarLayout>
   );
 }
+
+export const render = TutorialStepLayout;

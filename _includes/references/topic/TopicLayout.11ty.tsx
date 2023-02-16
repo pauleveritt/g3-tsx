@@ -6,45 +6,7 @@ import { Resource } from "../../../src/ResourceModels";
 import { TopicFrontmatter } from "./TopicModels";
 import ResourceCard from "../../resourcecard/ResourceCard.11ty";
 
-export type TopicLayoutProps = {
-  children: string[];
-  linkedResources: Resource[];
-  topic: TopicFrontmatter;
-};
-
-export function TopicLayout({
-  children,
-  topic,
-  linkedResources,
-}: TopicLayoutProps): JSX.Element {
-  const figure = (
-    <figure className="media-left">
-      <span className={`icon is-large has-text-${topic.accent}`}>
-        <i className={`${topic.icon} fa-3x`} />
-      </span>
-    </figure>
-  );
-  const listing = (
-    <>
-      {linkedResources.map((resource) => (
-        <ResourceCard resource={resource}></ResourceCard>
-      ))}
-    </>
-  );
-  const content = <div dangerouslySetInnerHTML={{ __html: children[0] }} />;
-
-  return (
-    <ReferenceLayout
-      title={topic.title}
-      subtitle={topic.subtitle}
-      figure={[figure]}
-      listing={[listing]}
-      content={content}
-    />
-  );
-}
-
-export function render(
+export function TopicLayout(
   this: RenderContext,
   { collections, content, page }: RenderProps
 ): JSX.Element {
@@ -59,9 +21,31 @@ export function render(
     (ci) => ci.topics && ci.topics.includes(topic.label as string)
   ) as Resource[];
 
+  const figure = (
+    <figure className="media-left">
+      <span className={`icon is-large has-text-${topic.accent}`}>
+        <i className={`${topic.icon} fa-3x`} />
+      </span>
+    </figure>
+  );
+  const listing = (
+    <>
+      {linkedResources.map((resource) => (
+        <ResourceCard resource={resource}></ResourceCard>
+      ))}
+    </>
+  );
+  const contentDiv = <div dangerouslySetInnerHTML={{ __html: content }} />;
+
   return (
-    <TopicLayout topic={topic} linkedResources={linkedResources}>
-      {content}
-    </TopicLayout>
+    <ReferenceLayout
+      title={topic.title}
+      subtitle={topic.subtitle}
+      figure={[figure]}
+      listing={[listing]}
+      content={contentDiv}
+    />
   );
 }
+
+export const render = TopicLayout;

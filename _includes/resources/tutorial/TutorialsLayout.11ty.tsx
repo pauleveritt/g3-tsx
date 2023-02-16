@@ -3,9 +3,9 @@ import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { RenderContext, RenderProps } from "../../../src/models";
 import ResourceCard from "../../resourcecard/ResourceCard.11ty";
 
-export function render(
+export function TutorialsLayout(
   this: RenderContext,
-  { content, data }: RenderProps
+  { content, title, subtitle }: RenderProps
 ): JSX.Element {
   const tutorials = this.getResources("tutorial");
   const figure = undefined;
@@ -18,11 +18,13 @@ export function render(
   );
   return (
     <ReferenceLayout
-      title={data.title}
-      subtitle={data.subtitle}
+      title={title as string}
+      subtitle={subtitle}
       figure={figure}
       listing={[listing]}
       content={content}
     />
   );
 }
+
+export const render = TutorialsLayout;

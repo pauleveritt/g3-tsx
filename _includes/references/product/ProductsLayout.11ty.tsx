@@ -3,19 +3,11 @@ import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { Product } from "./ProductModels";
 import { RenderContext, RenderProps } from "../../../src/models";
 
-export type ProductsLayoutProps = {
-  products: Product[];
-  title: string;
-  subtitle?: string;
-  content: string;
-};
-
-export function ProductsLayout({
-  products,
-  title,
-  subtitle,
-  content,
-}: ProductsLayoutProps): JSX.Element {
+export function ProductsLayout(
+  this: RenderContext,
+  { content, title, subtitle }: RenderProps
+): JSX.Element {
+  const products = this.getReferences("product") as Product[];
   const figure = undefined;
   const listing = (
     <ul>
@@ -33,7 +25,7 @@ export function ProductsLayout({
 
   return (
     <ReferenceLayout
-      title={title}
+      title={title as string}
       subtitle={subtitle}
       figure={figure}
       listing={[listing]}
@@ -42,17 +34,4 @@ export function ProductsLayout({
   );
 }
 
-export function render(
-  this: RenderContext,
-  { content, data }: RenderProps
-): JSX.Element {
-  const products = this.getReferences("product") as Product[];
-  return (
-    <ProductsLayout
-      products={products}
-      title={data.title}
-      subtitle={data.subtitle}
-      content={content}
-    />
-  );
-}
+export const render = ProductsLayout;

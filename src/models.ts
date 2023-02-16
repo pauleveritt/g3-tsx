@@ -39,15 +39,11 @@ export interface RenderContext {
 
 export type RenderProps = {
   collections: SiteCollections;
-  data: any | Titles;
   page: {
     fileSlug: string;
     url: string;
   };
   content: string;
-};
-
-export type Titles = {
-  title: string;
-  subtitle: string;
+  title?: string;
+  subtitle?: string;
 };

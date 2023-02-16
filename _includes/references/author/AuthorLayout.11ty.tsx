@@ -7,51 +7,7 @@ import ResourceCard from "../../resourcecard/ResourceCard.11ty";
 import { Resource } from "../../../src/ResourceModels";
 import { AuthorFrontmatter } from "./AuthorModels";
 
-export type AuthorLayoutProps = {
-  children: string[];
-  linkedResources: Resource[];
-  subtitle?: string;
-  thumbnail: string;
-  title: string;
-};
-
-export function AuthorLayout({
-  children,
-  subtitle,
-  thumbnail,
-  title,
-  linkedResources,
-}: AuthorLayoutProps): JSX.Element {
-  const figure = (
-    <div className="image is-rounded is-96x96">
-      <Thumbnail
-        src={thumbnail}
-        className={"bio-resourcecard-logo"}
-        alt={title}
-      />
-    </div>
-  );
-  const listing = (
-    <>
-      {linkedResources.map((resource) => (
-        <ResourceCard resource={resource}></ResourceCard>
-      ))}
-    </>
-  );
-  const content = <div dangerouslySetInnerHTML={{ __html: children[0] }} />;
-
-  return (
-    <ReferenceLayout
-      title={title}
-      subtitle={subtitle}
-      figure={[figure]}
-      listing={[listing]}
-      content={content}
-    />
-  );
-}
-
-export function render(
+export function AuthorLayout(
   this: RenderContext,
   { collections, content, page }: RenderProps
 ): JSX.Element {
@@ -69,14 +25,31 @@ export function render(
     (ci) => ci.author === author.label
   );
 
+  const figure = (
+    <div className="image is-rounded is-96x96">
+      <Thumbnail
+        src={author.thumbnail}
+        className={"bio-resourcecard-logo"}
+        alt={author.title}
+      />
+    </div>
+  );
+  const listing = (
+    <>
+      {linkedResources.map((resource) => (
+        <ResourceCard resource={resource}></ResourceCard>
+      ))}
+    </>
+  );
+  const contentDiv = <div dangerouslySetInnerHTML={{ __html: content }} />;
+
   return (
-    <AuthorLayout
+    <ReferenceLayout
       title={author.title}
       subtitle={author.subtitle}
-      thumbnail={author.thumbnail}
-      linkedResources={linkedResources}
-    >
-      {content}
-    </AuthorLayout>
+      figure={[figure]}
+      listing={[listing]}
+      content={contentDiv}
+    />
   );
 }

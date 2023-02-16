@@ -12,19 +12,26 @@ import MarkdownIt from "markdown-it";
 import VideoPlayer from "../../video/VideoPlayer.11ty";
 import { RenderContext, RenderProps } from "../../../src/models";
 
-export type TipLayoutProps = {
-  author: Author;
-  children: string[];
-  tip: Tip;
-  leadin?: string;
-};
+export function TipLayout(
+  this: RenderContext,
+  { collections, content, page }: RenderProps
+): JSX.Element {
+  const tip = collections.allResources.get(page.url) as Tip;
+  if (!tip) {
+    throw new Error(`Tip "${page.url}" not in collection`);
+  }
+  // @ts-ignore
+  const author = tip.references.author as Author;
+  if (!author) {
+    throw new Error(`Author "${tip.author}" not in collection`);
+  }
 
-export function TipLayout({
-  author,
-  children,
-  leadin,
-  tip,
-}: TipLayoutProps): JSX.Element {
+  // If there is a tip.leadin, markdown convert it
+  let leadin;
+  if (tip.leadin) {
+    const md = new MarkdownIt("commonmark");
+    leadin = md.render(tip.leadin as string);
+  }
   // Top/Bottom Nav
   const topNav = TopNav({
     parent: { label: "Parent Label", slug: "parent-slug" },
@@ -113,7 +120,7 @@ export function TipLayout({
           <div className="columns">
             <div
               className="column is-11-desktop content"
-              dangerouslySetInnerHTML={{ __html: children[0] }}
+              dangerouslySetInnerHTML={{ __html: content }}
             />
           </div>
         </>
@@ -139,29 +146,4 @@ export function TipLayout({
   );
 }
 
-export function render(
-  this: RenderContext,
-  { collections, content, page }: RenderProps
-): JSX.Element {
-  const tip = collections.allResources.get(page.url) as Tip;
-  if (!tip) {
-    throw new Error(`Tip "${page.url}" not in collection`);
-  }
-  // @ts-ignore
-  const author = tip.references.author as Author;
-  if (!author) {
-    throw new Error(`Author "${tip.author}" not in collection`);
-  }
-
-  // If there is a tip.leadin, markdown convert it
-  let leadin;
-  if (tip.leadin) {
-    const md = new MarkdownIt("commonmark");
-    leadin = md.render(tip.leadin as string);
-  }
-  return (
-    <TipLayout author={author} tip={tip} leadin={leadin}>
-      {content}
-    </TipLayout>
-  );
-}
+export const render = TipLayout;

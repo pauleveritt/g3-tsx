@@ -3,19 +3,11 @@ import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { Topic } from "./TopicModels";
 import { RenderContext, RenderProps } from "../../../src/models";
 
-export type TopicsLayoutProps = {
-  topics: Topic[];
-  title: string;
-  subtitle?: string;
-  content: string;
-};
-
-export function TopicsLayout({
-  topics,
-  title,
-  subtitle,
-  content,
-}: TopicsLayoutProps): JSX.Element {
+export function TopicsLayout(
+  this: RenderContext,
+  { content, title, subtitle }: RenderProps
+): JSX.Element {
+  const topics = this.getReferences("topic") as Topic[];
   const figure = undefined;
   const listing: string[] = topics.map((topic) => (
     <a aria-label={`Topic`} className="bd-link" href={topic.url}>
@@ -36,7 +28,7 @@ export function TopicsLayout({
 
   return (
     <ReferenceLayout
-      title={title}
+      title={title as string}
       subtitle={subtitle}
       figure={figure}
       listing={[listing.join("")]}
@@ -45,17 +37,4 @@ export function TopicsLayout({
   );
 }
 
-export function render(
-  this: RenderContext,
-  { content, data }: RenderProps
-): JSX.Element {
-  const topics = this.getReferences("topic") as Topic[];
-  return (
-    <TopicsLayout
-      topics={topics}
-      title={data.title}
-      subtitle={data.subtitle}
-      content={content}
-    />
-  );
-}
+export const render = TopicsLayout;

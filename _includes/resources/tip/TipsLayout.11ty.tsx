@@ -1,22 +1,13 @@
 import h, { JSX } from "vhtml";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
-import { Tip } from "./TipModels";
 import { RenderContext, RenderProps } from "../../../src/models";
 import ResourceCard from "../../resourcecard/ResourceCard.11ty";
 
-export type TipsLayoutProps = {
-  tips: Tip[];
-  title: string;
-  subtitle?: string;
-  content: string;
-};
-
-export function TipsLayout({
-  tips,
-  title,
-  subtitle,
-  content,
-}: TipsLayoutProps): JSX.Element {
+export function TipsLayout(
+  this: RenderContext,
+  { content, title, subtitle }: RenderProps
+): JSX.Element {
+  const tips = this.getResources("tip");
   const figure = undefined;
   const listing = (
     <>
@@ -27,7 +18,7 @@ export function TipsLayout({
   );
   return (
     <ReferenceLayout
-      title={title}
+      title={title as string}
       subtitle={subtitle}
       figure={figure}
       listing={[listing]}
@@ -36,17 +27,4 @@ export function TipsLayout({
   );
 }
 
-export function render(
-  this: RenderContext,
-  { content, data }: RenderProps
-): JSX.Element {
-  const tips = this.getResources("tip");
-  return (
-    <TipsLayout
-      tips={tips}
-      title={data.title}
-      subtitle={data.subtitle}
-      content={content}
-    />
-  );
-}
+export const render = TipsLayout;

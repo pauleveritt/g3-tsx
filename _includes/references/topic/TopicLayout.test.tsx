@@ -1,30 +1,14 @@
 import { expect, test } from "vitest";
 import { screen } from "@testing-library/dom";
 
-import { render, TopicLayout } from "./TopicLayout.11ty";
+import { TopicLayout } from "./TopicLayout.11ty";
 import fixtures from "../../fixtures";
 import { RenderProps } from "../../../src/models";
-
-test("should make TopicLayout", () => {
-  const topic = fixtures.topics[0];
-  const children = fixtures.content;
-  const linkedResources = Array.from(
-    fixtures.resolvedCollections.allResources.values()
-  );
-  document.body.innerHTML = TopicLayout({
-    topic,
-    children: [children],
-    linkedResources,
-  });
-  const results = screen.getAllByText(topic.title);
-  expect(results).to.exist;
-});
 
 test("should render TopicLayout", () => {
   const renderProps: RenderProps = {
     collections: fixtures.collections,
     content: fixtures.content,
-    data: {},
     page: {
       fileSlug: fixtures.technologies[0].slug,
       url: "some-url",
@@ -32,7 +16,7 @@ test("should render TopicLayout", () => {
   };
   fixtures.context.getResources = () =>
     Array.from(fixtures.resolvedCollections.allResources.values());
-  document.body.innerHTML = render.call(fixtures.context, renderProps);
+  document.body.innerHTML = TopicLayout.call(fixtures.context, renderProps);
   const links: HTMLAnchorElement[] = screen.getAllByRole("link", {
     name: "Resource",
   });

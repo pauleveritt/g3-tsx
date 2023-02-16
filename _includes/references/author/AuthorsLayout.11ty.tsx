@@ -5,19 +5,13 @@ import { Author } from "./AuthorModels";
 import { RenderContext, RenderProps } from "../../../src/models";
 import Thumbnail from "../../Image.11ty";
 
-export type AuthorsLayoutProps = {
-  authors: Author[];
-  title: string;
-  subtitle?: string;
-  content: string;
-};
-
-export function AuthorsLayout({
-  authors,
-  title,
-  subtitle,
-  content,
-}: AuthorsLayoutProps): JSX.Element {
+export function AuthorsLayout(
+  this: RenderContext,
+  { content, title, subtitle, page }: RenderProps
+): JSX.Element {
+  // Schedule a post-build validation for this view
+  this.addTestCase(page.url, [byRole({ role: "link", text: "Paul Everitt" })]);
+  const authors = this.getReferences("author") as Author[];
   const figure = undefined;
   const listing = (
     <nav className="bd-links bio-resourcecards">
@@ -45,7 +39,7 @@ export function AuthorsLayout({
 
   return (
     <ReferenceLayout
-      title={title}
+      title={title as string}
       subtitle={subtitle}
       figure={figure}
       listing={[listing]}
@@ -54,19 +48,4 @@ export function AuthorsLayout({
   );
 }
 
-export function render(
-  this: RenderContext,
-  { content, data, page }: RenderProps
-): JSX.Element {
-  // Schedule a post-build validation for this view
-  this.addTestCase(page.url, [byRole({ role: "link", text: "Paul Everitt" })]);
-  const authors = this.getReferences("author") as Author[];
-  return (
-    <AuthorsLayout
-      authors={authors}
-      title={data.title}
-      subtitle={data.subtitle}
-      content={content}
-    />
-  );
-}
+export const render = AuthorsLayout;

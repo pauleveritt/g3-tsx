@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { render } from "./TutorialsLayout.11ty";
+import { TutorialsLayout } from "./TutorialsLayout.11ty";
 import { screen } from "@testing-library/dom";
 import fixtures from "../../fixtures";
 import { RenderProps } from "../../../src/models";
@@ -10,10 +10,8 @@ test("should render TutorialsLayout", () => {
   const renderProps: RenderProps = {
     collections: fixtures.collections,
     content: fixtures.content,
-    data: {
-      title,
-      subtitle,
-    },
+    title,
+    subtitle,
     page: {
       fileSlug: "slug",
       url: "url",
@@ -21,7 +19,7 @@ test("should render TutorialsLayout", () => {
   };
   fixtures.context.getResources = () =>
     Array.from(fixtures.resolvedCollections.allResources.values());
-  document.body.innerHTML = render.call(fixtures.context, renderProps);
+  document.body.innerHTML = TutorialsLayout.call(fixtures.context, renderProps);
   const links: HTMLAnchorElement[] = screen.getAllByRole("link", {
     name: "Resource",
   });
