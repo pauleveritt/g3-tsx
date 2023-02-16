@@ -1,7 +1,6 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
 import SidebarLayout from "../../layouts/SidebarLayout.11ty";
-import { SiteCollections } from "../../models";
 import { Author } from "../../references/author/AuthorModels";
 import SidebarPublished from "../../sidebar/SidebarPublished.11ty";
 import Sidebar from "../../sidebar/Sidebar.11ty";

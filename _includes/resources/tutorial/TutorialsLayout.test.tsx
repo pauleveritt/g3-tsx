@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { render, TutorialsRenderProps } from "./TutorialsLayout.11ty";
+import { render } from "./TutorialsLayout.11ty";
 import { screen } from "@testing-library/dom";
 import fixtures from "../../fixtures";
 import { RenderProps } from "../../../src/models";

@@ -1,6 +1,5 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
-import { SiteCollections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { RenderContext, RenderProps } from "../../../src/models";
 import { Resource } from "../../../src/ResourceModels";

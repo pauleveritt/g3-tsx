@@ -1,5 +1,5 @@
 import { expect, it, test } from "vitest";
-import { render, TopicsLayout, TopicsRenderProps } from "./TopicsLayout.11ty";
+import { render, TopicsLayout } from "./TopicsLayout.11ty";
 import { screen } from "@testing-library/dom";
 import fixtures from "../../fixtures";
 import { RenderProps } from "../../../src/models";

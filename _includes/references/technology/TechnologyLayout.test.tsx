@@ -1,11 +1,7 @@
 import { expect, test } from "vitest";
 import { screen } from "@testing-library/dom";
 
-import {
-  render,
-  TechnologyLayout,
-  TechnologyRenderProps,
-} from "./TechnologyLayout.11ty";
+import { render, TechnologyLayout } from "./TechnologyLayout.11ty";
 import fixtures from "../../fixtures";
 import { RenderProps } from "../../../src/models";
 
