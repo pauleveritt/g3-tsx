@@ -1,9 +1,5 @@
 import { Static, Type } from "@sinclair/typebox";
-import {
-  BaseData,
-  Resource,
-  ResourceFrontmatter,
-} from "../../../src/ResourceModels";
+import { Resource, ResourceFrontmatter } from "../../../src/ResourceModels";
 import { EleventyPage } from "../../../src/models";
 import path from "path";
 import { AllCollections } from "../../../src/registration";
@@ -18,7 +14,6 @@ export const TutorialFrontmatter = Type.Intersect([
   }),
 ]);
 export type TutorialFrontmatter = Static<typeof TutorialFrontmatter>;
-export type TutorialData = TutorialFrontmatter & BaseData;
 
 export class Tutorial extends Resource implements TutorialFrontmatter {
   tutorialItems: string[];
@@ -26,7 +21,13 @@ export class Tutorial extends Resource implements TutorialFrontmatter {
   videoBottom: boolean;
   static frontmatterSchema = TutorialFrontmatter;
 
-  constructor({ data, page }: { data: TutorialData; page: EleventyPage }) {
+  constructor({
+    data,
+    page,
+  }: {
+    data: TutorialFrontmatter;
+    page: EleventyPage;
+  }) {
     super({ data, page });
     this.tutorialItems = data.tutorialItems;
     this.tutorialSteps = [];

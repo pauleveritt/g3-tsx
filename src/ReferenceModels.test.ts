@@ -1,10 +1,13 @@
 import { expect, it } from "vitest";
-import { getReference, Reference, ReferenceData } from "./ReferenceModels";
+import {
+  getReference,
+  Reference,
+  ReferenceFrontmatter,
+} from "./ReferenceModels";
 import { EleventyPage } from "./models";
 import { rootPath } from "../_includes/config";
 
-const data: ReferenceData = {
-  content: "<p>Some content</p>",
+const data: ReferenceFrontmatter = {
   label: "sr",
   resourceType: "author",
   subtitle: "Some Subtitle",

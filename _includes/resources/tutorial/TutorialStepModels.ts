@@ -1,10 +1,6 @@
 import { Static, Type } from "@sinclair/typebox";
 import { validateFrontmatter } from "../../../src/validators";
-import {
-  BaseData,
-  Resource,
-  ResourceFrontmatter,
-} from "../../../src/ResourceModels";
+import { Resource, ResourceFrontmatter } from "../../../src/ResourceModels";
 import { EleventyPage } from "../../../src/models";
 import { Tutorial } from "./TutorialModels";
 
@@ -22,7 +18,6 @@ export const TutorialStepFrontmatter = Type.Intersect([
   }),
 ]);
 export type TutorialStepFrontmatter = Static<typeof TutorialStepFrontmatter>;
-export type TutorialStepData = TutorialStepFrontmatter & BaseData;
 
 export class TutorialStep extends Resource implements TutorialStepFrontmatter {
   longVideo: TutorialStepFrontmatter["longVideo"];
@@ -30,7 +25,13 @@ export class TutorialStep extends Resource implements TutorialStepFrontmatter {
   videoBottom: boolean;
   static frontmatterSchema = TutorialStepFrontmatter;
 
-  constructor({ data, page }: { data: TutorialStepData; page: EleventyPage }) {
+  constructor({
+    data,
+    page,
+  }: {
+    data: TutorialStepFrontmatter;
+    page: EleventyPage;
+  }) {
     super({ data, page });
     this.longVideo = data.longVideo;
     this.videoBottom = !!data.videoBottom;
@@ -38,7 +39,7 @@ export class TutorialStep extends Resource implements TutorialStepFrontmatter {
 }
 
 export async function getTutorialStep(
-  data: TutorialStepData,
+  data: TutorialStepFrontmatter,
   page: EleventyPage
 ): Promise<TutorialStep> {
   validateFrontmatter(TutorialStepFrontmatter, data, page.url);

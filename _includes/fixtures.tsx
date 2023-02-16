@@ -1,24 +1,14 @@
 import h from "vhtml";
-import { Tip, TipData, TipFrontmatter } from "./resources/tip/TipModels";
-import {
-  Author,
-  AuthorData,
-  AuthorFrontmatter,
-} from "./references/author/AuthorModels";
+import { Tip, TipFrontmatter } from "./resources/tip/TipModels";
+import { Author, AuthorFrontmatter } from "./references/author/AuthorModels";
 import { SiteCollections } from "./models";
 import {
   Technology,
-  TechnologyData,
   TechnologyFrontmatter,
 } from "./references/technology/TechnologyModels";
-import {
-  Topic,
-  TopicData,
-  TopicFrontmatter,
-} from "./references/topic/TopicModels";
+import { Topic, TopicFrontmatter } from "./references/topic/TopicModels";
 import {
   Product,
-  ProductData,
   ProductFrontmatter,
 } from "./references/product/ProductModels";
 import { referenceCollections, resourceCollections, rootPath } from "./config";
@@ -32,12 +22,10 @@ import {
 import { resolveAllCollections } from "../src/registration";
 import {
   Tutorial,
-  TutorialData,
   TutorialFrontmatter,
 } from "./resources/tutorial/TutorialModels";
 import {
   TutorialStep,
-  TutorialStepData,
   TutorialStepFrontmatter,
 } from "./resources/tutorial/TutorialStepModels";
 
@@ -98,13 +86,19 @@ const tipItems: {
   },
 ];
 // This is data shaped like on our side.
-const tipDatas: { data: TipData; page: EleventyPage }[] = [
+const tipDatas: {
+  data: TipFrontmatter;
+  page: EleventyPage;
+  content: string;
+}[] = [
   {
-    data: { ...tipItems[0].data, content: tipItems[0].content },
+    content,
+    data: { ...tipItems[0].data },
     page: tipItems[0].page,
   },
   {
-    data: { ...tipItems[1].data, content: tipItems[1].content },
+    content,
+    data: { ...tipItems[1].data },
     page: tipItems[1].page,
   },
 ];
@@ -149,13 +143,19 @@ const authorItems: {
   },
 ];
 // This is data shaped like on our side.
-const authorDatas: { data: AuthorData; page: EleventyPage }[] = [
+const authorDatas: {
+  data: AuthorFrontmatter;
+  page: EleventyPage;
+  content: string;
+}[] = [
   {
-    data: { ...authorItems[0].data, content: authorItems[0].content },
+    content,
+    data: { ...authorItems[0].data },
     page: authorItems[0].page,
   },
   {
-    data: { ...authorItems[1].data, content: authorItems[1].content },
+    content,
+    data: { ...authorItems[1].data },
     page: authorItems[1].page,
   },
 ];
@@ -200,13 +200,19 @@ const technologyItems: {
   },
 ];
 // This is data shaped like on our side.
-const technologyDatas: { data: TechnologyData; page: EleventyPage }[] = [
+const technologyDatas: {
+  data: TechnologyFrontmatter;
+  page: EleventyPage;
+  content: string;
+}[] = [
   {
-    data: { ...technologyItems[0].data, content: technologyItems[0].content },
+    content,
+    data: { ...technologyItems[0].data },
     page: technologyItems[0].page,
   },
   {
-    data: { ...technologyItems[1].data, content: technologyItems[1].content },
+    content,
+    data: { ...technologyItems[1].data },
     page: technologyItems[1].page,
   },
 ];
@@ -253,13 +259,19 @@ const topicItems: {
   },
 ];
 // This is data shaped like on our side.
-const topicDatas: { data: TopicData; page: EleventyPage }[] = [
+const topicDatas: {
+  data: TopicFrontmatter;
+  page: EleventyPage;
+  content: string;
+}[] = [
   {
-    data: { ...topicItems[0].data, content: topicItems[0].content },
+    content,
+    data: { ...topicItems[0].data },
     page: topicItems[0].page,
   },
   {
-    data: { ...topicItems[1].data, content: topicItems[1].content },
+    content,
+    data: { ...topicItems[1].data },
     page: topicItems[1].page,
   },
 ];
@@ -305,13 +317,19 @@ const productItems: {
   },
 ];
 // This is data shaped like on our side.
-const productDatas: { data: ProductData; page: EleventyPage }[] = [
+const productDatas: {
+  data: ProductFrontmatter;
+  page: EleventyPage;
+  content: string;
+}[] = [
   {
-    data: { ...productItems[0].data, content: productItems[0].content },
+    content,
+    data: { ...productItems[0].data },
     page: productItems[0].page,
   },
   {
-    data: { ...productItems[1].data, content: productItems[1].content },
+    content,
+    data: { ...productItems[1].data },
     page: productItems[1].page,
   },
 ];
@@ -360,13 +378,19 @@ export const tutorialItems: {
   },
 ];
 
-export const tutorialDatas: { data: TutorialData; page: EleventyPage }[] = [
+export const tutorialDatas: {
+  data: TutorialFrontmatter;
+  page: EleventyPage;
+  content: string;
+}[] = [
   {
-    data: { ...tutorialItems[0].data, content: tutorialItems[0].content },
+    content,
+    data: { ...tutorialItems[0].data },
     page: tutorialItems[0].page,
   },
   {
-    data: { ...tutorialItems[1].data, content: tutorialItems[1].content },
+    content,
+    data: { ...tutorialItems[1].data },
     page: tutorialItems[1].page,
   },
 ];
@@ -413,20 +437,21 @@ export const tutorialStepItems: {
   },
 ];
 export const tutorialStepDatas: {
-  data: TutorialStepData;
+  data: TutorialStepFrontmatter;
   page: EleventyPage;
+  content: string;
 }[] = [
   {
+    content,
     data: {
       ...tutorialStepItems[0].data,
-      content: tutorialStepItems[0].content,
     },
     page: tutorialStepItems[0].page,
   },
   {
+    content,
     data: {
       ...tutorialStepItems[1].data,
-      content: tutorialStepItems[1].content,
     },
     page: tutorialStepItems[1].page,
   },

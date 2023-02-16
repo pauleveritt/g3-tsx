@@ -13,11 +13,6 @@ export const BaseFrontmatter = Type.Object({
 });
 export type BaseFrontmatter = Static<typeof BaseFrontmatter>;
 
-// On our side, content is stored on the data. But in the collection
-// API, content comes in with data/page/content.
-export type BaseData = {
-  content: string;
-} & BaseFrontmatter;
 export type BaseItem = {
   content: string;
   data: BaseFrontmatter;
@@ -25,15 +20,13 @@ export type BaseItem = {
 };
 
 export class BaseEntity implements BaseFrontmatter {
-  content: string;
   resourceType: string;
   slug: string;
   title: string;
   url: string;
   static frontmatterSchema = BaseFrontmatter;
 
-  constructor({ data, page }: { data: BaseData; page: EleventyPage }) {
-    this.content = data.content;
+  constructor({ data, page }: { data: BaseFrontmatter; page: EleventyPage }) {
     this.resourceType = data.resourceType;
     this.slug = page.fileSlug;
     this.title = data.title;
@@ -68,8 +61,6 @@ export const ResourceFrontmatter = Type.Intersect([
 ]);
 export type ResourceFrontmatter = Static<typeof ResourceFrontmatter>;
 
-export type ResourceData = ResourceFrontmatter & BaseData;
-
 export class Resource extends BaseEntity implements ResourceFrontmatter {
   author: string;
   date: Date;
@@ -82,7 +73,13 @@ export class Resource extends BaseEntity implements ResourceFrontmatter {
   static frontmatterSchema = ResourceFrontmatter;
   static referenceFields = ["author", "products", "technologies", "topics"];
 
-  constructor({ data, page }: { data: ResourceData; page: EleventyPage }) {
+  constructor({
+    data,
+    page,
+  }: {
+    data: ResourceFrontmatter;
+    page: EleventyPage;
+  }) {
     super({ data, page });
     this.author = data.author;
     this.date = new Date(data.date);

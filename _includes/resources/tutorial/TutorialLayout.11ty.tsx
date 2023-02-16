@@ -14,7 +14,7 @@ import { byRole } from "../../../src/TestCases";
 
 export function TutorialLayout(
   this: RenderContext,
-  { collections, page }: RenderProps
+  { collections, page, content }: RenderProps
 ): JSX.Element {
   const tutorial = collections.allResources.get(page.url) as Tutorial;
   this.addTestCase(page.url, [byRole({ role: "link", text: "Paul Everitt" })]);
@@ -53,11 +53,11 @@ export function TutorialLayout(
 
   const main = (
     <>
-      {tutorial.content ? (
+      {content ? (
         <div className="columns">
           <div
             className="column is-11-desktop content"
-            dangerouslySetInnerHTML={{ __html: tutorial.content }}
+            dangerouslySetInnerHTML={{ __html: content }}
           ></div>
         </div>
       ) : null}

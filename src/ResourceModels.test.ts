@@ -1,23 +1,20 @@
 import { expect, test } from "vitest";
 import {
-  BaseData,
   BaseEntity,
   BaseFrontmatter,
   Resource,
-  ResourceData,
   ResourceFrontmatter,
 } from "./ResourceModels";
 // import fixtures from "../_includes/fixtures";
 import { rootPath } from "../_includes/config";
 import { EleventyPage } from "./models";
 
-const baseData: BaseData = {
-  content: "<p>Some content</p>",
+const baseFrontmatter: BaseFrontmatter = {
   resourceType: "tip",
   title: "Some Tip",
 };
-const data: ResourceData = {
-  ...baseData,
+const data: ResourceFrontmatter = {
+  ...baseFrontmatter,
   author: "sa",
   date: new Date("2023-02-02"),
   products: ["sp", "ap"],
@@ -32,7 +29,7 @@ const page: EleventyPage = {
 };
 
 test("construct a BaseEntity", () => {
-  const baseEntity = new BaseEntity({ data: baseData, page });
+  const baseEntity = new BaseEntity({ data: baseFrontmatter, page });
   expect(baseEntity).to.exist;
 });
 test("construct a Resource", () => {

@@ -1,16 +1,12 @@
 import { expect, test } from "vitest";
 import { EleventyPage } from "../../../src/models";
 import { rootPath } from "../../config";
-import { Author, AuthorData, AuthorFrontmatter } from "./AuthorModels";
+import { Author, AuthorFrontmatter } from "./AuthorModels";
 
-const authorFrontmatter: AuthorFrontmatter = {
+const data: AuthorFrontmatter = {
   resourceType: "author",
   thumbnail: "thumbnail.png",
   title: "Some Author",
-};
-const data: AuthorData = {
-  ...authorFrontmatter,
-  content: "<p>Some content</p>",
 };
 const page: EleventyPage = {
   fileSlug: "sa",

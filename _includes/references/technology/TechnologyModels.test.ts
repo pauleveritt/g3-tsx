@@ -1,21 +1,13 @@
 import { expect, test } from "vitest";
 import { EleventyPage } from "../../../src/models";
 import { rootPath } from "../../config";
-import {
-  Technology,
-  TechnologyData,
-  TechnologyFrontmatter,
-} from "./TechnologyModels";
+import { Technology, TechnologyFrontmatter } from "./TechnologyModels";
 
-const technologyFrontmatter: TechnologyFrontmatter = {
+const data: TechnologyFrontmatter = {
   label: "sa",
   logo: "some-logo.png",
   resourceType: "technology",
   title: "Some Technology",
-};
-const data: TechnologyData = {
-  ...technologyFrontmatter,
-  content: "<p>Some content</p>",
 };
 const page: EleventyPage = {
   fileSlug: "sa",

@@ -1,18 +1,14 @@
 import { expect, test } from "vitest";
 import { EleventyPage } from "../../../src/models";
 import { rootPath } from "../../config";
-import { Topic, TopicData, TopicFrontmatter } from "./TopicModels";
+import { Topic, TopicFrontmatter } from "./TopicModels";
 
-const topicFrontmatter: TopicFrontmatter = {
+const data: TopicFrontmatter = {
   accent: "some accent",
   icon: "some-icon.png",
   label: "sa",
   resourceType: "topic",
   title: "Some Topic",
-};
-const data: TopicData = {
-  ...topicFrontmatter,
-  content: "<p>Some content</p>",
 };
 const page: EleventyPage = {
   fileSlug: "sa",

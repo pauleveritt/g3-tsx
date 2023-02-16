@@ -1,9 +1,9 @@
 import { expect, test } from "vitest";
-import { Tip, TipData, TipFrontmatter } from "./TipModels";
+import { Tip, TipFrontmatter } from "./TipModels";
 import { EleventyPage } from "../../../src/models";
 import { rootPath } from "../../config";
 
-const tipFrontmatter: TipFrontmatter = {
+const data: TipFrontmatter = {
   title: "Some Tip",
   date: new Date("2023-02-02"),
   resourceType: "tip",
@@ -12,10 +12,6 @@ const tipFrontmatter: TipFrontmatter = {
   technologies: ["st", "at"],
   topics: ["st", "at"],
   thumbnail: "thumbnail.png",
-};
-const data: TipData = {
-  ...tipFrontmatter,
-  content: "<p>Some content</p>",
 };
 const page: EleventyPage = {
   fileSlug: "some-tip",

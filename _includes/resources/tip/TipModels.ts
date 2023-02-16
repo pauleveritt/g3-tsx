@@ -1,9 +1,5 @@
 import { Static, Type } from "@sinclair/typebox";
-import {
-  BaseData,
-  Resource,
-  ResourceFrontmatter,
-} from "../../../src/ResourceModels";
+import { Resource, ResourceFrontmatter } from "../../../src/ResourceModels";
 import { EleventyPage } from "../../../src/models";
 
 export const TipFrontmatter = Type.Intersect([
@@ -37,7 +33,6 @@ export const TipFrontmatter = Type.Intersect([
   }),
 ]);
 export type TipFrontmatter = Static<typeof TipFrontmatter>;
-export type TipData = TipFrontmatter & BaseData;
 
 export class Tip extends Resource implements TipFrontmatter {
   animatedGif?: TipFrontmatter["animatedGif"];
@@ -49,7 +44,7 @@ export class Tip extends Resource implements TipFrontmatter {
   shortVideo?: TipFrontmatter["shortVideo"];
   static frontmatterSchema = TipFrontmatter;
 
-  constructor({ data, page }: { data: TipData; page: EleventyPage }) {
+  constructor({ data, page }: { data: TipFrontmatter; page: EleventyPage }) {
     super({ data, page });
     this.animatedGif = data.animatedGif;
     this.hasBody = data.hasBody;

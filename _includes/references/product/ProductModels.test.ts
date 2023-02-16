@@ -1,17 +1,13 @@
 import { expect, test } from "vitest";
-import { Product, ProductData, ProductFrontmatter } from "./ProductModels";
+import { Product, ProductFrontmatter } from "./ProductModels";
 import { EleventyPage } from "../../../src/models";
 import { rootPath } from "../../config";
 
-const productFrontmatter: ProductFrontmatter = {
+const data: ProductFrontmatter = {
   label: "sa",
   logo: "some-logo.png",
   resourceType: "author",
   title: "Some Product",
-};
-const data: ProductData = {
-  ...productFrontmatter,
-  content: "<p>Some content</p>",
 };
 const page: EleventyPage = {
   fileSlug: "sp",

@@ -1,4 +1,4 @@
-import { BaseData, BaseEntity, BaseFrontmatter } from "./ResourceModels";
+import { BaseEntity, BaseFrontmatter } from "./ResourceModels";
 import { EleventyPage } from "./models";
 import { Static, Type } from "@sinclair/typebox";
 
@@ -11,13 +11,17 @@ export const ReferenceFrontmatter = Type.Intersect([
 ]);
 export type ReferenceFrontmatter = Static<typeof ReferenceFrontmatter>;
 
-export type ReferenceData = ReferenceFrontmatter & BaseData;
-
 export class Reference extends BaseEntity implements ReferenceFrontmatter {
   label: string;
   subtitle?: string;
 
-  constructor({ data, page }: { data: ReferenceData; page: EleventyPage }) {
+  constructor({
+    data,
+    page,
+  }: {
+    data: ReferenceFrontmatter;
+    page: EleventyPage;
+  }) {
     super({ data, page });
     this.label = data.label ? data.label : page.fileSlug;
     this.subtitle = data.subtitle;
