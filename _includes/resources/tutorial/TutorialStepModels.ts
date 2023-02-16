@@ -6,6 +6,7 @@ import {
   ResourceFrontmatter,
 } from "../../../src/ResourceModels";
 import { EleventyPage } from "../../../src/models";
+import { Tutorial } from "./TutorialModels";
 
 export const TutorialStepFrontmatter = Type.Intersect([
   ResourceFrontmatter,
@@ -25,6 +26,7 @@ export type TutorialStepData = TutorialStepFrontmatter & BaseData;
 
 export class TutorialStep extends Resource implements TutorialStepFrontmatter {
   longVideo: TutorialStepFrontmatter["longVideo"];
+  parentTutorial?: Tutorial;
   videoBottom: boolean;
   static frontmatterSchema = TutorialStepFrontmatter;
 

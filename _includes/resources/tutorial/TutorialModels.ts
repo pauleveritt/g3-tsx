@@ -42,6 +42,7 @@ export class Tutorial extends Resource implements TutorialFrontmatter {
       const url = resolveChildPath(this.url, ti);
       const tutorialStep = allResources.get(url) as TutorialStep;
       if (tutorialStep) {
+        tutorialStep.parentTutorial = this;
         this.tutorialSteps.push(tutorialStep);
       } else {
         throw new Error(`Tutorial step ${url} not found in ${this.url}`);
@@ -57,7 +58,3 @@ export function resolveChildPath(
   let result = path.join(pathPrefix, tutorialItem);
   return !result.endsWith("/") ? result.concat("/") : result;
 }
-
-// absolute paths to tutorial items
-// const rootPath = page.url;
-// const tutorialItems = resolveChildPaths(rootPath, data.tutorialItems);

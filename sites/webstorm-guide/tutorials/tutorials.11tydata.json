@@ -1,4 +1,4 @@
 {
   "resourceType": "tutorialstep",
-  "layout": "layouts/BaseLayout.11ty.tsx"
+  "layout": "resources/tutorial/TutorialStepLayout.11ty.tsx"
 }
