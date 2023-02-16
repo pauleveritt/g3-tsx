@@ -1,11 +1,8 @@
 import { expect, it, test } from "vitest";
-import {
-  ProductsLayout,
-  ProductsRenderProps,
-  render,
-} from "./ProductsLayout.11ty";
+import { ProductsLayout, render } from "./ProductsLayout.11ty";
 import { screen } from "@testing-library/dom";
 import fixtures from "../../fixtures";
+import { RenderProps } from "../../../src/models";
 
 it("should make ProductsLayout", () => {
   const products = fixtures.products;
@@ -28,10 +25,14 @@ it("should make ProductsLayout", () => {
 test("should render ProductsLayout", () => {
   const title = "These Products";
   const subtitle = "Some products text";
-  const renderProps: ProductsRenderProps = {
+  const renderProps: RenderProps = {
+    collections: fixtures.collections,
     content: fixtures.content,
-    title,
-    subtitle,
+    data: { title, subtitle },
+    page: {
+      fileSlug: "slug",
+      url: "url",
+    },
   };
   fixtures.context.getReferences = () => fixtures.products;
   document.body.innerHTML = render.call(fixtures.context, renderProps);

@@ -4,11 +4,10 @@ import BottomNav from "../../pagenav/BottomNav.11ty";
 import TopNav from "../../pagenav/TopNav.11ty";
 import { Tutorial } from "./TutorialModels";
 import SidebarLayout from "../../layouts/SidebarLayout.11ty";
-import { SiteCollections } from "../../models";
 import { Author } from "../../references/author/AuthorModels";
 import SidebarPublished from "../../sidebar/SidebarPublished.11ty";
 import Sidebar from "../../sidebar/Sidebar.11ty";
-import { RenderContext } from "../../../src/models";
+import { RenderContext, RenderProps } from "../../../src/models";
 import { References } from "../../../src/ReferenceModels";
 import ResourceCard from "../../resourcecard/ResourceCard.11ty";
 import { byRole } from "../../../src/TestCases";
@@ -77,16 +76,9 @@ export function TutorialLayout({ tutorial }: TutorialLayoutProps): JSX.Element {
   );
 }
 
-export type TutorialRenderProps = {
-  collections: SiteCollections;
-  page: {
-    url: string;
-  };
-};
-
 export function render(
   this: RenderContext,
-  { collections, page }: TutorialRenderProps
+  { collections, page }: RenderProps
 ): JSX.Element {
   const tutorial = collections.allResources.get(page.url) as Tutorial;
   this.addTestCase(page.url, [byRole({ role: "link", text: "Paul Everitt" })]);

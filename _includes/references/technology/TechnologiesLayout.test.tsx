@@ -1,11 +1,8 @@
 import { expect, it, test } from "vitest";
-import {
-  render,
-  TechnologiesLayout,
-  TechnologiesRenderProps,
-} from "./TechnologiesLayout.11ty";
+import { render, TechnologiesLayout } from "./TechnologiesLayout.11ty";
 import { screen } from "@testing-library/dom";
 import fixtures from "../../fixtures";
+import { RenderProps } from "../../../src/models";
 
 it("should make TechnologiesLayout", () => {
   const technologies = fixtures.technologies;
@@ -27,10 +24,17 @@ it("should make TechnologiesLayout", () => {
 test("should render TechnologiesLayout", () => {
   const title = "These Technologies";
   const subtitle = "Some technologies text";
-  const renderProps: TechnologiesRenderProps = {
+  const renderProps: RenderProps = {
+    collections: fixtures.collections,
     content: fixtures.content,
-    title,
-    subtitle,
+    data: {
+      title,
+      subtitle,
+    },
+    page: {
+      fileSlug: "fileSlug",
+      url: "/fileSlug",
+    },
   };
   fixtures.context.getReferences = () => fixtures.technologies;
   document.body.innerHTML = render.call(fixtures.context, renderProps);

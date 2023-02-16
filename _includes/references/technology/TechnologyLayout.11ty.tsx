@@ -2,7 +2,7 @@
 import h, { JSX } from "vhtml";
 import { SiteCollections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
-import { RenderContext } from "../../../src/models";
+import { RenderContext, RenderProps } from "../../../src/models";
 import { Resource } from "../../../src/ResourceModels";
 import { TechnologyFrontmatter } from "./TechnologyModels";
 import ResourceCard from "../../resourcecard/ResourceCard.11ty";
@@ -47,17 +47,9 @@ export function TechnologyLayout({
   );
 }
 
-export type TechnologyRenderProps = {
-  collections: SiteCollections;
-  content: string;
-  page: {
-    fileSlug: string;
-  };
-};
-
 export function render(
   this: RenderContext,
-  { collections, content, page }: TechnologyRenderProps
+  { collections, content, page }: RenderProps
 ): JSX.Element {
   const technology = collections.allReferences.get(
     page.fileSlug

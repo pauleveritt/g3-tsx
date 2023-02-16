@@ -2,6 +2,7 @@ import { expect, it, test } from "vitest";
 import { render, TopicsLayout, TopicsRenderProps } from "./TopicsLayout.11ty";
 import { screen } from "@testing-library/dom";
 import fixtures from "../../fixtures";
+import { RenderProps } from "../../../src/models";
 
 it("should make TopicsLayout", () => {
   const topics = fixtures.topics;
@@ -23,10 +24,17 @@ it("should make TopicsLayout", () => {
 test("should render TopicsLayout", () => {
   const title = "These Topics";
   const subtitle = "Some topics text";
-  const renderProps: TopicsRenderProps = {
+  const renderProps: RenderProps = {
+    collections: fixtures.collections,
     content: fixtures.content,
-    title,
-    subtitle,
+    data: {
+      title,
+      subtitle,
+    },
+    page: {
+      fileSlug: "slug",
+      url: "url",
+    },
   };
   fixtures.context.getReferences = () => fixtures.topics;
   document.body.innerHTML = render.call(fixtures.context, renderProps);

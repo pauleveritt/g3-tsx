@@ -1,17 +1,11 @@
 import h, { JSX } from "vhtml";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
-import { RenderContext } from "../../../src/models";
+import { RenderContext, RenderProps } from "../../../src/models";
 import ResourceCard from "../../resourcecard/ResourceCard.11ty";
-
-export type TutorialsRenderProps = {
-  content: string;
-  title: string;
-  subtitle?: string;
-};
 
 export function render(
   this: RenderContext,
-  { content, title, subtitle }: TutorialsRenderProps
+  { content, data }: RenderProps
 ): JSX.Element {
   const tutorials = this.getResources("tutorial");
   const figure = undefined;
@@ -24,8 +18,8 @@ export function render(
   );
   return (
     <ReferenceLayout
-      title={title}
-      subtitle={subtitle}
+      title={data.title}
+      subtitle={data.subtitle}
       figure={figure}
       listing={[listing]}
       content={content}

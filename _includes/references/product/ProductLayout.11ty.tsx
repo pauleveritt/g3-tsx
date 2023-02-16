@@ -1,8 +1,7 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
-import { SiteCollections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
-import { RenderContext } from "../../../src/models";
+import { RenderContext, RenderProps } from "../../../src/models";
 import { ProductFrontmatter } from "./ProductModels";
 import { Resource } from "../../../src/ResourceModels";
 
@@ -56,17 +55,9 @@ export function ProductLayout({
   );
 }
 
-export type ProductRenderProps = {
-  collections: SiteCollections;
-  content: string;
-  page: {
-    fileSlug: string;
-  };
-};
-
 export function render(
   this: RenderContext,
-  { collections, content, page }: ProductRenderProps
+  { collections, content, page }: RenderProps
 ): JSX.Element {
   const product = collections.allReferences.get(
     page.fileSlug

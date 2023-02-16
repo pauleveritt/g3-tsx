@@ -1,8 +1,7 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
-import { SiteCollections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
-import { RenderContext } from "../../../src/models";
+import { RenderContext, RenderProps } from "../../../src/models";
 import { Resource } from "../../../src/ResourceModels";
 import { TopicFrontmatter } from "./TopicModels";
 import ResourceCard from "../../resourcecard/ResourceCard.11ty";
@@ -45,17 +44,9 @@ export function TopicLayout({
   );
 }
 
-export type TopicRenderProps = {
-  collections: SiteCollections;
-  content: string;
-  page: {
-    fileSlug: string;
-  };
-};
-
 export function render(
   this: RenderContext,
-  { collections, content, page }: TopicRenderProps
+  { collections, content, page }: RenderProps
 ): JSX.Element {
   const topic = collections.allReferences.get(
     page.fileSlug

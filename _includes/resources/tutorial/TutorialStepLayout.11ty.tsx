@@ -5,21 +5,14 @@ import { SiteCollections } from "../../models";
 import { Author } from "../../references/author/AuthorModels";
 import SidebarPublished from "../../sidebar/SidebarPublished.11ty";
 import Sidebar from "../../sidebar/Sidebar.11ty";
-import { RenderContext } from "../../../src/models";
+import { RenderContext, RenderProps } from "../../../src/models";
 import { References } from "../../../src/ReferenceModels";
 import { TutorialStep } from "./TutorialStepModels";
 import VideoPlayer from "../../video/VideoPlayer.11ty";
 
-export type TutorialStepRenderProps = {
-  collections: SiteCollections;
-  page: {
-    url: string;
-  };
-};
-
 export function render(
   this: RenderContext,
-  { collections, page }: TutorialStepRenderProps
+  { collections, page, content }: RenderProps
 ): JSX.Element {
   const tutorialstep = collections.allResources.get(page.url) as TutorialStep;
   // Sidebars
@@ -52,11 +45,11 @@ export function render(
       {longVideo && !videoBottom && (
         <div style="margin-bottom: 2rem">{longVideo}</div>
       )}
-      {tutorialstep.content ? (
+      {content ? (
         <div className="columns">
           <div
             className="column is-11-desktop content"
-            dangerouslySetInnerHTML={{ __html: tutorialstep.content }}
+            dangerouslySetInnerHTML={{ __html: content }}
           ></div>
         </div>
       ) : null}

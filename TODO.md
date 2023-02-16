@@ -7,6 +7,7 @@
 
 ## Next
 
+- Remove `content` from `BaseData`
 - Wire in TipSidebar into TipLayout
 - Make schemas for just the frontmatter part
 - Get a placeholder.jpg into the site

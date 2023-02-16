@@ -1,7 +1,8 @@
 import { expect, test } from "vitest";
-import { render, TipsLayout, TipsRenderProps } from "./TipsLayout.11ty";
+import { render, TipsLayout } from "./TipsLayout.11ty";
 import { screen } from "@testing-library/dom";
 import fixtures from "../../fixtures";
+import { RenderProps } from "../../../src/models";
 
 test("should make TipsLayout", () => {
   const tips = Array.from(fixtures.resolvedCollections.allResources.values());
@@ -18,10 +19,17 @@ test("should make TipsLayout", () => {
 test("should render TipsLayout", () => {
   const title = "These Tips";
   const subtitle = "Some tips text";
-  const renderProps: TipsRenderProps = {
+  const renderProps: RenderProps = {
+    collections: fixtures.collections,
     content: fixtures.content,
-    title,
-    subtitle,
+    data: {
+      title,
+      subtitle,
+    },
+    page: {
+      fileSlug: "slug",
+      url: "url",
+    },
   };
   fixtures.context.getResources = () =>
     Array.from(fixtures.resolvedCollections.allResources.values());

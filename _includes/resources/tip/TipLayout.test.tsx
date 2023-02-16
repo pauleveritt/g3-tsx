@@ -1,15 +1,17 @@
 import { expect, test } from "vitest";
 import { screen } from "@testing-library/dom";
 
-import { render, TipRenderProps } from "./TipLayout.11ty";
+import { render } from "./TipLayout.11ty";
 import fixtures from "../../fixtures";
+import { RenderProps } from "../../../src/models";
 
 test("should render TipLayout", () => {
   // @ts-ignore
-  const renderProps: TipRenderProps = {
+  const renderProps: RenderProps = {
     collections: { ...fixtures.resolvedCollections, all: fixtures.all },
     content: fixtures.content,
     page: {
+      fileSlug: "slug",
       url: fixtures.tips[0].url,
     },
   };

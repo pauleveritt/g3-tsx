@@ -1,8 +1,9 @@
 import { expect, test } from "vitest";
 import { screen } from "@testing-library/dom";
 
-import { AuthorLayout, AuthorRenderProps, render } from "./AuthorLayout.11ty";
+import { AuthorLayout, render } from "./AuthorLayout.11ty";
 import fixtures from "../../fixtures";
+import { RenderProps } from "../../../src/models";
 
 test("should make AuthorLayout", () => {
   const author = fixtures.authors[0];
@@ -22,9 +23,10 @@ test("should make AuthorLayout", () => {
 });
 
 test("should render AuthorLayout", () => {
-  const renderProps: AuthorRenderProps = {
+  const renderProps: RenderProps = {
     collections: fixtures.collections,
     content: fixtures.content,
+    data: {},
     page: {
       fileSlug: fixtures.authors[0].slug,
       url: "/some-url/",

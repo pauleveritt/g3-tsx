@@ -7,6 +7,7 @@ import {
   TechnologyRenderProps,
 } from "./TechnologyLayout.11ty";
 import fixtures from "../../fixtures";
+import { RenderProps } from "../../../src/models";
 
 test("should make TechnologyLayout", () => {
   const technology = fixtures.technologies[0];
@@ -25,11 +26,13 @@ test("should make TechnologyLayout", () => {
 });
 
 test("should render TechnologyLayout", () => {
-  const renderProps: TechnologyRenderProps = {
+  const renderProps: RenderProps = {
     collections: fixtures.collections,
     content: fixtures.content,
+    data: {},
     page: {
       fileSlug: fixtures.technologies[0].slug,
+      url: "some-url",
     },
   };
   fixtures.context.getResources = () =>

@@ -1,11 +1,8 @@
 import { expect, it, test } from "vitest";
-import {
-  AuthorsLayout,
-  AuthorsRenderProps,
-  render,
-} from "./AuthorsLayout.11ty";
+import { AuthorsLayout, render } from "./AuthorsLayout.11ty";
 import { screen } from "@testing-library/dom";
 import fixtures from "../../fixtures";
+import { RenderProps } from "../../../src/models";
 
 it("should make AuthorsLayout", () => {
   const authors = fixtures.authors;
@@ -25,16 +22,17 @@ it("should make AuthorsLayout", () => {
 });
 
 test("should render AuthorsLayout", () => {
-  const title = "These Authors";
-  const subtitle = "Some authors text";
-  const renderProps: AuthorsRenderProps = {
+  const renderProps: RenderProps = {
     collections: fixtures.collections,
     content: fixtures.content,
+    data: {
+      title: "Authors",
+      subtitle: "Some stuff",
+    },
     page: {
       url: "/authors",
+      fileSlug: "some-slug",
     },
-    title,
-    subtitle,
   };
   fixtures.context.getReferences = () => fixtures.authors;
   document.body.innerHTML = render.call(fixtures.context, renderProps);

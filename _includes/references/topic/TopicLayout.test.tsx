@@ -1,8 +1,9 @@
 import { expect, test } from "vitest";
 import { screen } from "@testing-library/dom";
 
-import { render, TopicLayout, TopicRenderProps } from "./TopicLayout.11ty";
+import { render, TopicLayout } from "./TopicLayout.11ty";
 import fixtures from "../../fixtures";
+import { RenderProps } from "../../../src/models";
 
 test("should make TopicLayout", () => {
   const topic = fixtures.topics[0];
@@ -20,11 +21,13 @@ test("should make TopicLayout", () => {
 });
 
 test("should render TopicLayout", () => {
-  const renderProps: TopicRenderProps = {
+  const renderProps: RenderProps = {
     collections: fixtures.collections,
     content: fixtures.content,
+    data: {},
     page: {
       fileSlug: fixtures.technologies[0].slug,
+      url: "some-url",
     },
   };
   fixtures.context.getResources = () =>

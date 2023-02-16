@@ -1,7 +1,7 @@
 import h, { JSX } from "vhtml";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { Topic } from "./TopicModels";
-import { RenderContext } from "../../../src/models";
+import { RenderContext, RenderProps } from "../../../src/models";
 
 export type TopicsLayoutProps = {
   topics: Topic[];
@@ -45,22 +45,16 @@ export function TopicsLayout({
   );
 }
 
-export type TopicsRenderProps = {
-  content: string;
-  title: string;
-  subtitle?: string;
-};
-
 export function render(
   this: RenderContext,
-  { content, title, subtitle }: TopicsRenderProps
+  { content, data }: RenderProps
 ): JSX.Element {
   const topics = this.getReferences("topic") as Topic[];
   return (
     <TopicsLayout
       topics={topics}
-      title={title}
-      subtitle={subtitle}
+      title={data.title}
+      subtitle={data.subtitle}
       content={content}
     />
   );

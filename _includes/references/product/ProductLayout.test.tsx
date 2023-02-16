@@ -1,12 +1,9 @@
 import { expect, test } from "vitest";
 import { screen } from "@testing-library/dom";
 
-import {
-  ProductLayout,
-  ProductRenderProps,
-  render,
-} from "./ProductLayout.11ty";
+import { ProductLayout, render } from "./ProductLayout.11ty";
 import fixtures from "../../fixtures";
+import { RenderProps } from "../../../src/models";
 
 test("should make ProductLayout", () => {
   const product = fixtures.products[0];
@@ -25,11 +22,13 @@ test("should make ProductLayout", () => {
 });
 
 test("should render ProductLayout", () => {
-  const renderProps: ProductRenderProps = {
+  const renderProps: RenderProps = {
     collections: fixtures.collections,
     content: fixtures.content,
+    data: {},
     page: {
       fileSlug: fixtures.products[0].slug,
+      url: "some-url",
     },
   };
   fixtures.context.getResources = () =>

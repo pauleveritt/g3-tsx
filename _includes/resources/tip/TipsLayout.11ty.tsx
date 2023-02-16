@@ -1,7 +1,7 @@
 import h, { JSX } from "vhtml";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { Tip } from "./TipModels";
-import { RenderContext } from "../../../src/models";
+import { RenderContext, RenderProps } from "../../../src/models";
 import ResourceCard from "../../resourcecard/ResourceCard.11ty";
 
 export type TipsLayoutProps = {
@@ -36,22 +36,16 @@ export function TipsLayout({
   );
 }
 
-export type TipsRenderProps = {
-  content: string;
-  title: string;
-  subtitle?: string;
-};
-
 export function render(
   this: RenderContext,
-  { content, title, subtitle }: TipsRenderProps
+  { content, data }: RenderProps
 ): JSX.Element {
   const tips = this.getResources("tip");
   return (
     <TipsLayout
       tips={tips}
-      title={title}
-      subtitle={subtitle}
+      title={data.title}
+      subtitle={data.subtitle}
       content={content}
     />
   );

@@ -5,13 +5,12 @@ import TopNav from "../../pagenav/TopNav.11ty";
 import SeeAlso from "../../seealso/SeeAlso.11ty";
 import { Tip } from "./TipModels";
 import SidebarLayout from "../../layouts/SidebarLayout.11ty";
-import { SiteCollections } from "../../models";
 import { Author } from "../../references/author/AuthorModels";
 import SidebarPublished from "../../sidebar/SidebarPublished.11ty";
 import Sidebar from "../../sidebar/Sidebar.11ty";
 import MarkdownIt from "markdown-it";
 import VideoPlayer from "../../video/VideoPlayer.11ty";
-import { RenderContext } from "../../../src/models";
+import { RenderContext, RenderProps } from "../../../src/models";
 
 export type TipLayoutProps = {
   author: Author;
@@ -140,17 +139,9 @@ export function TipLayout({
   );
 }
 
-export type TipRenderProps = {
-  collections: SiteCollections;
-  content: string;
-  page: {
-    url: string;
-  };
-};
-
 export function render(
   this: RenderContext,
-  { collections, content, page }: TipRenderProps
+  { collections, content, page }: RenderProps
 ): JSX.Element {
   const tip = collections.allResources.get(page.url) as Tip;
   if (!tip) {

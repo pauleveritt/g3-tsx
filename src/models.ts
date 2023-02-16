@@ -2,6 +2,7 @@ import { Static, Type } from "@sinclair/typebox";
 import { Assertions } from "./TestCases";
 import { BaseFrontmatter, Resource } from "./ResourceModels";
 import { ReferenceFrontmatter } from "./ReferenceModels";
+import { SiteCollections } from "../_includes/models";
 
 export const EleventyPage = Type.Object({
   // The common, page-oriented data 11ty passes in when it reads a Markdown file
@@ -35,3 +36,18 @@ export interface RenderContext {
 
   getReferences(resourceType?: string): ReferenceFrontmatter[];
 }
+
+export type RenderProps = {
+  collections: SiteCollections;
+  data: any | Titles;
+  page: {
+    fileSlug: string;
+    url: string;
+  };
+  content: string;
+};
+
+export type Titles = {
+  title: string;
+  subtitle: string;
+};

@@ -2,14 +2,22 @@ import { expect, test } from "vitest";
 import { render, TutorialsRenderProps } from "./TutorialsLayout.11ty";
 import { screen } from "@testing-library/dom";
 import fixtures from "../../fixtures";
+import { RenderProps } from "../../../src/models";
 
 test("should render TutorialsLayout", () => {
   const title = "These Tutorials";
   const subtitle = "Some tips text";
-  const renderProps: TutorialsRenderProps = {
+  const renderProps: RenderProps = {
+    collections: fixtures.collections,
     content: fixtures.content,
-    title,
-    subtitle,
+    data: {
+      title,
+      subtitle,
+    },
+    page: {
+      fileSlug: "slug",
+      url: "url",
+    },
   };
   fixtures.context.getResources = () =>
     Array.from(fixtures.resolvedCollections.allResources.values());

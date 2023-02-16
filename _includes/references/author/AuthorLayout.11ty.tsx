@@ -1,9 +1,8 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
-import { SiteCollections } from "../../models";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import Thumbnail from "../../Image.11ty";
-import { RenderContext } from "../../../src/models";
+import { RenderContext, RenderProps } from "../../../src/models";
 import ResourceCard from "../../resourcecard/ResourceCard.11ty";
 import { Resource } from "../../../src/ResourceModels";
 import { AuthorFrontmatter } from "./AuthorModels";
@@ -52,18 +51,9 @@ export function AuthorLayout({
   );
 }
 
-export type AuthorRenderProps = {
-  collections: SiteCollections;
-  content: string;
-  page: {
-    fileSlug: string;
-    url: string;
-  };
-};
-
 export function render(
   this: RenderContext,
-  { collections, content, page }: AuthorRenderProps
+  { collections, content, page }: RenderProps
 ): JSX.Element {
   // TODO Get a better test here
   // this.addTestCase(page.url, [byRole({ role: "link", text: "Paul Everitt" })]);
