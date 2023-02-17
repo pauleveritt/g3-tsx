@@ -53,3 +53,5 @@ export function AuthorLayout(
     />
   );
 }
+
+export const render = AuthorLayout;

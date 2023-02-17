@@ -90,7 +90,7 @@ export function TipLayout(
         >
           {leadin && <div dangerouslySetInnerHTML={{ __html: leadin }} />}
           <div>
-            {tip.hasBody && (
+            {content && (
               <a
                 className="button is-light"
                 href="#in-depth"
@@ -114,7 +114,7 @@ export function TipLayout(
           </div>
         </div>
       </div>
-      {tip.hasBody && (
+      {content && (
         <>
           <header className="is-size-3 is-bold">In Depth</header>
           <div className="columns">
