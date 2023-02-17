@@ -28,6 +28,10 @@ import {
   TutorialStep,
   TutorialStepFrontmatter,
 } from "./resources/tutorial/TutorialStepModels";
+import {
+  Playlist,
+  PlaylistFrontmatter,
+} from "./resources/playlist/PlaylistModels";
 
 /**
  * Reusable test data``
@@ -457,6 +461,69 @@ export const tutorialStepDatas: {
   },
 ];
 
+export const playlistFrontmatters: PlaylistFrontmatter[] = [
+  {
+    title: "Some Playlist",
+    resourceType: "playlist",
+    author: "sa",
+    date: new Date("2023-02-02"),
+    thumbnail: "thumbnail.png",
+    label: "sp",
+    playlistItems: ["/tips/some-tip/"],
+  },
+  {
+    title: "Another Playlist",
+    resourceType: "playlist",
+    author: "sa",
+    date: new Date("2023-02-02"),
+    thumbnail: "thumbnail.png",
+    label: "ap",
+    playlistItems: [],
+  },
+];
+
+export const playlistItems: {
+  content: string;
+  data: PlaylistFrontmatter;
+  page: EleventyPage;
+}[] = [
+  {
+    content,
+    data: { ...playlistFrontmatters[0] },
+    page: {
+      fileSlug: "some-playlist",
+      url: "/playlists/some-playlist/",
+      inputPath: `${rootPath}/playlists/some-playlist/index.md`,
+    },
+  },
+  {
+    content,
+    data: { ...playlistFrontmatters[1] },
+    page: {
+      fileSlug: "another-playlist",
+      url: "/playlists/another-playlist/",
+      inputPath: `${rootPath}/playlists/another-playlist/index.md`,
+    },
+  },
+];
+
+export const playlistDatas: {
+  data: PlaylistFrontmatter;
+  page: EleventyPage;
+  content: string;
+}[] = [
+  {
+    content,
+    data: { ...playlistItems[0].data },
+    page: playlistItems[0].page,
+  },
+  {
+    content,
+    data: { ...playlistItems[1].data },
+    page: playlistItems[1].page,
+  },
+];
+
 // This data structure matches collections.all
 // https://www.11ty.dev/docs/collections/#collection-item-data-structure
 const all: BaseItem[] = [
@@ -467,6 +534,7 @@ const all: BaseItem[] = [
   ...productItems,
   ...technologyItems,
   ...topicItems,
+  ...playlistItems,
 ];
 
 const authors = await Promise.all(
@@ -513,8 +581,14 @@ const tutorialSteps = await Promise.all(
   )
 );
 
+const playlists = await Promise.all(
+  playlistDatas.map(
+    async (ref) => await new Playlist({ data: ref.data, page: ref.page }).init()
+  )
+);
+
 const allResources: ResourceCollection = new Map();
-[...tips, ...tutorials, ...tutorialSteps].forEach((resource) =>
+[...tips, ...tutorials, ...tutorialSteps, ...playlists].forEach((resource) =>
   allResources.set(resource.url, resource)
 );
 
@@ -564,6 +638,8 @@ const fixtures = {
   tutorialItems,
   tutorialSteps,
   tutorialStepItems,
+  playlists,
+  playlistItems,
   all,
   context,
   resolvedCollections: resolvedCollections,

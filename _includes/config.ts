@@ -13,8 +13,10 @@ import { Topic } from "./references/topic/TopicModels";
 import { Tip } from "./resources/tip/TipModels";
 import { Tutorial } from "./resources/tutorial/TutorialModels";
 import { TutorialStep } from "./resources/tutorial/TutorialStepModels";
+import { Playlist } from "./resources/playlist/PlaylistModels";
 
 export const resourceCollections = {
+  playlist: Playlist,
   tip: Tip,
   tutorial: Tutorial,
   tutorialstep: TutorialStep,
