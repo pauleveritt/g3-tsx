@@ -11,6 +11,7 @@
 
 ## Soon
 
+- Style misfire in code snippets on `number`
 - Change label to be topic:label key
 - Sort out children vs. content and the vhtml typing issue
 - Clean up the content

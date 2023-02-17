@@ -10,7 +10,7 @@ import { TutorialStep } from "./TutorialStepModels";
 import VideoPlayer from "../../video/VideoPlayer.11ty";
 import { Tutorial } from "./TutorialModels";
 import SidebarStep from "../../sidebar/SidebarStep.11ty";
-import TopNav from "./TopNav.11ty";
+import { BottomNav, TopNav } from "./TopBottomNav.11ty";
 
 export function TutorialStepLayout(
   this: RenderContext,
@@ -87,6 +87,9 @@ export function TutorialStepLayout(
 
   // Top/Bottom nav
   const topNav = <TopNav parent={parent} currentStep={tutorialStep}></TopNav>;
+  const bottomNav = (
+    <BottomNav parent={parent} currentStep={tutorialStep}></BottomNav>
+  );
 
   return (
     <SidebarLayout
@@ -94,6 +97,7 @@ export function TutorialStepLayout(
       subtitle={tutorialStep.subtitle}
       sidebar={[sidebar]}
       topNav={[topNav]}
+      bottomNav={[bottomNav]}
     >
       <main>{main}</main>
     </SidebarLayout>

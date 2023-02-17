@@ -8,13 +8,36 @@ export type TopNavProps = {
   currentStep: TutorialStep;
 };
 
-const TopNav = ({ parent, currentStep }: TopNavProps): JSX.Element => {
+type Paging = {
+  previous?: TutorialStep | null;
+  next?: TutorialStep | null;
+  current: TutorialStep;
+  currentIndex: number;
+};
+
+function getPagingElements(
+  parent: Tutorial,
+  currentStep: TutorialStep
+): Paging {
   const siblings = parent.tutorialSteps;
   const currentSlugIndex = siblings.findIndex((s) => s == currentStep);
   const previous = currentSlugIndex > 0 ? siblings[currentSlugIndex - 1] : null;
   const next =
     currentSlugIndex < siblings.length ? siblings[currentSlugIndex + 1] : null;
 
+  return {
+    previous,
+    next,
+    current: currentStep,
+    currentIndex: currentSlugIndex,
+  };
+}
+
+export const TopNav = ({ parent, currentStep }: TopNavProps): JSX.Element => {
+  const { previous, next, currentIndex } = getPagingElements(
+    parent,
+    currentStep
+  );
   return (
     <div style={`marginBottom: '1em'`}>
       <div style={`textAlign: 'center', marginBottom: '0.5em' `}>
@@ -47,7 +70,7 @@ const TopNav = ({ parent, currentStep }: TopNavProps): JSX.Element => {
               className="topnav-previous button"
               style={`border: "none" `}
               title={previous.title}
-              aria-label="Previous Step"
+              aria-label="Top Previous Step"
             >
               <span className="icon">
                 <i className="fas fa-arrow-left" />
@@ -61,7 +84,7 @@ const TopNav = ({ parent, currentStep }: TopNavProps): JSX.Element => {
             <div className="dropdown-trigger" style={`width: '20rem' `}>
               <button className="button" aria-controls="dropdown-menu2">
                 <span>
-                  {currentSlugIndex + 1} of {siblings.length}
+                  {currentIndex + 1} of {parent.tutorialSteps.length}
                 </span>
                 <span className="icon is-small">
                   <i className="fas fa-angle-down" />
@@ -74,7 +97,7 @@ const TopNav = ({ parent, currentStep }: TopNavProps): JSX.Element => {
                   <strong className="is-size-5">{parent.title}</strong>
                 </div>
                 <hr className="dropdown-divider" />
-                {siblings.map((entry) => (
+                {parent.tutorialSteps.map((entry) => (
                   <a
                     href={entry.url}
                     aria-label="Step Menu Item"
@@ -96,7 +119,7 @@ const TopNav = ({ parent, currentStep }: TopNavProps): JSX.Element => {
               className="topnav-previous button"
               style={`border: "none"`}
               title={next.title}
-              aria-label="Next Step"
+              aria-label="Top Next Step"
             >
               <span style={`paddingLeft: '1em' `}>Next</span>
               <span className="icon">
@@ -109,5 +132,41 @@ const TopNav = ({ parent, currentStep }: TopNavProps): JSX.Element => {
     </div>
   );
 };
-
-export default TopNav;
+export const BottomNav = ({
+  parent,
+  currentStep,
+}: TopNavProps): JSX.Element => {
+  const { previous, next } = getPagingElements(parent, currentStep);
+  return (
+    <div className="columns is-size-10 is-size-6">
+      <div className="column has-text-left">
+        {previous && (
+          <a
+            href={previous.url}
+            className="bottomnav-previous is-small"
+            aria-label="Bottom Previous Step"
+          >
+            <span className="icon" title={previous.title}>
+              <i className="fas fa-arrow-left" />
+            </span>
+            <span style="padding-left: 1em">{previous.title}</span>
+          </a>
+        )}
+      </div>
+      <div className="column has-text-right">
+        {next && (
+          <a
+            href={next.url}
+            className="bottomnav-next is-small"
+            aria-label="Bottom Next Step"
+          >
+            <span style="padding-right: 1em">{next.title}</span>
+            <span className="icon" title={next.title}>
+              <i className="fas fa-arrow-right" />
+            </span>
+          </a>
+        )}
+      </div>
+    </div>
+  );
+};
