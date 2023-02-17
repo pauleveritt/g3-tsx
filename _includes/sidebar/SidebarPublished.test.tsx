@@ -7,8 +7,8 @@ import SidebarPublished, {
 import fixtures from "../fixtures";
 
 const props: SidebarPublishedProps = {
-  date: new Date("2023-01-01"),
   author: fixtures.authors[0],
+  displayDate: "2023-01-01",
 };
 
 test("SidebarPublished", () => {

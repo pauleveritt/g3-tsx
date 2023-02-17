@@ -14,6 +14,7 @@ const references = tip.references as References;
 export const tipSidebarProps: TipSidebarProps = {
   displayDate: tip.displayDate,
   author: references.author as Author,
+  hasBody: true,
   products: references.products as Product[],
   technologies: references.technologies as Technology[],
   topics: references.topics as Topic[],
