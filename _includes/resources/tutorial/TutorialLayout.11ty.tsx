@@ -1,7 +1,5 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
-import BottomNav from "../../pagenav/BottomNav.11ty";
-import TopNav from "../../pagenav/TopNav.11ty";
 import { Tutorial } from "./TutorialModels";
 import SidebarLayout from "../../layouts/SidebarLayout.11ty";
 import { Author } from "../../references/author/AuthorModels";
@@ -18,20 +16,6 @@ export function TutorialLayout(
 ): JSX.Element {
   const tutorial = collections.allResources.get(page.url) as Tutorial;
   this.addTestCase(page.url, [byRole({ role: "link", text: "Paul Everitt" })]);
-  // Top/Bottom Nav
-  const topNav = TopNav({
-    parent: { label: "Parent Label", slug: "parent-slug" },
-    siblings: [
-      { label: "Sibling 1", slug: "sibling-1" },
-      { label: "Sibling 2", slug: "sibling-2" },
-      { label: "xSibling 3", slug: "sibling-3" },
-    ],
-    currentSlug: "sibling-2",
-  });
-  const bottomNav = BottomNav({
-    previous: { label: "Previous Tip", slug: "/previous" },
-    next: { label: "Next Tip", slug: "/next" },
-  });
 
   // Sidebars
   const references = tutorial.references as References;
@@ -68,8 +52,6 @@ export function TutorialLayout(
     <SidebarLayout
       pageTitle={tutorial.title}
       subtitle={tutorial.subtitle}
-      topNav={[topNav]}
-      bottomNav={[bottomNav]}
       sidebar={[sidebar]}
     >
       <main>{main}</main>

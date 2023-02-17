@@ -1,64 +1,53 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
-
-type Entry = {
-  label: string;
-  slug: string;
-};
+import { Tutorial } from "./TutorialModels";
+import { TutorialStep } from "./TutorialStepModels";
 
 export type TopNavProps = {
-  parent: Entry;
-  siblings: Entry[];
-  currentSlug: string;
-  playlistLabel?: string;
-  kind?: string;
+  parent: Tutorial;
+  currentStep: TutorialStep;
 };
 
-const TopNav = ({
-  parent,
-  siblings,
-  currentSlug,
-  playlistLabel,
-  kind = "Tip",
-}: TopNavProps): JSX.Element => {
-  const currentSlugIndex = siblings.findIndex((s) => s.slug === currentSlug);
+const TopNav = ({ parent, currentStep }: TopNavProps): JSX.Element => {
+  const siblings = parent.tutorialSteps;
+  const currentSlugIndex = siblings.findIndex((s) => s == currentStep);
   const previous = currentSlugIndex > 0 ? siblings[currentSlugIndex - 1] : null;
   const next =
     currentSlugIndex < siblings.length ? siblings[currentSlugIndex + 1] : null;
 
-  const playlistPrefix = playlistLabel ? `?playlist=${playlistLabel}` : "";
   return (
     <div style={`marginBottom: '1em'`}>
       <div style={`textAlign: 'center', marginBottom: '0.5em' `}>
-        {parent && (
-          <a
-            href={`${parent.slug}`}
-            className="topnav-previous button is-size-7"
-            style={`border: "none" `}
-            title={parent.label}
-          >
-            <span className="icon">
-              <i className="fas fa-arrow-up" />
-            </span>
-          </a>
-        )}
         <a
-          href={parent.slug}
+          href={`${parent.url}`}
           className="topnav-previous button is-size-7"
           style={`border: "none" `}
-          title={parent.label}
+          title={parent.title}
         >
-          <span>Up to {parent.label}</span>
+          <span className="icon">
+            <i className="fas fa-arrow-up" />
+          </span>
+        </a>
+
+        <a
+          aria-label="Parent Tutorial"
+          href={parent.url}
+          className="topnav-previous button is-size-7"
+          style={`border: "none" `}
+          title={parent.title}
+        >
+          <span>Up to {parent.title}</span>
         </a>
       </div>
       <div className="columns">
         <div className="column has-text-left is-one-quarter-desktop is-hidden-mobile">
           {previous && (
             <a
-              href={`${previous.slug}${playlistPrefix}`}
+              href={previous.url}
               className="topnav-previous button"
               style={`border: "none" `}
-              title={previous.label}
+              title={previous.title}
+              aria-label="Previous Step"
             >
               <span className="icon">
                 <i className="fas fa-arrow-left" />
@@ -72,7 +61,7 @@ const TopNav = ({
             <div className="dropdown-trigger" style={`width: '20rem' `}>
               <button className="button" aria-controls="dropdown-menu2">
                 <span>
-                  {kind} {currentSlugIndex + 1} of {siblings.length}
+                  {currentSlugIndex + 1} of {siblings.length}
                 </span>
                 <span className="icon is-small">
                   <i className="fas fa-angle-down" />
@@ -82,15 +71,18 @@ const TopNav = ({
             <div className="dropdown-menu" id="dropdown-menu2" role="menu">
               <div className="dropdown-content">
                 <div className="dropdown-item">
-                  <strong className="is-size-5">{parent.label}</strong>
+                  <strong className="is-size-5">{parent.title}</strong>
                 </div>
                 <hr className="dropdown-divider" />
                 {siblings.map((entry) => (
                   <a
-                    href={`${entry.slug}${playlistPrefix}`}
-                    className="dropdown-item"
+                    href={entry.url}
+                    aria-label="Step Menu Item"
+                    className={`dropdown-item${
+                      entry == currentStep ? " is-active" : ""
+                    }`}
                   >
-                    {entry.label}
+                    {entry.title}
                   </a>
                 ))}
               </div>
@@ -100,10 +92,11 @@ const TopNav = ({
         <div className="column has-text-right is-one-quarter-desktop is-hidden-mobile">
           {next && (
             <a
-              href={`${next.slug}${playlistPrefix}`}
+              href={next.url}
               className="topnav-previous button"
               style={`border: "none"`}
-              title={next.label}
+              title={next.title}
+              aria-label="Next Step"
             >
               <span style={`paddingLeft: '1em' `}>Next</span>
               <span className="icon">

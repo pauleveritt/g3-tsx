@@ -345,7 +345,11 @@ export const tutorialFrontmatters: TutorialFrontmatter[] = [
     author: "sa",
     date: new Date("2023-02-02"),
     thumbnail: "thumbnail.png",
-    tutorialItems: ["./some-tutorialstep", "./another-tutorialstep"],
+    tutorialItems: [
+      "./some-tutorialstep",
+      "./another-tutorialstep",
+      "./third-tutorialstep",
+    ],
   },
   {
     title: "Another Tutorial",
@@ -414,6 +418,13 @@ export const tutorialStepFrontmatters: TutorialStepFrontmatter[] = [
     date: new Date("2023-02-02"),
     thumbnail: "thumbnail.png",
   },
+  {
+    title: "Third Tutorial Step",
+    resourceType: "tutorialstep",
+    author: "sa",
+    date: new Date("2023-02-02"),
+    thumbnail: "thumbnail.png",
+  },
 ];
 
 export const tutorialStepItems: {
@@ -439,6 +450,15 @@ export const tutorialStepItems: {
       inputPath: `${rootPath}/tutorials/some-tutorial/another-tutorialstep/index.md`,
     },
   },
+  {
+    content,
+    data: { ...tutorialStepFrontmatters[2] },
+    page: {
+      fileSlug: "third-tutorialstep",
+      url: "/tutorials/some-tutorial/third-tutorialstep/",
+      inputPath: `${rootPath}/tutorials/some-tutorial/third-tutorialstep/index.md`,
+    },
+  },
 ];
 export const tutorialStepDatas: {
   data: TutorialStepFrontmatter;
@@ -458,6 +478,13 @@ export const tutorialStepDatas: {
       ...tutorialStepItems[1].data,
     },
     page: tutorialStepItems[1].page,
+  },
+  {
+    content,
+    data: {
+      ...tutorialStepItems[2].data,
+    },
+    page: tutorialStepItems[2].page,
   },
 ];
 

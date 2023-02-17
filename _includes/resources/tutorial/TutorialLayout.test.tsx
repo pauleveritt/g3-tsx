@@ -16,5 +16,5 @@ test("should render TutorialLayout", () => {
   };
   document.body.innerHTML = TutorialLayout.call(fixtures.context, renderProps);
   const cards = screen.getAllByRole("link", { name: "Resource" });
-  expect(cards && cards.length).to.equal(2);
+  expect(cards && cards.length).to.equal(3);
 });
