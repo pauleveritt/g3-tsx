@@ -2,17 +2,16 @@
 
 ## Now
 
-- Perfect coverage in config
-- Change label to be topic:label key
+- Playlists
+  - Get some Markdown copied over
 
 ## Next
 
-- Wire in TipSidebar into TipLayout
-- Make schemas for just the frontmatter part
 - Get a placeholder.jpg into the site
 
 ## Soon
 
+- Change label to be topic:label key
 - Sort out children vs. content and the vhtml typing issue
 - Clean up the content
 
@@ -72,6 +71,8 @@
 - Change TipResource to Tip
   - Then get rid of that key in config
 - Remove `content` from `BaseData`
+- Wire in TipSidebar into TipLayout
+- Make schemas for just the frontmatter part
 
 ## WS+CWM Issues
 
