@@ -1,7 +1,5 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
-import BottomNav from "../../pagenav/BottomNav.11ty";
-import TopNav from "../../pagenav/TopNav.11ty";
 import SeeAlso from "../../seealso/SeeAlso.11ty";
 import { Tip } from "./TipModels";
 import SidebarLayout from "../../layouts/SidebarLayout.11ty";
@@ -40,23 +38,25 @@ export function TipLayout(
   // If there is a tip.leadin, markdown convert it
   let leadin;
   if (tip.leadin) {
+    // TODO Convert this to `this.renderMarkdown` to preserve a
+    // Markdown instance.
     const md = new MarkdownIt("commonmark");
     leadin = md.render(tip.leadin as string);
   }
   // Top/Bottom Nav
-  const topNav = TopNav({
-    parent: { label: "Parent Label", slug: "parent-slug" },
-    siblings: [
-      { label: "Sibling 1", slug: "sibling-1" },
-      { label: "Sibling 2", slug: "sibling-2" },
-      { label: "xSibling 3", slug: "sibling-3" },
-    ],
-    currentSlug: "sibling-2",
-  });
-  const bottomNav = BottomNav({
-    previous: { label: "Previous Tip", slug: "/previous" },
-    next: { label: "Next Tip", slug: "/next" },
-  });
+  // const topNav = TopNav({
+  //   parent: { label: "Parent Label", slug: "parent-slug" },
+  //   siblings: [
+  //     { label: "Sibling 1", slug: "sibling-1" },
+  //     { label: "Sibling 2", slug: "sibling-2" },
+  //     { label: "xSibling 3", slug: "sibling-3" },
+  //   ],
+  //   currentSlug: "sibling-2",
+  // });
+  // const bottomNav = BottomNav({
+  //   previous: { label: "Previous Tip", slug: "/previous" },
+  //   next: { label: "Next Tip", slug: "/next" },
+  // });
 
   const sidebar = (
     <TipSidebar
@@ -154,8 +154,8 @@ export function TipLayout(
     <SidebarLayout
       pageTitle={tip.title}
       subtitle={tip.subtitle}
-      topNav={[topNav]}
-      bottomNav={[bottomNav]}
+      // topNav={[topNav]}
+      // bottomNav={[bottomNav]}
       sidebar={[sidebar]}
     >
       <main>{main}</main>
