@@ -9493,7 +9493,7 @@ a.navbar-item > .icon:not(:last-child) {
   .header-item .button + .button {
     margin-left: 0.75rem; } }
 
-pre.prism-code .tag, pre.prism-code .number {
+pre code .tag, pre code .number {
   display: inline;
   padding: inherit;
   font-size: inherit;

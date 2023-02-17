@@ -9,6 +9,7 @@ export type BaseLayoutProps = {
   pageTitle: string;
   children: string[];
 };
+
 export const BaseLayout = ({
   pageTitle,
   children,
@@ -36,14 +37,20 @@ export const BaseLayout = ({
         <link
           href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.21.2/video-js.min.css"
           rel="stylesheet"
-          />
+        />
       </head>
       <body>
         <Navbar></Navbar>
         {children}
         <Footer copyright={copyright}></Footer>
-        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.21.2/video.min.js" />
-        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/2.6.1/Youtube.min.js" />
+        <script
+          defer
+          src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.21.2/video.min.js"
+        />
+        <script
+          defer
+          src="https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/2.6.1/Youtube.min.js"
+        />
       </body>
     </html>
   );

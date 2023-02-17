@@ -40,10 +40,10 @@ export const TopNav = ({ parent, currentStep }: TopNavProps): JSX.Element => {
   );
   return (
     <div style={`marginBottom: '1em'`}>
-      <div style={`textAlign: 'center', marginBottom: '0.5em' `}>
+      <div className={`mb-4`}>
         <a
           href={`${parent.url}`}
-          className="topnav-previous button is-size-7"
+          className="topnav-previous is-size-7"
           style={`border: "none" `}
           title={parent.title}
         >
@@ -55,7 +55,7 @@ export const TopNav = ({ parent, currentStep }: TopNavProps): JSX.Element => {
         <a
           aria-label="Parent Tutorial"
           href={parent.url}
-          className="topnav-previous button is-size-7"
+          className="topnav-previous is-size-7"
           style={`border: "none" `}
           title={parent.title}
         >
@@ -68,7 +68,7 @@ export const TopNav = ({ parent, currentStep }: TopNavProps): JSX.Element => {
             <a
               href={previous.url}
               className="topnav-previous button"
-              style={`border: "none" `}
+              style={`border: 0`}
               title={previous.title}
               aria-label="Top Previous Step"
             >
@@ -117,7 +117,7 @@ export const TopNav = ({ parent, currentStep }: TopNavProps): JSX.Element => {
             <a
               href={next.url}
               className="topnav-previous button"
-              style={`border: "none"`}
+              style={`border: 0`}
               title={next.title}
               aria-label="Top Next Step"
             >

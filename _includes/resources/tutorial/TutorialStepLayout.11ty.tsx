@@ -23,16 +23,10 @@ export function TutorialStepLayout(
   const references = tutorialStep.references as References;
 
   const longVideo = tutorialStep.longVideo && (
-    <a
-      className="button is-light"
-      href="#full-video"
-      style="width: auto; margi-left: 0.5em"
-    >
-      <VideoPlayer
-        source={tutorialStep.longVideo.url}
-        poster={tutorialStep.longVideo.poster}
-      />
-    </a>
+    <VideoPlayer
+      source={tutorialStep.longVideo.url}
+      poster={tutorialStep.longVideo.poster}
+    />
   );
 
   // #### Sidebar
