@@ -7,7 +7,6 @@
 
 ## Next
 
-- Remove `content` from `BaseData`
 - Wire in TipSidebar into TipLayout
 - Make schemas for just the frontmatter part
 - Get a placeholder.jpg into the site
@@ -72,6 +71,7 @@
 - Change referenceResources to linkedResources
 - Change TipResource to Tip
   - Then get rid of that key in config
+- Remove `content` from `BaseData`
 
 ## WS+CWM Issues
 

@@ -16,7 +16,7 @@ const baseFrontmatter: BaseFrontmatter = {
 const data: ResourceFrontmatter = {
   ...baseFrontmatter,
   author: "sa",
-  date: new Date("2023-02-02"),
+  date: new Date("2023-02-12"),
   products: ["sp", "ap"],
   technologies: ["st", "at"],
   thumbnail: "thumbnail.png",
@@ -43,4 +43,9 @@ test("get a class attribute from base class", () => {
 });
 test("get a class attribute from base class", () => {
   expect(Resource.frontmatterSchema).to.equal(ResourceFrontmatter);
+});
+
+test("get a friendly date display format", () => {
+  const resource = new Resource({ data, page });
+  expect(resource.displayDate).to.equal("2023-02-11");
 });

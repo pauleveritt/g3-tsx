@@ -12,7 +12,7 @@ import { References } from "../../src/ReferenceModels";
 const tip = Array.from(fixtures.resolvedCollections.allResources.values())[0];
 const references = tip.references as References;
 export const tipSidebarProps: TipSidebarProps = {
-  date: tip.date,
+  displayDate: tip.displayDate,
   author: references.author as Author,
   products: references.products as Product[],
   technologies: references.technologies as Technology[],

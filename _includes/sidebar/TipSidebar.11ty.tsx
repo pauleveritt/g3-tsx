@@ -14,7 +14,7 @@ import { Topic } from "../references/topic/TopicModels";
 import { Technology } from "../references/technology/TechnologyModels";
 
 export type TipSidebarProps = {
-  date: Date;
+  displayDate: string;
   author: Author;
   products: Product[];
   technologies: Technology[];
@@ -24,18 +24,18 @@ export type TipSidebarProps = {
   hasLongVideo?: boolean;
 };
 const TipSidebar = ({
-  date,
   author,
+  body,
+  displayDate,
+  hasLongVideo = false,
   products,
+  seealsos,
   technologies,
   topics,
-  body,
-  seealsos,
-  hasLongVideo = false,
 }: TipSidebarProps): JSX.Element => {
   const published: SidebarPublishedProps = {
-    date: new Date(date),
-    author: author,
+    author,
+    displayDate,
   };
   const links: SidebarDoclinkProps[] = [];
   if (body) {

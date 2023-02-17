@@ -6,6 +6,7 @@ import { AllCollections, imageOptions, resolveReference } from "./registration";
 // @ts-ignore
 import Image from "@11ty/eleventy-img";
 import { validateFrontmatter } from "./validators";
+import { DateTime } from "luxon";
 
 export const BaseFrontmatter = Type.Object({
   resourceType: Type.String(),
@@ -64,6 +65,7 @@ export type ResourceFrontmatter = Static<typeof ResourceFrontmatter>;
 export class Resource extends BaseEntity implements ResourceFrontmatter {
   author: string;
   date: Date;
+  displayDate: string;
   products?: string[];
   subtitle?: string;
   technologies?: string[];
@@ -81,8 +83,10 @@ export class Resource extends BaseEntity implements ResourceFrontmatter {
     page: EleventyPage;
   }) {
     super({ data, page });
+    const displayDate = DateTime.fromJSDate(data.date).toFormat("yyyy-LL-dd");
     this.author = data.author;
     this.date = new Date(data.date);
+    this.displayDate = displayDate;
     this.products = data.products;
     this.subtitle = data.subtitle;
     this.technologies = data.technologies;

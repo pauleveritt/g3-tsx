@@ -10,7 +10,15 @@ export type ResourceCardProps = {
   resource: Resource;
 };
 const ResourceCard = ({
-  resource: { url, title, resourceType, date, subtitle, thumbnail, references },
+  resource: {
+    url,
+    title,
+    resourceType,
+    displayDate,
+    subtitle,
+    thumbnail,
+    references,
+  },
 }: ResourceCardProps): JSX.Element => {
   // @ts-ignore
   const { author, products, technologies, topics } = references;
@@ -88,13 +96,11 @@ const ResourceCard = ({
               </div>
               <div className="level-right">
                 <div className="level-item">
-                  {date && (
-                    <div className="level-right is-size-7 has-text-grey">
-                      <span className="level-item bio-common-card-published">
-                        {date}
-                      </span>
-                    </div>
-                  )}
+                  <div className="level-right is-size-7 has-text-grey">
+                    <span className="level-item bio-common-card-published">
+                      {displayDate}
+                    </span>
+                  </div>
                 </div>
               </div>
             </nav>

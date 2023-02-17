@@ -37,7 +37,7 @@ export function TutorialLayout(
   const references = tutorial.references as References;
   const sidebarPublished = (
     <SidebarPublished
-      date={tutorial.date as Date}
+      displayDate={tutorial.displayDate}
       author={references.author as Author}
     ></SidebarPublished>
   );
