@@ -17,7 +17,7 @@ export const tipSidebarProps: TipSidebarProps = {
   products: references.products as Product[],
   technologies: references.technologies as Technology[],
   topics: references.topics as Topic[],
-  body: "The body",
+  longVideo: "something",
   seealsos: [
     { title: "See Also 1", href: "/see-also-1" },
     { title: "See Also 2", href: "/see-also-2" },

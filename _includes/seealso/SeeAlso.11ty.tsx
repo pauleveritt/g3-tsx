@@ -16,7 +16,9 @@ const SeeAlso = ({ items }: SeeAlsoProps): JSX.Element => {
   if (items.length) {
     return (
       <div>
-        <header className="is-size-3 is-bold">See Also</header>
+        <header id="see-also" className="is-size-3 is-bold">
+          See Also
+        </header>
         <div className="content">
           <ul>
             {items.map((see) => (

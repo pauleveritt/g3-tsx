@@ -6,11 +6,13 @@ import SeeAlso from "../../seealso/SeeAlso.11ty";
 import { Tip } from "./TipModels";
 import SidebarLayout from "../../layouts/SidebarLayout.11ty";
 import { Author } from "../../references/author/AuthorModels";
-import SidebarPublished from "../../sidebar/SidebarPublished.11ty";
-import Sidebar from "../../sidebar/Sidebar.11ty";
 import MarkdownIt from "markdown-it";
 import VideoPlayer from "../../video/VideoPlayer.11ty";
 import { RenderContext, RenderProps } from "../../../src/models";
+import TipSidebar from "../../sidebar/TipSidebar.11ty";
+import { Product } from "../../references/product/ProductModels";
+import { Technology } from "../../references/technology/TechnologyModels";
+import { Topic } from "../../references/topic/TopicModels";
 
 export function TipLayout(
   this: RenderContext,
@@ -20,11 +22,20 @@ export function TipLayout(
   if (!tip) {
     throw new Error(`Tip "${page.url}" not in collection`);
   }
-  // @ts-ignore
+  // Unpack references and make it not undefined
+  if (!tip.references) {
+    throw new Error(`Tip ${tip.url} has no references.`);
+  }
   const author = tip.references.author as Author;
   if (!author) {
     throw new Error(`Author "${tip.author}" not in collection`);
   }
+  const technologies = tip.references.technologies
+    ? (tip.references.technologies as Technology[])
+    : [];
+  const topics = tip.references.topics
+    ? (tip.references.topics as Topic[])
+    : [];
 
   // If there is a tip.leadin, markdown convert it
   let leadin;
@@ -47,14 +58,18 @@ export function TipLayout(
     next: { label: "Next Tip", slug: "/next" },
   });
 
-  // Sidebars
-  const sidebarPublished = (
-    <SidebarPublished
+  const sidebar = (
+    <TipSidebar
       displayDate={tip.displayDate}
       author={author}
-    ></SidebarPublished>
+      products={tip.references.products as Product[]}
+      technologies={technologies}
+      topics={topics}
+      hasBody={tip.hasBody}
+      seealsos={tip.seealso}
+      longVideo={tip.longVideo}
+    />
   );
-  const sidebar = <Sidebar>{sidebarPublished}</Sidebar>;
 
   // Main content
   const main = (
@@ -116,7 +131,9 @@ export function TipLayout(
       </div>
       {content && (
         <>
-          <header className="is-size-3 is-bold">In Depth</header>
+          <header id="in-depth" className="is-size-3 is-bold">
+            In Depth
+          </header>
           <div className="columns">
             <div
               className="column is-11-desktop content"

@@ -11,7 +11,6 @@ const SidebarDoclink = ({
 }: SidebarDoclinkProps): JSX.Element => {
   return (
     <li>
-      x
       <a href={`#${target}`} style="width: auto">
         {label}
       </a>

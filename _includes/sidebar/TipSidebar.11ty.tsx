@@ -19,15 +19,15 @@ export type TipSidebarProps = {
   products: Product[];
   technologies: Technology[];
   topics: Topic[];
-  body?: string;
+  hasBody?: boolean;
   seealsos?: SeeAlsos;
-  hasLongVideo?: boolean;
+  longVideo: any;
 };
 const TipSidebar = ({
   author,
-  body,
+  hasBody,
   displayDate,
-  hasLongVideo = false,
+  longVideo,
   products,
   seealsos,
   technologies,
@@ -38,13 +38,13 @@ const TipSidebar = ({
     displayDate,
   };
   const links: SidebarDoclinkProps[] = [];
-  if (body) {
+  if (hasBody) {
     links.push({ label: "In Depth", target: "in-depth" });
   }
   if (seealsos) {
     links.push({ label: "See Also", target: "see-also" });
   }
-  if (hasLongVideo) {
+  if (longVideo) {
     links.push({ label: "Full Video", target: "full-video" });
   }
   return (
