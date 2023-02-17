@@ -43,20 +43,6 @@ export function TipLayout(
     const md = new MarkdownIt("commonmark");
     leadin = md.render(tip.leadin as string);
   }
-  // Top/Bottom Nav
-  // const topNav = TopNav({
-  //   parent: { label: "Parent Label", slug: "parent-slug" },
-  //   siblings: [
-  //     { label: "Sibling 1", slug: "sibling-1" },
-  //     { label: "Sibling 2", slug: "sibling-2" },
-  //     { label: "xSibling 3", slug: "sibling-3" },
-  //   ],
-  //   currentSlug: "sibling-2",
-  // });
-  // const bottomNav = BottomNav({
-  //   previous: { label: "Previous Tip", slug: "/previous" },
-  //   next: { label: "Next Tip", slug: "/next" },
-  // });
 
   const sidebar = (
     <TipSidebar
@@ -92,7 +78,7 @@ export function TipLayout(
           />
         )}
         {tip.shortVideo && (
-          <div>
+          <div className="column is-three-fifths">
             <VideoPlayer
               source={tip.shortVideo.url}
               poster={tip.shortVideo.poster}
@@ -105,15 +91,6 @@ export function TipLayout(
         >
           {leadin && <div dangerouslySetInnerHTML={{ __html: leadin }} />}
           <div>
-            {content && (
-              <a
-                className="button is-light"
-                href="#in-depth"
-                style="width: auto"
-              >
-                Learn More
-              </a>
-            )}
             {tip.longVideo && (
               <a
                 className="button is-light"
