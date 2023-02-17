@@ -4,7 +4,7 @@ import { Playlist } from "./PlaylistModels";
 import SidebarLayout from "../../layouts/SidebarLayout.11ty";
 import { RenderContext, RenderProps } from "../../../src/models";
 
-export function TipLayout(
+export function PlaylistLayout(
   this: RenderContext,
   { collections, content, page }: RenderProps
 ): JSX.Element {
@@ -34,4 +34,4 @@ export function TipLayout(
   );
 }
 
-export const render = TipLayout;
+export const render = PlaylistLayout;
