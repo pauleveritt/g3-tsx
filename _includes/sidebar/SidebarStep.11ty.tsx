@@ -15,7 +15,7 @@ const SidebarStep = ({
 }: SidebarStepProps): JSX.Element => {
   const markerClass = isActive ? "is-info" : "is-primary";
   return (
-    <li className={`steps-segment is-active`}>
+    <li className={`steps-segment is-active`} style="flex-grow: 0">
       <a href={target} style="width: auto" className="has-text-dark">
         <span className={`steps-marker ${markerClass}`}>{marker}</span>
         <div className="steps-content">
