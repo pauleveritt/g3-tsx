@@ -11,7 +11,6 @@
 
 ## Soon
 
-- Style misfire in code snippets on `number`
 - Change label to be topic:label key
 - Sort out children vs. content and the vhtml typing issue
 - Clean up the content
@@ -31,7 +30,6 @@
 ## G3
 
 - Screenshots in Markdown folders
-- HTML `<video>` widget
 
 - Lunr
 - NavbarSearch reveal panel
@@ -46,6 +44,7 @@
 - Fix all style={} to not use `textAlign` instead use `text-align`
 - Site prefix stuff e.g. starting a `/tips/` instead of `/webstorm-guide/tips/`
 - Tutorials
+- Style misfire in code snippets on `number`
 
 ## Nice To Have
 

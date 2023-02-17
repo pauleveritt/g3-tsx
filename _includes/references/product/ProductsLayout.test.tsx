@@ -19,9 +19,8 @@ test("should render ProductsLayout", () => {
   };
   fixtures.context.getReferences = () => fixtures.products;
   document.body.innerHTML = ProductsLayout.call(fixtures.context, renderProps);
-  const items: HTMLUListElement[] = screen.getAllByRole("link", {
-    name: "product",
+  const items: HTMLAnchorElement[] = screen.getAllByRole("link", {
+    name: "Product",
   });
-  expect(items[0].textContent).to.equal("Some Product");
-  expect(screen.getByText("world")).to.exist;
+  expect(items[0].title).to.equal("Some Product");
 });

@@ -1,6 +1,6 @@
 import h from "vhtml";
 import { expect, it } from "vitest";
-import { ReferenceLayoutMain } from "./ReferenceLayout.11y";
+import { ReferenceLayout } from "./ReferenceLayout.11y";
 import { screen } from "@testing-library/dom";
 
 it("make a ReferenceLayout", () => {
@@ -11,12 +11,12 @@ it("make a ReferenceLayout", () => {
     </ul>
   );
   document.body.innerHTML = (
-    <ReferenceLayoutMain
+    <ReferenceLayout
       title={`Some Title`}
       subtitle={`Some Subtitle`}
       figure={[figure]}
       listing={[listing]}
-    ></ReferenceLayoutMain>
+    ></ReferenceLayout>
   );
   expect(screen.getByText("Some Title")).to.exist;
 });

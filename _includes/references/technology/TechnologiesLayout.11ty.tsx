@@ -10,32 +10,40 @@ export function TechnologiesLayout(
   const technologies = this.getReferences("technology") as Technology[];
 
   const figure = undefined;
-  const listing: string[] = technologies.map((technology) => (
-    <a aria-label={`Technology`} className="bd-link" href={technology.url}>
-      <h2 className="bd-link-name">
-        <figure className="bd-link-figure">
-          <div className="image is-64x64">
-            <img
-              src={technology.logo}
-              alt={technology.title}
-              className="bio-resourcecard-logo"
-            />
-          </div>
-        </figure>
-        {technology.title}
-      </h2>
-      {technology.subtitle && (
-        <p className="bd-link-subtitle">{technology.subtitle}</p>
-      )}
-    </a>
-  ));
-
+  const listing = (
+    <nav className="bd-links bio-resourcecards">
+      {technologies.map((technology) => (
+        <a
+          aria-label={`Technology`}
+          className="bd-link"
+          href={technology.url}
+          title={technology.title}
+        >
+          <h2 className="bd-link-name">
+            <figure className="bd-link-figure">
+              <div className="image is-64x64">
+                <img
+                  src={technology.logo}
+                  alt={technology.title}
+                  className="bio-resourcecard-logo"
+                />
+              </div>
+            </figure>
+            {technology.title}
+          </h2>
+          {technology.subtitle && (
+            <p className="bd-link-subtitle">{technology.subtitle}</p>
+          )}
+        </a>
+      ))}
+    </nav>
+  );
   return (
     <ReferenceLayout
       title={title as string}
       subtitle={subtitle}
       figure={figure}
-      listing={[listing.join("")]}
+      listing={[listing]}
       content={content}
     />
   );
