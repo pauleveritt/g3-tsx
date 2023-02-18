@@ -620,9 +620,12 @@ const allResources: ResourceCollection = new Map();
 );
 
 const allReferences: ReferenceCollection = new Map();
-[...authors, ...products, ...technologies, ...topics].forEach((reference) =>
-  allReferences.set(reference.label, reference)
-);
+[...authors, ...products, ...technologies, ...topics].forEach((reference) => {
+  // @ts-ignore
+  const joinKey = reference.constructor.joinKey;
+  const key = `${joinKey}:${reference.label}`;
+  return allReferences.set(key, reference);
+});
 
 // Make duplicates as resolved collections
 const clonedCollectionItems = structuredClone(all);

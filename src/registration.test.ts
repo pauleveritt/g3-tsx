@@ -22,7 +22,7 @@ test("should start with unresolved references on tips", () => {
 
 test("a resource and a reference exist in fixture data", () => {
   const tip0 = fixtures.collections.allResources.get("/tips/some-tip/");
-  const author0 = fixtures.collections.allReferences.get("sa");
+  const author0 = fixtures.collections.allReferences.get("author:sa");
   expect(tip0).to.exist;
   expect(author0).to.exist;
 });
@@ -41,21 +41,22 @@ test("should construct collections", async () => {
   // Authors
   const authorItem0 = fixtures.authorItems[0];
   const thisAuthor0 = allReferences.get(
-    authorItem0.data.label as string
+    `author:${authorItem0.data.label}`
   ) as AuthorFrontmatter;
   expect(thisAuthor0).to.exist;
   expect(thisAuthor0.title).to.equal(authorItem0.data.title);
 
   // Topics
   const topic0Item = fixtures.topicItems[0];
-  const thisTopic0 = allReferences.get(topic0Item.data.label as string);
+  const thisTopic0 = allReferences.get(`topics:${topic0Item.data.label}`);
   expect(thisTopic0 && thisTopic0.title).to.equal(topic0Item.data.title);
 
   // Technologies
-  // const technology1Item = fixtures.technologyItems[0];
-  // const technology1 = allReferences.get(technology1Item.data.label as string);
-  // // TODO Label This illustrates the problem with "st" as key
-  //   expect(technology1 && technology1.title).to.equal(technology1Item.data.title);
+  const technology0Item = fixtures.technologyItems[0];
+  const technology0 = allReferences.get(
+    `technologies:${technology0Item.data.label}`
+  );
+  expect(technology0 && technology0.title).to.equal(technology0Item.data.title);
 
   // Let's look at references
   const refs = thisTip0.references;
@@ -77,7 +78,7 @@ describe("Resolve References", () => {
   });
 
   test("allReferences should exist", () => {
-    expect(allReferences.get("sa")).to.exist;
+    expect(allReferences.get("author:sa")).to.exist;
   });
 
   test("should throw error for undefined field", () => {
@@ -93,7 +94,9 @@ describe("Resolve References", () => {
     resource.products = ["xxx", "yyy"];
     const resolver = () =>
       resolveReference({ fieldName, resource, allReferences });
-    expect(resolver).toThrowError(`has unresolved reference "xxx"`);
+    expect(resolver).toThrowError(
+      `Resource "/tips/some-tip/" has unresolved reference "products:xxx"`
+    );
   });
 
   test("should throw error for undefined label in value", () => {
@@ -102,7 +105,9 @@ describe("Resolve References", () => {
     resource.author = "xxx";
     const resolver = () =>
       resolveReference({ fieldName, resource, allReferences });
-    expect(resolver).toThrowError(`has unresolved reference "xxx"`);
+    expect(resolver).toThrowError(
+      `Resource "/tips/some-tip/" has unresolved reference "author:xxx"`
+    );
   });
 
   test("resolve a set of references", () => {

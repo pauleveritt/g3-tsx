@@ -15,6 +15,7 @@ export class Topic extends Reference implements TopicFrontmatter {
   accent: string;
   icon: string;
   static frontmatterSchema = TopicFrontmatter;
+  static joinKey = "topics"; // What field on resource? Used in label namespace.
 
   constructor({ data, page }: { data: TopicFrontmatter; page: EleventyPage }) {
     super({ data, page });

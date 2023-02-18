@@ -3,7 +3,7 @@ import h, { JSX } from "vhtml";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { LayoutContext, LayoutProps } from "../../../src/models";
 import { Resource } from "../../../src/ResourceModels";
-import { TopicFrontmatter } from "./TopicModels";
+import { Topic, TopicFrontmatter } from "./TopicModels";
 import ResourceCard from "../../resourcecard/ResourceCard.11ty";
 
 export type TopicLayoutData = LayoutProps & TopicFrontmatter;
@@ -14,8 +14,8 @@ export function TopicLayout(
 ): JSX.Element {
   const { collections, content, page } = data;
   const topic = collections.allReferences.get(
-    page.fileSlug
-  ) as TopicFrontmatter;
+    `topics:${page.fileSlug}`
+  ) as Topic;
   if (!topic) {
     throw new Error(`Topic "${page.fileSlug}" not in collection`);
   }

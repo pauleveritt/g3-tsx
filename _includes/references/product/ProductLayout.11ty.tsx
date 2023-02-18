@@ -2,18 +2,19 @@
 import h, { JSX } from "vhtml";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { LayoutContext, LayoutProps } from "../../../src/models";
-import { ProductFrontmatter } from "./ProductModels";
+import { Product, ProductFrontmatter } from "./ProductModels";
 import { Resource } from "../../../src/ResourceModels";
 
 export type ProductLayoutProps = LayoutProps & ProductFrontmatter;
+
 export function ProductLayout(
   this: LayoutContext,
   data: ProductLayoutProps
 ): JSX.Element {
   const { collections, content, page } = data;
   const product = collections.allReferences.get(
-    page.fileSlug
-  ) as ProductFrontmatter;
+    `products:${page.fileSlug}`
+  ) as Product;
   if (!product) {
     throw new Error(`Product "${page.fileSlug}" not in collection`);
   }

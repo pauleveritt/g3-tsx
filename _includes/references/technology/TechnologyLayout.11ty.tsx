@@ -2,7 +2,7 @@
 import h, { JSX } from "vhtml";
 import { LayoutContext, LayoutProps } from "../../../src/models";
 import { Resource } from "../../../src/ResourceModels";
-import { TechnologyFrontmatter } from "./TechnologyModels";
+import { Technology, TechnologyFrontmatter } from "./TechnologyModels";
 import ResourceCard from "../../resourcecard/ResourceCard.11ty";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 
@@ -14,8 +14,8 @@ export function TechnologyLayout(
 ): JSX.Element {
   const { collections, content, page } = data;
   const technology = collections.allReferences.get(
-    page.fileSlug
-  ) as TechnologyFrontmatter;
+    `technologies:${page.fileSlug}`
+  ) as Technology;
   if (!technology) {
     throw new Error(`Technology "${page.fileSlug}" not in collection`);
   }

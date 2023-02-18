@@ -13,7 +13,7 @@ test("should process into allResources and allReferences", () => {
   const tip0 = allResources.get(tipItems[0].page.url);
   expect(tip0 && tip0.title).to.equal(tipItems[0].data.title);
   const author0Label = authorItems[0].data.label as string;
-  const author0 = allReferences.get(author0Label);
+  const author0 = allReferences.get(`author:${author0Label}`);
   expect(author0 && author0.title).to.equal(authorItems[0].data.title);
 
   // Tutorial

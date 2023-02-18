@@ -4,47 +4,43 @@
 
 - Playlists
   - Get some Markdown copied over
+  - Sidebar panel "in playlists"
 
 ## Next
 
-- Get a placeholder.jpg into the site
 
 ## Soon
 
-- Change label to be topic:label key
-- Sort out children vs. content and the vhtml typing issue
+- Lunr
+  - NavbarSearch reveal panel
 - Clean up the content
+- Get a placeholder.jpg into the site
+- JSON Schema writing
+- Implement NavbarBrand toggle menu
+- TwitterCard stuff and other Helmet
+- Allow running in `inputSrc` of `webstorm-guide` (to prevent links from including `/webstorm-guide/`)
+  - Or possibly [pathPrefix](https://www.11ty.dev/docs/config/#deploy-to-a-subdirectory-with-a-path-prefix)
 
 ## Eventually
 
-- A real `resourceType`
+- A real `resourceType` for collections, page
+- Sort out children vs. content and the vhtml typing issue
+- Investigate `--incremental` by storing the validated resource on the `collections.all` instance
+  - Learn watch events and add/edit/delete
+  - Both for full and incremental
+- Coverage
+- No `ScrollLink` component in `SidebarDoclink`
+- Site prefix stuff e.g. starting a `/tips/` instead of `/webstorm-guide/tips/`
+
+## G3
+
+- "MDX" by enabling WebC as markdown template language
+- Tutorials
+- Style misfire in code snippets on `number`
 - Re-invent collections
   - Change fixtures and typing to treat `collections.all` with the correct structure
   - Have `collections.resources` which is an object with properties for `all`, etc.
   - Use Map to allow iteration and preserve default sort order
-  - Investigate `--incremental` by storing the validated resource on the `collections.all` instance
-    - Learn watch events and add/edit/delete
-    - Both for full and incremental
-- Coverage
-
-## G3
-
-- Screenshots in Markdown folders
-
-- Lunr
-- NavbarSearch reveal panel
-- JSON Schema writing
-
-- "MDX" by enabling WebC as markdown template language
-- Implement NavbarBrand toggle menu
-- TwitterCard stuff and other Helmet
-- No playlist support in TopNav particularly aria-*
-  - Or in TipSidebar `inPlaylist`
-- No `ScrollLink` component in `SidebarDoclink`
-- Fix all style={} to not use `textAlign` instead use `text-align`
-- Site prefix stuff e.g. starting a `/tips/` instead of `/webstorm-guide/tips/`
-- Tutorials
-- Style misfire in code snippets on `number`
 
 ## Nice To Have
 
@@ -73,6 +69,8 @@
 - Remove `content` from `BaseData`
 - Wire in TipSidebar into TipLayout
 - Make schemas for just the frontmatter part
+- Change label to be topic:label key
+
 
 ## WS+CWM Issues
 

@@ -8,7 +8,7 @@ import Thumbnail from "../../Image.11ty";
 import { LayoutContext } from "../../../src/models";
 import ResourceCard from "../../resourcecard/ResourceCard.11ty";
 import { Resource } from "../../../src/ResourceModels";
-import { AuthorFrontmatter } from "./AuthorModels";
+import { Author } from "./AuthorModels";
 
 export function AuthorLayout(
   this: LayoutContext,
@@ -18,8 +18,8 @@ export function AuthorLayout(
   // this.addTestCase(page.url, [byRole({ role: "link", text: "Paul Everitt" })]);
   const { collections, content, page } = data;
   const author = collections.allReferences.get(
-    page.fileSlug
-  ) as AuthorFrontmatter;
+    `author:${page.fileSlug}`
+  ) as Author;
   if (!author) {
     throw new Error(`Author "${page.fileSlug}" not in collection`);
   }

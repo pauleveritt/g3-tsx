@@ -14,6 +14,7 @@ export type ReferenceFrontmatter = Static<typeof ReferenceFrontmatter>;
 export class Reference extends BaseEntity implements ReferenceFrontmatter {
   label: string;
   subtitle?: string;
+  static joinKey = "references"; // What field on resource? Used in label namespace.
 
   constructor({
     data,

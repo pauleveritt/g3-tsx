@@ -91,7 +91,8 @@ export async function resolveAllCollections({
         const referenceClass = referenceCollections[resourceType];
         // @ts-ignore
         const reference = await new referenceClass({ data, page }).init();
-        allReferences.set(reference.label as string, reference);
+        const resolvedLabel = `${referenceClass.joinKey}:${reference.label}`;
+        allReferences.set(resolvedLabel, reference);
       } else {
         console.warn(`Unregistered resource type: ${resourceType}`);
       }
@@ -138,30 +139,27 @@ export function resolveReference({
   if (Array.isArray(thisFieldValue)) {
     // resource.author is a single value, but resource.topics etc. array
     return thisFieldValue.map((label) => {
-      const reference = allReferences.get(label);
+      const resolvedLabel = `${fieldName}:${label}`;
+      const reference = allReferences.get(resolvedLabel);
       if (!reference) {
         throw new Error(
-          `Resource "${resource.url}" has unresolved reference "${label}"`
+          `Resource "${resource.url}" has unresolved reference "${resolvedLabel}"`
         );
       }
       return reference;
     });
   } else {
-    const reference = allReferences.get(thisFieldValue);
+    // Single-value reference like author
+    const resolvedLabel = `${fieldName}:${thisFieldValue}`;
+    const reference = allReferences.get(resolvedLabel);
     if (!reference) {
       throw new Error(
-        `Resource "${resource.url}" has unresolved reference "${thisFieldValue}"`
+        `Resource "${resource.url}" has unresolved reference "${resolvedLabel}"`
       );
     }
     return reference;
   }
 }
-
-export type ResolveReferences = {
-  fieldNames: string[];
-  resource: Resource;
-  allReferences: ReferenceCollection;
-};
 
 export const imageOptions: ImageOptions = {
   widths: ["auto"],
