@@ -5,10 +5,11 @@ import { LayoutContext, LayoutProps } from "../../../src/models";
 import Thumbnail from "../../Image.11ty";
 import { BaseFrontmatter } from "../../../src/ResourceModels";
 
-export type ProductsLayoutProps = LayoutProps & BaseFrontmatter;
+export type ProductsLayoutData = LayoutProps & BaseFrontmatter;
+
 export function ProductsLayout(
   this: LayoutContext,
-  data: ProductsLayoutProps
+  data: ProductsLayoutData
 ): JSX.Element {
   const { content } = data;
   const products = this.getReferences("product") as Product[];
