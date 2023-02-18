@@ -1,28 +1,21 @@
 import h, { JSX } from "vhtml";
 import { BaseLayout } from "./BaseLayout.11ty";
 import { LayoutContext, LayoutProps } from "../../src/models";
+import { BaseFrontmatter } from "../../src/ResourceModels";
 
-export type PageLayoutProps = {
-  children: string[];
-} & LayoutProps;
+export type PageLayoutData = LayoutProps & BaseFrontmatter;
 
 export function PageLayout(
   this: LayoutContext,
-  { page, content, collections }: PageLayoutProps
+  data: PageLayoutData
 ): JSX.Element {
-  const data = { title: "xxx" };
   return (
-    <BaseLayout
-      page={page}
-      collections={collections}
-      content={content}
-      {...data}
-    >
+    <BaseLayout {...data}>
       <div className="bd-main bulmaio-body">
         <div className="bd-side-background" />
         <div className="bd-main-container container content">
           <h1>{data.title}</h1>
-          <div dangerouslySetInnerHTML={{ __html: content }} />
+          <div dangerouslySetInnerHTML={{ __html: data.content }} />
         </div>
       </div>
     </BaseLayout>
