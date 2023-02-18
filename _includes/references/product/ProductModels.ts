@@ -1,6 +1,7 @@
 import { Reference, ReferenceFrontmatter } from "../../../src/ReferenceModels";
 import { Static, Type } from "@sinclair/typebox";
 import { EleventyPage } from "../../../src/models";
+import path from "path";
 
 export const ProductFrontmatter = Type.Intersect([
   ReferenceFrontmatter,
@@ -22,6 +23,6 @@ export class Product extends Reference implements ProductFrontmatter {
     page: EleventyPage;
   }) {
     super({ data, page });
-    this.logo = data.logo;
+    this.logo = path.join(path.dirname(page.inputPath), data.logo);
   }
 }

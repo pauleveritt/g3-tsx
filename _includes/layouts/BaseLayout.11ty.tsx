@@ -4,7 +4,6 @@ import Navbar from "../navbar/Navbar.11ty";
 import site from "../site.json";
 import Footer from "../footer/Footer.11ty";
 import { LayoutContext, LayoutProps } from "../../src/models";
-import { getThumbnailUrl } from "../Image.11ty";
 
 export type BaseLayoutProps = {
   children: string[];
@@ -18,7 +17,7 @@ export function BaseLayout(
   const { children } = data;
   const { siteTitle, copyright } = site;
   // @ts-ignore
-  const imageUrl = data.thumbnail ? getThumbnailUrl(data.thumbnail) : "";
+  // const imageUrl = data.thumbnail ? getThumbnailUrl(data.thumbnail) : "";
   // @ts-ignore
   const { subtitle } = data;
   return (
@@ -38,7 +37,7 @@ export function BaseLayout(
         <meta property="article:published_time" content="2023-02-17" />
         <meta property="article:author" content="" />
         <meta property="article:section" content="" />
-        <meta property="og:image" content={imageUrl} />
+        {/*<meta property="og:image" content={imageUrl} />*/}
         <meta property="og:image:alt" content="" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@jetbrains" />
