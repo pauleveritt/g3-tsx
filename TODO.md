@@ -2,6 +2,7 @@
 
 ## Now
 
+- Ensure `embed:` alternative with `{% include %}` works
 - Playlists
   - Get some Markdown copied over
   - Sidebar panel "in playlists"
