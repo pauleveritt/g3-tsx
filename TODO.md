@@ -95,3 +95,55 @@
 # Manual Migration Tasks
 
 - Change tutorialItems to remove prefix
+
+      <Helmet title={`${page.pageTitle} - ${helmet.siteTitle}`}>
+        <html lang="en" />
+        <meta charSet={`utf-8`} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta httpEquiv={`X-UA-Compatible`} />
+        <meta property="og:title" content="How to Become an SEO Expert (8 Steps)" />
+        <meta property="og:description" content="Get from SEO newbie to SEO pro in 8 simple steps." />
+        <meta property="og:image" content="https://ahrefs.com/blog/wp-content/uploads/2019/12/fb-how-to-become-an-seo-expert.png" />
+        <meta property="og:type" content="article" />
+        {twitterCard && (
+          <meta name="description" content={twitterCard.page.description} />
+        )}
+        {twitterCard && (
+          <meta name={`twitter:card`} content={`summary_large_image`} />
+        )}
+        {twitterCard && (
+          <meta name={`twitter:site`} content={twitterCard.site.siteName} />
+        )}
+        {twitterCard && (
+          <meta name={`twitter:creator`} content={twitterCard.site.creator} />
+        )}
+        {twitterCard && (
+          <meta name={`twitter:title`} content={twitterCard.page.title} />
+        )}
+        {twitterCard && (
+          <meta
+            name={`twitter:description`}
+            content={twitterCard.page.description}
+          />
+        )}
+        {twitterCard && (
+          <meta name={`twitter:image`} content={twitterCard.page.image} />
+        )}
+        <body className="layout-default" />
+        {Favicon}
+        <script
+          defer={true}
+          src="https://use.fontawesome.com/releases/v6.0.0-beta3/js/all.js"
+        />
+      </Helmet>
+
+  const twitterCardPage: TwitterCardPage = {
+  title: tip.title,
+  description: tip.subtitle ? tip.subtitle : '',
+  image: tip.thumbnail
+  ? `https://www.jetbrains.com${tip.thumbnail.publicURL}`
+  : tip.cardThumbnail
+  ? `https://www.jetbrains.com${tip.cardThumbnail.publicURL}`
+  : ''
+  };
+

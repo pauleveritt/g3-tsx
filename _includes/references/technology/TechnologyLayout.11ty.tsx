@@ -1,15 +1,18 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
-import { RenderContext, RenderProps } from "../../../src/models";
+import { LayoutContext, LayoutProps } from "../../../src/models";
 import { Resource } from "../../../src/ResourceModels";
 import { TechnologyFrontmatter } from "./TechnologyModels";
 import ResourceCard from "../../resourcecard/ResourceCard.11ty";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 
+export type TechnologyLayoutProps = LayoutProps & TechnologyFrontmatter;
+
 export function TechnologyLayout(
-  this: RenderContext,
-  { collections, content, page }: RenderProps
+  this: LayoutContext,
+  data: TechnologyLayoutProps
 ): JSX.Element {
+  const { collections, content, page } = data;
   const technology = collections.allReferences.get(
     page.fileSlug
   ) as TechnologyFrontmatter;
@@ -38,8 +41,7 @@ export function TechnologyLayout(
 
   return (
     <ReferenceLayout
-      title={technology.title}
-      subtitle={technology.subtitle}
+      {...data}
       figure={[figure]}
       listing={[listing]}
       content={contentDiv}

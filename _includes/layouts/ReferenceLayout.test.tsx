@@ -1,22 +1,22 @@
 import h from "vhtml";
 import { expect, it } from "vitest";
-import { ReferenceLayout } from "./ReferenceLayout.11y";
+import { ReferenceLayout, ReferenceLayoutProps } from "./ReferenceLayout.11y";
 import { screen } from "@testing-library/dom";
+import fixtures from "../fixtures";
+import { SiteCollections } from "../models";
 
 it("make a ReferenceLayout", () => {
-  const figure = <figure></figure>;
-  const listing = (
-    <ul>
-      <li>one</li>
-    </ul>
-  );
+  const tip0 = fixtures.tipItems[0];
+  const renderProps: ReferenceLayoutProps = {
+    ...tip0.data,
+    page: tip0.page,
+    collections: fixtures.resolvedCollections as SiteCollections,
+    content: fixtures.content,
+    listing: ["<p>Some Title</p>"],
+  };
+
   document.body.innerHTML = (
-    <ReferenceLayout
-      title={`Some Title`}
-      subtitle={`Some Subtitle`}
-      figure={[figure]}
-      listing={[listing]}
-    ></ReferenceLayout>
+    <ReferenceLayout {...renderProps}></ReferenceLayout>
   );
   expect(screen.getByText("Some Title")).to.exist;
 });

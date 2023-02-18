@@ -1,21 +1,22 @@
 import { expect, test } from "vitest";
 import fixtures from "../../fixtures";
-import { RenderProps } from "../../../src/models";
-import { TutorialStepLayout } from "./TutorialStepLayout.11ty";
+import {
+  TutorialStepLayout,
+  TutorialStepLayoutData,
+} from "./TutorialStepLayout.11ty";
 import { screen } from "@testing-library/dom";
 
 test("should render TutorialStepLayout", () => {
   // @ts-ignore
-  const renderProps: RenderProps = {
+  const tutorialStepLayoutData: TutorialStepLayoutData = {
     collections: { ...fixtures.resolvedCollections, all: fixtures.all },
-    page: {
-      fileSlug: "slug",
-      url: fixtures.tutorialSteps[0].url,
-    },
+    content: fixtures.content,
+    ...fixtures.tutorialStepItems[0].data,
+    page: fixtures.tutorialStepItems[0].page,
   };
   document.body.innerHTML = TutorialStepLayout.call(
     fixtures.context,
-    renderProps
+    tutorialStepLayoutData
   );
 
   // Make sure sidebar steps renders correctly

@@ -2,23 +2,24 @@ import { expect, test } from "vitest";
 import { TopicsLayout } from "./TopicsLayout.11ty";
 import { screen } from "@testing-library/dom";
 import fixtures from "../../fixtures";
-import { RenderProps } from "../../../src/models";
+import { ReferenceLayoutProps } from "../../layouts/ReferenceLayout.11y";
 
 test("should render TopicsLayout", () => {
-  const title = "These Topics";
-  const subtitle = "Some topics text";
-  const renderProps: RenderProps = {
+  const topicsLayoutProps: ReferenceLayoutProps = {
     collections: fixtures.collections,
     content: fixtures.content,
-    title,
-    subtitle,
+    ...fixtures.topicItems[0].data,
+    listing: [""],
     page: {
-      fileSlug: "slug",
-      url: "url",
+      url: "/topics",
+      fileSlug: "some-slug",
     },
   };
   fixtures.context.getReferences = () => fixtures.topics;
-  document.body.innerHTML = TopicsLayout.call(fixtures.context, renderProps);
+  document.body.innerHTML = TopicsLayout.call(
+    fixtures.context,
+    topicsLayoutProps
+  );
   const links: HTMLAnchorElement[] = screen.getAllByRole("link", {
     name: "Topic",
   });

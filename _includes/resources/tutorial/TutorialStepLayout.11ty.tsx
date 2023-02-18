@@ -1,21 +1,23 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
-import SidebarLayout from "../../layouts/SidebarLayout.11ty";
+import { SidebarLayout } from "../../layouts/SidebarLayout.11ty";
 import { Author } from "../../references/author/AuthorModels";
 import SidebarPublished from "../../sidebar/SidebarPublished.11ty";
 import Sidebar from "../../sidebar/Sidebar.11ty";
-import { RenderContext, RenderProps } from "../../../src/models";
+import { LayoutContext, LayoutProps } from "../../../src/models";
 import { References } from "../../../src/ReferenceModels";
-import { TutorialStep } from "./TutorialStepModels";
+import { TutorialStep, TutorialStepFrontmatter } from "./TutorialStepModels";
 import VideoPlayer from "../../video/VideoPlayer.11ty";
 import { Tutorial } from "./TutorialModels";
 import SidebarStep from "../../sidebar/SidebarStep.11ty";
 import { BottomNav, TopNav } from "./TopBottomNav.11ty";
 
+export type TutorialStepLayoutData = LayoutProps & TutorialStepFrontmatter;
 export function TutorialStepLayout(
-  this: RenderContext,
-  { collections, page, content }: RenderProps
+  this: LayoutContext,
+  data: TutorialStepLayoutData
 ): JSX.Element {
+  const { collections, content, page } = data;
   const tutorialStep = collections.allResources.get(page.url) as TutorialStep;
   const parent = tutorialStep.parentTutorial as Tutorial;
 
@@ -92,6 +94,7 @@ export function TutorialStepLayout(
       sidebar={[sidebar]}
       topNav={[topNav]}
       bottomNav={[bottomNav]}
+      {...data}
     >
       <main>{main}</main>
     </SidebarLayout>

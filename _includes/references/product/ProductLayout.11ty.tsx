@@ -1,14 +1,16 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
-import { RenderContext, RenderProps } from "../../../src/models";
+import { LayoutContext, LayoutProps } from "../../../src/models";
 import { ProductFrontmatter } from "./ProductModels";
 import { Resource } from "../../../src/ResourceModels";
 
+export type ProductLayoutProps = LayoutProps & ProductFrontmatter;
 export function ProductLayout(
-  this: RenderContext,
-  { collections, content, page }: RenderProps
+  this: LayoutContext,
+  data: ProductLayoutProps
 ): JSX.Element {
+  const { collections, content, page } = data;
   const product = collections.allReferences.get(
     page.fileSlug
   ) as ProductFrontmatter;
@@ -46,8 +48,7 @@ export function ProductLayout(
 
   return (
     <ReferenceLayout
-      title={product.title}
-      subtitle={product.subtitle}
+      {...data}
       figure={[figure]}
       listing={[listing]}
       content={contentDiv}

@@ -1,14 +1,14 @@
 import { expect, test } from "vitest";
 import { screen } from "@testing-library/dom";
 
-import { ProductLayout } from "./ProductLayout.11ty";
+import { ProductLayout, ProductLayoutProps } from "./ProductLayout.11ty";
 import fixtures from "../../fixtures";
-import { RenderProps } from "../../../src/models";
 
 test("should render ProductLayout", () => {
-  const renderProps: RenderProps = {
+  const renderProps: ProductLayoutProps = {
     collections: fixtures.collections,
     content: fixtures.content,
+    ...fixtures.productItems[0].data,
     page: {
       fileSlug: fixtures.products[0].slug,
       url: "some-url",

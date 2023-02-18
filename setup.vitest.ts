@@ -4,7 +4,9 @@ import { vi } from "vitest";
 vi.mock("@11ty/eleventy-img", () => {
   const mockImage = vi.fn();
   // @ts-ignore
-  mockImage.statsSync = vi.fn();
+  mockImage.statsSync = () => {
+    return {};
+  };
   // @ts-ignore
   mockImage.generateHTML = vi.fn();
   return {

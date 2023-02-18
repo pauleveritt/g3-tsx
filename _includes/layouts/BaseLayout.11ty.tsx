@@ -3,29 +3,45 @@ import h, { JSX } from "vhtml";
 import Navbar from "../navbar/Navbar.11ty";
 import site from "../site.json";
 import Footer from "../footer/Footer.11ty";
-import { RenderContext } from "../../src/models";
+import { LayoutContext, LayoutProps } from "../../src/models";
+import { getThumbnailUrl } from "../Image.11ty";
 
 export type BaseLayoutProps = {
-  pageTitle: string;
   children: string[];
-};
+  title: string;
+} & LayoutProps;
 
-export const BaseLayout = ({
-  pageTitle,
-  children,
-}: BaseLayoutProps): JSX.Element => {
+export function BaseLayout(
+  this: LayoutContext,
+  data: BaseLayoutProps
+): JSX.Element {
+  const { children } = data;
   const { siteTitle, copyright } = site;
+  // @ts-ignore
+  const imageUrl = data.thumbnail ? getThumbnailUrl(data.thumbnail) : "";
+  // @ts-ignore
+  const { subtitle } = data;
   return (
     <html lang="en">
       <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>
-          {pageTitle} - {siteTitle}
+          {data.title} - {siteTitle}
         </title>
         <link rel="stylesheet" href="/assets/guide.css" />
         <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
         <link rel="shortcut icon" href="/assets/favicon.ico" />
+        <meta property="og:title" content={data.title} />
+        <meta property="og:description" content={subtitle} />
+        <meta property="og:type" content="article" />
+        <meta property="article:published_time" content="2023-02-17" />
+        <meta property="article:author" content="" />
+        <meta property="article:section" content="" />
+        <meta property="og:image" content={imageUrl} />
+        <meta property="og:image:alt" content="" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@jetbrains" />
         <script
           defer
           src="https://use.fontawesome.com/releases/v6.0.0-beta3/js/all.js"
@@ -54,16 +70,6 @@ export const BaseLayout = ({
       </body>
     </html>
   );
-};
-
-export type BaseLayoutRenderProps = {
-  children: string[];
-  title: string;
-};
-
-export function render(
-  this: RenderContext,
-  { title, children }: BaseLayoutRenderProps
-): JSX.Element {
-  return <BaseLayout pageTitle={title}>{children}</BaseLayout>;
 }
+
+export const render = BaseLayout;

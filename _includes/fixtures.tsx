@@ -13,7 +13,7 @@ import {
 } from "./references/product/ProductModels";
 import { referenceCollections, resourceCollections, rootPath } from "./config";
 import { vi } from "vitest";
-import { EleventyPage, RenderContext } from "../src/models";
+import { EleventyPage, LayoutContext } from "../src/models";
 import {
   BaseItem,
   ReferenceCollection,
@@ -640,7 +640,7 @@ const collections: SiteCollections = {
 const addTestCase = vi.fn();
 const getResources = vi.fn();
 const getReferences = vi.fn();
-const context: RenderContext = {
+const context: LayoutContext = {
   addTestCase,
   getResources,
   getReferences,

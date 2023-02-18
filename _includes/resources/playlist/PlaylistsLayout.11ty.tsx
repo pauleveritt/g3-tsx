@@ -1,28 +1,31 @@
 import h, { JSX } from "vhtml";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
-import { RenderContext, RenderProps } from "../../../src/models";
+import { LayoutContext, LayoutProps } from "../../../src/models";
 import ResourceCard from "../../resourcecard/ResourceCard.11ty";
+import { BaseFrontmatter } from "../../../src/ResourceModels";
+
+export type PlaylistsLayoutProps = LayoutProps & BaseFrontmatter;
 
 export function PlaylistsLayout(
-  this: RenderContext,
-  { content, title, subtitle }: RenderProps
+  this: LayoutContext,
+  data: PlaylistsLayoutProps
 ): JSX.Element {
-  const tips = this.getResources("tip");
+  const { content } = data;
+  const playlists = this.getResources("playlist");
   const figure = undefined;
   const listing = (
     <>
-      {tips.map((tip) => {
-        return <ResourceCard resource={tip}></ResourceCard>;
+      {playlists.map((playlist) => {
+        return <ResourceCard resource={playlist}></ResourceCard>;
       })}
     </>
   );
   return (
     <ReferenceLayout
-      title={title as string}
-      subtitle={subtitle}
+      {...data}
+      content={content}
       figure={figure}
       listing={[listing]}
-      content={content}
     />
   );
 }

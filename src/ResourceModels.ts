@@ -1,5 +1,5 @@
 import { Static, Type } from "@sinclair/typebox";
-import { EleventyPage } from "./models";
+import { EleventyPage, LayoutProps } from "./models";
 import path from "path";
 import { ReferenceFrontmatter, References } from "./ReferenceModels";
 import { AllCollections, imageOptions, resolveReference } from "./registration";
@@ -40,7 +40,8 @@ export class BaseEntity implements BaseFrontmatter {
 
   async init(): Promise<this> {
     if ("thumbnail" in this) {
-      await Image(this.thumbnail, imageOptions);
+      // TODO Getting a type warning on this
+      // await Image(this.thumbnail, imageOptions);
     }
     return this;
   }
@@ -61,6 +62,9 @@ export const ResourceFrontmatter = Type.Intersect([
   }),
 ]);
 export type ResourceFrontmatter = Static<typeof ResourceFrontmatter>;
+export type ResourceLayoutProps = {
+  data: ResourceFrontmatter;
+} & LayoutProps;
 
 export class Resource extends BaseEntity implements ResourceFrontmatter {
   author: string;

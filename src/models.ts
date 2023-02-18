@@ -26,7 +26,7 @@ export type Collections = {
   all: EleventyCollectionItem[];
 };
 
-export interface RenderContext {
+export interface LayoutContext {
   /**
    * Used by view renders to grab the `this` object
    */
@@ -37,13 +37,11 @@ export interface RenderContext {
   getReferences(resourceType?: string): ReferenceFrontmatter[];
 }
 
-export type RenderProps = {
+export type LayoutProps = {
   collections: SiteCollections;
   page: {
     fileSlug: string;
     url: string;
   };
   content: string;
-  title?: string;
-  subtitle?: string;
 };

@@ -1,13 +1,16 @@
 import h, { JSX } from "vhtml";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
 import { Product } from "./ProductModels";
-import { RenderContext, RenderProps } from "../../../src/models";
+import { LayoutContext, LayoutProps } from "../../../src/models";
 import Thumbnail from "../../Image.11ty";
+import { BaseFrontmatter } from "../../../src/ResourceModels";
 
+export type ProductsLayoutProps = LayoutProps & BaseFrontmatter;
 export function ProductsLayout(
-  this: RenderContext,
-  { content, title, subtitle }: RenderProps
+  this: LayoutContext,
+  data: ProductsLayoutProps
 ): JSX.Element {
+  const { content } = data;
   const products = this.getReferences("product") as Product[];
   const figure = undefined;
   const listing = (
@@ -41,8 +44,7 @@ export function ProductsLayout(
 
   return (
     <ReferenceLayout
-      title={title as string}
-      subtitle={subtitle}
+      {...data}
       figure={figure}
       listing={[listing]}
       content={content}

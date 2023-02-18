@@ -2,6 +2,7 @@
 import h, { JSX } from "vhtml";
 import { BaseLayout } from "./BaseLayout.11ty";
 import Heading from "../heading/Heading.11ty";
+import { LayoutContext, LayoutProps } from "../../src/models";
 
 export type SidebarLayoutProps = {
   pageTitle: string;
@@ -10,17 +11,15 @@ export type SidebarLayoutProps = {
   sidebar?: string[];
   topNav?: string[];
   children: string[];
-};
-const SidebarLayout = ({
-  pageTitle,
-  subtitle,
-  bottomNav,
-  topNav,
-  sidebar,
-  children,
-}: SidebarLayoutProps): JSX.Element => {
+} & LayoutProps;
+
+export function SidebarLayout(
+  this: LayoutContext,
+  data: SidebarLayoutProps
+): JSX.Element {
+  const { pageTitle, subtitle, bottomNav, topNav, sidebar, children } = data;
   return (
-    <BaseLayout pageTitle={pageTitle}>
+    <BaseLayout {...data} title={pageTitle}>
       <div className="bd-main bulmaio-body">
         <div className="bd-side-background" />
         <div className="bd-main-container container">
@@ -37,6 +36,6 @@ const SidebarLayout = ({
       </div>
     </BaseLayout>
   );
-};
+}
 
-export default SidebarLayout;
+export const render = SidebarLayout;

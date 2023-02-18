@@ -1,17 +1,15 @@
 import { expect, test } from "vitest";
-import { PlaylistsLayout } from "./PlaylistsLayout.11ty";
+import { PlaylistsLayout, PlaylistsLayoutProps } from "./PlaylistsLayout.11ty";
 import { screen } from "@testing-library/dom";
 import fixtures from "../../fixtures";
-import { RenderProps } from "../../../src/models";
 
 test("should render TipsLayout", () => {
   const title = "These Tips";
-  const subtitle = "Some tips text";
-  const renderProps: RenderProps = {
+  const renderProps: PlaylistsLayoutProps = {
     collections: fixtures.collections,
     content: fixtures.content,
     title,
-    subtitle,
+    resourceType: "playlist",
     page: {
       fileSlug: "slug",
       url: "url",

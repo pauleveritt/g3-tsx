@@ -1,13 +1,19 @@
 import { expect, test } from "vitest";
-import { PageRenderProps, render } from "./PageLayout.11ty";
+import { PageLayout, PageLayoutProps } from "./PageLayout.11ty";
 import { screen } from "@testing-library/dom";
 import fixtures from "../fixtures";
+import { SiteCollections } from "../models";
 
 test("should render PageLayout", () => {
-  const renderProps: PageRenderProps = {
-    title: "Some Page",
-    content: "<p>Some content</p>",
+  const tip0 = fixtures.tipItems[0];
+  const renderProps: PageLayoutProps = {
+    ...tip0.data,
+    page: tip0.page,
+    collections: fixtures.resolvedCollections as SiteCollections,
+    content: fixtures.content,
+    children: [],
   };
-  document.body.innerHTML = render.call(fixtures.context, renderProps);
-  expect(screen.getByText("Hello Some Page")).to.exist;
+
+  document.body.innerHTML = PageLayout.call(fixtures.context, renderProps);
+  expect(screen.getByText("world")).to.exist;
 });

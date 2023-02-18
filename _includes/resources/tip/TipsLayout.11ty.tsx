@@ -1,12 +1,16 @@
 import h, { JSX } from "vhtml";
-import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
-import { RenderContext, RenderProps } from "../../../src/models";
+import {
+  ReferenceLayout,
+  ReferenceLayoutProps,
+} from "../../layouts/ReferenceLayout.11y";
+import { LayoutContext } from "../../../src/models";
 import ResourceCard from "../../resourcecard/ResourceCard.11ty";
 
 export function TipsLayout(
-  this: RenderContext,
-  { content, title, subtitle }: RenderProps
+  this: LayoutContext,
+  data: ReferenceLayoutProps
 ): JSX.Element {
+  const { content } = data;
   const tips = this.getResources("tip");
   const figure = undefined;
   const listing = (
@@ -18,8 +22,7 @@ export function TipsLayout(
   );
   return (
     <ReferenceLayout
-      title={title as string}
-      subtitle={subtitle}
+      {...data}
       figure={figure}
       listing={[listing]}
       content={content}

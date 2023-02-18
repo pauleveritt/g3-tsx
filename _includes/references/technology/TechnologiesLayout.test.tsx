@@ -2,16 +2,15 @@ import { expect, test } from "vitest";
 import { TechnologiesLayout } from "./TechnologiesLayout.11ty";
 import { screen } from "@testing-library/dom";
 import fixtures from "../../fixtures";
-import { RenderProps } from "../../../src/models";
+import { ReferenceLayoutProps } from "../../layouts/ReferenceLayout.11y";
 
 test("should render TechnologiesLayout", () => {
-  const title = "These Technologies";
-  const subtitle = "Some technologies text";
-  const renderProps: RenderProps = {
+  const renderProps: ReferenceLayoutProps = {
     collections: fixtures.collections,
     content: fixtures.content,
-    title,
-    subtitle,
+    title: "These Technologies",
+    resourceType: "technologies",
+    listing: [],
     page: {
       fileSlug: "fileSlug",
       url: "/fileSlug",

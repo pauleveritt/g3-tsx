@@ -1,19 +1,22 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
-import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
+import {
+  ReferenceLayout,
+  ReferenceLayoutProps,
+} from "../../layouts/ReferenceLayout.11y";
 import Thumbnail from "../../Image.11ty";
-import { RenderContext, RenderProps } from "../../../src/models";
+import { LayoutContext } from "../../../src/models";
 import ResourceCard from "../../resourcecard/ResourceCard.11ty";
 import { Resource } from "../../../src/ResourceModels";
 import { AuthorFrontmatter } from "./AuthorModels";
 
 export function AuthorLayout(
-  this: RenderContext,
-  { collections, content, page }: RenderProps
+  this: LayoutContext,
+  data: ReferenceLayoutProps
 ): JSX.Element {
   // TODO Get a better test here
   // this.addTestCase(page.url, [byRole({ role: "link", text: "Paul Everitt" })]);
-
+  const { collections, content, page } = data;
   const author = collections.allReferences.get(
     page.fileSlug
   ) as AuthorFrontmatter;
@@ -45,8 +48,7 @@ export function AuthorLayout(
 
   return (
     <ReferenceLayout
-      title={author.title}
-      subtitle={author.subtitle}
+      {...data}
       figure={[figure]}
       listing={[listing]}
       content={contentDiv}

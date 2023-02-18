@@ -1,17 +1,22 @@
 import h, { JSX } from "vhtml";
-import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
+import {
+  ReferenceLayout,
+  ReferenceLayoutProps,
+} from "../../layouts/ReferenceLayout.11y";
 import { byRole } from "../../../src/TestCases";
 import { Author } from "./AuthorModels";
-import { RenderContext, RenderProps } from "../../../src/models";
+import { LayoutContext } from "../../../src/models";
 import Thumbnail from "../../Image.11ty";
 
 export function AuthorsLayout(
-  this: RenderContext,
-  { content, title, subtitle, page }: RenderProps
+  this: LayoutContext,
+  data: ReferenceLayoutProps
 ): JSX.Element {
+  const { content, page } = data;
   // Schedule a post-build validation for this view
   this.addTestCase(page.url, [byRole({ role: "link", text: "Paul Everitt" })]);
   const authors = this.getReferences("author") as Author[];
+  // TODO It doesn't appear any of the callers use figure
   const figure = undefined;
   const listing = (
     <nav className="bd-links bio-resourcecards">
@@ -39,8 +44,7 @@ export function AuthorsLayout(
 
   return (
     <ReferenceLayout
-      title={title as string}
-      subtitle={subtitle}
+      {...data}
       figure={figure}
       listing={[listing]}
       content={content}

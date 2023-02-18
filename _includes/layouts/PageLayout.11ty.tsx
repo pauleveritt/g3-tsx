@@ -1,34 +1,32 @@
 import h, { JSX } from "vhtml";
 import { BaseLayout } from "./BaseLayout.11ty";
-import { RenderContext } from "../../src/models";
+import { LayoutContext, LayoutProps } from "../../src/models";
 
 export type PageLayoutProps = {
-  title: string;
   children: string[];
-};
+} & LayoutProps;
 
-export function PageLayout({ title, children }: PageLayoutProps): JSX.Element {
+export function PageLayout(
+  this: LayoutContext,
+  { page, content, collections }: PageLayoutProps
+): JSX.Element {
+  const data = { title: "xxx" };
   return (
-    <BaseLayout pageTitle={title}>
+    <BaseLayout
+      page={page}
+      collections={collections}
+      content={content}
+      {...data}
+    >
       <div className="bd-main bulmaio-body">
         <div className="bd-side-background" />
         <div className="bd-main-container container content">
-          <h1>Hello {title}</h1>
-          <div dangerouslySetInnerHTML={{ __html: children[0] }} />
+          <h1>{data.title}</h1>
+          <div dangerouslySetInnerHTML={{ __html: content }} />
         </div>
       </div>
     </BaseLayout>
   );
 }
 
-export type PageRenderProps = {
-  content: string;
-  title: string;
-};
-
-export function render(
-  this: RenderContext,
-  { content, title }: PageRenderProps
-): JSX.Element {
-  return <PageLayout title={title}>{content}</PageLayout>;
-}
+export const render = PageLayout;

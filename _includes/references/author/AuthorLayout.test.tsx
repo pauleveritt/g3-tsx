@@ -3,16 +3,15 @@ import { screen } from "@testing-library/dom";
 
 import { AuthorLayout } from "./AuthorLayout.11ty";
 import fixtures from "../../fixtures";
-import { RenderProps } from "../../../src/models";
+import { ReferenceLayoutProps } from "../../layouts/ReferenceLayout.11y";
 
 test("should render AuthorLayout", () => {
-  const renderProps: RenderProps = {
+  const renderProps: ReferenceLayoutProps = {
     collections: fixtures.collections,
     content: fixtures.content,
-    page: {
-      fileSlug: fixtures.authors[0].slug,
-      url: "/some-url/",
-    },
+    ...fixtures.authorItems[0].data,
+    page: fixtures.authorItems[0].page,
+    listing: [""],
   };
   fixtures.context.getResources = () =>
     Array.from(fixtures.resolvedCollections.allResources.values());

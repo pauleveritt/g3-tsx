@@ -1,21 +1,17 @@
 import h, { JSX } from "vhtml";
 import { BaseLayout } from "./BaseLayout.11ty";
+import { ReferenceFrontmatter } from "../../src/ReferenceModels";
+import { LayoutProps } from "../../src/models";
 
 export type ReferenceLayoutProps = {
   content?: string;
   figure?: string[];
   listing: string[];
-  subtitle?: string;
-  title: string;
-};
+} & LayoutProps &
+  ReferenceFrontmatter;
 
-export function ReferenceLayout({
-  content,
-  figure,
-  listing,
-  title,
-  subtitle,
-}: ReferenceLayoutProps): JSX.Element {
+export function ReferenceLayout(data: ReferenceLayoutProps): JSX.Element {
+  const { content, figure, listing } = data;
   const safeListing = (
     <div
       className="column is-three-quarters-desktop bio-resourcecards"
@@ -24,7 +20,7 @@ export function ReferenceLayout({
   );
 
   return (
-    <BaseLayout pageTitle={title}>
+    <BaseLayout {...data}>
       <main className="bd-main bulmaio-body">
         <div className="bd-main-container container">
           <div className="bd-duo">
@@ -35,9 +31,9 @@ export function ReferenceLayout({
                   <div className="media-content">
                     <div className="content">
                       <div className="bd-header-titles">
-                        <h1 className="title">{title}</h1>
-                        {subtitle && (
-                          <p className="subtitle is-4">{subtitle}</p>
+                        <h1 className="title">{data.title}</h1>
+                        {data.subtitle && (
+                          <p className="subtitle is-4">{data.subtitle}</p>
                         )}
                       </div>
                     </div>

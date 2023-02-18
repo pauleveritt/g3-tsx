@@ -2,20 +2,14 @@ import { expect, test } from "vitest";
 import { ProductsLayout } from "./ProductsLayout.11ty";
 import { screen } from "@testing-library/dom";
 import fixtures from "../../fixtures";
-import { RenderProps } from "../../../src/models";
+import { ProductLayoutProps } from "./ProductLayout.11ty";
 
 test("should render ProductsLayout", () => {
-  const title = "These Products";
-  const subtitle = "Some products text";
-  const renderProps: RenderProps = {
+  const renderProps: ProductLayoutProps = {
     collections: fixtures.collections,
     content: fixtures.content,
-    title,
-    subtitle,
-    page: {
-      fileSlug: "slug",
-      url: "url",
-    },
+    ...fixtures.productItems[0].data,
+    page: { ...fixtures.productItems[0].page },
   };
   fixtures.context.getReferences = () => fixtures.products;
   document.body.innerHTML = ProductsLayout.call(fixtures.context, renderProps);

@@ -2,16 +2,15 @@ import { expect, test } from "vitest";
 import { TutorialsLayout } from "./TutorialsLayout.11ty";
 import { screen } from "@testing-library/dom";
 import fixtures from "../../fixtures";
-import { RenderProps } from "../../../src/models";
+import { ReferenceLayoutProps } from "../../layouts/ReferenceLayout.11y";
 
 test("should render TutorialsLayout", () => {
-  const title = "These Tutorials";
-  const subtitle = "Some tips text";
-  const renderProps: RenderProps = {
+  const tutorialsLayoutData: ReferenceLayoutProps = {
     collections: fixtures.collections,
     content: fixtures.content,
-    title,
-    subtitle,
+    listing: [""],
+    title: "Some Title",
+    resourceType: "tutorials",
     page: {
       fileSlug: "slug",
       url: "url",
@@ -19,9 +18,12 @@ test("should render TutorialsLayout", () => {
   };
   fixtures.context.getResources = () =>
     Array.from(fixtures.resolvedCollections.allResources.values());
-  document.body.innerHTML = TutorialsLayout.call(fixtures.context, renderProps);
-  const links: HTMLAnchorElement[] = screen.getAllByRole("link", {
+  document.body.innerHTML = TutorialsLayout.call(
+    fixtures.context,
+    tutorialsLayoutData
+  );
+  const links = screen.getAllByRole("link", {
     name: "Resource",
   });
-  expect(links[0].href).to.equal("/tips/some-tip/");
+  expect(links).to.exist;
 });

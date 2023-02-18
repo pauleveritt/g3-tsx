@@ -1,15 +1,18 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
 import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
-import { RenderContext, RenderProps } from "../../../src/models";
+import { LayoutContext, LayoutProps } from "../../../src/models";
 import { Resource } from "../../../src/ResourceModels";
 import { TopicFrontmatter } from "./TopicModels";
 import ResourceCard from "../../resourcecard/ResourceCard.11ty";
 
+export type TopicLayoutData = LayoutProps & TopicFrontmatter;
+
 export function TopicLayout(
-  this: RenderContext,
-  { collections, content, page }: RenderProps
+  this: LayoutContext,
+  data: TopicLayoutData
 ): JSX.Element {
+  const { collections, content, page } = data;
   const topic = collections.allReferences.get(
     page.fileSlug
   ) as TopicFrontmatter;
@@ -39,8 +42,7 @@ export function TopicLayout(
 
   return (
     <ReferenceLayout
-      title={topic.title}
-      subtitle={topic.subtitle}
+      {...data}
       figure={[figure]}
       listing={[listing]}
       content={contentDiv}

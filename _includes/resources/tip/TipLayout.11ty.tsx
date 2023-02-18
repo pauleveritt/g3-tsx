@@ -1,21 +1,24 @@
 // noinspection ES6UnusedImports
 import h, { JSX } from "vhtml";
 import SeeAlso from "../../seealso/SeeAlso.11ty";
-import { Tip } from "./TipModels";
-import SidebarLayout from "../../layouts/SidebarLayout.11ty";
+import { Tip, TipFrontmatter } from "./TipModels";
+import { SidebarLayout } from "../../layouts/SidebarLayout.11ty";
 import { Author } from "../../references/author/AuthorModels";
 import MarkdownIt from "markdown-it";
 import VideoPlayer from "../../video/VideoPlayer.11ty";
-import { RenderContext, RenderProps } from "../../../src/models";
+import { LayoutContext, LayoutProps } from "../../../src/models";
 import TipSidebar from "../../sidebar/TipSidebar.11ty";
 import { Product } from "../../references/product/ProductModels";
 import { Technology } from "../../references/technology/TechnologyModels";
 import { Topic } from "../../references/topic/TopicModels";
 
+export type TipLayoutData = LayoutProps & TipFrontmatter;
+
 export function TipLayout(
-  this: RenderContext,
-  { collections, content, page }: RenderProps
+  this: LayoutContext,
+  data: TipLayoutData
 ): JSX.Element {
+  const { collections, content, page } = data;
   const tip = collections.allResources.get(page.url) as Tip;
   if (!tip) {
     throw new Error(`Tip "${page.url}" not in collection`);
@@ -131,9 +134,8 @@ export function TipLayout(
     <SidebarLayout
       pageTitle={tip.title}
       subtitle={tip.subtitle}
-      // topNav={[topNav]}
-      // bottomNav={[bottomNav]}
       sidebar={[sidebar]}
+      {...data}
     >
       <main>{main}</main>
     </SidebarLayout>

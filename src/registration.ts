@@ -10,6 +10,7 @@ import {
   ResourceCollection,
 } from "./ResourceModels";
 import { ReferenceFrontmatter } from "./ReferenceModels";
+import { ImageOptions } from "@11ty/eleventy-img";
 
 export type CollectionApi = {
   getAll(): EleventyCollectionItem[];
@@ -38,6 +39,7 @@ export type GetAllCollectionsProps = {
 export type AllCollections = {
   allResources: ResourceCollection;
   allReferences: ReferenceCollection;
+  all: EleventyCollectionItem[];
 };
 
 export async function getAllCollections({
@@ -71,6 +73,7 @@ export async function resolveAllCollections({
   const allCollections: AllCollections = {
     allResources: new Map(),
     allReferences: new Map(),
+    all: [],
   };
 
   const allResources: ResourceCollection = new Map();
@@ -100,6 +103,7 @@ export async function resolveAllCollections({
 
   allCollections.allResources = allResources;
   allCollections.allReferences = allReferences;
+  allCollections.all = [];
 
   // With this in place, we can de-reference resources.
   Array.from(allResources.values()).map((resource) =>
@@ -159,12 +163,6 @@ export type ResolveReferences = {
   allReferences: ReferenceCollection;
 };
 
-export type ImageOptions = {
-  widths: any[];
-  formats: string[];
-  outputDir: string;
-  urlPath: string;
-};
 export const imageOptions: ImageOptions = {
   widths: ["auto"],
   formats: ["webp"],

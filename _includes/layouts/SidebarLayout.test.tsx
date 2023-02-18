@@ -1,8 +1,9 @@
 import { expect, test } from "vitest";
 import { screen } from "@testing-library/dom";
 
-import SidebarLayout, { SidebarLayoutProps } from "./SidebarLayout.11ty";
+import { SidebarLayout, SidebarLayoutProps } from "./SidebarLayout.11ty";
 import h from "vhtml";
+import fixtures from "../fixtures";
 
 const children = [
   h("main", {
@@ -20,7 +21,13 @@ const bottomNav = [
   }),
 ];
 const props: SidebarLayoutProps = {
+  collections: { ...fixtures.resolvedCollections, all: fixtures.all },
+  content: "<p>The TipLayout</p>",
   pageTitle: "Some Tip",
+  page: {
+    fileSlug: "slug",
+    url: fixtures.tips[0].url,
+  },
   subtitle: "Some Subtitle",
   bottomNav,
   topNav,
@@ -28,7 +35,7 @@ const props: SidebarLayoutProps = {
 };
 
 test("SidebarLayout", () => {
-  document.body.innerHTML = SidebarLayout(props);
+  document.body.innerHTML = SidebarLayout.call(fixtures.context, props);
   expect(screen.getByText("Some Tip")).to.exist;
   expect(screen.getByText("Some Subtitle")).to.exist;
   expect(screen.getByRole("button", { name: "B42" })).to.exist;

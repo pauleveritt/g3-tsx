@@ -1,17 +1,19 @@
 import { expect, test } from "vitest";
 import { screen } from "@testing-library/dom";
 
-import { TechnologyLayout } from "./TechnologyLayout.11ty";
+import {
+  TechnologyLayout,
+  TechnologyLayoutProps,
+} from "./TechnologyLayout.11ty";
 import fixtures from "../../fixtures";
-import { RenderProps } from "../../../src/models";
 
 test("should render TechnologyLayout", () => {
-  const renderProps: RenderProps = {
+  const renderProps: TechnologyLayoutProps = {
     collections: fixtures.collections,
     content: fixtures.content,
+    ...fixtures.technologyItems[0].data,
     page: {
-      fileSlug: fixtures.technologies[0].slug,
-      url: "some-url",
+      ...fixtures.technologyItems[0].page,
     },
   };
   fixtures.context.getResources = () =>

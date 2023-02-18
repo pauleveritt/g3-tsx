@@ -1,12 +1,16 @@
 import h, { JSX } from "vhtml";
-import { ReferenceLayout } from "../../layouts/ReferenceLayout.11y";
+import {
+  ReferenceLayout,
+  ReferenceLayoutProps,
+} from "../../layouts/ReferenceLayout.11y";
 import { Technology } from "./TechnologyModels";
-import { RenderContext, RenderProps } from "../../../src/models";
+import { LayoutContext } from "../../../src/models";
 
 export function TechnologiesLayout(
-  this: RenderContext,
-  { content, title, subtitle }: RenderProps
+  this: LayoutContext,
+  data: ReferenceLayoutProps
 ): JSX.Element {
+  const { content } = data;
   const technologies = this.getReferences("technology") as Technology[];
 
   const figure = undefined;
@@ -40,8 +44,7 @@ export function TechnologiesLayout(
   );
   return (
     <ReferenceLayout
-      title={title as string}
-      subtitle={subtitle}
+      {...data}
       figure={figure}
       listing={[listing]}
       content={content}
