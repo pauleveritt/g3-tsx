@@ -93,6 +93,7 @@
 
 # Manual Migration Tasks
 
+- Convert any `embed:` in Markdown files to include from local `demos` directory
 - Change tutorialItems to remove prefix
 
       <Helmet title={`${page.pageTitle} - ${helmet.siteTitle}`}>

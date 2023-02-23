@@ -7,6 +7,7 @@ module.exports = function (eleventyConfig) {
   // eleventyConfig.setServerPassthroughCopyBehavior("copy");
   eleventyConfig.addPassthroughCopy("sites/**/*.{gif,jpg,png,svg}");
   eleventyConfig.addWatchTarget("./public/assets/img");
+  eleventyConfig.ignores.add("**/demos/**");
 
   registerIncludes({ eleventyConfig })
     .then((r) => {})
@@ -15,6 +16,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(syntaxHighlight);
   eleventyConfig.addPlugin(EleventyVitePlugin, {
     viteOptions: {
+      assetsInclude: ["**/demos/**"],
       server: {
         mode: "development",
         middlewareMode: true,
