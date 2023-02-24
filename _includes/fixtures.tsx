@@ -495,7 +495,6 @@ export const playlistFrontmatters: PlaylistFrontmatter[] = [
     author: "sa",
     date: new Date("2023-02-02"),
     thumbnail: "thumbnail.png",
-    label: "sp",
     playlistItems: ["/tips/some-tip/"],
   },
   {
@@ -504,7 +503,6 @@ export const playlistFrontmatters: PlaylistFrontmatter[] = [
     author: "sa",
     date: new Date("2023-02-02"),
     thumbnail: "thumbnail.png",
-    label: "ap",
     playlistItems: [],
   },
 ];

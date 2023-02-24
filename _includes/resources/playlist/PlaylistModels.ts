@@ -6,14 +6,12 @@ import { AllCollections } from "../../../src/registration";
 export const PlaylistFrontmatter = Type.Intersect([
   ResourceFrontmatter,
   Type.Object({
-    label: Type.String(),
     playlistItems: Type.Array(Type.String()),
   }),
 ]);
 export type PlaylistFrontmatter = Static<typeof PlaylistFrontmatter>;
 
 export class Playlist extends Resource implements PlaylistFrontmatter {
-  label: string;
   playlistItems: string[];
   playlistResources: Resource[];
   static frontmatterSchema = PlaylistFrontmatter;
@@ -26,7 +24,6 @@ export class Playlist extends Resource implements PlaylistFrontmatter {
     page: EleventyPage;
   }) {
     super({ data, page });
-    this.label = data.label;
     this.playlistItems = data.playlistItems;
     this.playlistResources = [];
   }

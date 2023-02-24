@@ -9,9 +9,9 @@ export function PlaylistLayout(
   data: LayoutProps
 ): JSX.Element {
   const { collections, content, page } = data;
-  const tip = collections.allResources.get(page.url) as Playlist;
-  if (!tip) {
-    throw new Error(`Tip "${page.url}" not in collection`);
+  const playlist = collections.allResources.get(page.url) as Playlist;
+  if (!playlist) {
+    throw new Error(`Playlist "${page.url}" not in collection`);
   }
 
   // Main content
@@ -22,8 +22,15 @@ export function PlaylistLayout(
     ></div>
   );
 
+  const sidebar = <div>Hello Sidebar</div>;
+
   return (
-    <SidebarLayout pageTitle={tip.title} subtitle={tip.subtitle} {...data}>
+    <SidebarLayout
+      pageTitle={playlist.title}
+      subtitle={playlist.subtitle}
+      sidebar={[sidebar]}
+      {...data}
+    >
       <main>{main}</main>
     </SidebarLayout>
   );

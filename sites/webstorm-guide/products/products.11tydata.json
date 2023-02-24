@@ -1,3 +1,5 @@
 {
-  "resourceType": "product"
+  "resourceType": "product",
+  "layout": "references/product/ProductLayout.11ty.tsx"
+
 }
