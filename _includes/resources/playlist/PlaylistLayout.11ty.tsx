@@ -5,7 +5,11 @@ import { SidebarLayout } from "../../layouts/SidebarLayout.11ty";
 import { LayoutContext, LayoutProps } from "../../../src/models";
 import Sidebar from "../../sidebar/Sidebar.11ty";
 import VideoPlayer from "../../video/VideoPlayer.11ty";
-import { SidebarPublishedProps } from "../../sidebar/SidebarPublished.11ty";
+import SidebarPublished, {
+  SidebarPublishedProps,
+} from "../../sidebar/SidebarPublished.11ty";
+import { Author } from "../../references/author/AuthorModels";
+import SidebarPlaylists from "../../sidebar/SidebarPlaylists.11ty";
 
 export type PlaylistLayoutData = LayoutProps & PlaylistFrontmatter;
 
@@ -22,12 +26,6 @@ export function PlaylistLayout(
   const { all } = data.collections;
 
   // Main content
-  // TODO playlist needs to resolve its author
-  // const published: SidebarPublishedProps = {
-  //     playlist.,
-  //     displayDate,
-  // };
-
   const main = (
     <>
       <div
@@ -78,26 +76,22 @@ export function PlaylistLayout(
     </>
   );
 
+  // Sidebar
+  const author = playlist.references?.author as Author;
+  if (!author) {
+    throw new Error(`Author "${playlist.author}" not in collection`);
+  }
+  const published: SidebarPublishedProps = {
+    author,
+    displayDate: playlist.displayDate,
+  };
+
   const sidebar = (
     <Sidebar>
-      <p className="menu-label">Playlist items</p>
-      <ul className="steps has-content-centered is-vertical is-small">
-        {playlist.playlistResources.map((item, index) => (
-          <li className="steps-segment" style="flex-grow: 0">
-            <a
-              aria-label="Playlist Item"
-              className="has-text-dark playlist-item-toggle"
-              style="width: auto"
-              href={`#${item.anchor}`}
-            >
-              <span className="steps-marker is-primary">{index + 1}</span>
-              <div className="steps-content">
-                <p> {item.title}</p>
-              </div>
-            </a>
-          </li>
-        ))}
-      </ul>
+      <SidebarPublished {...published} />
+      <SidebarPlaylists
+        playlistResources={playlist.playlistResources}
+      ></SidebarPlaylists>
     </Sidebar>
   );
 

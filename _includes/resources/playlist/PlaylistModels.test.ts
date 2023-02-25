@@ -32,7 +32,7 @@ test("resolves the resources in a playlist", () => {
   const playlist = fixtures.resolvedCollections.allResources.get(
     playlistItem0.page.url
   ) as Playlist;
-  expect(playlist).to.exist;
+  expect(playlist.references?.author).to.exist;
   expect(playlist.playlistResources[0]).to.exist;
   expect(playlist.playlistResources[0].title).to.equal(tipItem0.data.title);
 });

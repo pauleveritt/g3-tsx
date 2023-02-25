@@ -14,6 +14,7 @@ test("should render PlaylistLayout", () => {
     content: fixtures.content,
   };
   document.body.innerHTML = PlaylistLayout.call(fixtures.context, renderProps);
+  expect(screen.getByRole("link", { name: "Author Sidebar" })).to.exist;
   const playlistItems = screen.getAllByRole("link", { name: "Playlist Item" });
   expect(playlistItems.length).to.equal(1);
 });

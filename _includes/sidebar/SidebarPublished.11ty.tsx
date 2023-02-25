@@ -32,7 +32,9 @@ const SidebarPublished = ({
                   {displayDate}
                 </div>
                 <div>by:</div>
-                <a href={author.url}>{author.title}</a>
+                <a aria-label="Author Sidebar" href={author.url}>
+                  {author.title}
+                </a>
               </div>
             </div>
           </article>
