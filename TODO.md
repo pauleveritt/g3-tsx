@@ -2,24 +2,22 @@
 
 ## Now
 
-- Playlists
-  - Get some Markdown copied over
-  - Sidebar panel "in playlists"
+- Copy PyCharm Guide over
+  - Rename dir structure to `sites/webstorm/guide`
+  - Some post-build task to copy `assets` into `_site/webstorm/guide`
+- Ensure `embed:` alternative with `{% include %}` works
 
 ## Next
 
-- Check the test coverage
-- Copy PyCharm Guide over
-- Ensure `embed:` alternative with `{% include %}` works
 
 ## Soon
 
+- Implement NavbarBrand toggle menu
 - Lunr
   - NavbarSearch reveal panel
 - Clean up the content
 - Get a placeholder.jpg into the site
 - JSON Schema writing
-- Implement NavbarBrand toggle menu
 - TwitterCard stuff and other Helmet
 - Allow running in `inputSrc` of `webstorm-guide` (to prevent links from including `/webstorm-guide/`)
   - Or possibly [pathPrefix](https://www.11ty.dev/docs/config/#deploy-to-a-subdirectory-with-a-path-prefix)
@@ -92,8 +90,13 @@
 - Vitest
 - TypeBox "content types"
 - Switch to collections.author rather than collections.authorReferences in get**
+- Playlists revamp
+
 
 # Manual Migration Tasks
 
-- Convert any `embed:` in Markdown files to include from local `demos` directory
+- Rename dir structure to `sites/webstorm/guide`
+- Move `contents` children to root
+- Copy `index.md` and `*.11tydata.json` files into appropriate directories
 - Change tutorialItems to remove prefix
+- Convert any `embed:` in Markdown files to include from local `demos` directory
