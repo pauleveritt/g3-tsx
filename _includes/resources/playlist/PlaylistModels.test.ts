@@ -13,7 +13,6 @@ const data: PlaylistFrontmatter = {
   technologies: ["st", "at"],
   topics: ["st", "at"],
   thumbnail: "thumbnail.png",
-  label: "sp",
   playlistItems: [],
 };
 const page: EleventyPage = {

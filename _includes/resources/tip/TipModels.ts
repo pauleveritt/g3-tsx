@@ -1,6 +1,7 @@
 import { Static, Type } from "@sinclair/typebox";
 import { Resource, ResourceFrontmatter } from "../../../src/ResourceModels";
 import { EleventyPage } from "../../../src/models";
+import path from "path";
 
 export const TipFrontmatter = Type.Intersect([
   ResourceFrontmatter,
@@ -47,11 +48,22 @@ export class Tip extends Resource implements TipFrontmatter {
   constructor({ data, page }: { data: TipFrontmatter; page: EleventyPage }) {
     super({ data, page });
     this.animatedGif = data.animatedGif;
+    if (this.animatedGif) {
+      this.animatedGif.file = path.join(page.url, this.animatedGif.file);
+    }
     this.hasBody = data.hasBody;
     this.leadin = data.leadin;
     this.longVideo = data.longVideo;
-    this.screenshot = data.screenshot;
+    this.screenshot = data.screenshot
+      ? path.join(page.url, data.screenshot)
+      : undefined;
     this.seealso = data.seealso;
     this.shortVideo = data.shortVideo;
+    if (this.shortVideo && this.shortVideo.poster) {
+      this.shortVideo.poster = path.join(page.url, this.shortVideo.poster);
+    }
+    if (this.longVideo && this.longVideo.poster) {
+      this.longVideo.poster = path.join(page.url, this.longVideo.poster);
+    }
   }
 }

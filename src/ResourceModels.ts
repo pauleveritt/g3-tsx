@@ -7,6 +7,7 @@ import { AllCollections, imageOptions, resolveReference } from "./registration";
 import Image from "@11ty/eleventy-img";
 import { validateFrontmatter } from "./validators";
 import { DateTime } from "luxon";
+const slugify = require("@sindresorhus/slugify");
 
 export const BaseFrontmatter = Type.Object({
   resourceType: Type.String(),
@@ -67,6 +68,7 @@ export type ResourceLayoutProps = {
 } & LayoutProps;
 
 export class Resource extends BaseEntity implements ResourceFrontmatter {
+  anchor: string; // Playlist items need unique identifier
   author: string;
   date: Date;
   displayDate: string;
@@ -88,6 +90,7 @@ export class Resource extends BaseEntity implements ResourceFrontmatter {
   }) {
     super({ data, page });
     const displayDate = DateTime.fromJSDate(data.date).toFormat("yyyy-LL-dd");
+    this.anchor = slugify(this.url);
     this.author = data.author;
     this.date = new Date(data.date);
     this.displayDate = displayDate;

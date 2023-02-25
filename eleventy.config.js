@@ -6,7 +6,8 @@ const { resolve } = require("path");
 module.exports = function (eleventyConfig) {
   // eleventyConfig.setServerPassthroughCopyBehavior("copy");
   eleventyConfig.addPassthroughCopy("sites/**/*.{gif,jpg,png,svg}");
-  eleventyConfig.addWatchTarget("./public/assets/img");
+  eleventyConfig.addWatchTarget("./public/assets");
+  eleventyConfig.addWatchTarget("./_include");
   eleventyConfig.ignores.add("**/demos/**");
 
   registerIncludes({ eleventyConfig })

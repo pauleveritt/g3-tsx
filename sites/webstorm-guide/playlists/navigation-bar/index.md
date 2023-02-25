@@ -8,7 +8,7 @@ subtitle: Move around files with keyboard, without wasting screen UI space
 thumbnail: ./thumbnail.png
 cardThumbnail: ./card.png
 playlistItems:
-    - /webstorm-guide/tips/access-run-configurations/
+    - /webstorm-guide/tips/amend-commit/
     - /webstorm-guide/tips/add-carets-at-line-end/
     - /webstorm-guide/tips/add-icons-to-zen-mode/
 ---

@@ -53,6 +53,7 @@ export function BaseLayout(
           href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.21.2/video-js.min.css"
           rel="stylesheet"
         />
+        <script defer src="/assets/js/site.js"></script>
       </head>
       <body>
         <Navbar></Navbar>
