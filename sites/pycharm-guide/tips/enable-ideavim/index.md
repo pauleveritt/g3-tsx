@@ -32,7 +32,7 @@ remapped.  (Haven't you wanted to turn that vim error-bell off?)
 
 Just create a .ideavimrc file (even in windows!) with the following:
 
-```vimscript
+```
 set visualbell
 set noerrorbells
 let mapleader = "\"
@@ -43,12 +43,11 @@ Append the following to that same file to use the copy-paste
 functionality without having to worry about which clipboard you are
 accessing:
 
-```vimscript
+```
 map <leader>a :action $SelectAll<CR>
 map <leader>c :action $Copy<CR>
 map <leader>v :action $Paste<CR>
 map <leader>x :action $Cut<CR>
-
 ```
 
 To see an index of supported commands in the IdeaVim Plug-in, click [here](https://github.com/JetBrains/ideavim/blob/master/src/com/maddyhome/idea/vim/package-info.java)

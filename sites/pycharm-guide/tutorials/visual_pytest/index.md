@@ -1,4 +1,6 @@
 ---
+resourceType: tutorial
+layout: "resources/tutorial/TutorialLayout.11ty.tsx"
 date: 2020-06-10
 title: Visual Testing with pytest
 technologies: [pytest]
@@ -7,15 +9,15 @@ author: pwe
 subtitle: Test writing is productive and fun with PyCharm as a visual testing tool atop pytest.
 thumbnail: ./thumbnail.png
 tutorialItems:
-  - /tutorials/visual_pytest/background/
-  - /tutorials/visual_pytest/setup/
-  - /tutorials/visual_pytest/hello_test/
-  - /tutorials/visual_pytest/tdd_flow/
-  - /tutorials/visual_pytest/jump_to_error/
-  - /tutorials/visual_pytest/skipping_tests/
-  - /tutorials/visual_pytest/fixtures/
-  - /tutorials/visual_pytest/debugging_during_testing/
-  - /tutorials/visual_pytest/testing_exceptions/
+  - ./background/
+  - ./setup/
+  - ./hello_test/
+  - ./tdd_flow/
+  - ./jump_to_error/
+  - ./skipping_tests/
+  - ./fixtures/
+  - ./debugging_during_testing/
+  - ./testing_exceptions/
 ---
 
 Python developers love writing code. Tests? Not so much. Whether it’s the

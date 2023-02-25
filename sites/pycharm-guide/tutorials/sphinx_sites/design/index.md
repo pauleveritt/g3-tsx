@@ -7,6 +7,7 @@ topics: []
 author: pwe
 subtitle: Let's change the look on the website with custom templates.
 thumbnail: thumbnail.png
+templateEngineOverride: "md"
 ---
 
 Schlockchain has a website, with content, structure, and linking.
@@ -50,7 +51,7 @@ It's simplified (no SCSS customizing, no figure support) but it's fine for this 
 
 Add a file at `_templates/layout.html`:
 
-```
+```html
 <!DOCTYPE html>
 <html>
   <head>
@@ -83,7 +84,7 @@ This means it can use the [template variables available in Sphinx](https://www.s
 
 First, let's get the page title into the HTML `<title>`:
 
-```
+```jinja2
 <title>{{ title|striptags|e }}{{ titlesuffix }}</title>
 ```
 

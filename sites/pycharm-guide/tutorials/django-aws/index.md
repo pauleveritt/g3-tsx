@@ -1,4 +1,6 @@
 ---
+resourceType: tutorial
+layout: "resources/tutorial/TutorialLayout.11ty.tsx"
 date: 2021-04-09
 title: Developing Django Application using AWS
 technologies: [django,aws]
@@ -7,22 +9,20 @@ author: mm
 subtitle: Run, build, test and deploy Django Application in PyCharm using NICE DCV.
 thumbnail: ./thumbnail.png
 tutorialItems:
-  - /tutorials/django-aws/introduction/
-  - /tutorials/django-aws/setup-vpc-and-rds/
-  - /tutorials/django-aws/setup-ubuntu/
-  - /tutorials/django-aws/setup-django/
-  - /tutorials/django-aws/setup-rds-pycharm/
-  - /tutorials/django-aws/project-explore/
-  - /tutorials/django-aws/rest-api/
-  - /tutorials/django-aws/rest-api-jwt/
-  - /tutorials/django-aws/sentry-integration/
-  - /tutorials/django-aws/unit-tests/
-  - /tutorials/django-aws/bdd-behave/
-  - /tutorials/django-aws/django-docker/
-  - /tutorials/django-aws/github-actions/
-  - /tutorials/django-aws/cleanup/
-
-
+  - ./introduction/
+  - ./setup-vpc-and-rds/
+  - ./setup-ubuntu/
+  - ./setup-django/
+  - ./setup-rds-pycharm/
+  - ./project-explore/
+  - ./rest-api/
+  - ./rest-api-jwt/
+  - ./sentry-integration/
+  - ./unit-tests/
+  - ./bdd-behave/
+  - ./django-docker/
+  - ./github-actions/
+  - ./cleanup/
 ---
 
 Interested in running your entire application in AWS and feel like working in the local machine, then you

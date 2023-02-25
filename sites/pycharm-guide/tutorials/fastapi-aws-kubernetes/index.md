@@ -1,4 +1,6 @@
 ---
+resourceType: tutorial
+layout: "resources/tutorial/TutorialLayout.11ty.tsx"
 date: 2022-01-01
 title: Developing FastAPI Application using K8s & AWS
 technologies: [fastapi, kubernetes, aws]
@@ -7,24 +9,23 @@ author: mm
 subtitle: Build seamless FastAPI applications in PyCharm through Kubernetes & AWS.
 thumbnail: ./thumbnail.png
 tutorialItems:
-  - /tutorials/fastapi-aws-kubernetes/introduction/
-  - /tutorials/fastapi-aws-kubernetes/project_setup/
-  - /tutorials/fastapi-aws-kubernetes/setup_sqlalchemy_1/
-  - /tutorials/fastapi-aws-kubernetes/setup_sqlalchemy_2/
-  - /tutorials/fastapi-aws-kubernetes/rest_api_1/
-  - /tutorials/fastapi-aws-kubernetes/rest_api_2/
-  - /tutorials/fastapi-aws-kubernetes/rest_api_3/
-  - /tutorials/fastapi-aws-kubernetes/rest_api_4/
-  - /tutorials/fastapi-aws-kubernetes/rest_api_5/
-  - /tutorials/fastapi-aws-kubernetes/redis_celery/
-  - /tutorials/fastapi-aws-kubernetes/auth_jwt/
-  - /tutorials/fastapi-aws-kubernetes/testing/
-  - /tutorials/fastapi-aws-kubernetes/kubernetes_deploy/
-  - /tutorials/fastapi-aws-kubernetes/helm_charts/
-  - /tutorials/fastapi-aws-kubernetes/aws_eks/
-  - /tutorials/fastapi-aws-kubernetes/cleanup/
-  - /tutorials/fastapi-aws-kubernetes/references/
-
+  - ./introduction/
+  - ./project_setup/
+  - ./setup_sqlalchemy_1/
+  - ./setup_sqlalchemy_2/
+  - ./rest_api_1/
+  - ./rest_api_2/
+  - ./rest_api_3/
+  - ./rest_api_4/
+  - ./rest_api_5/
+  - ./redis_celery/
+  - ./auth_jwt/
+  - ./testing/
+  - ./kubernetes_deploy/
+  - ./helm_charts/
+  - ./aws_eks/
+  - ./cleanup/
+  - ./references/
 ---
 
 

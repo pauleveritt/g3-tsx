@@ -10,6 +10,7 @@ thumbnail: thumbnail.png
 longVideo:
   poster: poster_long.png
   url: https://www.youtube.com/watch?v=wQJ6NBpHY0s
+templateEngineOverride: "md"
 ---
 
 Hello everyone! Welcome to the PyCharm FastAPI Tutorial Series.

@@ -1,21 +1,24 @@
 ---
+resourceType: tutorial
+layout: "resources/tutorial/TutorialLayout.11ty.tsx"
 date: 2021-01-29
 title: Developing Serverless APIs using AWS Toolkit
-technologies: [aws]topics: []
+technologies: [aws]
+topics: []
 author: mm
 subtitle: Run, build, and deploy serverless functions in PyCharm.
 thumbnail: ./thumbnail.png
 tutorialItems:
-  - /tutorials/intro-aws/background/
-  - /tutorials/intro-aws/setup/
-  - /tutorials/intro-aws/project-structure/
-  - /tutorials/intro-aws/invoke-local/
-  - /tutorials/intro-aws/atlas/
-  - /tutorials/intro-aws/crud/
-  - /tutorials/intro-aws/authentication/
-  - /tutorials/intro-aws/testing/
-  - /tutorials/intro-aws/deploying/
-  - /tutorials/intro-aws/cleanup/
+  - ./background/
+  - ./setup/
+  - ./project-structure/
+  - ./invoke-local/
+  - ./atlas/
+  - ./crud/
+  - ./authentication/
+  - ./testing/
+  - ./deploying/
+  - ./cleanup/
 ---
 
 AWS Lambda lets you run code without provisioning or managing servers.
