@@ -9,12 +9,12 @@ subtitle: Move around files with keyboard, without wasting screen UI space
 thumbnail: ./thumbnail.png
 cardThumbnail: ./card.png
 playlistItems:
-    - /pycharm-guide/tips/navbar-activate/
-    - /pycharm-guide/tips/navbar-navigate-files/
-    - /pycharm-guide/tips/navbar-open-file/
-    - /pycharm-guide/tips/navbar-create-file/
-    - /pycharm-guide/tips/navbar-speed-search/
-    - /pycharm-guide/tips/navbar-find-in-path/
+    - /pycharm/guide/tips/navbar-activate/
+    - /pycharm/guide/tips/navbar-navigate-files/
+    - /pycharm/guide/tips/navbar-open-file/
+    - /pycharm/guide/tips/navbar-create-file/
+    - /pycharm/guide/tips/navbar-speed-search/
+    - /pycharm/guide/tips/navbar-find-in-path/
 ---
 
 We want to get you into the flow of development. No UI distractions, hands 

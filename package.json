@@ -12,8 +12,8 @@
     "clean": "rm -rf _site && rm -rf .11ty-vite",
     "preview": "vite preview",
     "assets": "npm run assets:pycharm && npm run assets:webstorm",
-    "assets:pycharm": "copyfiles --flat  _site/assets/* _site/pycharm-guide/assets",
-    "assets:webstorm": "copyfiles --flat _site/assets/* _site/webstorm-guide/assets"
+    "assets:pycharm": "copyfiles --flat  _site/assets/* _site/pycharm/guide/assets",
+    "assets:webstorm": "copyfiles --flat _site/assets/* _site/webstorm/guide/assets"
   },
   "devDependencies": {
     "@11ty/eleventy": "^2.0.0-beta.3",
