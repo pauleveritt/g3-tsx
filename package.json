@@ -7,10 +7,13 @@
     "dev": "node --require esbuild-register node_modules/.bin/eleventy --serve --watch",
     "incremental": "node --require esbuild-register node_modules/.bin/eleventy --incremental --serve --watch",
     "debug-start": "DEBUG=Eleventy* node --require esbuild-register node_modules/.bin/eleventy --serve --watch",
-    "build": "node --require esbuild-register node_modules/.bin/eleventy",
+    "build": "node --require esbuild-register node_modules/.bin/eleventy && npm run assets",
     "debug-build": "DEBUG=Eleventy* node --require esbuild-register node_modules/.bin/eleventy",
     "clean": "rm -rf _site && rm -rf .11ty-vite",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "assets": "npm run assets:pycharm && npm run assets:webstorm",
+    "assets:pycharm": "copyfiles --flat  _site/assets/* _site/pycharm-guide/assets",
+    "assets:webstorm": "copyfiles --flat _site/assets/* _site/webstorm-guide/assets"
   },
   "devDependencies": {
     "@11ty/eleventy": "^2.0.0-beta.3",
@@ -24,6 +27,7 @@
     "@types/vhtml": "^2.2.4",
     "@types/video.js": "^7.3.50",
     "@vitest/coverage-c8": "^0.28.4",
+    "copyfiles": "^2.4.1",
     "esbuild-register": "^3.3.2",
     "happy-dom": "^8.2.2",
     "@types/luxon": "^3.2.0",
