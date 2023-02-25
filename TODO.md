@@ -6,9 +6,11 @@
   - Rename dir structure to `sites/webstorm/guide`
   - Some post-build task to copy `assets` into `_site/webstorm/guide`
 - Ensure `embed:` alternative with `{% include %}` works
+- Get home pages to match current home pages
 
 ## Next
-
+  
+- Site prefix stuff e.g. starting a `/tips/` instead of `/webstorm-guide/tips/`
 
 ## Soon
 
@@ -24,6 +26,7 @@
 
 ## Eventually
 
+- Suppress all the vite logging that fills up startup messages
 - A real `resourceType` for collections, page
 - Sort out children vs. content and the vhtml typing issue
 - Investigate `--incremental` by storing the validated resource on the `collections.all` instance
@@ -31,7 +34,6 @@
   - Both for full and incremental
 - Coverage
 - No `ScrollLink` component in `SidebarDoclink`
-- Site prefix stuff e.g. starting a `/tips/` instead of `/webstorm-guide/tips/`
 
 ## G3
 
@@ -99,4 +101,13 @@
 - Move `contents` children to root
 - Copy `index.md` and `*.11tydata.json` files into appropriate directories
 - Change tutorialItems to remove prefix
+- Change playlistItems to add prefix
+- Remove `vimscript` as a code fence language
 - Convert any `embed:` in Markdown files to include from local `demos` directory
+- Put the following in tutorial frontmatter:
+  ```
+  resourceType: tutorial
+  layout: "resources/tutorial/TutorialLayout.11ty.tsx"
+  ```
+- Add `templateEngineOverride: "md"` in TutorialStep as needed
+- Delete pycharm-guide/contents/tutorials/sphinx_sites/blog as it is unused

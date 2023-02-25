@@ -13,6 +13,7 @@ import SidebarStep from "../../sidebar/SidebarStep.11ty";
 import { BottomNav, TopNav } from "./TopBottomNav.11ty";
 
 export type TutorialStepLayoutData = LayoutProps & TutorialStepFrontmatter;
+
 export function TutorialStepLayout(
   this: LayoutContext,
   data: TutorialStepLayoutData
@@ -38,21 +39,31 @@ export function TutorialStepLayout(
       author={references.author as Author}
     ></SidebarPublished>
   );
-  const sidebarSteps = parent.tutorialSteps && (
-    <div className="bio-page-sidebar-references-group" style="margin-top: 1rem">
-      <p className="menu-label bio-page-sidebar-published">Tutorial Steps</p>
-      <ul className="steps has-content-centered is-vertical is-small">
-        {parent.tutorialSteps.map((step, index) => (
-          <SidebarStep
-            label={step.title}
-            target={step.url}
-            marker={index + 1}
-            isActive={step == tutorialStep}
-          />
-        ))}
-      </ul>
-    </div>
-  );
+  let sidebarSteps;
+  if (parent) {
+    // Sometimes a tutorialstep might be "in-progress" and not
+    // yet linked into the tutorial
+    sidebarSteps = parent.tutorialSteps && (
+      <div
+        className="bio-page-sidebar-references-group"
+        style="margin-top: 1rem"
+      >
+        <p className="menu-label bio-page-sidebar-published">Tutorial Steps</p>
+        <ul className="steps has-content-centered is-vertical is-small">
+          {parent.tutorialSteps.map((step, index) => (
+            <SidebarStep
+              label={step.title}
+              target={step.url}
+              marker={index + 1}
+              isActive={step == tutorialStep}
+            />
+          ))}
+        </ul>
+      </div>
+    );
+  } else {
+    sidebarSteps = "";
+  }
   const sidebar = (
     <Sidebar>
       {sidebarPublished}
@@ -82,10 +93,15 @@ export function TutorialStepLayout(
   );
 
   // Top/Bottom nav
-  const topNav = <TopNav parent={parent} currentStep={tutorialStep}></TopNav>;
-  const bottomNav = (
-    <BottomNav parent={parent} currentStep={tutorialStep}></BottomNav>
-  );
+  let topNav, bottomNav;
+  if (parent) {
+    topNav = <TopNav parent={parent} currentStep={tutorialStep}></TopNav>;
+    bottomNav = (
+      <BottomNav parent={parent} currentStep={tutorialStep}></BottomNav>
+    );
+  } else {
+    topNav = bottomNav = "";
+  }
 
   return (
     <SidebarLayout

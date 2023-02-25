@@ -4,10 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "npm run-script clean && node --require esbuild-register node_modules/.bin/eleventy --serve --watch",
+    "dev": "node --require esbuild-register node_modules/.bin/eleventy --serve --watch",
     "incremental": "node --require esbuild-register node_modules/.bin/eleventy --incremental --serve --watch",
     "debug-start": "DEBUG=Eleventy* node --require esbuild-register node_modules/.bin/eleventy --serve --watch",
-    "build": "npm run-script clean && node --require esbuild-register node_modules/.bin/eleventy",
+    "build": "node --require esbuild-register node_modules/.bin/eleventy",
     "debug-build": "DEBUG=Eleventy* node --require esbuild-register node_modules/.bin/eleventy",
     "clean": "rm -rf _site && rm -rf .11ty-vite",
     "preview": "vite preview"

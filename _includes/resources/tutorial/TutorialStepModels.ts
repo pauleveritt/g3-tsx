@@ -36,6 +36,15 @@ export class TutorialStep extends Resource implements TutorialStepFrontmatter {
     this.longVideo = data.longVideo;
     this.videoBottom = !!data.videoBottom;
   }
+
+  // resolve(allCollections: AllCollections): void {
+  //   super.resolve(allCollections);
+  //   if (!this.parentTutorial) {
+  //     throw new Error(
+  //       `Tutorial Step ${this.url} has no assigned parentTutorial`
+  //     );
+  //   }
+  // }
 }
 
 export async function getTutorialStep(
