@@ -13,6 +13,7 @@ it("make a ReferenceLayout", () => {
     collections: fixtures.resolvedCollections as SiteCollections,
     content: fixtures.content,
     listing: ["<p>Some Title</p>"],
+    site: fixtures.site,
   };
 
   document.body.innerHTML = (

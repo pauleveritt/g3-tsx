@@ -2,9 +2,9 @@ import { expect, test } from "vitest";
 import { screen } from "@testing-library/dom";
 
 import NavbarButton, { NavbarButtonProps } from "./NavbarButton.11ty";
-import site from "../site.json";
+import fixtures from "../fixtures";
 
-const props: NavbarButtonProps = site.end.buttons[0];
+const props: NavbarButtonProps = fixtures.site.end.buttons[0];
 
 test("NavbarButton", () => {
   document.body.innerHTML = NavbarButton(props);

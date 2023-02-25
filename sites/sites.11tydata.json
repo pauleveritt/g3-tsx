@@ -1,4 +1,10 @@
 {
   "siteTitle": "My TSX Site",
-  "layout": "layouts/PageLayout.11ty.tsx"
+  "layout": "layouts/PageLayout.11ty.tsx",
+  "site": {
+    "rootURL": "/webstorm/guide/",
+    "siteLogo": "jetbrains-simple.svg",
+    "siteTitle": "PyCharm Guide",
+    "copyright": "Copyright © 2000–2022 <a href=\"https://www.jetbrains.com/\">JetBrains</a> s.r.o."
+  }
 }

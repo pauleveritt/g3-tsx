@@ -11,6 +11,7 @@ const renderProps: BaseLayoutProps = {
   collections: fixtures.resolvedCollections as SiteCollections,
   content: fixtures.content,
   children: [],
+  site: fixtures.site,
 };
 
 test("BaseLayout", () => {

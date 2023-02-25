@@ -15,6 +15,7 @@ test("should render TechnologiesLayout", () => {
       fileSlug: "fileSlug",
       url: "/fileSlug",
     },
+    site: fixtures.site,
   };
   fixtures.context.getReferences = () => fixtures.technologies;
   document.body.innerHTML = TechnologiesLayout.call(

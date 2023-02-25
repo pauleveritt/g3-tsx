@@ -15,6 +15,7 @@ test("should render TutorialsLayout", () => {
       fileSlug: "slug",
       url: "url",
     },
+    site: fixtures.site,
   };
   fixtures.context.getResources = () =>
     Array.from(fixtures.resolvedCollections.allResources.values());

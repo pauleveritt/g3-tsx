@@ -2,9 +2,9 @@ import { expect, test } from "vitest";
 import { screen } from "@testing-library/dom";
 
 import Footer, { FooterProps } from "./Footer.11ty";
-import site from "../site.json";
+import fixtures from "../fixtures";
 
-const props: FooterProps = { copyright: site.copyright };
+const props: FooterProps = { copyright: fixtures.site.copyright };
 
 test("Footer", () => {
   document.body.innerHTML = Footer(props);

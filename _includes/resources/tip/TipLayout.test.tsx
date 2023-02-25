@@ -12,6 +12,7 @@ test("should render TipLayout", () => {
     page: tip0.page,
     collections: fixtures.resolvedCollections as SiteCollections,
     content: fixtures.content,
+    site: fixtures.site,
   };
   document.body.innerHTML = TipLayout.call(fixtures.context, renderProps);
   expect(screen.getByText(tip0.data.title)).to.exist;

@@ -11,6 +11,7 @@ test("should render PageLayout", () => {
     page: tip0.page,
     collections: fixtures.resolvedCollections as SiteCollections,
     content: fixtures.content,
+    site: fixtures.site,
   };
 
   document.body.innerHTML = PageLayout.call(fixtures.context, pageLayoutData);

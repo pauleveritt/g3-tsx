@@ -15,6 +15,7 @@ test("should render AuthorsLayout", () => {
       url: "/authors",
       fileSlug: "some-slug",
     },
+    site: fixtures.site,
   };
   fixtures.context.getReferences = () => fixtures.authors;
   document.body.innerHTML = AuthorsLayout.call(fixtures.context, renderProps);

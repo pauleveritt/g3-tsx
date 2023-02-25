@@ -12,6 +12,7 @@ test("should render AuthorLayout", () => {
     ...fixtures.authorItems[0].data,
     page: fixtures.authorItems[0].page,
     listing: [""],
+    site: fixtures.site,
   };
   fixtures.context.getResources = () =>
     Array.from(fixtures.resolvedCollections.allResources.values());

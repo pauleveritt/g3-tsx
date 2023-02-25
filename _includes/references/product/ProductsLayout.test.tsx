@@ -9,6 +9,7 @@ test("should render ProductsLayout", () => {
     content: fixtures.content,
     ...fixtures.productItems[0].data,
     page: { ...fixtures.productItems[0].page },
+    site: fixtures.site,
   };
   fixtures.context.getReferences = () => fixtures.products;
   document.body.innerHTML = ProductsLayout.call(

@@ -15,6 +15,7 @@ test("should render TechnologyLayout", () => {
     page: {
       ...fixtures.technologyItems[0].page,
     },
+    site: fixtures.site,
   };
   fixtures.context.getResources = () =>
     Array.from(fixtures.resolvedCollections.allResources.values());

@@ -13,6 +13,7 @@ test("should render ProductLayout", () => {
       fileSlug: fixtures.products[0].slug,
       url: "some-url",
     },
+    site: fixtures.site,
   };
   fixtures.context.getResources = () =>
     Array.from(fixtures.resolvedCollections.allResources.values());

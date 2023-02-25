@@ -9,6 +9,7 @@
     "debug-start": "DEBUG=Eleventy* node --require esbuild-register node_modules/.bin/eleventy --serve --watch",
     "build": "node --require esbuild-register node_modules/.bin/eleventy && npm run assets",
     "debug-build": "DEBUG=Eleventy* node --require esbuild-register node_modules/.bin/eleventy",
+    "benchmark-build": "DEBUG=Eleventy:Benchmark* node --require esbuild-register node_modules/.bin/eleventy",
     "clean": "rm -rf _site && rm -rf .11ty-vite",
     "preview": "vite preview",
     "assets": "npm run assets:pycharm && npm run assets:webstorm",

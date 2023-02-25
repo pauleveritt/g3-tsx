@@ -14,6 +14,7 @@ test("should render TopicsLayout", () => {
       url: "/topics",
       fileSlug: "some-slug",
     },
+    site: fixtures.site,
   };
   fixtures.context.getReferences = () => fixtures.topics;
   document.body.innerHTML = TopicsLayout.call(

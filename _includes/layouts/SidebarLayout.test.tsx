@@ -31,6 +31,7 @@ const props: SidebarLayoutProps = {
   subtitle: "Some Subtitle",
   bottomNav,
   topNav,
+  site: fixtures.site,
   children,
 };
 

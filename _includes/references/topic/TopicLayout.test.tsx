@@ -10,6 +10,7 @@ test("should render TopicLayout", () => {
     content: fixtures.content,
     ...fixtures.topicItems[0].data,
     page: fixtures.topicItems[0].page,
+    site: fixtures.site,
   };
   fixtures.context.getResources = () =>
     Array.from(fixtures.resolvedCollections.allResources.values());

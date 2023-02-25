@@ -13,6 +13,7 @@ test("should render TutorialStepLayout", () => {
     content: fixtures.content,
     ...fixtures.tutorialStepItems[0].data,
     page: fixtures.tutorialStepItems[0].page,
+    site: fixtures.site,
   };
   document.body.innerHTML = TutorialStepLayout.call(
     fixtures.context,

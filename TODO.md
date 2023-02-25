@@ -8,6 +8,7 @@
 - Ensure `embed:` alternative with `{% include %}` works
 - Get home pages to match current home pages
 - Figure out the `site.json` config file
+- Get PyCharm/WebStorm site config to match existing
 
 ## Next
   

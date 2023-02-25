@@ -1,7 +1,6 @@
 // @ts-ignore
 import h, { JSX } from "vhtml";
 import Navbar from "../navbar/Navbar.11ty";
-import site from "../site.json";
 import Footer from "../footer/Footer.11ty";
 import { LayoutContext, LayoutProps } from "../../src/models";
 
@@ -14,7 +13,7 @@ export function BaseLayout(
   this: LayoutContext,
   data: BaseLayoutProps
 ): JSX.Element {
-  const { children } = data;
+  const { children, site } = data;
   const { siteTitle, copyright } = site;
   // @ts-ignore
   // const imageUrl = data.thumbnail ? getThumbnailUrl(data.thumbnail) : "";
@@ -56,7 +55,7 @@ export function BaseLayout(
         <script defer src="/assets/js/site.js" type="module"></script>
       </head>
       <body>
-        <Navbar></Navbar>
+        <Navbar site={site}></Navbar>
         {children}
         <Footer copyright={copyright}></Footer>
         <script

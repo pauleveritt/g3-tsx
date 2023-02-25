@@ -43,5 +43,6 @@ export type LayoutProps = {
     fileSlug: string;
     url: string;
   };
+  site: any;
   content: string;
 };

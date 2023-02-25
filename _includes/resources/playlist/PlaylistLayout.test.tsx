@@ -12,6 +12,7 @@ test("should render PlaylistLayout", () => {
     page: playlist0.page,
     collections: fixtures.resolvedCollections as SiteCollections,
     content: fixtures.content,
+    site: fixtures.site,
   };
   document.body.innerHTML = PlaylistLayout.call(fixtures.context, renderProps);
   expect(screen.getByRole("link", { name: "Author Sidebar" })).to.exist;

@@ -2,9 +2,9 @@ import { expect, test } from "vitest";
 import { screen } from "@testing-library/dom";
 
 import NavbarStart, { NavbarStartProps } from "./NavbarStart.11ty";
-import site from "../site.json";
+import fixtures from "../fixtures";
 
-export const navbarStartProps: NavbarStartProps = site.start;
+export const navbarStartProps: NavbarStartProps = fixtures.site.start;
 test("NavbarStart", () => {
   document.body.innerHTML = NavbarStart(navbarStartProps);
   expect(screen.getByText("Tips")).to.exist;
@@ -13,7 +13,7 @@ test("NavbarStart", () => {
     expect(firstLink.className).to.equal(
       "navbar-item bd-navbar-item-documentation"
     );
-    expect(firstLink.getAttribute("href")).to.equal("/webstorm-guide/tips/");
+    expect(firstLink.getAttribute("href")).to.equal("/webstorm/guide/tips/");
   }
   const firstSpan = document.querySelector("span.icon");
   if (firstSpan) {
