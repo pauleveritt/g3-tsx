@@ -2,24 +2,18 @@
 
 ## Now
 
-- Copy PyCharm Guide over
-  - Rename dir structure to `sites/webstorm/guide`
-  - Some post-build task to copy `assets` into `_site/webstorm/guide`
-- Ensure `embed:` alternative with `{% include %}` works
 - Get home pages to match current home pages
-- Figure out the `site.json` config file
 - Get PyCharm/WebStorm site config to match existing
 
 ## Next
   
-- Site prefix stuff e.g. starting a `/tips/` instead of `/webstorm-guide/tips/`
+- Ensure `embed:` alternative with `{% include %}` works
 
 ## Soon
 
 - Implement NavbarBrand toggle menu
 - Lunr
   - NavbarSearch reveal panel
-- Clean up the content
 - Get a placeholder.jpg into the site
 - JSON Schema writing
 - TwitterCard stuff and other Helmet
@@ -34,23 +28,13 @@
 - Investigate `--incremental` by storing the validated resource on the `collections.all` instance
   - Learn watch events and add/edit/delete
   - Both for full and incremental
-- Coverage
-- No `ScrollLink` component in `SidebarDoclink`
-
-## G3
-
-- "MDX" by enabling WebC as markdown template language
-- Tutorials
-- Style misfire in code snippets on `number`
-- Re-invent collections
-  - Change fixtures and typing to treat `collections.all` with the correct structure
-  - Have `collections.resources` which is an object with properties for `all`, etc.
-  - Use Map to allow iteration and preserve default sort order
 
 ## Nice To Have
 
 - JSON Schemas
 - HTMX
+- "MDX" by enabling WebC as markdown template language
+- Coverage
 
 ## Finished
 
@@ -73,8 +57,18 @@
   - Then get rid of that key in config
 - Remove `content` from `BaseData`
 - Wire in TipSidebar into TipLayout
+- Re-invent collections
+  - Change fixtures and typing to treat `collections.all` with the correct structure
+  - Have `collections.resources` which is an object with properties for `all`, etc.
+  - Use Map to allow iteration and preserve default sort order
+- Tutorials
 - Make schemas for just the frontmatter part
 - Change label to be topic:label key
+- Copy PyCharm Guide over
+  - Rename dir structure to `sites/webstorm/guide`
+  - Some post-build task to copy `assets` into `_site/webstorm/guide`
+- Figure out the `site.json` config file
+- Style misfire in code snippets on `number`
 
 
 ## WS+CWM Issues

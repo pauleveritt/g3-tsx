@@ -1,7 +1,5 @@
 ---
-title: WebStorm Guide
+title: PyCharm Guide
 ---
-
-## WebStorm Guide
 
 We could have some content in here which becomes a customizable part of the body.

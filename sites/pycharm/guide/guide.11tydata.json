@@ -1,4 +1,5 @@
 {
+  "layout": "layouts/PageLayout.11ty.tsx",
   "site": {
     "rootURL": "/pycharm/guide/",
     "siteLogo": "jetbrains-simple.svg",
@@ -9,35 +10,35 @@
         {
           "accent": "success",
           "cssClass": "documentation",
-          "href": "/pycharm/guide/tips/",
+          "href": "/tips/",
           "label": "Tips",
           "icon": "fas fa-play-circle"
         },
         {
           "accent": "info",
           "cssClass": "documentation",
-          "href": "/pycharm/guide/tutorials/",
+          "href": "/tutorials/",
           "label": "Tutorials",
           "icon": "fas fa-tasks"
         },
         {
           "accent": "warning",
           "cssClass": "documentation",
-          "href": "/pycharm/guide/playlists/",
+          "href": "/playlists/",
           "label": "Playlists",
           "icon": "fas fa-list"
         },
         {
           "accent": "danger",
           "cssClass": "documentation",
-          "href": "/pycharm/guide/technologies/",
+          "href": "/technologies/",
           "label": "Technologies",
           "icon": "fas fa-project-diagram"
         },
         {
           "accent": "danger",
           "cssClass": "documentation",
-          "href": "/pycharm/guide/topics/",
+          "href": "/topics/",
           "label": "Topics",
           "icon": "fas fa-project-diagram"
         }

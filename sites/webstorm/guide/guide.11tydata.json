@@ -1,4 +1,5 @@
 {
+  "layout": "layouts/PageLayout.11ty.tsx",
   "site": {
     "rootURL": "/webstorm/guide/",
     "siteLogo": "jetbrains-simple.svg",

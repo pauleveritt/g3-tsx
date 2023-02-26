@@ -4,10 +4,10 @@ const { registerIncludes } = require("./_includes/config");
 const { resolve } = require("path");
 
 module.exports = function (eleventyConfig) {
-  // eleventyConfig.setServerPassthroughCopyBehavior("copy");
-  eleventyConfig.addPassthroughCopy("sites/**/*.{gif,jpg,png,svg}");
-  eleventyConfig.addWatchTarget("./public/assets");
-  eleventyConfig.addWatchTarget("./_include");
+  // These are all relative to the input directory at the end
+  eleventyConfig.addPassthroughCopy("./**/*.{gif,jpg,png,svg}");
+  eleventyConfig.addWatchTarget("../../../public/assets");
+  eleventyConfig.addWatchTarget("../../../_include");
   eleventyConfig.ignores.add("**/demos/**");
 
   registerIncludes({ eleventyConfig })
@@ -21,9 +21,9 @@ module.exports = function (eleventyConfig) {
       server: {
         mode: "development",
         middlewareMode: true,
-        watch: {
-          ignored: ["_site/**"],
-        },
+        // watch: {
+        //   ignored: ["_site/**"],
+        // },
       },
       build: {
         mode: "production",
@@ -41,10 +41,10 @@ module.exports = function (eleventyConfig) {
 
   return {
     dir: {
-      input: "sites",
-      includes: "../_includes",
-      layouts: "../_includes",
-      output: "_site",
+      input: "./sites/webstorm/guide",
+      includes: "../../../_includes",
+      layouts: "../../../_includes",
+      output: "../../_site",
     },
   };
 };
