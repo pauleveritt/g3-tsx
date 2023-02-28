@@ -56,6 +56,6 @@ export function resolveChildPath(
   pathPrefix: string,
   tutorialItem: string
 ): string {
-  let result = path.join(pathPrefix, tutorialItem);
+  let result = path.join(pathPrefix, tutorialItem).replaceAll("\\", "/");
   return !result.endsWith("/") ? result.concat("/") : result;
 }
