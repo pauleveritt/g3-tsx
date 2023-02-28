@@ -41,10 +41,10 @@ module.exports = function (eleventyConfig) {
 
   return {
     dir: {
-      input: "./sites/webstorm/guide",
+      input: "./",
       includes: "../../../_includes",
       layouts: "../../../_includes",
-      output: "./_site",
+      output: "./",
     },
   };
 };
