@@ -6,6 +6,7 @@ const { resolve } = require("path");
 module.exports = function (eleventyConfig) {
   // These are all relative to the input directory at the end
   eleventyConfig.addPassthroughCopy("./**/*.{gif,jpg,png,svg}");
+  eleventyConfig.addPassthroughCopy({ "../../public/assets": "assets" });
   eleventyConfig.addWatchTarget("../../public/assets");
   eleventyConfig.addWatchTarget("../../_include");
   eleventyConfig.ignores.add("**/demos/**");
