@@ -6,8 +6,8 @@ const { resolve } = require("path");
 module.exports = function (eleventyConfig) {
   // These are all relative to the input directory at the end
   eleventyConfig.addPassthroughCopy("./**/*.{gif,jpg,png,svg}");
-  eleventyConfig.addWatchTarget("../../../public/assets");
-  eleventyConfig.addWatchTarget("../../../_include");
+  eleventyConfig.addWatchTarget("../../public/assets");
+  eleventyConfig.addWatchTarget("../../_include");
   eleventyConfig.ignores.add("**/demos/**");
 
   registerIncludes({ eleventyConfig })
@@ -42,9 +42,9 @@ module.exports = function (eleventyConfig) {
   return {
     dir: {
       input: "./",
-      includes: "../../../_includes",
-      layouts: "../../../_includes",
-      output: "./",
+      includes: "../../_includes",
+      layouts: "../../_includes",
+      output: "./_site",
     },
   };
 };

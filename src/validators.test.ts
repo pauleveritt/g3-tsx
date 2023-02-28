@@ -18,7 +18,7 @@ test("validates good frontmatter", () => {
     date: new Date(),
     resourceType: "some-resourcetype",
     thumbnail: "thumbnail.png",
-    inputFolder: "sites/webstorm-guide/tips/some-slug/",
+    inputFolder: "sites/webstorm-pycharm-webstorm-guide/tips/some-slug/",
   };
   const validation = () =>
     validateFrontmatter(TipFrontmatter, frontmatter, "tip1.md");

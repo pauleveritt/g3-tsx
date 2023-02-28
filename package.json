@@ -4,9 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node --require esbuild-register node_modules/@11ty/eleventy/cmd.js --serve --watch",
-    "dev:webstorm": "cd sites/webstorm/guide && node --require esbuild-register ../../../node_modules/@11ty/eleventy/cmd.js --config=../../../eleventy.config.js --serve --watch",
-    "dev:pycharm": "cd sites/webstorm/guide && node --require esbuild-register ../../../node_modules/@11ty/eleventy/cmd.js --config=../../../eleventy.config.js --serve --watch",
+    "dev:webstorm": "node --require esbuild-register node_modules/@11ty/eleventy/cmd.js --config=eleventy.config.js --input=sites/webstorm-guide --serve --watch",
+    "dev:pycharm": "node --require esbuild-register node_modules/@11ty/eleventy/cmd.js --config=eleventy.config.js --input=sites/pycharm-guide --output=sites/pycharm-guide/_site --serve --watch",
     "incremental": "node --require esbuild-register node_modules/@11ty/eleventy/cmd.js --incremental --serve --watch",
     "debug-start": "DEBUG=Eleventy* node --require esbuild-register node_modules/@11ty/eleventy/cmd.js --serve --watch",
     "debug-start-windows": "set DEBUG=Eleventy* & node --require esbuild-register node_modules/@11ty/eleventy/cmd.js --serve --watch",

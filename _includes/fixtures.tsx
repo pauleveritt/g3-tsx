@@ -142,7 +142,7 @@ const authorItems: {
     page: {
       fileSlug: "aa",
       url: "/authors/aa/",
-      inputPath: "./sites/webstorm-guide/authors/aa/index.md",
+      inputPath: "./sites/webstorm-pycharm-webstorm-guide/authors/aa/index.md",
     },
   },
 ];
@@ -648,7 +648,7 @@ const context: LayoutContext = {
 };
 
 const site = {
-  rootURL: "/webstorm/guide/",
+  rootURL: "/webstorm/pycharm-webstorm-guide/",
   siteLogo: "jetbrains-simple.svg",
   siteTitle: "PyCharm Guide",
   copyright:
@@ -658,35 +658,35 @@ const site = {
       {
         accent: "success",
         cssClass: "documentation",
-        href: "/webstorm/guide/tips/",
+        href: "/webstorm/pycharm-webstorm-guide/tips/",
         label: "Tips",
         icon: "fas fa-play-circle",
       },
       {
         accent: "info",
         cssClass: "documentation",
-        href: "/webstorm/guide/tutorials/",
+        href: "/webstorm/pycharm-webstorm-guide/tutorials/",
         label: "Tutorials",
         icon: "fas fa-tasks",
       },
       {
         accent: "warning",
         cssClass: "documentation",
-        href: "/webstorm/guide/playlists/",
+        href: "/webstorm/pycharm-webstorm-guide/playlists/",
         label: "Playlists",
         icon: "fas fa-list",
       },
       {
         accent: "danger",
         cssClass: "documentation",
-        href: "/webstorm/guide/technologies/",
+        href: "/webstorm/pycharm-webstorm-guide/technologies/",
         label: "Technologies",
         icon: "fas fa-project-diagram",
       },
       {
         accent: "danger",
         cssClass: "documentation",
-        href: "/webstorm/guide/topics/",
+        href: "/webstorm/pycharm-webstorm-guide/topics/",
         label: "Topics",
         icon: "fas fa-project-diagram",
       },
