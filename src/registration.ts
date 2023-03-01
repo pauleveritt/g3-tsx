@@ -164,6 +164,6 @@ export function resolveReference({
 export const imageOptions: ImageOptions = {
   widths: ["auto"],
   formats: ["webp"],
-  outputDir: "./public/assets/img/",
+  outputDir: "./_site/assets/img/",
   urlPath: "/assets/img/",
 };
