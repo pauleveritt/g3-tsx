@@ -1,6 +1,6 @@
 import { Static, Type } from "@sinclair/typebox";
 import { EleventyPage, LayoutProps } from "./models";
-import path from "path";
+import path from "upath";
 import { ReferenceFrontmatter, References } from "./ReferenceModels";
 import { AllCollections, imageOptions, resolveReference } from "./registration";
 // @ts-ignore

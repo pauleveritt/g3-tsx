@@ -1,7 +1,7 @@
 import { Static, Type } from "@sinclair/typebox";
-import { Resource, ResourceFrontmatter } from "../../../src/ResourceModels";
+import { BaseEntity, Resource, ResourceFrontmatter } from "../../../src/ResourceModels";
 import { EleventyPage } from "../../../src/models";
-import path from "path";
+import path from "upath";
 
 export const TipFrontmatter = Type.Intersect([
   ResourceFrontmatter,

@@ -1,22 +1,16 @@
 const EleventyVitePlugin = require("@11ty/eleventy-plugin-vite");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+const pluginRss = require("@11ty/eleventy-plugin-rss");
 const { registerIncludes } = require("./_includes/config");
 const { resolve } = require("path");
 
 module.exports = function (eleventyConfig) {
-  const defaultCopyOptions = {
-    overwrite: true,
-    filter: [
-      '**/*',
-      '!_site/**/*'
-    ]
-  };
-
   // These are all relative to the input directory at the end
-  eleventyConfig.addPassthroughCopy("./**/*.{gif,jpg,png,svg}", defaultCopyOptions);
-  eleventyConfig.addPassthroughCopy({ "../../public/assets" : "assets" }, defaultCopyOptions);
+  eleventyConfig.addPassthroughCopy("./!(_site)**/*.{gif,jpg,png,svg}", { overwrite: true });
+  eleventyConfig.addPassthroughCopy({ "../../public/assets" : "assets" }, { overwrite: true });
   eleventyConfig.addWatchTarget("../../public/assets");
   eleventyConfig.addWatchTarget("../../_includes");
+  eleventyConfig.ignores.add("**/_site/**");
   eleventyConfig.ignores.add("**/demos/**");
 
   registerIncludes({ eleventyConfig })
@@ -24,6 +18,7 @@ module.exports = function (eleventyConfig) {
     .catch((e) => console.log(e));
 
   eleventyConfig.addPlugin(syntaxHighlight);
+  eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(EleventyVitePlugin, {
     viteOptions: {
       assetsInclude: ["**/demos/**"],
@@ -53,7 +48,7 @@ module.exports = function (eleventyConfig) {
       input: "./",
       includes: "../../_includes",
       layouts: "../../_includes",
-      output: "./_site",
+      output: "./_site"
     },
   };
 };

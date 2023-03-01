@@ -1,9 +1,10 @@
 import { Reference, ReferenceFrontmatter } from "../../../src/ReferenceModels";
 import { Static, Type } from "@sinclair/typebox";
-import path from "path";
+import path from "upath";
 // @ts-ignore
 import Image from "@11ty/eleventy-img";
 import { EleventyPage } from "../../../src/models";
+import { BaseEntity } from "../../../src/ResourceModels";
 
 export const AuthorFrontmatter = Type.Intersect([
   ReferenceFrontmatter,

@@ -6,13 +6,9 @@
   "scripts": {
     "dev:pycharm": "cd sites/pycharm-guide && node --require esbuild-register ../../node_modules/@11ty/eleventy/cmd.js --config=../../eleventy.config.js --serve --watch",
     "build:pycharm": "npm run clean && cd sites/pycharm-guide && node --require esbuild-register ../../node_modules/@11ty/eleventy/cmd.js --config=../../eleventy.config.js",
-
     "dev:webstorm": "cd sites/webstorm-guide && node --require esbuild-register ../../node_modules/@11ty/eleventy/cmd.js --config=../../eleventy.config.js --serve --watch",
     "build:webstorm": "npm run clean && cd sites/webstorm-guide && node --require esbuild-register ../../node_modules/@11ty/eleventy/cmd.js --config=../../eleventy.config.js",
-
     "clean": "rimraf .11ty-vite sites/pycharm-guide/_site sites/webstorm-guide/_site",
-
-
     "COMMENT": "// TODO DO WE NEED THESE SCRIPTS BELOW?",
     "incremental": "node --require esbuild-register node_modules/@11ty/eleventy/cmd.js --incremental --serve --watch",
     "debug-start": "DEBUG=Eleventy* node --require esbuild-register node_modules/@11ty/eleventy/cmd.js --serve --watch",
@@ -23,13 +19,15 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^2.0.0-beta.3",
-    "@11ty/eleventy-img": "^2.0.1",
-    "@types/11ty__eleventy-img": "^2.0.1",
+    "@11ty/eleventy": "^2.0.0",
+    "@11ty/eleventy-img": "^3.0.0",
+    "@11ty/eleventy-plugin-rss": "^1.2.0",
     "@11ty/eleventy-plugin-syntaxhighlight": "^4.2.0",
-    "@11ty/eleventy-plugin-vite": "^2.0.0-canary.3",
-    "@sinclair/typebox": "^0.25.21",
+    "@11ty/eleventy-plugin-vite": "^4.0.0",
+    "@sinclair/typebox": "^0.25.24",
     "@testing-library/dom": "^8.20.0",
+    "@types/11ty__eleventy-img": "^2.0.1",
+    "@types/luxon": "^3.2.0",
     "@types/markdown-it": "^12.2.3",
     "@types/vhtml": "^2.2.4",
     "@types/video.js": "^7.3.50",
@@ -37,14 +35,14 @@
     "copyfiles": "^2.4.1",
     "esbuild-register": "^3.3.2",
     "happy-dom": "^8.2.2",
-    "@types/luxon": "^3.2.0",
     "patch-package": "^6.5.1",
-    "prettier": "^2.8.3",
-	"rimraf": "^4.1.2",
+    "prettier": "^2.8.4",
+    "rimraf": "^4.1.2",
     "typescript": "^4.9.5",
+    "upath": "^2.0.1",
     "vhtml": "^2.2.0",
-    "vite": "^4.0.4",
-    "vitest": "^0.28.3"
+    "vite": "^4.1.4",
+    "vitest": "^0.29.2"
   },
   "volta": {
     "node": "19.6.0"

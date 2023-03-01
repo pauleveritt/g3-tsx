@@ -1,7 +1,7 @@
 import { Static, Type } from "@sinclair/typebox";
-import { Resource, ResourceFrontmatter } from "../../../src/ResourceModels";
+import { BaseEntity, Resource, ResourceFrontmatter } from "../../../src/ResourceModels";
 import { EleventyPage } from "../../../src/models";
-import path from "path";
+import path from "upath";
 import { AllCollections } from "../../../src/registration";
 import { TutorialStep } from "./TutorialStepModels";
 
@@ -56,6 +56,6 @@ export function resolveChildPath(
   pathPrefix: string,
   tutorialItem: string
 ): string {
-  let result = path.join(pathPrefix, tutorialItem).replaceAll("\\", "/");
+  let result = path.join(pathPrefix, tutorialItem);
   return !result.endsWith("/") ? result.concat("/") : result;
 }

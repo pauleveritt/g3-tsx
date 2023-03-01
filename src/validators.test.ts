@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import path from "path";
+import path from "upath";
 import { sitesDir, validateFrontmatter } from "./validators";
 import { TipFrontmatter } from "../_includes/resources/tip/TipModels";
 
