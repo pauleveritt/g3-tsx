@@ -16,7 +16,7 @@ const baseFrontmatter: BaseFrontmatter = {
 const data: ResourceFrontmatter = {
   ...baseFrontmatter,
   author: "sa",
-  date: new Date("2023-02-12"),
+  date: new Date("2023-02-11"),
   products: ["sp", "ap"],
   technologies: ["st", "at"],
   thumbnail: "thumbnail.png",
