@@ -6,6 +6,7 @@ import { LayoutContext, LayoutProps } from "../../src/models";
 
 export type BaseLayoutProps = {
   children: string[];
+  site: any;
   title: string;
 } & LayoutProps;
 
