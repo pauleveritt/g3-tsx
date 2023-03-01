@@ -4,7 +4,6 @@ import path from "upath";
 // @ts-ignore
 import Image from "@11ty/eleventy-img";
 import { EleventyPage } from "../../../src/models";
-import { BaseEntity } from "../../../src/ResourceModels";
 
 export const AuthorFrontmatter = Type.Intersect([
   ReferenceFrontmatter,

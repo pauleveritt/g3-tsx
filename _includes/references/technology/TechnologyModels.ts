@@ -2,7 +2,6 @@ import { Reference, ReferenceFrontmatter } from "../../../src/ReferenceModels";
 import { Static, Type } from "@sinclair/typebox";
 import { EleventyPage } from "../../../src/models";
 import path from "upath";
-import { BaseEntity } from "../../../src/ResourceModels";
 
 export const TechnologyFrontmatter = Type.Intersect([
   ReferenceFrontmatter,

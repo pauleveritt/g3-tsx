@@ -1,5 +1,5 @@
 import { Static, Type } from "@sinclair/typebox";
-import { BaseEntity, Resource, ResourceFrontmatter } from "../../../src/ResourceModels";
+import { Resource, ResourceFrontmatter } from "../../../src/ResourceModels";
 import { EleventyPage } from "../../../src/models";
 import path from "upath";
 
