@@ -1,5 +1,5 @@
 ---
-title: XPaul Everitt
+title: Paul Everitt
 subtitle: PyCharm Developer Advocate at JetBrains
 thumbnail: ./pwe.jpg
 ---
