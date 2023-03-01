@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev:webstorm": "cd sites/webstorm-guide && node --require esbuild-register ../../node_modules/@11ty/eleventy/cmd.js --config=../../eleventy.config.js --serve --watch",
+
     "dev:pycharm": "cd sites/pycharm-guide && node --require esbuild-register ../../node_modules/@11ty/eleventy/cmd.js --config=../../eleventy.config.js --serve --watch",
 
     "COMMENT": "// TODO THE SCRIPTS BELOW HAVE NOT YET BEEN UPDATED - NEEDS FIXING!",

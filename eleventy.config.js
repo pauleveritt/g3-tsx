@@ -4,11 +4,19 @@ const { registerIncludes } = require("./_includes/config");
 const { resolve } = require("path");
 
 module.exports = function (eleventyConfig) {
+  const defaultCopyOptions = {
+    overwrite: true,
+    filter: [
+      '**/*',
+      '!_site/**/*'
+    ]
+  };
+
   // These are all relative to the input directory at the end
-  eleventyConfig.addPassthroughCopy("./**/*.{gif,jpg,png,svg}");
-  eleventyConfig.addPassthroughCopy({ "../../public/assets" : "assets" });
+  eleventyConfig.addPassthroughCopy("./**/*.{gif,jpg,png,svg}", defaultCopyOptions);
+  eleventyConfig.addPassthroughCopy({ "../../public/assets" : "assets" }, defaultCopyOptions);
   eleventyConfig.addWatchTarget("../../public/assets");
-  eleventyConfig.addWatchTarget("../../_include");
+  eleventyConfig.addWatchTarget("../../_includes");
   eleventyConfig.ignores.add("**/demos/**");
 
   registerIncludes({ eleventyConfig })
@@ -22,9 +30,9 @@ module.exports = function (eleventyConfig) {
       server: {
         mode: "development",
         middlewareMode: true,
-        // watch: {
-        //   ignored: ["_site/**"],
-        // },
+        watch: {
+          ignored: ["_site/**"],
+        },
       },
       build: {
         mode: "production",
