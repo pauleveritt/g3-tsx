@@ -2,20 +2,18 @@
 import h, { JSX } from "vhtml";
 
 export type NavbarBrandProps = {
-  rootURL: string;
   siteLogo: string;
   siteTitle: string;
 };
 
 const NavbarBrand = ({
-  rootURL,
   siteLogo,
   siteTitle,
 }: NavbarBrandProps): JSX.Element => {
   return (
     <>
       <div className="navbar-brand">
-        <a href={rootURL} className="navbar-item bio-navbar-brand">
+        <a href={`/`} className="navbar-item bio-navbar-brand">
           <img
             src={`/assets/${siteLogo}`}
             className="bio-navbar-logo-image"
@@ -24,7 +22,7 @@ const NavbarBrand = ({
             height="28"
           />
         </a>
-        <a href={rootURL} className="navbar-item bio-navbar-brand">
+        <a href={`/`} className="navbar-item bio-navbar-brand">
           {siteTitle}
         </a>
         <div

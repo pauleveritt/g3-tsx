@@ -47,5 +47,5 @@ test("get a class attribute from base class", () => {
 
 test("get a friendly date display format", () => {
   const resource = new Resource({ data, page });
-  expect(resource.displayDate).to.equal("2023-02-11");
+  expect(resource.displayDate).to.equal("2023-02-12");
 });

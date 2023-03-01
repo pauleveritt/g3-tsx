@@ -5,7 +5,6 @@ import NavbarBrand, { NavbarBrandProps } from "./NavbarBrand.11ty";
 import fixtures from "../fixtures";
 
 export const navbarBrandProps: NavbarBrandProps = {
-  rootURL: fixtures.site.rootURL,
   siteLogo: fixtures.site.siteLogo,
   siteTitle: fixtures.site.siteTitle,
 };
@@ -17,7 +16,7 @@ test("NavbarBrand", () => {
     "/assets/jetbrains-simple.svg"
   );
   const links = document.querySelectorAll("a");
-  expect(links && links[0].href).to.equal("/webstorm/pycharm-webstorm-guide/");
-  expect(links && links[1].href).to.equal("/webstorm/pycharm-webstorm-guide/");
+  expect(links && links[0].href).to.equal("/");
+  expect(links && links[1].href).to.equal("/");
   expect(screen.getByText("PyCharm Guide")).to.exist;
 });

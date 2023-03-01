@@ -648,7 +648,6 @@ const context: LayoutContext = {
 };
 
 const site = {
-  rootURL: "/webstorm/pycharm-webstorm-guide/",
   siteLogo: "jetbrains-simple.svg",
   siteTitle: "PyCharm Guide",
   copyright:
