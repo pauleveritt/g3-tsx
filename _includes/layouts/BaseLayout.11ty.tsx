@@ -3,6 +3,7 @@ import h, { JSX } from "vhtml";
 import Navbar from "../navbar/Navbar.11ty";
 import Footer from "../footer/Footer.11ty";
 import { LayoutContext, LayoutProps } from "../../src/models";
+import path from "upath";
 
 export type BaseLayoutProps = {
   children: string[];
@@ -17,9 +18,9 @@ export function BaseLayout(
   const { children, site } = data;
   const { siteTitle, copyright } = site;
   // @ts-ignore
-  // const imageUrl = data.thumbnail ? getThumbnailUrl(data.thumbnail) : "";
-  // @ts-ignore
-  const { subtitle } = data;
+  const { thumbnail, subtitle } = data;
+  // TODO we need a way to get to the image URL that Vite will have generated
+  // const imageUrl = thumbnail ? path.join(siteUrl, thumbnail) : false;
   return (
     <html lang="en">
       <head>
