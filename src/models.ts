@@ -42,6 +42,7 @@ export type LayoutProps = {
   page: {
     fileSlug: string;
     url: string;
+    date: Date;
   };
   site: any;
   content: string;

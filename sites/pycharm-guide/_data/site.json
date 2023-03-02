@@ -2,6 +2,7 @@
 {
   "siteLogo": "jetbrains-simple.svg",
   "siteTitle": "PyCharm Guide",
+  "siteDescription": "",
   "siteUrl": "https://www.jetbrains.com/pycharm/guide",
   "copyright": "Copyright © 2000–2022 <a href=\"https://www.jetbrains.com/\">JetBrains</a> s.r.o.",
   "start": {
