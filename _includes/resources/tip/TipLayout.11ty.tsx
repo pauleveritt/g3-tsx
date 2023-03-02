@@ -62,7 +62,7 @@ export function TipLayout(
 
   // Main content
   const main = (
-    <div style="margin-bottom: 3rem">
+    <div className="mb-6">
       <div className="columns">
         {tip.animatedGif && (
           <img
@@ -90,28 +90,17 @@ export function TipLayout(
         )}
         <div
           className="column content"
-          style="display: flex; justify-content: space-between; flex-direction: column"
-        >
+          style="display: flex; justify-content: space-between; flex-direction: column">
           {leadin && <div dangerouslySetInnerHTML={{ __html: leadin }} />}
           <div>
-            {tip.longVideo && (
-              <a
-                className="button is-light"
-                href="#full-video"
-                style="width: auto; margi-left: 0.5em"
-              >
-                <VideoPlayer
-                  source={tip.longVideo.url}
-                  poster={tip.longVideo.poster}
-                />
-              </a>
-            )}
+            <a href="#in-depth" className="button is-light" style="width: auto;">Learn More</a>
+            {tip.longVideo && <a href="#full-video" className="button is-light" style="width: auto; margin-left: 0.5em;">Full Video</a> }
           </div>
         </div>
       </div>
       {content && (
         <>
-          <header id="in-depth" className="is-size-3 is-bold">
+          <header id="in-depth" className="is-size-3 is-bold mb-3">
             In Depth
           </header>
           <div className="columns">
@@ -120,13 +109,20 @@ export function TipLayout(
               dangerouslySetInnerHTML={{ __html: content }}
             />
           </div>
+          {tip.longVideo && (
+            <div className="mb-3">
+              <header id="full-video" className="is-size-3 is-bold mb-3">
+                Full Video
+              </header>
+              <VideoPlayer
+                source={tip.longVideo.url}
+                poster={tip.longVideo.poster}
+              />
+            </div>
+          )}
         </>
       )}
-      {tip.seealso && (
-        <>
-          <SeeAlso items={tip.seealso} />
-        </>
-      )}
+      {tip.seealso && <SeeAlso items={tip.seealso} /> }
     </div>
   );
 

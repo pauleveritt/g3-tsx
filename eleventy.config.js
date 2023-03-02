@@ -45,6 +45,14 @@ module.exports = function (eleventyConfig) {
       },
       build: {
         mode: "production",
+        rollupOptions: {
+            output: {
+              // make asset file names predictable
+              // could potentially calculate file hash
+              // at some point in pipeline, but 🤷‍
+              assetFileNames: `assets/[name][extname]`
+            }
+        }
       },
 
       // New in v2.0.0

@@ -16,11 +16,11 @@ export function BaseLayout(
   data: BaseLayoutProps
 ): JSX.Element {
   const { children, site } = data;
-  const { siteTitle, copyright } = site;
+  const { siteTitle, copyright, siteUrl } = site;
   // @ts-ignore
   const { thumbnail, subtitle } = data;
-  // TODO we need a way to get to the image URL that Vite will have generated
-  // const imageUrl = thumbnail ? path.join(siteUrl, thumbnail) : false;
+  // this og:image will only work in production when processed
+  const imageUrl = thumbnail ? path.join(siteUrl, "assets", thumbnail) : false;
   return (
     <html lang="en">
       <head>
@@ -38,7 +38,7 @@ export function BaseLayout(
         <meta property="article:published_time" content="2023-02-17" />
         <meta property="article:author" content="" />
         <meta property="article:section" content="" />
-        {/*<meta property="og:image" content={imageUrl} />*/}
+        {imageUrl && <meta property="og:image" content={imageUrl} /> }
         <meta property="og:image:alt" content="" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@jetbrains" />
