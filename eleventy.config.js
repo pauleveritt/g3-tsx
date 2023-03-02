@@ -3,11 +3,23 @@ const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 const { registerIncludes } = require("./_includes/config");
 const { resolve } = require("path");
+const commandLineArgs = require("command-line-args");
 
+const options = commandLineArgs([
+  { name: "config", type: String },
+  { name: "pathprefix", type: String, defaultOption: "/" },
+  { name: "serve", type: Boolean, defaultOption: false },
+  { name: "watch", type: Boolean, defaultOption: false },
+]);
 module.exports = function (eleventyConfig) {
   // These are all relative to the input directory at the end
-  eleventyConfig.addPassthroughCopy("./!(_site)**/*.{gif,jpg,png,svg}", { overwrite: true });
-  eleventyConfig.addPassthroughCopy({ "../../public/assets" : "assets" }, { overwrite: true });
+  eleventyConfig.addPassthroughCopy("./!(_site)**/*.{gif,jpg,png,svg}", {
+    overwrite: true,
+  });
+  eleventyConfig.addPassthroughCopy(
+    { "../../public/assets": "assets" },
+    { overwrite: true }
+  );
   eleventyConfig.addWatchTarget("../../public/assets");
   eleventyConfig.addWatchTarget("../../_includes");
   eleventyConfig.ignores.add("**/_site/**");
@@ -19,8 +31,10 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPlugin(syntaxHighlight);
   eleventyConfig.addPlugin(pluginRss);
+
   eleventyConfig.addPlugin(EleventyVitePlugin, {
     viteOptions: {
+      base: options.pathprefix,
       assetsInclude: ["**/demos/**"],
       server: {
         mode: "development",
@@ -48,7 +62,7 @@ module.exports = function (eleventyConfig) {
       input: "./",
       includes: "../../_includes",
       layouts: "../../_includes",
-      output: "./_site"
+      output: "./_site",
     },
   };
 };

@@ -19,6 +19,7 @@
 - TwitterCard stuff and other Helmet
 - Allow running in `inputSrc` of `webstorm-guide` (to prevent links from including `/webstorm-guide/`)
   - Or possibly [pathPrefix](https://www.11ty.dev/docs/config/#deploy-to-a-subdirectory-with-a-path-prefix)
+- Get `longVideo` back on TipLayout
 
 ## Eventually
 
@@ -107,3 +108,4 @@
   ```
 - Add `templateEngineOverride: "md"` in TutorialStep as needed
 - Delete pycharm-guide/contents/tutorials/sphinx_sites/blog as it is unused
+- 

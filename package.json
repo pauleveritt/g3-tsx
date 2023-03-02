@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev:pycharm": "cd sites/pycharm-guide && node --require esbuild-register ../../node_modules/@11ty/eleventy/cmd.js --config=../../eleventy.config.js --serve --watch",
-    "build:pycharm": "npm run clean && cd sites/pycharm-guide && node --require esbuild-register ../../node_modules/@11ty/eleventy/cmd.js --config=../../eleventy.config.js",
+    "build:pycharm": "npm run clean && cd sites/pycharm-guide && node --require esbuild-register ../../node_modules/@11ty/eleventy/cmd.js --config=../../eleventy.config.js --pathprefix=/pycharm/guide ",
     "dev:webstorm": "cd sites/webstorm-guide && node --require esbuild-register ../../node_modules/@11ty/eleventy/cmd.js --config=../../eleventy.config.js --serve --watch",
     "build:webstorm": "npm run clean && cd sites/webstorm-guide && node --require esbuild-register ../../node_modules/@11ty/eleventy/cmd.js --config=../../eleventy.config.js",
     "clean": "rimraf .11ty-vite sites/pycharm-guide/_site sites/webstorm-guide/_site",
@@ -32,6 +32,7 @@
     "@types/vhtml": "^2.2.4",
     "@types/video.js": "^7.3.50",
     "@vitest/coverage-c8": "^0.28.4",
+    "command-line-args": "^5.2.1",
     "copyfiles": "^2.4.1",
     "esbuild-register": "^3.3.2",
     "happy-dom": "^8.2.2",
