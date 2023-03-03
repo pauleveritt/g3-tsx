@@ -24,6 +24,6 @@ export class Product extends Reference implements ProductFrontmatter {
     page: EleventyPage;
   }) {
     super({ data, page });
-    this.logo = path.join(path.dirname(page.inputPath), data.logo);
+    this.logo = path.join(page.url, data.logo);
   }
 }

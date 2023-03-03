@@ -20,6 +20,7 @@ export class Topic extends Reference implements TopicFrontmatter {
   constructor({ data, page }: { data: TopicFrontmatter; page: EleventyPage }) {
     super({ data, page });
     this.accent = data.accent;
+    // font-awesome string
     this.icon = data.icon;
   }
 }

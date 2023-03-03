@@ -1,6 +1,4 @@
 import h, { JSX } from "vhtml";
-// @ts-ignore
-import Image from "@11ty/eleventy-img";
 
 export type ImageProps = {
   src: string;
@@ -9,22 +7,8 @@ export type ImageProps = {
 };
 
 const Thumbnail = ({ src, alt, className }: ImageProps): JSX.Element => {
-  // fire and forget
-  Image(src, imageOptions);
-
-  const attributes = {
-    alt,
-    class: className,
-    sizes: "100vw",
-    loading: "lazy",
-    decoding: "async",
-  };
-
-  const metadata = Image.statsSync(src, imageOptions);
   // @ts-ignore
-  const html = Image.generateHTML(metadata, attributes);
-
-  return <span dangerouslySetInnerHTML={{ __html: html }}></span>;
+  return <img loading={`lazy`} src={src} alt={alt} class={className} />;
 };
 
 export default Thumbnail;

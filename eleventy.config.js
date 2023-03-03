@@ -13,7 +13,7 @@ const options = commandLineArgs([
 ]);
 module.exports = function (eleventyConfig) {
   // These are all relative to the input directory at the end
-  eleventyConfig.addPassthroughCopy("./!(_site)**/*.{gif,jpg,png,svg}", {
+  eleventyConfig.addPassthroughCopy("./!(_site)**/*.{gif,jpg,png,svg,jpeg}", {
     overwrite: true,
   });
   eleventyConfig.addPassthroughCopy(
@@ -46,13 +46,13 @@ module.exports = function (eleventyConfig) {
       build: {
         mode: "production",
         rollupOptions: {
-            output: {
-              // make asset file names predictable
-              // could potentially calculate file hash
-              // at some point in pipeline, but 🤷‍
-              assetFileNames: `assets/[name][extname]`
-            }
-        }
+          output: {
+            // make asset file names predictable
+            // could potentially calculate file hash
+            // at some point in pipeline, but 🤷‍
+            // assetFileNames: `assets/[name][extname]`
+          },
+        },
       },
 
       // New in v2.0.0

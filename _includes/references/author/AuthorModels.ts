@@ -1,8 +1,6 @@
 import { Reference, ReferenceFrontmatter } from "../../../src/ReferenceModels";
 import { Static, Type } from "@sinclair/typebox";
 import path from "upath";
-// @ts-ignore
-import Image from "@11ty/eleventy-img";
 import { EleventyPage } from "../../../src/models";
 
 export const AuthorFrontmatter = Type.Intersect([
@@ -20,6 +18,6 @@ export class Author extends Reference implements AuthorFrontmatter {
 
   constructor({ data, page }: { data: AuthorFrontmatter; page: EleventyPage }) {
     super({ data, page });
-    this.thumbnail = path.join(path.dirname(page.inputPath), data.thumbnail);
+    this.thumbnail = path.join(page.url, data.thumbnail);
   }
 }

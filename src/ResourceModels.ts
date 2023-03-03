@@ -3,8 +3,6 @@ import { EleventyPage } from "./models";
 import path from "upath";
 import { ReferenceFrontmatter, References } from "./ReferenceModels";
 import { AllCollections, resolveReference } from "./registration";
-// @ts-ignore
-import Image from "@11ty/eleventy-img";
 import { validateFrontmatter } from "./validators";
 import { DateTime } from "luxon";
 
@@ -41,10 +39,6 @@ export class BaseEntity implements BaseFrontmatter {
   }
 
   async init(): Promise<this> {
-    if ("thumbnail" in this) {
-      // TODO Getting a type warning on this
-      // await Image(this.thumbnail, imageOptions);
-    }
     return this;
   }
 }
@@ -95,12 +89,11 @@ export class Resource extends BaseEntity implements ResourceFrontmatter {
     this.products = data.products;
     this.subtitle = data.subtitle;
     this.technologies = data.technologies;
-    this.thumbnail = path.join(path.dirname(page.inputPath), data.thumbnail);
+    this.thumbnail = path.join(page.url, data.thumbnail);
     this.topics = data.topics;
   }
 
   async init(): Promise<this> {
-    await Image(this.thumbnail, imageOptions);
     return this;
   }
 

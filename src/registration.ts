@@ -10,7 +10,6 @@ import {
   ResourceCollection,
 } from "./ResourceModels";
 import { ReferenceFrontmatter } from "./ReferenceModels";
-import { ImageOptions } from "@11ty/eleventy-img";
 
 export type CollectionApi = {
   getAll(): EleventyCollectionItem[];
@@ -20,6 +19,7 @@ export type RegisterIncludesProps = {
   eleventyConfig: UserConfig;
 };
 
+// TODO Get rid of these two
 export type ResourceTypeConfig = {
   collectionName: string;
   // factory(data: any, page: EleventyPage): Promise<Resource>;
@@ -160,10 +160,3 @@ export function resolveReference({
     return reference;
   }
 }
-
-export const imageOptions: ImageOptions = {
-  widths: ["auto"],
-  formats: ["webp"],
-  outputDir: "./_site/assets/img/",
-  urlPath: "/assets/img/",
-};
