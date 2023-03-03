@@ -77,6 +77,7 @@ const tipItems: {
       fileSlug: "some-tip",
       url: "/tips/some-tip/",
       inputPath: `${rootPath}/tips/some-tip/index.md`,
+      date: new Date("2023-02-02"),
     },
   },
   {
@@ -86,6 +87,7 @@ const tipItems: {
       fileSlug: "another-tip",
       url: "/tips/another-tip/",
       inputPath: `${rootPath}/tips/another-tip/index.md`,
+      date: new Date("2023-02-02"),
     },
   },
 ];
@@ -134,6 +136,7 @@ const authorItems: {
       fileSlug: "sa",
       url: "/authors/sa/",
       inputPath: `${rootPath}/authors/sa/index.md`,
+      date: new Date("2023-02-02"),
     },
   },
   {
@@ -143,6 +146,7 @@ const authorItems: {
       fileSlug: "aa",
       url: "/authors/aa/",
       inputPath: "./sites/webstorm-pycharm-webstorm-guide/authors/aa/index.md",
+      date: new Date("2023-02-02"),
     },
   },
 ];
@@ -191,6 +195,7 @@ const technologyItems: {
       fileSlug: "st",
       url: "/technologies/st/",
       inputPath: `${rootPath}/technologies/st/index.md`,
+      date: new Date("2023-02-02"),
     },
   },
   {
@@ -200,6 +205,7 @@ const technologyItems: {
       fileSlug: "at",
       url: "/technologies/at/",
       inputPath: `${rootPath}/technologies/at/index.md`,
+      date: new Date("2023-02-02"),
     },
   },
 ];
@@ -250,6 +256,7 @@ const topicItems: {
       fileSlug: "at",
       url: "/topics/at/",
       inputPath: `${rootPath}/topics/at/index.md`,
+      date: new Date("2023-02-02"),
     },
   },
   {
@@ -259,6 +266,7 @@ const topicItems: {
       fileSlug: "sp",
       url: "/products/sp/",
       inputPath: `${rootPath}/products/sp/index.md`,
+      date: new Date("2023-02-02"),
     },
   },
 ];
@@ -308,6 +316,7 @@ const productItems: {
       fileSlug: "sp",
       url: "/products/sp/",
       inputPath: `${rootPath}/products/sp/index.md`,
+      date: new Date("2023-02-02"),
     },
   },
   {
@@ -317,6 +326,7 @@ const productItems: {
       fileSlug: "ap",
       url: "/topics/ap/",
       inputPath: `${rootPath}/topics/ap/index.md`,
+      date: new Date("2023-02-02"),
     },
   },
 ];
@@ -373,6 +383,7 @@ export const tutorialItems: {
       fileSlug: "some-tutorial",
       url: "/tutorials/some-tutorial/",
       inputPath: `${rootPath}/tutorials/some-tutorial/index.md`,
+      date: new Date("2023-02-02"),
     },
   },
   {
@@ -382,6 +393,7 @@ export const tutorialItems: {
       fileSlug: "another-tutorial",
       url: "/tutorials/another-tutorial/",
       inputPath: `${rootPath}/tutorials/another-tutorial/index.md`,
+      date: new Date("2023-02-02"),
     },
   },
 ];
@@ -439,6 +451,7 @@ export const tutorialStepItems: {
       fileSlug: "some-tutorialstep",
       url: "/tutorials/some-tutorial/some-tutorialstep/",
       inputPath: `${rootPath}/tutorials/some-tutorial/some-tutorialstep/index.md`,
+      date: new Date("2023-02-02"),
     },
   },
   {
@@ -448,6 +461,7 @@ export const tutorialStepItems: {
       fileSlug: "another-tutorialstep",
       url: "/tutorials/some-tutorial/another-tutorialstep/",
       inputPath: `${rootPath}/tutorials/some-tutorial/another-tutorialstep/index.md`,
+      date: new Date("2023-02-02"),
     },
   },
   {
@@ -457,6 +471,7 @@ export const tutorialStepItems: {
       fileSlug: "third-tutorialstep",
       url: "/tutorials/some-tutorial/third-tutorialstep/",
       inputPath: `${rootPath}/tutorials/some-tutorial/third-tutorialstep/index.md`,
+      date: new Date("2023-02-02"),
     },
   },
 ];
@@ -519,6 +534,7 @@ export const playlistItems: {
       fileSlug: "some-playlist",
       url: "/playlists/some-playlist/",
       inputPath: `${rootPath}/playlists/some-playlist/index.md`,
+      date: new Date("2023-02-02"),
     },
   },
   {
@@ -528,6 +544,7 @@ export const playlistItems: {
       fileSlug: "another-playlist",
       url: "/playlists/another-playlist/",
       inputPath: `${rootPath}/playlists/another-playlist/index.md`,
+      date: new Date("2023-02-02"),
     },
   },
 ];

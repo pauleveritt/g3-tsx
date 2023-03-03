@@ -10,6 +10,7 @@ export const EleventyPage = Type.Object({
   fileSlug: Type.String(),
   url: Type.String(),
   inputPath: Type.String(),
+  date: Type.Date(),
 });
 export type EleventyPage = Static<typeof EleventyPage>;
 
