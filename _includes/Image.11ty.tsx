@@ -1,7 +1,6 @@
 import h, { JSX } from "vhtml";
 // @ts-ignore
 import Image from "@11ty/eleventy-img";
-import { imageOptions } from "../src/registration";
 
 export type ImageProps = {
   src: string;

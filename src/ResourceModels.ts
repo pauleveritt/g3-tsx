@@ -1,12 +1,13 @@
 import { Static, Type } from "@sinclair/typebox";
-import { EleventyPage, LayoutProps } from "./models";
+import { EleventyPage } from "./models";
 import path from "upath";
 import { ReferenceFrontmatter, References } from "./ReferenceModels";
-import { AllCollections, imageOptions, resolveReference } from "./registration";
+import { AllCollections, resolveReference } from "./registration";
 // @ts-ignore
 import Image from "@11ty/eleventy-img";
 import { validateFrontmatter } from "./validators";
 import { DateTime } from "luxon";
+
 const slugify = require("@sindresorhus/slugify");
 
 export const BaseFrontmatter = Type.Object({
@@ -63,9 +64,6 @@ export const ResourceFrontmatter = Type.Intersect([
   }),
 ]);
 export type ResourceFrontmatter = Static<typeof ResourceFrontmatter>;
-export type ResourceLayoutProps = {
-  data: ResourceFrontmatter;
-} & LayoutProps;
 
 export class Resource extends BaseEntity implements ResourceFrontmatter {
   anchor: string; // Playlist items need unique identifier
