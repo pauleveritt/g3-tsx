@@ -81,7 +81,8 @@ export class Resource extends BaseEntity implements ResourceFrontmatter {
     page: EleventyPage;
   }) {
     super({ data, page });
-    const displayDate = DateTime.fromJSDate(data.date).toFormat("yyyy-LL-dd");
+    const thisDate = DateTime.fromJSDate(data.date, { zone: "utc" });
+    const displayDate = thisDate.toFormat("yyyy-LL-dd");
     this.anchor = slugify(this.url);
     this.author = data.author;
     this.date = new Date(data.date);

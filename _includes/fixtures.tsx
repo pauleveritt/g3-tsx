@@ -37,6 +37,8 @@ import {
  * Reusable test data``
  */
 const content = `<p>Hello <em id="world">world</em>.</p>`;
+const date = new Date(Date.UTC(2023, 1, 11));
+
 const children: string[] = [
   h("", {
     dangerouslySetInnerHTML: { __html: content },
@@ -46,7 +48,7 @@ const children: string[] = [
 const tipFrontmatters: TipFrontmatter[] = [
   {
     title: "Some Tip",
-    date: new Date("2023-02-02"),
+    date,
     resourceType: "tip",
     author: "sa",
     products: ["sp", "ap"],
@@ -56,7 +58,7 @@ const tipFrontmatters: TipFrontmatter[] = [
   },
   {
     title: "Another Tip",
-    date: new Date("2023-01-10"),
+    date,
     resourceType: "tip",
     author: "aa",
     technologies: ["st", "at"],
@@ -77,7 +79,7 @@ const tipItems: {
       fileSlug: "some-tip",
       url: "/tips/some-tip/",
       inputPath: `${rootPath}/tips/some-tip/index.md`,
-      date: new Date("2023-02-02"),
+      date,
     },
   },
   {
@@ -87,7 +89,7 @@ const tipItems: {
       fileSlug: "another-tip",
       url: "/tips/another-tip/",
       inputPath: `${rootPath}/tips/another-tip/index.md`,
-      date: new Date("2023-02-02"),
+      date,
     },
   },
 ];
@@ -136,7 +138,7 @@ const authorItems: {
       fileSlug: "sa",
       url: "/authors/sa/",
       inputPath: `${rootPath}/authors/sa/index.md`,
-      date: new Date("2023-02-02"),
+      date,
     },
   },
   {
@@ -146,7 +148,7 @@ const authorItems: {
       fileSlug: "aa",
       url: "/authors/aa/",
       inputPath: "./sites/webstorm-pycharm-webstorm-guide/authors/aa/index.md",
-      date: new Date("2023-02-02"),
+      date,
     },
   },
 ];
@@ -195,7 +197,7 @@ const technologyItems: {
       fileSlug: "st",
       url: "/technologies/st/",
       inputPath: `${rootPath}/technologies/st/index.md`,
-      date: new Date("2023-02-02"),
+      date,
     },
   },
   {
@@ -205,7 +207,7 @@ const technologyItems: {
       fileSlug: "at",
       url: "/technologies/at/",
       inputPath: `${rootPath}/technologies/at/index.md`,
-      date: new Date("2023-02-02"),
+      date,
     },
   },
 ];
@@ -256,7 +258,7 @@ const topicItems: {
       fileSlug: "at",
       url: "/topics/at/",
       inputPath: `${rootPath}/topics/at/index.md`,
-      date: new Date("2023-02-02"),
+      date,
     },
   },
   {
@@ -266,7 +268,7 @@ const topicItems: {
       fileSlug: "sp",
       url: "/products/sp/",
       inputPath: `${rootPath}/products/sp/index.md`,
-      date: new Date("2023-02-02"),
+      date,
     },
   },
 ];
@@ -316,7 +318,7 @@ const productItems: {
       fileSlug: "sp",
       url: "/products/sp/",
       inputPath: `${rootPath}/products/sp/index.md`,
-      date: new Date("2023-02-02"),
+      date,
     },
   },
   {
@@ -326,7 +328,7 @@ const productItems: {
       fileSlug: "ap",
       url: "/topics/ap/",
       inputPath: `${rootPath}/topics/ap/index.md`,
-      date: new Date("2023-02-02"),
+      date,
     },
   },
 ];
@@ -353,7 +355,7 @@ export const tutorialFrontmatters: TutorialFrontmatter[] = [
     title: "Some Tutorial",
     resourceType: "tutorial",
     author: "sa",
-    date: new Date("2023-02-02"),
+    date,
     thumbnail: "thumbnail.png",
     tutorialItems: [
       "./some-tutorialstep",
@@ -365,7 +367,7 @@ export const tutorialFrontmatters: TutorialFrontmatter[] = [
     title: "Another Tutorial",
     resourceType: "tutorial",
     author: "sa",
-    date: new Date("2023-02-02"),
+    date,
     thumbnail: "thumbnail.png",
     tutorialItems: [],
   },
@@ -383,7 +385,7 @@ export const tutorialItems: {
       fileSlug: "some-tutorial",
       url: "/tutorials/some-tutorial/",
       inputPath: `${rootPath}/tutorials/some-tutorial/index.md`,
-      date: new Date("2023-02-02"),
+      date,
     },
   },
   {
@@ -393,7 +395,7 @@ export const tutorialItems: {
       fileSlug: "another-tutorial",
       url: "/tutorials/another-tutorial/",
       inputPath: `${rootPath}/tutorials/another-tutorial/index.md`,
-      date: new Date("2023-02-02"),
+      date,
     },
   },
 ];
@@ -420,21 +422,21 @@ export const tutorialStepFrontmatters: TutorialStepFrontmatter[] = [
     title: "Some Tutorial Step",
     resourceType: "tutorialstep",
     author: "sa",
-    date: new Date("2023-02-02"),
+    date,
     thumbnail: "thumbnail.png",
   },
   {
     title: "Another Tutorial Step",
     resourceType: "tutorialstep",
     author: "sa",
-    date: new Date("2023-02-02"),
     thumbnail: "thumbnail.png",
+    date,
   },
   {
     title: "Third Tutorial Step",
     resourceType: "tutorialstep",
     author: "sa",
-    date: new Date("2023-02-02"),
+    date,
     thumbnail: "thumbnail.png",
   },
 ];
@@ -451,7 +453,7 @@ export const tutorialStepItems: {
       fileSlug: "some-tutorialstep",
       url: "/tutorials/some-tutorial/some-tutorialstep/",
       inputPath: `${rootPath}/tutorials/some-tutorial/some-tutorialstep/index.md`,
-      date: new Date("2023-02-02"),
+      date,
     },
   },
   {
@@ -461,7 +463,7 @@ export const tutorialStepItems: {
       fileSlug: "another-tutorialstep",
       url: "/tutorials/some-tutorial/another-tutorialstep/",
       inputPath: `${rootPath}/tutorials/some-tutorial/another-tutorialstep/index.md`,
-      date: new Date("2023-02-02"),
+      date,
     },
   },
   {
@@ -471,7 +473,7 @@ export const tutorialStepItems: {
       fileSlug: "third-tutorialstep",
       url: "/tutorials/some-tutorial/third-tutorialstep/",
       inputPath: `${rootPath}/tutorials/some-tutorial/third-tutorialstep/index.md`,
-      date: new Date("2023-02-02"),
+      date,
     },
   },
 ];
@@ -508,7 +510,7 @@ export const playlistFrontmatters: PlaylistFrontmatter[] = [
     title: "Some Playlist",
     resourceType: "playlist",
     author: "sa",
-    date: new Date("2023-02-02"),
+    date,
     thumbnail: "thumbnail.png",
     playlistItems: ["/tips/some-tip/"],
   },
@@ -516,8 +518,8 @@ export const playlistFrontmatters: PlaylistFrontmatter[] = [
     title: "Another Playlist",
     resourceType: "playlist",
     author: "sa",
-    date: new Date("2023-02-02"),
     thumbnail: "thumbnail.png",
+    date,
     playlistItems: [],
   },
 ];
@@ -534,7 +536,7 @@ export const playlistItems: {
       fileSlug: "some-playlist",
       url: "/playlists/some-playlist/",
       inputPath: `${rootPath}/playlists/some-playlist/index.md`,
-      date: new Date("2023-02-02"),
+      date,
     },
   },
   {
@@ -544,7 +546,7 @@ export const playlistItems: {
       fileSlug: "another-playlist",
       url: "/playlists/another-playlist/",
       inputPath: `${rootPath}/playlists/another-playlist/index.md`,
-      date: new Date("2023-02-02"),
+      date,
     },
   },
 ];
@@ -738,6 +740,7 @@ const fixtures = {
   children,
   collections,
   content,
+  date,
   technologies,
   technologyItems,
   tips,

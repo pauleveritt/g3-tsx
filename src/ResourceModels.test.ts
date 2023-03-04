@@ -8,6 +8,7 @@ import {
 // import fixtures from "../_includes/fixtures";
 import { rootPath } from "../_includes/config";
 import { EleventyPage } from "./models";
+import fixtures from "../_includes/fixtures";
 
 const baseFrontmatter: BaseFrontmatter = {
   resourceType: "tip",
@@ -16,7 +17,7 @@ const baseFrontmatter: BaseFrontmatter = {
 const data: ResourceFrontmatter = {
   ...baseFrontmatter,
   author: "sa",
-  date: new Date("2023-02-11"),
+  date: new Date(Date.UTC(2023, 1, 11)),
   products: ["sp", "ap"],
   technologies: ["st", "at"],
   thumbnail: "thumbnail.png",
@@ -26,7 +27,7 @@ const page: EleventyPage = {
   fileSlug: "some-tip",
   url: "/tips/some-tip/",
   inputPath: `${rootPath}/tips/some-tip/index.md`,
-  date: new Date("2023-02-02"),
+  date: fixtures.date,
 };
 
 test("construct a BaseEntity", () => {
@@ -48,5 +49,5 @@ test("get a class attribute from base class", () => {
 
 test("get a friendly date display format", () => {
   const resource = new Resource({ data, page });
-  expect(resource.displayDate).to.equal("2023-02-12");
+  expect(resource.displayDate).to.equal("2023-02-11");
 });

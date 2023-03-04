@@ -2,6 +2,7 @@ import { expect, test } from "vitest";
 import { EleventyPage } from "../../../src/models";
 import { rootPath } from "../../config";
 import { Technology, TechnologyFrontmatter } from "./TechnologyModels";
+import fixtures from "../../fixtures";
 
 const data: TechnologyFrontmatter = {
   label: "sa",
@@ -13,7 +14,7 @@ const page: EleventyPage = {
   fileSlug: "sa",
   url: "/technologies/st/",
   inputPath: `${rootPath}/technologies/st/index.md`,
-  date: new Date("2023-02-02"),
+  date: fixtures.date,
 };
 
 test("construct a technology", async () => {

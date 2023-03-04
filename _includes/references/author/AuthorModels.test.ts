@@ -2,6 +2,7 @@ import { expect, test } from "vitest";
 import { EleventyPage } from "../../../src/models";
 import { rootPath } from "../../config";
 import { Author, AuthorFrontmatter } from "./AuthorModels";
+import fixtures from "../../fixtures";
 
 const data: AuthorFrontmatter = {
   resourceType: "author",
@@ -12,7 +13,7 @@ const page: EleventyPage = {
   fileSlug: "sa",
   url: "/authors/sa/",
   inputPath: `${rootPath}/authors/sa/index.md`,
-  date: new Date("2023-02-02"),
+  date: fixtures.date,
 };
 
 test("construct an author", async () => {

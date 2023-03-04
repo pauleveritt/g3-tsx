@@ -14,7 +14,7 @@ test("should render TechnologiesLayout", () => {
     page: {
       fileSlug: "fileSlug",
       url: "/fileSlug",
-      date: new Date("2023-02-02"),
+      date: fixtures.date,
     },
     site: fixtures.site,
   };

@@ -27,7 +27,7 @@ const props: SidebarLayoutProps = {
   page: {
     fileSlug: "slug",
     url: fixtures.tips[0].url,
-    date: new Date("2023-02-02"),
+    date: fixtures.date,
   },
   subtitle: "Some Subtitle",
   bottomNav,

@@ -2,6 +2,7 @@ import { expect, test } from "vitest";
 import { Product, ProductFrontmatter } from "./ProductModels";
 import { EleventyPage } from "../../../src/models";
 import { rootPath } from "../../config";
+import fixtures from "../../fixtures";
 
 const data: ProductFrontmatter = {
   label: "sa",
@@ -13,7 +14,7 @@ const page: EleventyPage = {
   fileSlug: "sp",
   url: "/products/sp/",
   inputPath: `${rootPath}/products/sp/index.md`,
-  date: new Date("2023-02-02"),
+  date: fixtures.date,
 };
 
 test("construct a product", async () => {

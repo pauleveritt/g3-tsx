@@ -6,6 +6,7 @@ import {
 } from "./ReferenceModels";
 import { EleventyPage } from "./models";
 import { rootPath } from "../_includes/config";
+import fixtures from "../_includes/fixtures";
 
 const data: ReferenceFrontmatter = {
   label: "sr",
@@ -17,7 +18,7 @@ const page: EleventyPage = {
   fileSlug: "some-tip",
   url: "/tips/some-tip/",
   inputPath: `${rootPath}/tips/some-tip/index.md`,
-  date: new Date("2023-02-02"),
+  date: fixtures.date,
 };
 it("should construct a Reference", () => {
   const reference = new Reference({ data, page });

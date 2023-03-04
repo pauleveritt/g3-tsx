@@ -2,10 +2,11 @@ import { expect, test } from "vitest";
 import { Tip, TipFrontmatter } from "./TipModels";
 import { EleventyPage } from "../../../src/models";
 import { rootPath } from "../../config";
+import fixtures from "../../fixtures";
 
 const data: TipFrontmatter = {
   title: "Some Tip",
-  date: new Date("2023-02-02"),
+  date: fixtures.date,
   resourceType: "tip",
   author: "sa",
   products: ["sp", "ap"],
@@ -17,7 +18,7 @@ const page: EleventyPage = {
   fileSlug: "some-tip",
   url: "/tips/some-tip/",
   inputPath: `${rootPath}/tips/some-tip/index.md`,
-  date: new Date("2023-02-02"),
+  date: fixtures.date,
 };
 
 test("construct a tip", async () => {

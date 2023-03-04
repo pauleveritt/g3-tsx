@@ -2,6 +2,7 @@ import { expect, test } from "vitest";
 import { EleventyPage } from "../../../src/models";
 import { rootPath } from "../../config";
 import { Topic, TopicFrontmatter } from "./TopicModels";
+import fixtures from "../../fixtures";
 
 const data: TopicFrontmatter = {
   accent: "some accent",
@@ -14,7 +15,7 @@ const page: EleventyPage = {
   fileSlug: "sa",
   url: "/technologies/st/",
   inputPath: `${rootPath}/technologies/st/index.md`,
-  date: new Date("2023-02-02"),
+  date: fixtures.date,
 };
 
 test("construct a topic", async () => {
