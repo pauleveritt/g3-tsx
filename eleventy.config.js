@@ -4,6 +4,8 @@ const pluginRss = require("@11ty/eleventy-plugin-rss");
 const { registerIncludes } = require("./_includes/config");
 const { resolve } = require("path");
 const commandLineArgs = require("command-line-args");
+const { ViteImageOptimizer } = require("vite-plugin-image-optimizer");
+const { absolutifyPaths } = require("./src/absolutifyPaths");
 
 const options = commandLineArgs([
   { name: "config", type: String },
@@ -34,6 +36,12 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPlugin(EleventyVitePlugin, {
     viteOptions: {
+      plugins: [
+        // ViteImageOptimizer(),
+        absolutifyPaths({
+          prefix: options.pathprefix,
+        }),
+      ],
       base: options.pathprefix,
       assetsInclude: ["**/demos/**"],
       server: {
@@ -52,14 +60,6 @@ module.exports = function (eleventyConfig) {
             // at some point in pipeline, but 🤷‍
             // assetFileNames: `assets/[name][extname]`
           },
-        },
-      },
-
-      // New in v2.0.0
-      resolve: {
-        alias: {
-          // Allow references to `node_modules` folder directly
-          "/node_modules": resolve(".", "node_modules"),
         },
       },
     },

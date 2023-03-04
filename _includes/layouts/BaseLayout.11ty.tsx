@@ -3,7 +3,6 @@ import h, { JSX } from "vhtml";
 import Navbar from "../navbar/Navbar.11ty";
 import Footer from "../footer/Footer.11ty";
 import { LayoutContext, LayoutProps } from "../../src/models";
-import path from "upath";
 
 export type BaseLayoutProps = {
   children: string[];
@@ -16,11 +15,9 @@ export function BaseLayout(
   data: BaseLayoutProps
 ): JSX.Element {
   const { children, site } = data;
-  const { siteTitle, copyright, siteUrl } = site;
+  const { siteTitle, copyright } = site;
   // @ts-ignore
-  const { thumbnail, subtitle } = data;
-  // this og:image will only work in production when processed
-  const imageUrl = thumbnail ? path.join(siteUrl, "assets", thumbnail) : false;
+  const { subtitle } = data;
   return (
     <html lang="en">
       <head>
@@ -34,11 +31,14 @@ export function BaseLayout(
         <link rel="shortcut icon" href="/assets/favicon.ico" />
         <meta property="og:title" content={data.title} />
         <meta property="og:description" content={subtitle} />
+        {/*<meta*/}
+        {/*  property="og:image"*/}
+        {/*  content={`${siteUrl}__VITE_ASSET__6d742142__`}*/}
+        {/*/>*/}
         <meta property="og:type" content="article" />
         <meta property="article:published_time" content="2023-02-17" />
         <meta property="article:author" content="" />
         <meta property="article:section" content="" />
-        {imageUrl && <meta property="og:image" content={imageUrl} /> }
         <meta property="og:image:alt" content="" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@jetbrains" />

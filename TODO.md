@@ -2,11 +2,11 @@
 
 ## Now
 
+## Next
+
+- Wire in some build testing approach
 - Get home pages to match current home pages
 - Get PyCharm/WebStorm site config to match existing
-
-## Next
-  
 - Ensure `embed:` alternative with `{% include %}` works
 
 ## Soon
