@@ -26,6 +26,7 @@ const page: EleventyPage = {
   fileSlug: "some-tip",
   url: "/tips/some-tip/",
   inputPath: `${rootPath}/tips/some-tip/index.md`,
+  date: new Date("2023-02-02"),
 };
 
 test("construct a BaseEntity", () => {

@@ -13,6 +13,7 @@ test("should render TopicsLayout", () => {
     page: {
       url: "/topics",
       fileSlug: "some-slug",
+      date: new Date("2023-02-02"),
     },
     site: fixtures.site,
   };

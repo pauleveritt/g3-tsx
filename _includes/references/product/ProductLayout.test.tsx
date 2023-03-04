@@ -12,6 +12,7 @@ test("should render ProductLayout", () => {
     page: {
       fileSlug: fixtures.products[0].slug,
       url: "some-url",
+      date: new Date("2023-02-02"),
     },
     site: fixtures.site,
   };

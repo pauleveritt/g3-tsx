@@ -13,6 +13,7 @@ test("should render TipsLayout", () => {
     page: {
       fileSlug: "slug",
       url: "url",
+      date: new Date("2023-02-02"),
     },
     site: fixtures.site,
   };

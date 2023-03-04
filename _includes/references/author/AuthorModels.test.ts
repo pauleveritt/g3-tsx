@@ -12,6 +12,7 @@ const page: EleventyPage = {
   fileSlug: "sa",
   url: "/authors/sa/",
   inputPath: `${rootPath}/authors/sa/index.md`,
+  date: new Date("2023-02-02"),
 };
 
 test("construct an author", async () => {

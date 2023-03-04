@@ -14,6 +14,7 @@ test("should render AuthorsLayout", () => {
     page: {
       url: "/authors",
       fileSlug: "some-slug",
+      date: new Date("2023-02-02"),
     },
     site: fixtures.site,
   };

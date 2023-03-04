@@ -13,6 +13,7 @@ const page: EleventyPage = {
   fileSlug: "sa",
   url: "/technologies/st/",
   inputPath: `${rootPath}/technologies/st/index.md`,
+  date: new Date("2023-02-02"),
 };
 
 test("construct a technology", async () => {
