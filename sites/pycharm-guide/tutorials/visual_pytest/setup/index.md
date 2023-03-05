@@ -40,7 +40,9 @@ Fortunately this is [all explained quite well](https://docs.pytest.org/en/latest
 We first need a `setup.py` file at the top of our new project.
 Add the following:
 
-`embed:tutorials/visual_pytest/setup/setup.py`
+```python
+{% include "./demos/setup.py" %}
+```
 
 Our source will now go in a `src/laxleague` directory so make sure to create it.
 
@@ -66,7 +68,9 @@ Python has a sordid history on this, though it is getting better.
 But we don't have any source code yet. 
 Let's put a file at `src/laxleague/player.py` containing an empty `Player` class:
 
-`embed:tutorials/visual_pytest/setup/player.py`
+```python
+{% include "./demos/player.py" %}
+```
 
 # Configure Testing
 

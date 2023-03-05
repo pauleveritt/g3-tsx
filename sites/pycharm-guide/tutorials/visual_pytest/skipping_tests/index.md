@@ -47,7 +47,9 @@ Perhaps we are busy on something else and we'd like `pytest` to not yell at us, 
 
 Instead, let's import `pytest` and put a decorator for the `skip` marker on that test:
 
-`embed:tutorials/visual_pytest/skipping_tests/test_player02.py`
+```python
+{% include "./demos/test_player02.py" %}
+```
 
 Remember, we don't have to manually type the import...just start typing `@pyt` and let PyCharm autocomplete using `Ctrl-Space Ctrl-Space`.
 
@@ -58,7 +60,9 @@ Now when the tests run (automatically, thanks to `Toggle auto-test`), they don't
 With our failing test in place, let's implement the missing method. 
 In `player.py`, clone the existing `add_guardian` method, then change its arguments and implementation:
 
-`embed:tutorials/visual_pytest/skipping_tests/player01.py`
+```python
+{% include "./demos/player01.py" %}
+```
 
 We can now remove the `skip` marker and the test passes. 
 Remember to remove the now-unused `pytest` import in `test_player.py` using `Optimize Imports`.
@@ -83,7 +87,9 @@ Doing so breaks Python type checking:
 
 Let's change our `add_guardians` to accept any kind of `Iterable`:
 
-`embed:tutorials/visual_pytest/skipping_tests/player02.py`
+```python
+{% include "./demos/player02.py" %}
+```
 
 Tests still pass and type checking now passes.
 
@@ -111,7 +117,9 @@ def test_primary_guardian():
 Now time for the implementation.
 We're doing this as a Python "property", so add the following in `player.py`:
 
-`embed:tutorials/visual_pytest/skipping_tests/player.py`
+```python
+{% include "./demos/player.py" %}
+```
 
 *Tip: Use the `property` LiveTemplate in PyCharm to speed up the generation of a property.* 
 

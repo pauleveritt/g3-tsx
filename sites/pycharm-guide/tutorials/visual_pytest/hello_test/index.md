@@ -32,7 +32,9 @@ PyCharm should spot that you created a `tests` directory, so accept its defaults
 PyCharm will add two files to `tests`: an empty `tests/__init__.py` (which can be helpful to `pytest` later) and `tests/test_player.py`.
 PyCharm then opens the new test file at `tests/test_player.py`:
 
-`embed:tutorials/visual_pytest/hello_test/test_player01.py`
+```python
+{% include "./demos/test_player01.py" %}
+```
 
 As mentioned in the previous step, `pytest` recommends placing your tests outside the source code directory.
 This explains why PyCharm chose `tests` as the location.
@@ -67,7 +69,9 @@ It also has buttons for operations (e.g. re-run tests) and configuration (e.g. o
 
 Let's change the assertion to make the test pass:
 
-`embed:tutorials/visual_pytest/hello_test/test_player02.py`
+```python
+{% include "./demos/test_player02.py" %}
+```
 
 In the tool window, click the green arrow to re-run your tests. 
 The results look much different now:
@@ -106,7 +110,9 @@ This is known as "test-driven development" (TDD).
 We previously made a placeholder file at `src/laxleague/player.py`.
 Open that file and change the class to have a docstring:
 
-`embed:tutorials/visual_pytest/hello_test/player.py`
+```python
+{% include "./demos/player.py" %}
+```
 
 These tutorials are all about getting into the "flow". 
 Lots of times I resist: I'm tired, the problem I'm about to tackle is daunting, or I have a lot on my mind.
@@ -115,7 +121,9 @@ As a self-hack, I write the simplest-possible test, just to see if the thing can
 It is of modest value: it can later help show if a refactoring changed things.
 Let's change our first test to see if we can construct an instance:
 
-`embed:tutorials/visual_pytest/hello_test/test_player.py`
+```python
+{% include "./demos/test_player.py" %}
+```
 
 We aren't asserting anything about the instance.
 Simply: the import works, it's callable, and can be called.

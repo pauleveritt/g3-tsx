@@ -74,7 +74,9 @@ def guardians() -> Tuple[Guardian, ...]:
 
 After converting all the tests to use these fixtures, our ``test_player.py`` looks like the following:
 
-`embed:tutorials/visual_pytest/fixtures/test_player01.py`
+```python
+{% include "./demos/test_player01.py" %}
+```
 
 Our tests are now easier to reason about.
 
@@ -82,7 +84,9 @@ Our tests are now easier to reason about.
 
 Next we give `test_guardian.py` the same treatment:
 
-`embed:tutorials/visual_pytest/fixtures/test_guardian01.py`
+```python
+{% include "./demos/test_guardian01.py" %}
+```
 
 Hmm, something looks wrong.
 We said fixtures helped *avoid* repetition, but this `guardians` fixture is the same as the one in `test_player.py`.
@@ -95,15 +99,21 @@ You put this in a test directory (or parent directory, or grandparent etc.) and 
 
 Here's our `tests/conftest.py` file with the fixtures we just added in `test_player.py`:
 
-`embed:tutorials/visual_pytest/fixtures/conftest.py`
+```python
+{% include "./demos/conftest.py" %}
+```
 
 Now our `test_guardian.py` is short and focused:
 
-`embed:tutorials/visual_pytest/fixtures/test_guardian.py`
+```python
+{% include "./demos/test_guardian.py" %}
+```
 
 Same for `test_player.py`:
 
-`embed:tutorials/visual_pytest/fixtures/test_player.py`
+```python
+{% include "./demos/test_player.py" %}
+```
 
 # Life With Fixtures
 

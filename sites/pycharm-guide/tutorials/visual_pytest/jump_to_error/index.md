@@ -24,7 +24,9 @@ Let's start by simplifying our two classes with dataclasses and showing a side b
 
 First, the `Guardian` we were just working on in `guardian.py`:
 
-`embed:tutorials/visual_pytest/jump_to_error/guardian.py`
+```python
+{% include "./demos/guardian.py" %}
+```
 
 When writing this dataclass, note how PyCharm helps:
 
@@ -40,12 +42,16 @@ Yummy.
 
 Now we change our `Player` class:
 
-`embed:tutorials/visual_pytest/jump_to_error/player01.py`
+```python
+{% include "./demos/player01.py" %}
+```
 
 Our `test_player` test fails. 
 We also need to update the construction test in `test_player.py`:
 
-`embed:tutorials/visual_pytest/jump_to_error/test_player01.py`
+```python
+{% include "./demos/test_player01.py" %}
+```
 
 Now let's get some extra benefit from dataclasses and type annotations. 
 In the test, try passing in `Player('Tatiana', b'Jones')`, with a byte-string by accident. 
@@ -64,7 +70,9 @@ This time, though, we'll make a typo, to show a feature of using PyCharm's visua
 
 Let's start with a test in `test_player.py`:
 
-`embed:tutorials/visual_pytest/jump_to_error/test_player.py`
+```python
+{% include "./demos/test_player.py" %}
+```
 
 We first need to ensure, in `test_construction`, that we have an empty list for `player.guardians`. 
 Then, in the new test `test_add_guardian`, we make both a player *and* a guardian, add the guardian to the player, and test the result. 
@@ -80,7 +88,9 @@ Both tests fail:
 
 Let's fix this by implementing the feature in `player.py`:
 
-`embed:tutorials/visual_pytest/jump_to_error/player02.py`
+```python
+{% include "./demos/player02.py" %}
+```
 
 This dataclass adds a new dataclass field named `guardians`. 
 It is a little different: as Python's [mutable default values](https://docs.python.org/3/library/dataclasses.html#mutable-default-values) docs explain, Python class attributes can't default to a list. Python
@@ -164,4 +174,6 @@ Type annotations, combined with the immediate feedback in the IDE, helped us "fa
 
 Here is our final version of `player.py`:
 
-`embed:tutorials/visual_pytest/jump_to_error/player.py`
+```python
+{% include "./demos/player.py" %}
+```

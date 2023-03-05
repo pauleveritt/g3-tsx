@@ -20,7 +20,9 @@ This time let's do it with a bit of test-driven development (TDD) and show how t
 
 First, create `src/laxleague/guardian.py` with an empty class:
 
-`embed:tutorials/visual_pytest/tdd_flow/guardian01.py`
+```python
+{% include "./demos/guardian01.py" %}
+```
 
 Why do we make an empty placeholder class? 
 To let PyCharm generate the test for us.
@@ -28,7 +30,9 @@ Use `Navigate | Go To Test` (`Ctrl-Shift-T` Win/Linux, `Shift-Cmd-T` macOS) as e
 
 In that file, change the first test to `test_construction` to "get me into the flow", letting PyCharm generate the import:
 
-`embed:tutorials/visual_pytest/tdd_flow/test_guardian01.py`
+```python
+{% include "./demos/test_guardian01.py" %}
+```
 
 Run the test by right-clicking in the editor *outside any block* and choosing to run it with `pytest` (bigger target area than the tab.)
 
@@ -83,7 +87,9 @@ Let's write a failing test, then fix the implementation.
 Our `Guardian` needs a constructor that takes and stores `first_name` and a `last_name`.
 Change the first test in `tests/test_guardian.py`:
 
-`embed:tutorials/visual_pytest/tdd_flow/test_guardian02.py`
+```python
+{% include "./demos/test_guardian02.py" %}
+```
 
 Notice that PyCharm warns you (on hovering) with 'Unexpected argument' when we supply arguments:
 
@@ -98,7 +104,9 @@ Since it is the *code* we are writing tests for, the mistake is conveniently rig
 No need to think. 
 Change `laxleague/guardian.py` to implement storing names on instances:
 
-`embed:tutorials/visual_pytest/tdd_flow/guardian.py`
+```python
+{% include "./demos/guardian.py" %}
+```
 
 As you are writing this, let PyCharm help you:
 
@@ -140,11 +148,15 @@ Click on the double-equal, hit `Alt-Enter`, and choose `Flip '=='`:
 In fact, PyCharm will [obey a style](https://youtrack.jetbrains.com/issue/PY-27267) set by a project.
 Create a `pytest.ini` file at the root:
 
-`embed:tutorials/visual_pytest/tdd_flow/pytest.ini`
+```python
+{% include "./demos/pytest.ini" %}
+```
 
 Let's write a test for last name, causing `test_guardian.py` to finish like the following -- including the expected/actual ordering:
 
-`embed:tutorials/visual_pytest/tdd_flow/test_guardian.py`
+```python
+{% include "./demos/test_guardian.py" %}
+```
 
 One last point: PyCharm's tool window for testing shows passing tests by default. 
 If you don't want to see them, and focus on failing tests instead, click on the `Show Passed` icon to the right of the green play button.

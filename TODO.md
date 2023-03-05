@@ -2,21 +2,17 @@
 
 ## Now
 
-## Next
+- Implement NavbarBrand toggle menu
 
-- Ensure `embed:` alternative with `{% include %}` works
+## Next
 
 ## Soon
 
-- Implement NavbarBrand toggle menu
 - Lunr
   - NavbarSearch reveal panel
 - Get a placeholder.jpg into the site
 - JSON Schema writing
 - TwitterCard stuff and other Helmet
-- Allow running in `inputSrc` of `webstorm-guide` (to prevent links from including `/webstorm-guide/`)
-  - Or possibly [pathPrefix](https://www.11ty.dev/docs/config/#deploy-to-a-subdirectory-with-a-path-prefix)
-- Get `longVideo` back on TipLayout
 
 ## Eventually
 
@@ -68,6 +64,8 @@
 - Figure out the `site.json` config file
 - Style misfire in code snippets on `number`
 - Get home pages to match current home pages
+- Ensure `embed:` alternative with `{% include %}`
+
 
 
 ## WS+CWM Issues

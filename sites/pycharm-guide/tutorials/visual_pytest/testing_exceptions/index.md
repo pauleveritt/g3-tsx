@@ -45,7 +45,9 @@ Instead, we want to detect if `self.guardians` is empty, and if so, return `None
 To start, let's...write a test.
 Or in this case, change that last test:
 
-`embed:tutorials/visual_pytest/testing_exceptions/test_player.py`
+```python
+{% include "./demos/test_player.py" %}
+```
 
 Good news, the test fails. 
 Remember to remove the now-unused `import pytest` via PyCharm's `Optimize Imports`.
@@ -53,7 +55,9 @@ Remember to remove the now-unused `import pytest` via PyCharm's `Optimize Import
 We now change our implementation in `player.py` to correctly return `None`. 
 While we're at it, let's put a return type on `primary_guardian`:
 
-`embed:tutorials/visual_pytest/testing_exceptions/player.py`
+```python
+{% include "./demos/player.py" %}
+```
 
 Python type hinting uses `Optional` when the value might be `None`.
 

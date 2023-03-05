@@ -69,17 +69,18 @@ The primary motivation behind context managers is resource management.
 As you can see in the below code, we have used special methods `__enter__` and `__exit__`. 
 The enter method will help to establish connection with the database, and the exit method will take care to close the connection.
 
-
-`embed:tutorials/intro-aws/crud/db.py`
-
+```python
+{% include "./demos/db.py" %}
+```
 
 Now I will open the **validator.py** file and start creating a schema using the **marshmallow** module.
 
 We won’t be storing plain-text passwords in the database. 
 You can see that we are using the **encrypt** function which returns the hashed value.
 
-`embed:tutorials/intro-aws/crud/create_validator.py`
-
+```python
+{% include "./demos/create_validator.py" %}
+```
 
 You can see how the schema looks similar to [**DRF Serializers.**](https://www.django-rest-framework.org/api-guide/serializers/) For post-processing 
 you can see we are using **post_load** decorator for encrypting our passwords as well validating email
@@ -101,7 +102,9 @@ otherwise I will store the record in the registrations collection and return 201
 
 Below code is the final snippet how the **app.py** is going to look like.
 
-`embed:tutorials/intro-aws/crud/create_app.py`
+```python
+{% include "./demos/create_app.py" %}
+```
 
 Now, I am going to open the **template.yaml** file.
 
@@ -167,8 +170,9 @@ related to that specific user else we return all users list.
 
 This is how the final code going to look like.
 
-`embed:tutorials/intro-aws/crud/read_app.py`
-
+```python
+{% include "./demos/read_app.py" %}
+```
 
 The implementation is done. Let’s move to **template.yaml** file and register our API.
 
@@ -244,7 +248,9 @@ then it will return 200 HTTP Response.
 
 This is how the final code for the update operation is going to look like.
 
-`embed:tutorials/intro-aws/crud/update_app.py`
+```python
+{% include "./demos/update_app.py" %}
+```
 
 Let’s register the API in the **template.yaml** file. As this API is being used to update our records, 
 so the method is going to be **PUT**.
@@ -289,7 +295,9 @@ We are performing a similar kind of operation what we did for the update.
 
 Okay, our implementation is done. This is how the final code is going to look like.
 
-`embed:tutorials/intro-aws/crud/delete_app.py`
+```python
+{% include "./demos/delete_app.py" %}
+```
 
 Let’s now register our API in **template.yaml** file and test out the functionality.
 

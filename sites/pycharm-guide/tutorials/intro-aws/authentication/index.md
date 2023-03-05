@@ -45,7 +45,9 @@ Below, I am providing the final snippet of the custom authorizer blueprint.
 
 The source code is available on Github at [https://github.com/mukulmantosh/ServerlessDemo](https://github.com/mukulmantosh/ServerlessDemo)
 
-`embed:tutorials/intro-aws/authentication/auth.py`
+```python
+{% include "./demos/auth.py" %}
+```
 
 If you have observed the logic carefully, you will notice that I have slightly refactored the code according to my requirements.
 
@@ -95,8 +97,9 @@ function so each API will only work when a token is provided.
 
 Below I have provided the final code snippet how it is going to look like.
 
-`embed:tutorials/intro-aws/authentication/template.yaml`
-
+```yaml
+{% include "./demos/template.yaml" %}
+```
 
 As you can see in my screen for the **CreateUserAPI**, I am referring to
 the CustomAuthorizer through **RestApiId**. Until then, I have 
@@ -130,7 +133,9 @@ If you want to get more information about JWT then visit [jwt.io](https://jwt.io
 
 Below, I have provided the final code snippet how it is going to look like.
 
-`embed:tutorials/intro-aws/authentication/token.py`
+```python
+{% include "./demos/token.py" %}
+```
 
 As you can see the function **create_access_token** which is going to take
 the user information and encode it and return us back with a long 
@@ -154,8 +159,9 @@ to return a new token in the response else it will raise a validation error.
 
 Below, I have provided the final code snippet how the **validator.py** is going to look like.
 
-`embed:tutorials/intro-aws/authentication/validator.py`
-
+```python
+{% include "./demos/validator.py" %}
+```
 
 Let’s move to **app.py**. I am going to define the lambda handler.
 As you have seen before I will be parsing the event body and passing into my 
@@ -172,7 +178,9 @@ input and returning it back with a new token.
 
 Below, I have provided the final code snippet how the **app.py** is going to look like.
 
-`embed:tutorials/intro-aws/authentication/app.py`
+```python
+{% include "./demos/app.py" %}
+```
 
 Now, I am going to register the UserLogin & RefreshToken API in 
 the **template.yaml** file.
