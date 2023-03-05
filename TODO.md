@@ -4,9 +4,6 @@
 
 ## Next
 
-- Wire in some build testing approach
-- Get home pages to match current home pages
-- Get PyCharm/WebStorm site config to match existing
 - Ensure `embed:` alternative with `{% include %}` works
 
 ## Soon
@@ -70,6 +67,7 @@
   - Some post-build task to copy `assets` into `_site/webstorm/guide`
 - Figure out the `site.json` config file
 - Style misfire in code snippets on `number`
+- Get home pages to match current home pages
 
 
 ## WS+CWM Issues
