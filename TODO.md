@@ -2,6 +2,8 @@
 
 ## Now
 
+- Spell background repeat correctly on hero
+
 ## Next
 
 ## Soon
