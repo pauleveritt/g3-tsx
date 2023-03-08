@@ -44,3 +44,12 @@ function resetPlaylistItemToggles() {
     span.classList.remove("is-info");
   });
 }
+
+const navbarBurger = document.getElementById("navbarBurger");
+const navMenuIndex = document.getElementById("navMenuIndex");
+navbarBurger.addEventListener("click", ({ currentTarget }) => {
+  if (navMenuIndex) {
+    currentTarget.classList.toggle("is-active");
+    navMenuIndex.classList.toggle("is-active");
+  }
+});

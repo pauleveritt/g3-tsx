@@ -2,17 +2,14 @@
 
 ## Now
 
-- Implement NavbarBrand toggle menu
-
 ## Next
 
 ## Soon
 
 - Lunr
   - NavbarSearch reveal panel
-- Get a placeholder.jpg into the site
-- JSON Schema writing
 - TwitterCard stuff and other Helmet
+- JSON Schema writing
 
 ## Eventually
 
@@ -65,8 +62,7 @@
 - Style misfire in code snippets on `number`
 - Get home pages to match current home pages
 - Ensure `embed:` alternative with `{% include %}`
-
-
+- Implement NavbarBrand toggle menu
 
 ## WS+CWM Issues
 
