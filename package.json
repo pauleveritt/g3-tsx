@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev:pycharm": "cd sites/pycharm-guide && node --require esbuild-register ../../node_modules/@11ty/eleventy/cmd.js --config=../../eleventy.config.js --serve --watch",
-    "build:pycharm": "npm run clean && cd sites/pycharm-guide && node --require esbuild-register ../../node_modules/@11ty/eleventy/cmd.js --config=../../eleventy.config.js --pathprefix=/pycharm/guide ",
+    "build:pycharm": "npm run clean && npm run test && cd sites/pycharm-guide && node --require esbuild-register ../../node_modules/@11ty/eleventy/cmd.js --config=../../eleventy.config.js --pathprefix=/pycharm/guide ",
     "dev:webstorm": "cd sites/webstorm-guide && node --require esbuild-register ../../node_modules/@11ty/eleventy/cmd.js --config=../../eleventy.config.js --serve --watch",
-    "build:webstorm": "npm run clean && cd sites/webstorm-guide && node --require esbuild-register ../../node_modules/@11ty/eleventy/cmd.js --config=../../eleventy.config.js",
+    "build:webstorm": "npm run clean && npm run test && cd sites/webstorm-guide && node --require esbuild-register ../../node_modules/@11ty/eleventy/cmd.js --config=../../eleventy.config.js",
     "clean": "rimraf .11ty-vite sites/pycharm-guide/_site sites/pycharm-guide/.11ty-vite sites/webstorm-guide/_site",
+    "test": "vitest run",
     "COMMENT": "// TODO DO WE NEED THESE SCRIPTS BELOW?",
     "incremental": "node --require esbuild-register node_modules/@11ty/eleventy/cmd.js --incremental --serve --watch",
     "debug-start": "DEBUG=Eleventy* node --require esbuild-register node_modules/@11ty/eleventy/cmd.js --serve --watch",
