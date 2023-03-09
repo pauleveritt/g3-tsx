@@ -55,7 +55,7 @@ function findSearchResults(query) {
   const description =
     results.length === 0
       ? "<p>No results have been found</p>"
-      : ` <p>Showing ${Math.min(limit, results.length)} of ${
+      : `<p>Showing ${Math.min(limit, results.length)} of ${
           results.length
         } results</p>
     `;
